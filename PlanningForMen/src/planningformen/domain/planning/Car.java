@@ -18,7 +18,11 @@ public class Car implements Sellable
     private int _year, _odometer;
     private Date _purchaseDate;
 
-    public Car(String id, String make, String model, String version, String fuel, String description, String plate, double volume, double purchasePrice, double sellPrice, int year, int odometer, Date purchaseDate)
+    public Car()
+    {
+    }
+    
+    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
     {
         this._id = id;
         this._make = make;
@@ -63,10 +67,5 @@ public class Car implements Sellable
     public void setYear(int year)                      {this._year = year;}
     public void setOdometer(int odometer)              {this._odometer = odometer;}
     public void setPurchaseDate(Date purchaseDate)     {this._purchaseDate = purchaseDate;}
-    
-    
-    
-    
-    
     
 }

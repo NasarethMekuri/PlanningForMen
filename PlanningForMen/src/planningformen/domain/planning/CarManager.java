@@ -1,9 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.domain.planning;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -12,16 +17,366 @@ package planningformen.domain.planning;
 public class CarManager
 {
     private static CarManager _instance;
-
-    private CarManager()    {}
+    private List<Car> _cars;
     
-    public static synchronized CarManager getIstance()
+    private CarManager()
+    {
+        //TODO: populate list from database.
+    }
+    
+    public static synchronized CarManager getInstance()
     {
         if (_instance == null)
         {
             _instance = new CarManager();
         }
         return _instance;
+    }
+    
+    public List<Car> getCars()    {return _cars;}
+    
+    
+    public void createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    {
+        //TODO Write it to database first!
+        _cars.add(new Car(id, plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description));
+    }
+    
+    
+    public Car findCarByID(String id)
+    {
+        Car returnCar = new Car();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getId().equalsIgnoreCase(id))
+            {
+                returnCar = next;
+                return returnCar;
+            }
+        }
+        return null;
+    }
+    
+    public Car findCarByPlate(String plate)
+    {
+        Car returnCar = new Car();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getPlate().equalsIgnoreCase(plate))
+            {
+                returnCar = next;
+                return returnCar;
+            }
+        }
+        return null;
+    }
+    
+    public List<Car> findCarsByMake(String make)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getMake().equalsIgnoreCase(make))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByModel(String model)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getModel().equalsIgnoreCase(model))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByMakeAndModel(String make, String model)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getMake().equalsIgnoreCase(make) && next.getModel().equalsIgnoreCase(model))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByVersion(String version)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getVersion().equalsIgnoreCase(version))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByMakeModelVersion(String make, String model, String version)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (next.getMake().equalsIgnoreCase(make) && next.getModel().equalsIgnoreCase(model) && next.getVersion().equalsIgnoreCase(version))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByVolume(double volumeFrom, double volumeTo)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (volumeFrom <= next.getVolume() && volumeTo >= next.getVolume())
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByPurchasePrice(double priceMin, double priceMax)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (priceMin <= next.getPurchasePrice() && priceMax >= next.getPurchasePrice())
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsBySellPrice(double priceMin, double priceMax)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (priceMin <= next.getSellPrice() && priceMax >= next.getSellPrice())
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+        
+    }
+    
+    public List<Car> findCarsByMiles(int milesMin, int milesMax)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (milesMin <= next.getOdometer() && milesMax >= next.getOdometer())
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByYear(int yearFrom, int yearTo)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (yearFrom <= next.getYear() && yearTo >= next.getYear())
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public List<Car> findCarsByPurchaseDate(Date from, Date to)
+    {
+        List<Car> returnCars = new ArrayList();
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            
+            if (from.before(next.getPurchaseDate()) && to.after(next.getPurchaseDate()))
+            {
+                returnCars.add(next);
+            }
+        }
+        return returnCars;
+    }
+    
+    public void updateCarByID(String id, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    {
+        for (Iterator<Car> iterator = _cars.iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            if (next.getId().equalsIgnoreCase(id))
+            {
+                if (year != -1)
+                {
+                    next.setYear(year);
+                }
+                if (make != "")
+                {
+                    next.setMake(make);
+                }
+                if (model != "")
+                {
+                    next.setModel(model);
+                }
+                if (volume != -1)
+                {
+                    next.setVolume(volume);
+                }
+                if (fuel != "")
+                {
+                    next.setFuel(fuel);
+                }
+                if (version != "")
+                {
+                    next.setVersion(version);
+                }
+                if (odometer != -1)
+                {
+                    next.setOdometer(odometer);
+                }
+                if (purchaseDate != null)
+                {
+                    next.setPurchaseDate(purchaseDate);
+                }
+                if (purchasePrice != -1)
+                {
+                    next.setPurchasePrice(purchasePrice);
+                }
+                if (sellPrice != -1)
+                {
+                    next.setSellPrice(sellPrice);
+                }
+                if (description != "")
+                {
+                    next.setDescription(description);
+                }
+            }
+        }
+    }
+    
+    public void updateCarByPlate(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    {
+        for (Iterator<Car> iterator = _cars.iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            if (next.getPlate().equalsIgnoreCase(plate))
+            {
+                if (year != -1)
+                {
+                    next.setYear(year);
+                }
+                if (make != "")
+                {
+                    next.setMake(make);
+                }
+                if (model != "")
+                {
+                    next.setModel(model);
+                }
+                if (volume != -1)
+                {
+                    next.setVolume(volume);
+                }
+                if (fuel != "")
+                {
+                    next.setFuel(fuel);
+                }
+                if (version != "")
+                {
+                    next.setVersion(version);
+                }
+                if (odometer != -1)
+                {
+                    next.setOdometer(odometer);
+                }
+                if (purchaseDate != null)
+                {
+                    next.setPurchaseDate(purchaseDate);
+                }
+                if (purchasePrice != -1)
+                {
+                    next.setPurchasePrice(purchasePrice);
+                }
+                if (sellPrice != -1)
+                {
+                    next.setSellPrice(sellPrice);
+                }
+                if (description != "")
+                {
+                    next.setDescription(description);
+                }
+            }
+        }
+    }
+    
+    public boolean deleteCarByID(String id)
+    {
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            if (next.getId().equalsIgnoreCase(id))
+            {
+                _cars.remove(next);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean deleteCarByPlate(String plate)
+    {
+        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        {
+            Car next = iterator.next();
+            if (next.getPlate().equalsIgnoreCase(plate))
+            {
+                _cars.remove(next);
+                return true;
+            }
+        }
+        return false;
     }
     
 }

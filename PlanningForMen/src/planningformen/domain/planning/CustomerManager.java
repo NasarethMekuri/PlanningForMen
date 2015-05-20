@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.domain.planning;
 
 import java.util.List;
@@ -27,12 +27,23 @@ public class CustomerManager
         return _instance;
     }
     
+    public void createCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    {
+        
+    }
+    
     public void findCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
     {
         
     }
-    public void CreateCustomer()
-    {
     
+    public void updateCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    {
+        
+    }
+    
+    public void delteCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    {
+        
     }
 }
