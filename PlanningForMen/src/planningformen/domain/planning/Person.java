@@ -9,7 +9,7 @@ package planningformen.domain.planning;
  *
  * @author Simon
  */
-public class Person
+public abstract class Person
 {
     
 }

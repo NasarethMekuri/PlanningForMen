@@ -9,7 +9,7 @@ package planningformen.domain.planning;
  *
  * @author Simon
  */
-public class Employee
+public class Employee extends Person
 {
     
 }

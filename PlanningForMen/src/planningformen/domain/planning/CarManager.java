@@ -11,5 +11,17 @@ package planningformen.domain.planning;
  */
 public class CarManager
 {
+    private static CarManager _instance;
+
+    private CarManager()    {}
+    
+    public static synchronized CarManager getIstance()
+    {
+        if (_instance == null)
+        {
+            _instance = new CarManager();
+        }
+        return _instance;
+    }
     
 }
