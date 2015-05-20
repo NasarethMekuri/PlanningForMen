@@ -7,7 +7,6 @@ package planningformen.domain.planning;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -46,10 +45,8 @@ public class CarManager
     public Car findCarByID(String id)
     {
         Car returnCar = new Car();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getId().equalsIgnoreCase(id))
             {
                 returnCar = next;
@@ -62,10 +59,8 @@ public class CarManager
     public Car findCarByPlate(String plate)
     {
         Car returnCar = new Car();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getPlate().equalsIgnoreCase(plate))
             {
                 returnCar = next;
@@ -78,10 +73,8 @@ public class CarManager
     public List<Car> findCarsByMake(String make)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getMake().equalsIgnoreCase(make))
             {
                 returnCars.add(next);
@@ -93,10 +86,8 @@ public class CarManager
     public List<Car> findCarsByModel(String model)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getModel().equalsIgnoreCase(model))
             {
                 returnCars.add(next);
@@ -108,10 +99,8 @@ public class CarManager
     public List<Car> findCarsByMakeAndModel(String make, String model)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getMake().equalsIgnoreCase(make) && next.getModel().equalsIgnoreCase(model))
             {
                 returnCars.add(next);
@@ -123,10 +112,8 @@ public class CarManager
     public List<Car> findCarsByVersion(String version)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getVersion().equalsIgnoreCase(version))
             {
                 returnCars.add(next);
@@ -138,10 +125,8 @@ public class CarManager
     public List<Car> findCarsByMakeModelVersion(String make, String model, String version)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (next.getMake().equalsIgnoreCase(make) && next.getModel().equalsIgnoreCase(model) && next.getVersion().equalsIgnoreCase(version))
             {
                 returnCars.add(next);
@@ -153,10 +138,8 @@ public class CarManager
     public List<Car> findCarsByVolume(double volumeFrom, double volumeTo)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (volumeFrom <= next.getVolume() && volumeTo >= next.getVolume())
             {
                 returnCars.add(next);
@@ -168,10 +151,8 @@ public class CarManager
     public List<Car> findCarsByPurchasePrice(double priceMin, double priceMax)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (priceMin <= next.getPurchasePrice() && priceMax >= next.getPurchasePrice())
             {
                 returnCars.add(next);
@@ -183,10 +164,8 @@ public class CarManager
     public List<Car> findCarsBySellPrice(double priceMin, double priceMax)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (priceMin <= next.getSellPrice() && priceMax >= next.getSellPrice())
             {
                 returnCars.add(next);
@@ -199,10 +178,8 @@ public class CarManager
     public List<Car> findCarsByMiles(int milesMin, int milesMax)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (milesMin <= next.getOdometer() && milesMax >= next.getOdometer())
             {
                 returnCars.add(next);
@@ -214,10 +191,8 @@ public class CarManager
     public List<Car> findCarsByYear(int yearFrom, int yearTo)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (yearFrom <= next.getYear() && yearTo >= next.getYear())
             {
                 returnCars.add(next);
@@ -229,10 +204,8 @@ public class CarManager
     public List<Car> findCarsByPurchaseDate(Date from, Date to)
     {
         List<Car> returnCars = new ArrayList();
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
-            
             if (from.before(next.getPurchaseDate()) && to.after(next.getPurchaseDate()))
             {
                 returnCars.add(next);
@@ -243,20 +216,19 @@ public class CarManager
     
     public void updateCarByID(String id, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
     {
-        for (Iterator<Car> iterator = _cars.iterator(); iterator.hasNext();)
+        for (Car next : _cars)
         {
-            Car next = iterator.next();
             if (next.getId().equalsIgnoreCase(id))
             {
                 if (year != -1)
                 {
                     next.setYear(year);
                 }
-                if (make != "")
+                if (!"".equals(make))
                 {
                     next.setMake(make);
                 }
-                if (model != "")
+                if (!"".equals(model))
                 {
                     next.setModel(model);
                 }
@@ -264,11 +236,11 @@ public class CarManager
                 {
                     next.setVolume(volume);
                 }
-                if (fuel != "")
+                if (!"".equals(fuel))
                 {
                     next.setFuel(fuel);
                 }
-                if (version != "")
+                if (!"".equals(version))
                 {
                     next.setVersion(version);
                 }
@@ -288,7 +260,7 @@ public class CarManager
                 {
                     next.setSellPrice(sellPrice);
                 }
-                if (description != "")
+                if (!"".equals(description))
                 {
                     next.setDescription(description);
                 }
@@ -298,20 +270,19 @@ public class CarManager
     
     public void updateCarByPlate(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
     {
-        for (Iterator<Car> iterator = _cars.iterator(); iterator.hasNext();)
+        for (Car next : _cars)
         {
-            Car next = iterator.next();
             if (next.getPlate().equalsIgnoreCase(plate))
             {
                 if (year != -1)
                 {
                     next.setYear(year);
                 }
-                if (make != "")
+                if (!"".equals(make))
                 {
                     next.setMake(make);
                 }
-                if (model != "")
+                if (!"".equals(model))
                 {
                     next.setModel(model);
                 }
@@ -319,11 +290,11 @@ public class CarManager
                 {
                     next.setVolume(volume);
                 }
-                if (fuel != "")
+                if (!"".equals(fuel))
                 {
                     next.setFuel(fuel);
                 }
-                if (version != "")
+                if (!"".equals(version))
                 {
                     next.setVersion(version);
                 }
@@ -343,7 +314,7 @@ public class CarManager
                 {
                     next.setSellPrice(sellPrice);
                 }
-                if (description != "")
+                if (!"".equals(description))
                 {
                     next.setDescription(description);
                 }
@@ -353,9 +324,8 @@ public class CarManager
     
     public boolean deleteCarByID(String id)
     {
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
             if (next.getId().equalsIgnoreCase(id))
             {
                 _cars.remove(next);
@@ -367,9 +337,8 @@ public class CarManager
     
     public boolean deleteCarByPlate(String plate)
     {
-        for (Iterator<Car> iterator = getCars().iterator(); iterator.hasNext();)
+        for (Car next : getCars())
         {
-            Car next = iterator.next();
             if (next.getPlate().equalsIgnoreCase(plate))
             {
                 _cars.remove(next);
