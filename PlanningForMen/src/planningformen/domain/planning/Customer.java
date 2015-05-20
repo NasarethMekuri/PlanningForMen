@@ -11,5 +11,9 @@ package planningformen.domain.planning;
  */
 public class Customer extends Person
 {
-    
+        
+    public Customer(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    {
+        super(id, firstName, lastName, address, phoneNumber, postalNumber, email);
+    }
 }

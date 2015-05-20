@@ -5,11 +5,34 @@
  */
 package planningformen.domain.planning;
 
+import java.util.List;
+
 /**
  *
  * @author Simon
  */
 public class CustomerManager
 {
+    private static CustomerManager _instance;
+    private List<Customer> _customers;
+    private CustomerManager()
+    {
+        //Populate List from DB
+    }
     
+    public static CustomerManager getInstance()
+    {
+        if(_instance == null)
+            _instance = new CustomerManager();
+        return _instance;
+    }
+    
+    public void findCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    {
+        
+    }
+    public void CreateCustomer()
+    {
+    
+    }
 }
