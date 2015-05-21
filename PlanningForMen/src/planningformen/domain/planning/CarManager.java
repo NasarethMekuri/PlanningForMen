@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Simon
  */
-public class CarManager
+public class CarManager 
 {
     private static CarManager _instance;
     private List<Car> _cars;
@@ -35,10 +35,11 @@ public class CarManager
     public List<Car> getCars()    {return _cars;}
     
     
-    public void createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    public void createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
         //TODO Write it to database first!
-        _cars.add(new Car(id, plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description));
+        
+        getCars().add(new Car(id, plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description, inStock));
     }
     
     
@@ -214,129 +215,29 @@ public class CarManager
         return returnCars;
     }
     
-    public void updateCarByID(String id, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    public boolean updateCar(Car updatedCar)
     {
-        for (Car next : _cars)
+        //TODO Update in database!
+        for (Car car : getCars())
         {
-            if (next.getId().equalsIgnoreCase(id))
+            if (car.getId().equals(updatedCar.getId()))
             {
-                if (year != -1)
-                {
-                    next.setYear(year);
-                }
-                if (!"".equals(make))
-                {
-                    next.setMake(make);
-                }
-                if (!"".equals(model))
-                {
-                    next.setModel(model);
-                }
-                if (volume != -1)
-                {
-                    next.setVolume(volume);
-                }
-                if (!"".equals(fuel))
-                {
-                    next.setFuel(fuel);
-                }
-                if (!"".equals(version))
-                {
-                    next.setVersion(version);
-                }
-                if (odometer != -1)
-                {
-                    next.setOdometer(odometer);
-                }
-                if (purchaseDate != null)
-                {
-                    next.setPurchaseDate(purchaseDate);
-                }
-                if (purchasePrice != -1)
-                {
-                    next.setPurchasePrice(purchasePrice);
-                }
-                if (sellPrice != -1)
-                {
-                    next.setSellPrice(sellPrice);
-                }
-                if (!"".equals(description))
-                {
-                    next.setDescription(description);
-                }
-            }
-        }
-    }
-    
-    public void updateCarByPlate(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
-    {
-        for (Car next : _cars)
-        {
-            if (next.getPlate().equalsIgnoreCase(plate))
-            {
-                if (year != -1)
-                {
-                    next.setYear(year);
-                }
-                if (!"".equals(make))
-                {
-                    next.setMake(make);
-                }
-                if (!"".equals(model))
-                {
-                    next.setModel(model);
-                }
-                if (volume != -1)
-                {
-                    next.setVolume(volume);
-                }
-                if (!"".equals(fuel))
-                {
-                    next.setFuel(fuel);
-                }
-                if (!"".equals(version))
-                {
-                    next.setVersion(version);
-                }
-                if (odometer != -1)
-                {
-                    next.setOdometer(odometer);
-                }
-                if (purchaseDate != null)
-                {
-                    next.setPurchaseDate(purchaseDate);
-                }
-                if (purchasePrice != -1)
-                {
-                    next.setPurchasePrice(purchasePrice);
-                }
-                if (sellPrice != -1)
-                {
-                    next.setSellPrice(sellPrice);
-                }
-                if (!"".equals(description))
-                {
-                    next.setDescription(description);
-                }
-            }
-        }
-    }
-    
-    public boolean deleteCarByID(String id)
-    {
-        for (Car next : getCars())
-        {
-            if (next.getId().equalsIgnoreCase(id))
-            {
-                _cars.remove(next);
+                car = updatedCar;
                 return true;
             }
         }
         return false;
     }
     
+    public boolean deleteCarByID(Car carToDelete)
+    {
+        //TODO: Delete from Database first!
+        return getCars().remove(carToDelete);
+    }
+    
     public boolean deleteCarByPlate(String plate)
     {
+        //TODO: Delete from Database first!
         for (Car next : getCars())
         {
             if (next.getPlate().equalsIgnoreCase(plate))

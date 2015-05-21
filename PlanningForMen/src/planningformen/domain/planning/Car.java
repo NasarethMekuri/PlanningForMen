@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.domain.planning;
 
 import java.sql.Date;
@@ -17,12 +17,13 @@ public class Car implements Sellable
     private double _volume, _purchasePrice, _sellPrice;
     private int _year, _odometer;
     private Date _purchaseDate;
-
+    private boolean _inStock;
+    
     public Car()
     {
     }
     
-    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description)
+    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
         this._id = id;
         this._make = make;
@@ -37,8 +38,9 @@ public class Car implements Sellable
         this._year = year;
         this._odometer = odometer;
         this._purchaseDate = purchaseDate;
+        this._inStock = inStock;
     }
-
+    
     //Accessors:
     public String getId()           {return _id;}
     public String getMake()         {return _make;}
@@ -53,8 +55,9 @@ public class Car implements Sellable
     public int getYear()            {return _year;}
     public int getOdometer()        {return _odometer;}
     public Date getPurchaseDate()   {return _purchaseDate;}
+    public boolean isInStock()      {return _inStock;}
     //Mutators:
-    public void setId(String id)                       {this._id = id;}
+    
     public void setMake(String make)                   {this._make = make;}
     public void setModel(String model)                 {this._model = model;}
     public void setVersion(String version)             {this._version = version;}
@@ -67,5 +70,6 @@ public class Car implements Sellable
     public void setYear(int year)                      {this._year = year;}
     public void setOdometer(int odometer)              {this._odometer = odometer;}
     public void setPurchaseDate(Date purchaseDate)     {this._purchaseDate = purchaseDate;}
+    public void setInStock(boolean _inStock)            {this._inStock = _inStock;}
     
 }

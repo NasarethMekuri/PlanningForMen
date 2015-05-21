@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Simon
  */
-public class CustomerManager
+public class CustomerManager 
 {
     private static CustomerManager _instance;
     private List<Customer> _customers;
