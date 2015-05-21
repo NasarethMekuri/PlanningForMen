@@ -217,7 +217,7 @@ public class CarManager
     
     public boolean updateCar(Car updatedCar)
     {
-        //TODO Update in database!
+        //TODO Update in database first!
         for (Car car : getCars())
         {
             if (car.getId().equals(updatedCar.getId()))
@@ -229,24 +229,11 @@ public class CarManager
         return false;
     }
     
-    public boolean deleteCarByID(Car carToDelete)
+    public boolean deleteCar(Car carToDelete)
     {
         //TODO: Delete from Database first!
         return getCars().remove(carToDelete);
     }
     
-    public boolean deleteCarByPlate(String plate)
-    {
-        //TODO: Delete from Database first!
-        for (Car next : getCars())
-        {
-            if (next.getPlate().equalsIgnoreCase(plate))
-            {
-                _cars.remove(next);
-                return true;
-            }
-        }
-        return false;
-    }
     
 }
