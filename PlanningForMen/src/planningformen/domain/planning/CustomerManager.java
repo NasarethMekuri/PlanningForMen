@@ -5,13 +5,14 @@
 */
 package planningformen.domain.planning;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Simon
  */
-public class CustomerManager 
+public class CustomerManager
 {
     private static CustomerManager _instance;
     private List<Customer> _customers;
@@ -27,23 +28,71 @@ public class CustomerManager
         return _instance;
     }
     
-    public void createCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        
+        //DB Stuff first
+        _customers.add(new Customer(id, firstName, lastName, address, phoneNumber, postalNumber, email));
+        return true;
     }
     
-    public void findCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    public Customer findCustomer(String id)
     {
-        
+        Customer foundCustomer = null;
+        for(Customer c : _customers)
+        {
+            if(c.getId().equals(id))
+            {
+                {
+                    foundCustomer = c;
+                    break;
+                }
+            }
+        }
+        return foundCustomer;
     }
     
-    public void updateCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    public List<Customer>findCustomers(String firstName, String lastName)
     {
+        List<Customer> foundCustomers = new ArrayList<Customer>();
         
+        for(Customer c : _customers)
+        {
+            if(c.getFirstName().equals(firstName) && c.getLastName().equals(lastName))
+                foundCustomers.add(c);
+        }
+        return foundCustomers;
     }
     
-    public void delteCustomer(String id, String firstName, String lastName, String phoneNumber, String postalNumber, String email)
+    public List<Customer>findCustomers(String lastName)
     {
+        List<Customer> foundCustomers = new ArrayList<Customer>();
         
+        for(Customer c : _customers)
+        {
+            if(c.getLastName().equals(lastName))
+                foundCustomers.add(c);
+        }
+        return foundCustomers;
+    }
+    
+    public boolean updateCustomer(Customer customer)
+    {
+        //TODO: Update in database.
+        for(Customer c : _customers)
+        {
+            if(c.getId().equals(customer.getId()))
+            {
+                c = customer;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean deleteCustomer(Customer customer)
+    {
+        //TODO: Delete in Database
+        return _customers.remove(customer);
+
     }
 }
