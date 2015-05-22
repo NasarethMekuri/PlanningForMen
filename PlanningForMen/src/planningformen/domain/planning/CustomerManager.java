@@ -18,8 +18,10 @@ public class CustomerManager
     private static CustomerManager _instance;
     private List<Customer> _customers;
     private PersonConverter _personConverter;
+   
     private CustomerManager()
     {
+        _personConverter = new PersonConverter();
         //Populate List from DB
     }
     
@@ -32,9 +34,13 @@ public class CustomerManager
     
     public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        //DB Stuff first
-        _customers.add(new Customer(id, firstName, lastName, address, phoneNumber, postalNumber, email));
-        return true;
+        Customer tmpCustomer = new Customer(id, firstName, lastName, address, phoneNumber, postalNumber, email);
+        if(_personConverter.createCustomer(tmpCustomer))
+        {
+            _customers.add(tmpCustomer);
+            return true;
+        }
+        return false;
     }
     
     public Customer findCustomer(String id)
@@ -79,22 +85,24 @@ public class CustomerManager
     
     public boolean updateCustomer(Customer customer)
     {
-        //TODO: Update in database.
-        for(Customer c : _customers)
+        if(_personConverter.updateCustomer(customer))
         {
-            if(c.getId().equals(customer.getId()))
+            for(int i = 0; i < _customers.size(); i++)
             {
-                c = customer;
-                return true;
+                if(_customers.get(i).getId().equals(customer.getId()))
+                {
+                    _customers.set(i, customer);
+                    return true;
+                }
             }
         }
-        return false;
+        return false; //Look into this. Slightly error prone. If the customer is not in the list, the DB may still be updated, and we return false.
     }
     
     public boolean deleteCustomer(Customer customer)
     {
-        //TODO: Delete in Database
-        return _customers.remove(customer);
-
+        if(_personConverter.deleteCustomer(customer))
+            return _customers.remove(customer); //Look into this - Same as above. May return false, even though database was updated, in case remove returns false.
+        return false; 
     }
 }
