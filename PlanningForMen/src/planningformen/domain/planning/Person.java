@@ -11,13 +11,13 @@ package planningformen.domain.planning;
  */
 public abstract class Person
 {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phoneNumber;
-    private String postalNumber;
-    private String email;
+    protected String id;
+    protected String firstName;
+    protected String lastName;
+    protected String address;
+    protected String phoneNumber;
+    protected String postalNumber;
+    protected String email;
     
     public Person(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {

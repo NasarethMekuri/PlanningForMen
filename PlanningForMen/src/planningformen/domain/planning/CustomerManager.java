@@ -7,15 +7,17 @@ package planningformen.domain.planning;
 
 import java.util.ArrayList;
 import java.util.List;
+import planningformen.business.PersonConverter;
 
 /**
  *
- * @author Simon
+ * @author MKJ
  */
 public class CustomerManager
 {
     private static CustomerManager _instance;
     private List<Customer> _customers;
+    private PersonConverter _personConverter;
     private CustomerManager()
     {
         //Populate List from DB
