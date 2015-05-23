@@ -36,12 +36,14 @@ public class DBHandler
     public boolean createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version,
             int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        
         Connection c = _dbConnector.getConnection();
+     
+        CallableStatement cs = null;
+        int rowCount = -1;
         
         try
         {
-            CallableStatement cs = c.prepareCall("call create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("call create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             cs.setString(1, id);
             cs.setString(2, plate);
             cs.setInt(3, year);
@@ -57,11 +59,9 @@ public class DBHandler
             cs.setString(13, description);
             cs.setBoolean(14, inStock);
             
-            if (cs.executeUpdate() > 0)
-            {
-                return true;
-            }
-        }
+            rowCount = cs.executeUpdate();
+            
+                  }
         catch (SQLException ex)
         {
             System.out.println("Error when creating Car in DB!\n" + ex.getLocalizedMessage());
@@ -78,7 +78,7 @@ public class DBHandler
             }
         }
         
-        return false;
+        return rowCount >= 0;
     }
     //Customer Methods
     
