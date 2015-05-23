@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
@@ -11,6 +12,15 @@ import planningformen.core.DBConnector;
 /**
  *
  * @author Cymon343
+=======
+package planningformen.technical;
+
+import java.sql.ResultSet;
+import planningformen.core.DBConnector;
+/**
+ *
+ * @author MKJ
+>>>>>>> origin/master
  */
 public class DBHandler
 {
@@ -21,6 +31,7 @@ public class DBHandler
         _dbConnector = new DBConnector();
     }
     
+<<<<<<< HEAD
     
     
     
@@ -70,5 +81,32 @@ public class DBHandler
         }
         
         return false;
+=======
+    //Customer Methods
+    
+    public boolean createCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    {
+        return true;
+    }
+    
+    public ResultSet retrieveCustomer(String customerID)
+    {
+        return null;
+    }
+    
+    public ResultSet retrieveCustomers()
+    {
+        return null;
+    }
+    
+    public boolean updateCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    {
+        return true;
+    }
+    
+    public boolean deleteCustomer(String customerID)
+    {
+        return true;
+>>>>>>> origin/master
     }
 }
