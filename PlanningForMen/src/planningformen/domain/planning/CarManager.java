@@ -8,6 +8,7 @@ package planningformen.domain.planning;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import planningformen.business.CarConverter;
 
 /**
  *
@@ -17,10 +18,12 @@ public class CarManager
 {
     private static CarManager _instance;
     private List<Car> _cars;
+    private CarConverter _converter;
     
     private CarManager()
     {
-        //TODO: populate list from database.
+        this._converter = new CarConverter();
+        _converter.populateCarList();
     }
     
     public static synchronized CarManager getInstance()
@@ -35,11 +38,15 @@ public class CarManager
     public List<Car> getCars()    {return _cars;}
     
     
-    public void createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public boolean createCar(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        //TODO Write it to database first!
+        Car newCar = new Car(plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description, inStock);
         
-        getCars().add(new Car(id, plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description, inStock));
+        if (_converter.createCar(newCar))
+        {
+            return getCars().add(newCar);
+        }
+        return false;
     }
     
     

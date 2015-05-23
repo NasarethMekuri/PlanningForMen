@@ -23,9 +23,9 @@ public class Car implements Sellable
     {
     }
     
-    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public Car(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        this._id = id;
+        this._id = purchaseDate.toString().replace("-", "") + "-" +  plate; 
         this._make = make;
         this._model = model;
         this._version = version;
