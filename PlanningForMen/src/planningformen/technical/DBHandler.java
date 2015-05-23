@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
@@ -30,8 +30,6 @@ public class DBHandler
     {
         _dbConnector = new DBConnector();
     }
-    
-<<<<<<< HEAD
     
     
     
@@ -81,7 +79,7 @@ public class DBHandler
         }
         
         return false;
-=======
+    }
     //Customer Methods
     
     public boolean createCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
@@ -107,6 +105,6 @@ public class DBHandler
     public boolean deleteCustomer(String customerID)
     {
         return true;
->>>>>>> origin/master
+
     }
 }

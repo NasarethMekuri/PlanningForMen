@@ -22,7 +22,7 @@ public class CarConverter
     
     public boolean createCar(Car carToCreate)
     {
-        return _ioManager.getInstance().getDbHandler().createCar(carToCreate.getId(), carToCreate.getPlate(), carToCreate.getYear(), carToCreate.getMake(), carToCreate.getModel(), 
+        return _ioManager.getInstance().getDBHandler().createCar(carToCreate.getId(), carToCreate.getPlate(), carToCreate.getYear(), carToCreate.getMake(), carToCreate.getModel(), 
                                                                  carToCreate.getVolume(), carToCreate.getFuel(), carToCreate.getVersion(), carToCreate.getOdometer(), 
                                                                  carToCreate.getPurchaseDate(), carToCreate.getPurchasePrice(), carToCreate.getSellPrice(), carToCreate.getDescription(), 
                                                                  carToCreate.isInStock());
