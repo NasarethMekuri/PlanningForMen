@@ -14,7 +14,7 @@ import planningformen.business.CarConverter;
  *
  * @author Simon
  */
-public class CarManager 
+public class CarManager
 {
     private static CarManager _instance;
     private List<Car> _cars;
@@ -224,13 +224,15 @@ public class CarManager
     
     public boolean updateCar(Car updatedCar)
     {
-        //TODO Update in database first!
-        for (Car car : getCars())
+        if (_converter.updateCar(updatedCar))
         {
-            if (car.getId().equals(updatedCar.getId()))
+            for (Car car : getCars())
             {
-                car = updatedCar;
-                return true;
+                if (car.getId().equals(updatedCar.getId()))
+                {
+                    car = updatedCar;
+                    return true;
+                }
             }
         }
         return false;
@@ -238,8 +240,11 @@ public class CarManager
     
     public boolean deleteCar(Car carToDelete)
     {
-        //TODO: Delete from Database first!
-        return getCars().remove(carToDelete);
+        if (_converter.deleteCar(carToDelete))
+        {
+            return getCars().remove(carToDelete);
+        }
+        return false;
     }
     
     

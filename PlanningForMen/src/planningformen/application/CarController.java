@@ -9,7 +9,7 @@ package planningformen.application;
  *
  * @author Simon
  */
-public class MVC
+public class CarController implements ICarController
 {
     
 }
