@@ -8,8 +8,6 @@ package planningformen.core;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -50,22 +48,12 @@ public class DBConnector
         
         try
         {
-<<<<<<< HEAD
-            c= ds.getConnection();
-        }
-        catch (SQLServerException ex)
-        {
-            System.out.println("Connection failure @DBConnector");
-        }
-        
-        return c;
-=======
+
             con = ds.getConnection();
         } catch (SQLServerException ex)
         {
             System.out.println("Error connecting to DB!\n" + ex.getLocalizedMessage());
         }
         return con;
->>>>>>> d8e016f77bd21bf9b2f7dd52c2096fa0db0f1920
     }
 }

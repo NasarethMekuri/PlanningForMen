@@ -234,11 +234,8 @@ public class DBHandler
         }
         catch (SQLException ex)
         {
-<<<<<<< HEAD
-            System.out.println("Database access issues @DBHandler retrieveCustomers\n" + ex.getLocalizedMessage());
-=======
+
             System.out.println(ex.getLocalizedMessage() + " @DBHandler retrieveCustomers");
->>>>>>> d8e016f77bd21bf9b2f7dd52c2096fa0db0f1920
         }
         finally
         {
