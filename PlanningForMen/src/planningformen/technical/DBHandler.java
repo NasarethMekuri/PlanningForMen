@@ -178,37 +178,270 @@ public class DBHandler
         return rowCount >= 0; //NEEDS TESTING (not sure that 0 is the right number??)
     }
     
-    
-    
     //Customer Methods
     
     public boolean createCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        return true;
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("call create_customer(?,?,?,?,?,?,?,?)");
+            cs.setString(1, customerID);
+            cs.setString(2, personID);
+            cs.setString(3, firstName);
+            cs.setString(4, lastName);
+            cs.setString(5, address);
+            cs.setString(6, phoneNumber);
+            cs.setString(7, postalNumber);
+            cs.setString(8, email);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Customer in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createCustomer");
+            }
+        }
+        return rowCount != 0;
     }
-    
-    public ResultSet retrieveCustomer(String customerID)
-    {
-        return null;
-    }
-    
+
     public ResultSet retrieveCustomers()
     {
-        return null;
+        Connection c = _dbConnector.getConnection();
+        ResultSet customers = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("execute retrieve_customers");
+            customers = ps.executeQuery();
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Database access issues @DBHandler retrieveCustomers");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveCustomers");
+            }
+        }
+        return customers;
     }
     
     public boolean updateCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        return true;
-    }
-    
-    public boolean deleteCustomer(String customerID)
-    {
-        return true;
+        Connection c = _dbConnector.getConnection();
         
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("call update_customer(?,?,?,?,?,?,?,?)");
+            //cs.setString(1, customerID);  //This will be changed in future iterations when Customer "evolves". Same goes for the sql queries.
+            cs.setString(1, personID);
+            cs.setString(2, firstName);
+            cs.setString(3, lastName);
+            cs.setString(4, address);
+            cs.setString(5, phoneNumber);
+            cs.setString(6, postalNumber);
+            cs.setString(7, email);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating Customer in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler updateCustomer");
+            }
+        }
+        return rowCount != 0;
     }
     
+    /**
+     * Deletes a Person (Either Customer or Employee) based on the personID.
+     * @param personID The ID of the person to be deleted.
+     * @return A boolean indication whether or not anything was deleted.
+     */
+    public boolean deletePerson(String personID)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("call delete_person(?)");
+            cs.setString(1, personID);
+
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting Person in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deletePerson");
+            }
+        }
+        return rowCount != 0;
+    }
     
+    //Employee Methods
+    
+    public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("call create_employee(?,?,?,?,?,?,?,?)");
+            cs.setString(1, employeeID);
+            cs.setString(2, personID);
+            cs.setString(3, firstName);
+            cs.setString(4, lastName);
+            cs.setString(5, address);
+            cs.setString(6, phoneNumber);
+            cs.setString(7, postalNumber);
+            cs.setString(8, email);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Employee in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createEmployee");
+            }
+        }
+        return rowCount != 0;
+    }
+
+    public ResultSet retrieveEmployees()
+    {
+        Connection c = _dbConnector.getConnection();
+        ResultSet employees = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("execute retrieve_employees");
+            employees = ps.executeQuery();
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Database access issues @DBHandler retrieveEmployees");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveEmployees");
+            }
+        }
+        return employees;
+    }
+    
+    public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("call update_employee(?,?,?,?,?,?,?,?)");
+            //cs.setString(1, employeeID);  //This will be changed in future iterations when Employee "evolves". Same goes for the sql queries.
+            cs.setString(1, personID);
+            cs.setString(2, firstName);
+            cs.setString(3, lastName);
+            cs.setString(4, address);
+            cs.setString(5, phoneNumber);
+            cs.setString(6, postalNumber);
+            cs.setString(7, email);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating Employee in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler updateEmployee");
+            }
+        }
+        return rowCount != 0;
+    }
     
     
     

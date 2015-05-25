@@ -101,7 +101,7 @@ public class CustomerManager
     
     public boolean deleteCustomer(Customer customer)
     {
-        if(_personConverter.deleteCustomer(customer))
+        if(_personConverter.deletePerson(customer))
             return _customers.remove(customer); //Look into this - Same as above. May return false, even though database was updated, in case remove returns false.
         return false; 
     }
