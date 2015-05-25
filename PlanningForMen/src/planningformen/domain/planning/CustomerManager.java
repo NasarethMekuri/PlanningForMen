@@ -22,7 +22,7 @@ public class CustomerManager
     private CustomerManager()
     {
         _personConverter = new PersonConverter();
-        _customers = _personConverter.retrieveCustomers();
+        _customers = retrieveCustomers();
     }
     
     public static CustomerManager getInstance()
@@ -41,6 +41,11 @@ public class CustomerManager
             return true;
         }
         return false;
+    }
+    
+    public List<Customer> retrieveCustomers()
+    {
+        return _personConverter.retrieveCustomers();
     }
     
     public Customer findCustomer(String id)

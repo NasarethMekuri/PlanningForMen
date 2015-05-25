@@ -260,7 +260,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call update_customer(?,?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_customer(?,?,?,?,?,?,?)}");
             //cs.setString(1, customerID);  //This will be changed in future iterations when Customer "evolves". Same goes for the sql queries.
             cs.setString(1, personID); //@Cymon: check db script. Update tager ikke CustomerID (Endnu) Discuss tomorrow evt.
             cs.setString(2, firstName); 
@@ -412,7 +412,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call update_employee(?,?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_employee(?,?,?,?,?,?,?)}");
             //cs.setString(1, employeeID);  //This will be changed in future iterations when Employee "evolves". Same goes for the sql queries.
             cs.setString(1, personID);
             cs.setString(2, firstName);

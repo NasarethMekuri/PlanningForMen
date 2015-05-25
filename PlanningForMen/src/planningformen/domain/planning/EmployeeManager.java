@@ -22,7 +22,7 @@ public class EmployeeManager
     private EmployeeManager()
     {
         _personConverter = new PersonConverter();
-        //Populate List from DB
+        _employees = retrieveEmployees();
     }
     
     public static EmployeeManager getInstance()
@@ -41,6 +41,11 @@ public class EmployeeManager
             return true;
         }
         return false;
+    }
+    
+    public List<Employee> retrieveEmployees()
+    {
+        return _personConverter.retrieveEmployees();
     }
     
     public Employee findEmployee(String id)
