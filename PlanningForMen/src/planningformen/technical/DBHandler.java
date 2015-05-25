@@ -43,7 +43,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("EXECUTE create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, id);
             cs.setString(2, plate);
             cs.setInt(3, year);
@@ -119,7 +119,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("EXECUTE update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, id);
             cs.setString(2, plate);
             cs.setInt(3, year);
@@ -154,7 +154,7 @@ public class DBHandler
         
         try
         {
-            CallableStatement cs = c.prepareCall("EXECUTE delete_car(?)");
+            CallableStatement cs = c.prepareCall("{call delete_car(?)}");
             cs.setString(1, id);
             
             rowCount = cs.executeUpdate();
