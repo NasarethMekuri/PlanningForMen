@@ -185,11 +185,11 @@ public class DBHandler
         Connection c = _dbConnector.getConnection();
         
         CallableStatement cs = null;
-        int rowCount = -1;
+        int rowCount = 0;
         
         try
         {
-            cs = c.prepareCall("call create_customer(?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call create_customer(?,?,?,?,?,?,?,?)}");
             cs.setString(1, customerID);
             cs.setString(2, personID);
             cs.setString(3, firstName);
@@ -228,13 +228,13 @@ public class DBHandler
         
         try
         {
-            PreparedStatement ps = c.prepareCall("call retrieve_customers");
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_customers");
             customers = ps.executeQuery();
             ps.close();
         }
         catch (SQLException ex)
         {
-            System.out.println("Database access issues @DBHandler retrieveCustomers");
+            System.out.println(ex.getLocalizedMessage() + " @DBHandler retrieveCustomers");
         }
         finally
         {
@@ -259,12 +259,12 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call update_customer(?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call update_customer(?,?,?,?,?,?,?,?)}");
             //cs.setString(1, customerID);  //This will be changed in future iterations when Customer "evolves". Same goes for the sql queries.
-            cs.setString(1, personID); //@MKJ --> Tror dine numbers er off! personID skal være 2?
-            cs.setString(2, firstName); //@MKJ --> 3
-            cs.setString(3, lastName); //@MKJ --> 4
-            cs.setString(4, address); //@MKJ --> 5 ... I could be wrong?
+            cs.setString(1, personID); //@Cymon: check db script. Update tager ikke CustomerID (Endnu) Discuss tomorrow evt.
+            cs.setString(2, firstName); 
+            cs.setString(3, lastName); 
+            cs.setString(4, address); 
             cs.setString(5, phoneNumber);
             cs.setString(6, postalNumber);
             cs.setString(7, email);
@@ -305,7 +305,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call delete_person(?)");
+            cs = c.prepareCall("{call delete_person(?)}");
             cs.setString(1, personID);
 
             rowCount = cs.executeUpdate();
@@ -341,7 +341,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call create_employee(?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call create_employee(?,?,?,?,?,?,?,?)}");
             cs.setString(1, employeeID);
             cs.setString(2, personID);
             cs.setString(3, firstName);
@@ -380,7 +380,7 @@ public class DBHandler
         
         try
         {
-            PreparedStatement ps = c.prepareCall("execute retrieve_employees");
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_employees");
             employees = ps.executeQuery();
             ps.close();
         }
@@ -411,7 +411,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call update_employee(?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("{call update_employee(?,?,?,?,?,?,?,?)}");
             //cs.setString(1, employeeID);  //This will be changed in future iterations when Employee "evolves". Same goes for the sql queries.
             cs.setString(1, personID);
             cs.setString(2, firstName);

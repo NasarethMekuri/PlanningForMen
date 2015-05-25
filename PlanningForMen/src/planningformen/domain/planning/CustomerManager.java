@@ -22,7 +22,7 @@ public class CustomerManager
     private CustomerManager()
     {
         _personConverter = new PersonConverter();
-        //Populate List from DB
+        _customers = _personConverter.retrieveCustomers();
     }
     
     public static CustomerManager getInstance()
