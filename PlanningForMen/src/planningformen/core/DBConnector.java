@@ -6,6 +6,7 @@
 package planningformen.core;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 
 /**
@@ -34,6 +35,8 @@ public class DBConnector
     {
         SQLServerDataSource ds = new SQLServerDataSource();
         
+        Connection c = null;
+        
         //setup of SQLServer
         ds.setServerName(SERVER_NAME);
         ds.setInstanceName(DATABASE_INSTANCE);
@@ -42,6 +45,15 @@ public class DBConnector
         ds.setUser(USERNAME);
         ds.setPassword(PASSWORD);
         
-        return ds.getConnection();
+        try
+        {
+            c= ds.getConnection();
+        }
+        catch (SQLServerException ex)
+        {
+            System.out.println("Connection failure @DBConnector");
+        }
+        
+        return c;
     }
 }

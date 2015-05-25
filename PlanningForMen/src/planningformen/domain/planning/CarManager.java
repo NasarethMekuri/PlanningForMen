@@ -20,7 +20,7 @@ public class CarManager
     private List<Car> _cars;
     private CarConverter _converter;
     
-    private CarManager()
+    public CarManager()
     {
         this._converter = new CarConverter();
         _converter.populateCarList();

@@ -33,7 +33,7 @@ public class CarConverter
     
     public List<Car> populateCarList() 
     {
-        ResultSet rs = _ioManager.getInstance().getDBHandler().retrieveCars();
+        ResultSet rs = IOManager.getInstance().getDBHandler().retrieveCars();
         List<Car> cars = new ArrayList();
         Car aCar = new Car();
         
@@ -60,17 +60,18 @@ public class CarConverter
         }
         catch (SQLException ex)
         {
-            System.out.println("Connection issue @populateCarList in CarConverter or resultset closed"); // TODO TEST
+            System.out.println("Connection issue @populateCarList in CarConverter or resultset closed\n" + ex.getLocalizedMessage()); // TODO Connection closes before ResultSet is processed.
         }
         finally
         {
             try
             {
                 rs.close();
+                
             }
             catch (SQLException ex)
             {
-                System.out.println("Connection issue @populateCarList in CarConverter"); //TODO TEST
+                System.out.println("Connection issue @populateCarList in CarConverter\n" + ex.getLocalizedMessage()); //TODO TEST
             }
         }
         

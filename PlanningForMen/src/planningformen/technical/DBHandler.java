@@ -74,7 +74,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler createCar");
+                System.out.println("Failed to close connection! @DBHandler createCar\n" + ex.getLocalizedMessage());
             }
         }
         
@@ -88,12 +88,12 @@ public class DBHandler
         
         try
         {
-            PreparedStatement ps = c.prepareCall("EXECUTE retrieve_all_cars");
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_cars");
             allCars = ps.executeQuery();
         }
         catch (SQLException ex)
         {
-            System.out.println("Database access issues @DBHandler retrieveCars");
+            System.out.println("Database access issues @DBHandler retrieveCars\n" + ex.getLocalizedMessage());
         }
         finally
         {
@@ -103,7 +103,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler retrieveCars");
+                System.out.println("Failed to close connection! @DBHandler retrieveCars\n" + ex.getLocalizedMessage());
             }
         }
         
@@ -171,7 +171,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler deleteCar");
+                System.out.println("Failed to close connection! @DBHandler deleteCar\n" + ex.getLocalizedMessage());
             }
         }
         
@@ -215,7 +215,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler createCustomer");
+                System.out.println("Failed to close connection! @DBHandler createCustomer\n" + ex.getLocalizedMessage());
             }
         }
         return rowCount != 0;
@@ -234,7 +234,7 @@ public class DBHandler
         }
         catch (SQLException ex)
         {
-            System.out.println("Database access issues @DBHandler retrieveCustomers");
+            System.out.println("Database access issues @DBHandler retrieveCustomers\n" + ex.getLocalizedMessage());
         }
         finally
         {
@@ -244,7 +244,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler retrieveCustomers");
+                System.out.println("Failed to close connection! @DBHandler retrieveCustomers\n" + ex.getLocalizedMessage());
             }
         }
         return customers;
@@ -285,7 +285,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler updateCustomer");
+                System.out.println("Failed to close connection! @DBHandler updateCustomer\n" + ex.getLocalizedMessage());
             }
         }
         return rowCount != 0;
@@ -324,7 +324,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler deletePerson");
+                System.out.println("Failed to close connection! @DBHandler deletePerson\n" + ex.getLocalizedMessage());
             }
         }
         return rowCount != 0;
@@ -367,7 +367,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler createEmployee");
+                System.out.println("Failed to close connection! @DBHandler createEmployee\n" + ex.getLocalizedMessage());
             }
         }
         return rowCount != 0;
@@ -386,7 +386,7 @@ public class DBHandler
         }
         catch (SQLException ex)
         {
-            System.out.println("Database access issues @DBHandler retrieveEmployees");
+            System.out.println("Database access issues @DBHandler retrieveEmployees\n" + ex.getLocalizedMessage());
         }
         finally
         {
@@ -396,7 +396,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler retrieveEmployees");
+                System.out.println("Failed to close connection! @DBHandler retrieveEmployees\n" + ex.getLocalizedMessage());
             }
         }
         return employees;
@@ -437,7 +437,7 @@ public class DBHandler
             }
             catch (SQLException ex)
             {
-                System.out.println("Failed to close connection! @DBHandler updateEmployee");
+                System.out.println("Failed to close connection! @DBHandler updateEmployee\n" + ex.getLocalizedMessage());
             }
         }
         return rowCount != 0;
