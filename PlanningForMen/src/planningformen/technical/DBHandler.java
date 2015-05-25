@@ -43,7 +43,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("EXECUTE create_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             cs.setString(1, id);
             cs.setString(2, plate);
             cs.setInt(3, year);
@@ -88,7 +88,7 @@ public class DBHandler
         
         try
         {
-            PreparedStatement ps = c.prepareCall("execute retrieve_all_cars");
+            PreparedStatement ps = c.prepareCall("EXECUTE retrieve_all_cars");
             allCars = ps.executeQuery();
         }
         catch (SQLException ex)
@@ -119,7 +119,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("call update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            cs = c.prepareCall("EXECUTE update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             cs.setString(1, id);
             cs.setString(2, plate);
             cs.setInt(3, year);
@@ -154,7 +154,7 @@ public class DBHandler
         
         try
         {
-            CallableStatement cs = c.prepareCall("call delete_car(?)");
+            CallableStatement cs = c.prepareCall("EXECUTE delete_car(?)");
             cs.setString(1, id);
             
             rowCount = cs.executeUpdate();
@@ -228,7 +228,7 @@ public class DBHandler
         
         try
         {
-            PreparedStatement ps = c.prepareCall("execute retrieve_customers");
+            PreparedStatement ps = c.prepareCall("call retrieve_customers");
             customers = ps.executeQuery();
             ps.close();
         }
@@ -261,10 +261,10 @@ public class DBHandler
         {
             cs = c.prepareCall("call update_customer(?,?,?,?,?,?,?,?)");
             //cs.setString(1, customerID);  //This will be changed in future iterations when Customer "evolves". Same goes for the sql queries.
-            cs.setString(1, personID);
-            cs.setString(2, firstName);
-            cs.setString(3, lastName);
-            cs.setString(4, address);
+            cs.setString(1, personID); //@MKJ --> Tror dine numbers er off! personID skal være 2?
+            cs.setString(2, firstName); //@MKJ --> 3
+            cs.setString(3, lastName); //@MKJ --> 4
+            cs.setString(4, address); //@MKJ --> 5 ... I could be wrong?
             cs.setString(5, phoneNumber);
             cs.setString(6, postalNumber);
             cs.setString(7, email);
