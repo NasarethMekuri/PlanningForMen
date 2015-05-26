@@ -6,6 +6,7 @@
 package planningformen.business;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,5 +14,5 @@ import java.sql.ResultSet;
  */
 public interface ICallback
 {
-    public void extraxctValues(ResultSet rs);
+    public void extractValues(ResultSet rs) throws SQLException;
 }

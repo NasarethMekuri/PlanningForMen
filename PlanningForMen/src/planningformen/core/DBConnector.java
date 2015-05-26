@@ -8,6 +8,9 @@ package planningformen.core;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +24,7 @@ public class DBConnector
     private final String DATABASE_NAME = "PlanningDB";
     private final int PORTNO = 1433;
     private final String USERNAME = "sa";
-    private final String PASSWORD = "Brutalis"; //offlimit
+    private final String PASSWORD = "offlimit"; //Brutalis
     
     public DBConnector()
     {}
@@ -49,9 +52,15 @@ public class DBConnector
         try
         {
             con = ds.getConnection();
-            if (!con.isClosed())
+            try
             {
-                System.out.println("Connected to DB");
+                if (!con.isClosed())
+                {
+                    System.out.println("Connected to DB");
+                }
+            } catch (SQLException ex)
+            {
+                System.out.println("Error connecting to DB!\n" + ex.getLocalizedMessage());
             }
         }
         catch (SQLServerException ex)

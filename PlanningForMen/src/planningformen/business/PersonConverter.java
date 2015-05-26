@@ -1,6 +1,7 @@
 package planningformen.business;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,11 @@ import planningformen.technical.IOManager;
  *
  * @author MKJ
  */
-public class PersonConverter
+public class PersonConverter implements ICallback
 {
     private IOManager _ioManager;
+    private List<Customer> _convertedCustomers;
+    private List<Employee> _convertedEmployees;
     
     public PersonConverter()
     {
@@ -32,40 +35,9 @@ public class PersonConverter
     
     public List<Customer> retrieveCustomers()
     {
-        ResultSet rs = _ioManager.getDBHandler().retrieveCustomers();
-        List<Customer> customers = new ArrayList<Customer>();
-        try
-        {
-            while(rs.next())
-            {
-                String custID = rs.getString(1);
-                String personID = rs.getString(2);
-                String fName = rs.getString(3);
-                String lName = rs.getString(4);
-                String address = rs.getString(5);
-                String phoneNr = rs.getString(6);
-                String postalNr = rs.getString(7);
-                String email = rs.getString(8);
-                customers.add(new Customer(custID, personID, fName, lName, address, phoneNr, postalNr, email));
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println(e.getLocalizedMessage());
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-            }
-            catch(SQLException e)
-            {
-                System.out.println(e.getLocalizedMessage());
-                      
-            }
-        }
-        return customers;
+        System.out.println("Retrieve customers!");
+        _ioManager.getDBHandler().retrieveCustomers(this);
+        return _convertedCustomers;
     }
     
     public boolean updateCustomer(Customer customer) //Possibly rename to something like updateCustomerInDB
@@ -77,7 +49,9 @@ public class PersonConverter
     
     public boolean deletePerson(Person person)
     {
-        return _ioManager.getDBHandler().deletePerson(person.getId());
+        boolean success = _ioManager.getDBHandler().deletePerson(person.getId());
+        System.out.println("PersonConverter returns " + success);
+        return success;
     }
     
     //Employees
@@ -90,40 +64,9 @@ public class PersonConverter
     
     public List<Employee> retrieveEmployees()
     {
-        ResultSet rs = _ioManager.getDBHandler().retrieveEmployees();
-        List<Employee> employees = new ArrayList<Employee>();
-        try
-        {
-            while(rs.next())
-            {
-                String custID = rs.getString(1);
-                String personID = rs.getString(2);
-                String fName = rs.getString(3);
-                String lName = rs.getString(4);
-                String address = rs.getString(5);
-                String phoneNr = rs.getString(6);
-                String postalNr = rs.getString(7);
-                String email = rs.getString(8);
-                employees.add(new Employee(custID, personID, fName, lName, address, phoneNr, postalNr, email));
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println(e.getLocalizedMessage());
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-            }
-            catch(SQLException e)
-            {
-                System.out.println(e.getLocalizedMessage());
-                      
-            }
-        }
-        return employees;
+        _ioManager.getDBHandler().retrieveEmployees(this);
+        
+        return _convertedEmployees;
     }
     
     public boolean updateEmployee(Employee employee) //Possibly rename to something like updateEmployeeInDB
@@ -131,5 +74,53 @@ public class PersonConverter
         return _ioManager.getDBHandler().updateEmployee(employee.getEmployeeID(), employee.getId(), employee.getFirstName(), 
                                                         employee.getLastName(), employee.getAddress(), employee.getPhoneNumber(), 
                                                         employee.getPostalNumber(), employee.getEmail());
+    }
+ 
+    @Override
+    public void extractValues(ResultSet rs) throws SQLException
+    {
+        rs.next();
+        ResultSetMetaData rsmd = rs.getMetaData();
+        System.out.println(rsmd.getColumnName(1) + "######");
+        if(rsmd.getColumnName(1).contains("customer"))
+            extractCostumerValues(rs);
+        else if(rsmd.getColumnName(1).contains("employee"))
+            extractEmployeeValues(rs);
+    }
+    
+    private void extractCostumerValues(ResultSet rs) throws SQLException
+    {
+        _convertedCustomers = new ArrayList<Customer>();
+        do
+        {
+            String custID = rs.getString(1);
+            String personID = rs.getString(2);
+            String fName = rs.getString(3);
+            String lName = rs.getString(4);
+            String address = rs.getString(5);
+            String phoneNr = rs.getString(6);
+            String postalNr = rs.getString(7);
+            String email = rs.getString(8);
+            _convertedCustomers.add(new Customer(custID, personID, fName, lName, address, phoneNr, postalNr, email));
+        } while(rs.next());
+        rs.close();
+    }
+    
+    private void extractEmployeeValues(ResultSet rs) throws SQLException
+    {
+        _convertedEmployees = new ArrayList<Employee>();
+        do
+        {
+            String empID = rs.getString(1);
+            String personID = rs.getString(2);
+            String fName = rs.getString(3);
+            String lName = rs.getString(4);
+            String address = rs.getString(5);
+            String phoneNr = rs.getString(6);
+            String postalNr = rs.getString(7);
+            String email = rs.getString(8);
+            _convertedEmployees.add(new Employee(empID, personID, fName, lName, address, phoneNr, postalNr, email));
+        } while(rs.next());
+        rs.close();
     }
 }

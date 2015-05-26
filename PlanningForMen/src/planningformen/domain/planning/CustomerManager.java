@@ -18,11 +18,14 @@ public class CustomerManager
     private static CustomerManager _instance;
     private List<Customer> _customers;
     private PersonConverter _personConverter;
+    
+    public List<Customer> getCustomers() {return _customers; }
    
     private CustomerManager()
     {
         _personConverter = new PersonConverter();
         _customers = retrieveCustomers();
+        System.out.println("CustomerManager constructor!");
     }
     
     public static CustomerManager getInstance()

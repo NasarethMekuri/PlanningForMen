@@ -18,6 +18,8 @@ public class EmployeeManager
     private static EmployeeManager _instance;
     private List<Employee> _employees;
     private PersonConverter _personConverter;
+    
+    public List<Employee> getEmployees() { return _employees; }
    
     private EmployeeManager()
     {
@@ -107,7 +109,9 @@ public class EmployeeManager
     public boolean deleteEmployee(Employee employee)
     {
         if(_personConverter.deletePerson(employee))
+        {
             return _employees.remove(employee); //Look into this - Same as above. May return false, even though database was updated, in case remove returns false.
+        }
         return false; 
     }
 }
