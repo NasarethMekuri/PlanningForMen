@@ -20,10 +20,10 @@ public class CarManager
     private List<Car> _cars;
     private CarConverter _converter;
     
-    public CarManager()
+    private CarManager()
     {
         this._converter = new CarConverter();
-        _converter.retrieveCars();
+        _cars = _converter.retrieveCars();
     }
     
     public static synchronized CarManager getInstance()

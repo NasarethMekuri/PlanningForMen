@@ -8,6 +8,7 @@ package planningformen.core;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -49,9 +50,14 @@ public class DBConnector
         try
         {
             con = ds.getConnection();
-            if (!con.isClosed())
+            try
             {
-                System.out.println("Connected to DB");
+                if (!con.isClosed())
+                    System.out.println("Connected to DB");
+            }
+            catch (SQLException sqlex)
+            {
+                System.out.println("Error checking connection !\n" + sqlex.getLocalizedMessage());
             }
         }
         catch (SQLServerException ex)

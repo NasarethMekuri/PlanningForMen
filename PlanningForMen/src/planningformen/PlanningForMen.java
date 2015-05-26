@@ -6,6 +6,7 @@
 package planningformen;
 
 import java.sql.Date;
+import planningformen.domain.planning.Car;
 import planningformen.domain.planning.CarManager;
 
 /**
@@ -26,9 +27,13 @@ public class PlanningForMen
 
     private void testCars()
     {
-        Date specifiedDate = new Date(0).valueOf("2015-05-25");
+        Date specifiedDate = new Date(0).valueOf("2015-05-25");        
         
-        CarManager.getInstance();
+        for (Car next : CarManager.getInstance().getCars())
+        {
+        System.out.println("Car: " + next.getId());
+        }
+        
         
         /* - Connection closes before resultset closes!
         List<Car> cars = CarManager.getInstance().getCars();

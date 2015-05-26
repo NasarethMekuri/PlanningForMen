@@ -41,6 +41,24 @@ public class Car implements Sellable
         this._inStock = inStock;
     }
     
+    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    {
+        this._id = id; 
+        this._make = make;
+        this._model = model;
+        this._version = version;
+        this._fuel = fuel;
+        this._description = description;
+        this._plate = plate;
+        this._volume = volume;
+        this._purchasePrice = purchasePrice;
+        this._sellPrice = sellPrice;
+        this._year = year;
+        this._odometer = odometer;
+        this._purchaseDate = purchaseDate;
+        this._inStock = inStock;
+    }
+    
     //Accessors:
     public String getId()           {return _id;}
     public String getMake()         {return _make;}

@@ -13,5 +13,5 @@ import java.sql.ResultSet;
  */
 public interface ICallback
 {
-    public void extraxctValues(ResultSet rs);
+    public void extractValues(ResultSet rs);
 }

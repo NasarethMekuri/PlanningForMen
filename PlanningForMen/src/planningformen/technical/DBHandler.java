@@ -7,6 +7,7 @@
 package planningformen.technical;
 
 import java.sql.*;
+import planningformen.business.ICallback;
 import planningformen.core.DBConnector;
 
 /**
@@ -83,7 +84,7 @@ public class DBHandler
         return rowCount >= 0; // NEEDS TESTING !! (not sure that 0 is the right number??)
     }
     
-    public ResultSet retrieveCars()
+    public void retrieveCars(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
         ResultSet allCars = null;
@@ -92,6 +93,8 @@ public class DBHandler
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_cars");
             allCars = ps.executeQuery();    
+            
+            owner.extractValues(allCars);
             
             ps.close();
         }
@@ -110,8 +113,6 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler retrieveCars\n" + ex.getLocalizedMessage());
             }
         }
-        
-        return allCars;
     }
     
     public boolean updateCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
