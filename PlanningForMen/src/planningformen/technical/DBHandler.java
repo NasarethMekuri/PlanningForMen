@@ -193,7 +193,7 @@ public class DBHandler
         Connection c = _dbConnector.getConnection();
         
         CallableStatement cs = null;
-        int rowCount = 0;
+        int rowCount = -1;
         
         try
         {
@@ -226,23 +226,24 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler createCustomer\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount != 0;
+        return rowCount >= 0;
     }
 
-    public ResultSet retrieveCustomers()
+    public void retrieveCustomers(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
-        ResultSet customers = null;
+        ResultSet rs = null;
         
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_customers");
-            customers = ps.executeQuery();
+            rs = ps.executeQuery();
+            owner.extractValues(rs);
+            
             ps.close();
         }
         catch (SQLException ex)
         {
-
             System.out.println(ex.getLocalizedMessage() + " @DBHandler retrieveCustomers");
         }
         finally
@@ -256,7 +257,6 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler retrieveCustomers\n" + ex.getLocalizedMessage());
             }
         }
-        return customers;
     }
     
     public boolean updateCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
@@ -297,7 +297,7 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler updateCustomer\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount != 0;
+        return rowCount >= 0;
     }
     
     /**
@@ -336,7 +336,7 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler deletePerson\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount != 0;
+        return rowCount >= 0;
     }
     
     //Employee Methods
@@ -379,10 +379,10 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler createEmployee\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount != 0;
+        return rowCount >= 0;
     }
 
-    public ResultSet retrieveEmployees()
+    public void retrieveEmployees(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
         ResultSet employees = null;
@@ -391,6 +391,7 @@ public class DBHandler
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_employees");
             employees = ps.executeQuery();
+            owner.extractValues(employees);
             ps.close();
         }
         catch (SQLException ex)
@@ -408,7 +409,6 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler retrieveEmployees\n" + ex.getLocalizedMessage());
             }
         }
-        return employees;
     }
     
     public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
@@ -449,6 +449,6 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler updateEmployee\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount != 0;
+        return rowCount >= 0;
     }   
 }
