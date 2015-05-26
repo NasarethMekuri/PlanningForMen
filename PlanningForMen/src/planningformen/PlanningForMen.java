@@ -7,11 +7,7 @@ package planningformen;
 
 import java.sql.Date;
 import java.util.List;
-import planningformen.domain.planning.CarManager;
-import planningformen.domain.planning.Customer;
-import planningformen.domain.planning.CustomerManager;
-import planningformen.domain.planning.Employee;
-import planningformen.domain.planning.EmployeeManager;
+import planningformen.domain.planning.*;
 
 /**
  *
@@ -36,16 +32,13 @@ public class PlanningForMen
 
     private void testCars()
     {
-<<<<<<< HEAD
+
         Date specifiedDate = new Date(0).valueOf("2015-05-25");        
         
         /*for (Car next : CarManager.getInstance().getCars())
         {
         System.out.println("Car: " + next.getId());
         }*/
-=======
-        Date specifiedDate = new Date(0).valueOf("2015-05-25");
->>>>>>> origin/master
         
         CarManager.getInstance();
         
