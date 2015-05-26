@@ -16,7 +16,7 @@ import planningformen.technical.IOManager;
  *
  * @author Cymon343
  */
-public class CarConverter
+public class CarConverter implements ICallback
 {
     private IOManager _ioManager;
     private List<Car> _convertedCars;
@@ -32,33 +32,39 @@ public class CarConverter
                 carToCreate.isInStock());
     }
     
-       
-    
-    public List<Car> retrieveCars() 
+    public List<Car> retrieveCars()
     {
-        ResultSet rs = IOManager.getInstance().getDBHandler().retrieveCars();
-        List<Car> cars = new ArrayList();
-        Car aCar = new Car();
-        
+        IOManager.getInstance().getDBHandler().retrieveCars(this);
+        return _convertedCars;
+    }
+    
+    
+    @Override
+    public void extractValues(ResultSet rs)
+    {
+        Car aCar = null;
+        _convertedCars = new ArrayList();
         try
         {
             while (rs.next())
-            {        
-                    aCar.setPlate(rs.getString(2));
-                    aCar.setYear(rs.getInt(3));
-                    aCar.setMake(rs.getString(4));
-                    aCar.setModel(rs.getString(5));
-                    aCar.setVolume(rs.getDouble(6));
-                    aCar.setFuel(rs.getString(7));
-                    aCar.setVersion(rs.getString(8));
-                    aCar.setOdometer(rs.getInt(9));
-                    aCar.setPurchaseDate(rs.getDate(10));
-                    aCar.setPurchasePrice(rs.getDouble(11));
-                    aCar.setSellPrice(rs.getDouble(12));
-                    aCar.setDescription(rs.getString(13));
-                    aCar.setInStock(rs.getBoolean(14));
-                    
-                    cars.add(aCar);
+            {
+                aCar = new Car(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getDouble(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getDate(10),
+                        rs.getDouble(11),
+                        rs.getDouble(12),
+                        rs.getString(13),
+                        rs.getBoolean(14));
+                
+                _convertedCars.add(aCar);
             }
         }
         catch (SQLException ex)
@@ -74,11 +80,9 @@ public class CarConverter
             }
             catch (SQLException ex)
             {
-                System.out.println("Connection issue @populateCarList in CarConverter\n" + ex.getLocalizedMessage()); //TODO TEST
+                System.out.println("Connection issue @extractvalues in CarConverter\n" + ex.getLocalizedMessage()); //TODO TEST
             }
         }
-        
-        return cars;
     }
     
     public boolean updateCar(Car carToUpdate)
@@ -94,4 +98,6 @@ public class CarConverter
     {
         return _ioManager.getInstance().getDBHandler().deleteCar(carToDelete.getId());
     }
+    
+    
 }
