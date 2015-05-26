@@ -169,7 +169,7 @@ public class DBHandler
         }
         catch (SQLException ex)
         {
-            System.out.println("Error when updating Car in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteCar");
+            System.out.println("Error when deleting Car in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteCar");
         }
         finally
         {

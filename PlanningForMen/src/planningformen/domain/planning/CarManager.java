@@ -119,6 +119,7 @@ public class CarManager
     
     public List<Car> findCarsByVersion(String version)
     {
+        
         List<Car> returnCars = new ArrayList();
         for (Car next : getCars())
         {
@@ -242,7 +243,14 @@ public class CarManager
     {
         if (_converter.deleteCar(carToDelete))
         {
-            return getCars().remove(carToDelete);
+            for (int i = 0; i < _cars.size(); i++)
+            {
+                if (_cars.get(i).getId().equals(carToDelete.getId()))
+                {
+                    _cars.remove(i);
+                    return true;
+                }
+            }
         }
         return false;
     }

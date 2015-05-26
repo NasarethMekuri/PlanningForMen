@@ -9,8 +9,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +22,7 @@ public class DBConnector
     private final String DATABASE_NAME = "PlanningDB";
     private final int PORTNO = 1433;
     private final String USERNAME = "sa";
-    private final String PASSWORD = "offlimit"; //Brutalis
+    private final String PASSWORD = "Brutalis"; //offlimit
     
     public DBConnector()
     {}
