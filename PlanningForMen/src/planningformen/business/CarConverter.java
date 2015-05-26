@@ -18,7 +18,6 @@ import planningformen.technical.IOManager;
  */
 public class CarConverter implements ICallback
 {
-    private IOManager _ioManager;
     private List<Car> _convertedCars;
     
     public CarConverter()
@@ -26,7 +25,7 @@ public class CarConverter implements ICallback
     
     public boolean createCar(Car carToCreate)
     {
-        return _ioManager.getInstance().getDBHandler().createCar(carToCreate.getId(), carToCreate.getPlate(), carToCreate.getYear(), carToCreate.getMake(), carToCreate.getModel(),
+        return IOManager.getInstance().getDBHandler().createCar(carToCreate.getId(), carToCreate.getPlate(), carToCreate.getYear(), carToCreate.getMake(), carToCreate.getModel(),
                 carToCreate.getVolume(), carToCreate.getFuel(), carToCreate.getVersion(), carToCreate.getOdometer(),
                 carToCreate.getPurchaseDate(), carToCreate.getPurchasePrice(), carToCreate.getSellPrice(), carToCreate.getDescription(),
                 carToCreate.isInStock());
@@ -40,54 +39,39 @@ public class CarConverter implements ICallback
     
     
     @Override
-    public void extractValues(ResultSet rs)
+    public void extractValues(ResultSet rs) throws SQLException
     {
         Car aCar = null;
         _convertedCars = new ArrayList();
-        try
+        
+        while (rs.next())
         {
-            while (rs.next())
-            {
-                aCar = new Car(
-                        rs.getString(1),
-                        rs.getString(2),
-                        rs.getInt(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getDouble(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getInt(9),
-                        rs.getDate(10),
-                        rs.getDouble(11),
-                        rs.getDouble(12),
-                        rs.getString(13),
-                        rs.getBoolean(14));
-                
-                _convertedCars.add(aCar);
-            }
+            aCar = new Car(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getInt(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getDouble(6),
+                    rs.getString(7),
+                    rs.getString(8),
+                    rs.getInt(9),
+                    rs.getDate(10),
+                    rs.getDouble(11),
+                    rs.getDouble(12),
+                    rs.getString(13),
+                    rs.getBoolean(14));
+            
+            _convertedCars.add(aCar);
         }
-        catch (SQLException ex)
-        {
-            System.out.println("Connection issue @populateCarList in CarConverter or resultset closed\n" + ex.getLocalizedMessage()); // TODO Connection closes before ResultSet is processed.
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                
-            }
-            catch (SQLException ex)
-            {
-                System.out.println("Connection issue @extractvalues in CarConverter\n" + ex.getLocalizedMessage()); //TODO TEST
-            }
-        }
+        
+        rs.close();
     }
+    
     
     public boolean updateCar(Car carToUpdate)
     {
-        return _ioManager.getInstance().getDBHandler().updateCar(carToUpdate.getId(), carToUpdate.getPlate(), carToUpdate.getYear(), carToUpdate.getMake(), carToUpdate.getModel(),
+        return IOManager.getInstance().getDBHandler().updateCar(carToUpdate.getId(), carToUpdate.getPlate(), carToUpdate.getYear(), carToUpdate.getMake(), carToUpdate.getModel(),
                 carToUpdate.getVolume(), carToUpdate.getFuel(), carToUpdate.getVersion(), carToUpdate.getOdometer(),
                 carToUpdate.getPurchaseDate(), carToUpdate.getPurchasePrice(), carToUpdate.getSellPrice(), carToUpdate.getDescription(),
                 carToUpdate.isInStock());
@@ -96,7 +80,7 @@ public class CarConverter implements ICallback
     
     public boolean deleteCar(Car carToDelete)
     {
-        return _ioManager.getInstance().getDBHandler().deleteCar(carToDelete.getId());
+        return IOManager.getInstance().getDBHandler().deleteCar(carToDelete.getId());
     }
     
     

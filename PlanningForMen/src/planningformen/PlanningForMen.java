@@ -29,10 +29,10 @@ public class PlanningForMen
     {
         Date specifiedDate = new Date(0).valueOf("2015-05-25");        
         
-        for (Car next : CarManager.getInstance().getCars())
+        /*for (Car next : CarManager.getInstance().getCars())
         {
         System.out.println("Car: " + next.getId());
-        }
+        }*/
         
         
         /* - Connection closes before resultset closes!
@@ -45,7 +45,7 @@ public class PlanningForMen
         */
         
         //CarManager.getInstance().createCar("XY12345", 1966, "Triumph", "Spitfire", 1.2, "petrol", "4 mkII", 75000, specifiedDate, 58000, 60000, "Old Car, 60bHp", true); //Car creation works in DB!
-        //CarManager.getInstance().deleteCar(new Car("XY12345", 1966, "Triumph", "Spitfire", 1.2, "petrol", "4 mkII", 75000, specifiedDate, 58000, 60000, "Old Car, 60bHp", true)); //Car deletion works in DB!
+        CarManager.getInstance().deleteCar(new Car("XY12345", 1966, "Triumph", "Spitfire", 1.2, "petrol", "4 mkII", 75000, specifiedDate, 58000, 60000, "Old Car, 60bHp", true)); //Car deletion works in DB!
         //CarManager.getInstance().updateCar(new Car("XY12345", 1966, "Triumph", "Spitfire", 1.2, "petrol", "4 mkII", 75000, specifiedDate, 58000, 60000, "Old Car, 60bHp - SOLD", false)); //Car update works in DB!
     }
     

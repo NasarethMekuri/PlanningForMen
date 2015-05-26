@@ -100,7 +100,7 @@ public class DBHandler
         }
         catch (SQLException ex)
         {
-            System.out.println("Database access issues @DBHandler retrieveCars\n" + ex.getLocalizedMessage());
+            System.out.println("SQLException @retrieveCars - DBHandler\n" + ex.getLocalizedMessage());
         }
         finally
         {
