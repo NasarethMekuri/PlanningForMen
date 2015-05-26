@@ -61,6 +61,8 @@ public class DBHandler
             
             rowCount = cs.executeUpdate();
             
+            cs.close();
+            
         }
         catch (SQLException ex)
         {
@@ -89,7 +91,9 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_cars");
-            allCars = ps.executeQuery();
+            allCars = ps.executeQuery();    
+            
+            ps.close();
         }
         catch (SQLException ex)
         {
@@ -137,6 +141,8 @@ public class DBHandler
             
             rowCount = cs.executeUpdate();
             
+            cs.close();
+            
         }
         catch (SQLException ex)
         {
@@ -158,6 +164,7 @@ public class DBHandler
             cs.setString(1, id);
             
             rowCount = cs.executeUpdate();
+            cs.close();
         }
         catch (SQLException ex)
         {
@@ -442,9 +449,5 @@ public class DBHandler
             }
         }
         return rowCount != 0;
-    }
-    
-    
-    
-    
+    }   
 }

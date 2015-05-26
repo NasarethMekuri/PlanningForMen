@@ -23,7 +23,7 @@ public class CarManager
     public CarManager()
     {
         this._converter = new CarConverter();
-        _converter.populateCarList();
+        _converter.retrieveCars();
     }
     
     public static synchronized CarManager getInstance()

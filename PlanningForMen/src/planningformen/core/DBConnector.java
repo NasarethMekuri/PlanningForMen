@@ -8,7 +8,6 @@ package planningformen.core;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  *
@@ -59,10 +58,7 @@ public class DBConnector
         {
             System.out.println("Error connecting to DB!\n" + ex.getLocalizedMessage());
         }
-        catch (SQLException sqlex)
-        {
-            System.out.println("database access error @DBConnector\n" + sqlex.getLocalizedMessage());
-        }
+        
         return con;
     }
 }

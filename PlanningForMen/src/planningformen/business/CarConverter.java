@@ -19,6 +19,7 @@ import planningformen.technical.IOManager;
 public class CarConverter
 {
     private IOManager _ioManager;
+    private List<Car> _convertedCars;
     
     public CarConverter()
     {}
@@ -31,7 +32,9 @@ public class CarConverter
                 carToCreate.isInStock());
     }
     
-    public List<Car> populateCarList() 
+       
+    
+    public List<Car> retrieveCars() 
     {
         ResultSet rs = IOManager.getInstance().getDBHandler().retrieveCars();
         List<Car> cars = new ArrayList();
