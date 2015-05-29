@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package planningformen.domain.finance;
+package planningformen.domain.financeandefficiency;
 
 /**
  *
  * @author Simon
  */
-public class Sale
+public class Purchase implements Transaction
 {
+
+    @Override
+    public double getTotalPrice()
+    {
+        return 0.0;
+    }
     
 }

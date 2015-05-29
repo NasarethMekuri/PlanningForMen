@@ -41,6 +41,23 @@ public class Car implements Sellable
         this._inStock = inStock;
     }
     
+    /**
+     * This constructor is only used when the id is known in advance.
+     * @param id
+     * @param plate
+     * @param year
+     * @param make
+     * @param model
+     * @param volume
+     * @param fuel
+     * @param version
+     * @param odometer
+     * @param purchaseDate
+     * @param purchasePrice
+     * @param sellPrice
+     * @param description
+     * @param inStock
+     */
     public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
         this._id = id; 

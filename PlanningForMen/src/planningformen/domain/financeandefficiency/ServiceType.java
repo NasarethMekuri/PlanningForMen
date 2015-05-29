@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package planningformen.domain.efficiency;
+package planningformen.domain.financeandefficiency;
 
 /**
  *
  * @author Simon
  */
-public class Effect
+public enum ServiceType
 {
-    
+    NORMAL, DIESEL, TUNING;
 }
