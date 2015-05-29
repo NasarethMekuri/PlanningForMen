@@ -19,6 +19,8 @@ public class TransactionManager
 
     private TransactionManager()
     {
+        _saleManager = _saleManager.getInstance();
+        _purchaseManager = _purchaseManager.getInstance();
     }
     
     public static synchronized TransactionManager getInstance()

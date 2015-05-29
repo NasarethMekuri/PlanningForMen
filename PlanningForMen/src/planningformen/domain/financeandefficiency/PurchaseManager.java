@@ -13,11 +13,20 @@ import java.util.List;
  */
 public class PurchaseManager
 {
+    private static PurchaseManager _instance;
     private List<Purchase> _purchases;
 
-    public PurchaseManager()
+    private  PurchaseManager()
     {
-        //TODO: nothing really.
+    }
+    
+    public static synchronized PurchaseManager getInstance()
+    {
+        if (_instance == null)
+        {
+            _instance = new PurchaseManager();
+        }
+        return _instance;
     }
     
     
