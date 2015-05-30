@@ -5,6 +5,7 @@
  */
 package planningformen.domain.financeandefficiency;
 
+import java.util.UUID;
 import planningformen.domain.planning.Sellable;
 
 /**
@@ -13,7 +14,32 @@ import planningformen.domain.planning.Sellable;
  */
 public class Service implements Sellable
 {
-    private ServiceType _type;
+    private ServiceType _type, _garageThatStartedService;
     private ServiceState _state;
-    private ServiceType _garageThatStartedService;
+    private double _price;
+    private String _description, _id;
+
+    public Service(double price, String description, ServiceType type)
+    {
+        this._id = UUID.randomUUID().toString(); //Maybe NOT
+        this._price = price;
+        this._description = description;
+        this._state = ServiceState.PENDING;
+        this._type = type;
+        this._garageThatStartedService = null;
+    }
+
+    //Accessors
+    public ServiceType getType()                        {return _type;}
+    public ServiceType getGarageThatStartedService()    {return _garageThatStartedService;}
+    public ServiceState getState()                      {return _state;}
+    public double getPrice()                            {return _price;}
+    public String getDescription()                      {return _description;}
+    public String getId()                               {return _id;}
+    //Mutators
+    public void setType(ServiceType _type)                                          {this._type = _type;}
+    public void setGarageThatStartedService(ServiceType _garageThatStartedService)  {this._garageThatStartedService = _garageThatStartedService;}
+    public void setState(ServiceState _state)                                       {this._state = _state;}
+    public void setPrice(double _price)                                             {this._price = _price;}
+    public void setDescription(String _description)                                 {this._description = _description;}
 }

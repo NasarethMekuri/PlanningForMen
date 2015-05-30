@@ -7,6 +7,10 @@ package planningformen;
 
 import java.sql.Date;
 import java.util.List;
+import planningformen.domain.financeandefficiency.Service;
+import planningformen.domain.financeandefficiency.ServiceManager;
+import planningformen.domain.financeandefficiency.ServiceState;
+import planningformen.domain.financeandefficiency.ServiceType;
 import planningformen.domain.planning.*;
 
 /**
@@ -22,8 +26,12 @@ public class PlanningForMen
     public static void main(String[] args)
     {
         PlanningForMen testApp = new PlanningForMen();
-        System.out.println("#### TESTING CARS ####");
-        testApp.testCars();
+        //System.out.println("#### TESTING CARS ####");
+        //testApp.testCars();
+        
+        //System.out.println("#### TESTING SERVICES ####");
+        //testApp.testServices();
+        
         //System.out.println("#### TESTING CUSTOMERS ####");
         //testApp.testCustomers();
         
@@ -197,6 +205,83 @@ public class PlanningForMen
         employees = EmployeeManager.getInstance().getEmployees();
         
         System.out.println(employees.size());
+    }
+    
+    private void testServices()
+    {
+        System.out.println("Creating 3 services (4x true)");
+        System.out.println(ServiceManager.getInstance().createService(25.25, "firstService", ServiceType.NORMAL));
+        System.out.println(ServiceManager.getInstance().createService(12, "secondService", ServiceType.DIESEL));
+        System.out.println(ServiceManager.getInstance().createService(49, "thirdService", ServiceType.NORMAL));
+        System.out.println(ServiceManager.getInstance().createService(200, "thirdService", ServiceType.TUNING));
+        
+        System.out.println("\n Getting services by price expecting 2");
+        System.out.println(ServiceManager.getInstance().findServicesByPrice(15, 50));
+        
+        System.out.println("\n Getting services by type expecting 2");
+        System.out.println(ServiceManager.getInstance().findServicesByType(ServiceType.NORMAL));
+        
+        System.out.println("\n Getting services by types expecting 3");
+        for (Service s : ServiceManager.getInstance().findServicesByTypes(ServiceType.DIESEL, ServiceType.TUNING))
+        {
+            System.out.println(s.getType());
+        }
+        
+        
+        System.out.println("\n Setting 4 states");
+        boolean flip = false;
+        for (Service s : ServiceManager.getInstance().findServicesByState(ServiceState.PENDING))
+        {
+            if (flip)
+            {
+                s.setState(ServiceState.STARTED);
+                flip = false;
+            }
+            else
+            {
+                s.setState(ServiceState.RESERVED);
+                flip = true;
+            }
+        }
+        
+        
+        System.out.println("\n Getting services by State expecting 2");
+        for (Service s : ServiceManager.getInstance().findServicesByState(ServiceState.RESERVED))
+        {
+            System.out.println(s.getState());
+        }
+        
+        System.out.println("\n Getting services by States expecting 4");
+        for (Service s : ServiceManager.getInstance().findServicesByStates(ServiceState.RESERVED, ServiceState.STARTED))
+        {
+            System.out.println(s.getState());
+        }
+        
+        
+        
+        /*
+        System.out.println("\nTesting UPDATE expecting all to be FINISHED");
+        for (int i = 0; i < ServiceManager.getInstance().getServices().size(); i++)
+        {
+        ServiceManager.getInstance().updateService(setter);
+        }
+        */  
+        
+        /*
+        System.out.println("\nDeleting service: expecting 2 services");
+        for (Iterator<Service> it = ServiceManager.getInstance().getServices().iterator(); it.hasNext();)
+        {
+        Service s = it.next();
+        if (s.getState() == ServiceState.STARTED)
+        {
+        ServiceManager.getInstance().deleteService(s); //This gives error, and it should... This is bad code and is for testing only.
+        }
+        System.out.println(s.getId());
+        }
+        */
+        
+        
+        
     }
     
 }

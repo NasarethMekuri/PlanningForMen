@@ -46,7 +46,7 @@ public class CustomerManager
         return false;
     }
     
-    public List<Customer> retrieveCustomers()
+    public List<Customer> retrieveCustomers() //@MKJ -> Skal den ikke være private? eller være getter for _customers?
     {
         return _personConverter.retrieveCustomers();
     }
