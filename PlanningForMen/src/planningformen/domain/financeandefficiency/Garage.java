@@ -17,4 +17,23 @@ public class Garage
     private ServiceType _type;
     private List<Employee> _employees;
     private List<Service> _jobs;
+
+    public Garage(ServiceType _type, List<Employee> _employees, List<Service> _jobs)
+    {
+        this._type = _type;
+        this._employees = _employees;
+        this._jobs = _jobs;
+    }
+    
+    
+
+    public ServiceType getType()        {return _type;}
+    public List<Employee> getEmployees(){return _employees;}
+    public List<Service> getJobs()      {return _jobs;}
+    
+    public void setType(ServiceType _type)              {this._type = _type;}
+    public void setEmployees(List<Employee> _employees) {this._employees = _employees;}
+    public void setJobs(List<Service> _jobs)            {this._jobs = _jobs;}
+    
+    
 }

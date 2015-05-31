@@ -17,15 +17,23 @@ public class ServiceManager
 {
     private static ServiceManager _instance;
     private List<Service> _services;
-    private int[] _garages;
+    private Garage[] _garages;
     private ServiceConverter _converter;
     
     private ServiceManager()
     {
-        
         this._converter = new ServiceConverter();
         _services = _converter.retrieveServices();
         
+        //How do I add employees to the garages? and who is responsible for creating them?
+        //Is it fair to assume that when the Servicemanager is instanciated, Garages should be created and Lists of employees aswell? -is there an issue here?
+        _garages = new Garage[3];
+        _garages[0] = new Garage(ServiceType.NORMAL, new ArrayList(), new ArrayList<Service>());
+        _garages[1] = new Garage(ServiceType.DIESEL, new ArrayList(), new ArrayList<Service>());
+        _garages[2] = new Garage(ServiceType.TUNING, new ArrayList(), new ArrayList<Service>());
+        
+        
+        assignJobsToGarages();
     }
     
     //Accessor for single instance
@@ -158,4 +166,11 @@ public class ServiceManager
         }
         return false;
     }
+
+    private void assignJobsToGarages()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
