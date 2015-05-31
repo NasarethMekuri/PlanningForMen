@@ -81,7 +81,7 @@ public class DBHandler
             }
         }
         
-        return rowCount >= 0; // NEEDS TESTING !! (not sure that 0 is the right number??)
+        return rowCount >= 0; 
     }
     
     public void retrieveCars(ICallback owner)
@@ -451,9 +451,144 @@ public class DBHandler
         }
         return rowCount >= 0;
     }   
-
+    
+    //Service Methods:
+     public boolean createService(String id, double price, String description, int type, int state, int garageThatStartedService)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call create_service(?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setDouble(2, price);
+            cs.setString(3, description);
+            cs.setInt(4, type);
+            cs.setInt(5, state);
+            cs.setInt(6, garageThatStartedService);
+            
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Service in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createService\n" + ex.getLocalizedMessage());
+            }
+        }
+        
+        return rowCount >= 0; 
+    }
+    
     public void retrieveServices(ICallback owner)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection c = _dbConnector.getConnection();
+        ResultSet allServices = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_services");
+            allServices = ps.executeQuery();    
+            
+            owner.extractValues(allServices);
+            
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("SQLException @retrieveServices - DBHandler\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveServices\n" + ex.getLocalizedMessage());
+            }
+        }
     }
+
+    public boolean updateService(String id, double price, String description, int type, int state, int garageThatStartedService)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call update_service(?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setDouble(2, price);
+            cs.setString(3, description);
+            cs.setInt(4, type);
+            cs.setInt(5, state);
+            cs.setInt(6, garageThatStartedService);
+           
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating Service in DB!\n" + ex.getLocalizedMessage());
+        }
+        
+        
+        return rowCount >= 0; 
+    }
+
+    public boolean deleteService(String id)
+    {
+        Connection c = _dbConnector.getConnection();
+        int rowCount = -1;
+        
+        try
+        {
+            CallableStatement cs = c.prepareCall("{call delete_service(?)}");
+            cs.setString(1, id);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting a Service in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteService");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deleteService\n" + ex.getLocalizedMessage());
+            }
+        }
+        
+        return rowCount >= 0; 
+    }
+
+   
 }

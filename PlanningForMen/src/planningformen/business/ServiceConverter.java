@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.business;
 
 import java.sql.ResultSet;
@@ -12,7 +12,6 @@ import java.util.List;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceState;
 import planningformen.domain.financeandefficiency.ServiceType;
-import planningformen.domain.planning.Car;
 import planningformen.technical.IOManager;
 
 /**
@@ -26,12 +25,10 @@ public class ServiceConverter implements ICallback
     public ServiceConverter()
     {}
     
-    public boolean createService(Car carToCreate)
+    public boolean createService(Service serviceToCreate)
     {
-        return IOManager.getInstance().getDBHandler().createCar(carToCreate.getId(), carToCreate.getPlate(), carToCreate.getYear(), carToCreate.getMake(), carToCreate.getModel(),
-                carToCreate.getVolume(), carToCreate.getFuel(), carToCreate.getVersion(), carToCreate.getOdometer(),
-                carToCreate.getPurchaseDate(), carToCreate.getPurchasePrice(), carToCreate.getSellPrice(), carToCreate.getDescription(),
-                carToCreate.isInStock());
+        return IOManager.getInstance().getDBHandler().createService(serviceToCreate.getId(), serviceToCreate.getPrice(), serviceToCreate.getDescription(),
+                                                                    serviceToCreate.getType().getNumericValue(), serviceToCreate.getState().getNumericValue(), serviceToCreate.getGarageThatStartedService().getNumericValue());
     }
     
     public List<Service> retrieveServices()
@@ -47,42 +44,83 @@ public class ServiceConverter implements ICallback
         Service aService = null;
         _convertedServices = new ArrayList();
         
+        ServiceType type = null;
+        ServiceState state = null;
+        ServiceType garage = null;
+        
+        
         while (rs.next())
         {
-            ServiceState state = null; 
-            ServiceType type = null;
-            ServiceType garage = null;
-                    
             
-                    
+            switch (rs.getInt(4))
+            {
+                case 1:
+                    type = ServiceType.DIESEL;
+                    break;
+                case 2:
+                    type = ServiceType.NORMAL;
+                    break;
+                case 3:
+                    type = ServiceType.TUNING;
+                    break;
+            }
+            
+            switch (rs.getInt(5))
+            {
+                case 1:
+                    state = ServiceState.PENDING;
+                    break;
+                case 2:
+                    state = ServiceState.RESERVED;
+                    break;
+                case 3:
+                    state = ServiceState.STARTED;
+                    break;
+                case 4:
+                    state = ServiceState.FINISHED;
+                    break;
+            }
+            
+            switch (rs.getInt(6))
+            {
+                case 1:
+                    garage = ServiceType.DIESEL;
+                    break;
+                case 2:
+                    garage = ServiceType.NORMAL;
+                    break;
+                case 3:
+                    garage = ServiceType.TUNING;
+                    break;
+            }
+            
+            
+            
             aService = new Service(
                     rs.getString(1),
                     rs.getDouble(2),
                     rs.getString(3),
-                    rs.getString(4),
-                    rs.getInt(5),
-                    rs.getInt(6),
-                    rs.getInt(7);
+                    type,
+                    state,
+                    garage);
             
-            _convertedCars.add(aCar);
+            _convertedServices.add(aService);
         }
         
         rs.close();
     }
     
     
-    public boolean updateCar(Car carToUpdate)
+    public boolean updateService(Service serviceToUpdate)
     {
-        return IOManager.getInstance().getDBHandler().updateCar(carToUpdate.getId(), carToUpdate.getPlate(), carToUpdate.getYear(), carToUpdate.getMake(), carToUpdate.getModel(),
-                carToUpdate.getVolume(), carToUpdate.getFuel(), carToUpdate.getVersion(), carToUpdate.getOdometer(),
-                carToUpdate.getPurchaseDate(), carToUpdate.getPurchasePrice(), carToUpdate.getSellPrice(), carToUpdate.getDescription(),
-                carToUpdate.isInStock());
+        return IOManager.getInstance().getDBHandler().updateService(serviceToUpdate.getId(), serviceToUpdate.getPrice(), serviceToUpdate.getDescription(),
+                                                                    serviceToUpdate.getType().getNumericValue(), serviceToUpdate.getState().getNumericValue(), serviceToUpdate.getGarageThatStartedService().getNumericValue());
     }
     
     
-    public boolean deleteCar(Car carToDelete)
+    public boolean deleteService(Service serviceToDelete)
     {
-        return IOManager.getInstance().getDBHandler().deleteCar(carToDelete.getId());
+        return IOManager.getInstance().getDBHandler().deleteService(serviceToDelete.getId());
     }
     
     
