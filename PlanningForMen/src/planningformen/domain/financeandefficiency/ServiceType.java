@@ -11,5 +11,14 @@ package planningformen.domain.financeandefficiency;
  */
 public enum ServiceType
 {
-    NORMAL, DIESEL, TUNING;
+    DIESEL(1), NORMAL(2), TUNING(3);
+
+    private final int _numericValue;
+    
+    private ServiceType(int numericValue)
+    {
+        this._numericValue = numericValue;
+    }
+
+    public int getNumericValue() {return _numericValue;}   
 }
