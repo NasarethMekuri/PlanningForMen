@@ -11,5 +11,15 @@ package planningformen.domain.financeandefficiency;
  */
 public enum ServiceState
 {
-    PENDING, RESERVED, STARTED, FINISHED;
+    PENDING(1), RESERVED(2), STARTED(3), FINISHED(4);
+    
+    private final int _numericValue;
+
+    private ServiceState(int numericvalue)
+    {
+        this._numericValue = numericvalue;
+    }
+
+    public int getNumericValue() {return _numericValue;}
+    
 }

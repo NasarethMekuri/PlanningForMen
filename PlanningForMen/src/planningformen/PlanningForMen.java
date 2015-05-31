@@ -29,8 +29,8 @@ public class PlanningForMen
         //System.out.println("#### TESTING CARS ####");
         //testApp.testCars();
         
-        //System.out.println("#### TESTING SERVICES ####");
-        //testApp.testServices();
+        System.out.println("#### TESTING SERVICES ####");
+        testApp.testServices();
         
         //System.out.println("#### TESTING CUSTOMERS ####");
         //testApp.testCustomers();
@@ -280,6 +280,11 @@ public class PlanningForMen
         }
         */
         
+        System.out.println("Testing ID toString");
+        for (Service s : ServiceManager.getInstance().getServices())
+        {
+            System.out.println(s.getId().toString());
+        }
         
         
     }
