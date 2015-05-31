@@ -451,4 +451,9 @@ public class DBHandler
         }
         return rowCount >= 0;
     }   
+
+    public void retrieveServices(ICallback owner)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

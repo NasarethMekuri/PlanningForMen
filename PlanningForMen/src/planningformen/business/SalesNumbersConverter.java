@@ -5,11 +5,20 @@
  */
 package planningformen.business;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Cymon343
  */
-public class SalesNumbersConverter
+public class SalesNumbersConverter implements ICallback
 {
+
+    @Override
+    public void extractValues(ResultSet rs) throws SQLException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
