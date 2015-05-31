@@ -6,7 +6,10 @@
 package planningformen.domain.financeandefficiency;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.GregorianCalendar;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
@@ -19,6 +22,7 @@ public class SaleManager
 {
     private static SaleManager _instance;
     private List<Sale> _sales;
+    private final double TAX = .25f;
 
     private  SaleManager()
     {
@@ -34,8 +38,19 @@ public class SaleManager
     }
     
     
-    public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables)
+    public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables, double amountPaid)
     {
+        Calendar c = GregorianCalendar.getInstance();
+        Date sellDate = new Date(c.getTimeInMillis());
+        c.add(Calendar.DATE, 14);
+        Date dueDate = new Date(c.getTimeInMillis());
+        
+        Sale sale = new Sale(emp, cust, dueDate, sellDate, true, amountPaid, TAX);
+        
+        //DO DB STUFF HERE
+        
+        _sales.add(sale);
+
         return false;
     }
     
@@ -46,11 +61,27 @@ public class SaleManager
     
     public double paySale(Sale sale, double amountPaid)
     {
-        return sale.getTotalPrice() - amountPaid;
+        if(!sale.IsPaid())
+        {
+            sale.setAmountPaid(sale.getAmountPaid() + amountPaid);
+            return sale.getTotalPrice() - sale.getAmountPaid();
+        }
+        return 0f;
     }
     
-    public List<Sale> getSale(Customer cust, Date fromDate, Date toDate)
+    public List<Sale> getSales(Customer cust, Date fromDate, Date toDate)
     {
-        return null;
+        List<Sale> tmpList = new ArrayList<Sale>();
+        for(Sale s : _sales)
+        {
+            if(s.getCustomer() == cust)
+            {
+                if(s.getSaleDate().after(fromDate) && s.getSaleDate().before(toDate))
+                {
+                    tmpList.add(s);
+                }
+            }
+        }
+        return tmpList;
     }
 }

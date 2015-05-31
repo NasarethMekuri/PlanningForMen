@@ -11,5 +11,5 @@ package planningformen.domain.planning;
  */
 public interface Sellable
 {
-    
+    public double getSellPrice();
 }
