@@ -5,11 +5,15 @@
 */
 package planningformen.domain.financeandefficiency;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
@@ -45,7 +49,10 @@ public class SaleManager
         c.add(Calendar.DATE, 14);
         Date dueDate = new Date(c.getTimeInMillis());
         
-        Sale sale = new Sale(emp, cust, dueDate, sellDate, true, amountPaid, TAX);
+        //Sales ID made from customerID + duedate + size of sales list. May be changed later.
+        String saleID = cust.getCustomerID() + dueDate.toString().replace("-", "") + _sales.size();
+        
+        Sale sale = new Sale(saleID, emp, cust, sellables, dueDate, sellDate, amountPaid, TAX);
         
         //DO DB STUFF HERE
         
@@ -56,7 +63,27 @@ public class SaleManager
     
     public boolean printInvoice(Sale sale)
     {
-        return false;
+        PrintWriter output = null;
+        try
+        {
+            output = new PrintWriter(sale.getId() + ".txt");
+            output.println("SaleID: " + sale.getId());
+            output.println("CustomerID: " + sale.getCustomer().getCustomerID());
+            output.println("Customer Name: " + sale.getCustomer().getFirstName() + " " + sale.getCustomer().getLastName());
+            output.println("Responsible employee: " + sale.getEmployee().getFirstName() + "" + sale.getEmployee().getLastName());
+            output.println("\n");
+            for(Sellable s : sale.getItems())
+            {
+                output.println(" Item name goes here "  + s.getSellPrice()); //Need changes to sellable Interface to return a meaningful name.
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println("File not found Exception @SaleManager in printInvoice - " + ex.getLocalizedMessage());
+            return false;
+        }
+        return true;
+        
     }
     
     public double paySale(Sale sale, double amountPaid)

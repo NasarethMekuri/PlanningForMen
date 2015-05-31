@@ -25,15 +25,17 @@ public class Sale implements Transaction
     private double _amountPaid, _tax;
     private List<Sellable> _items;
 
-    public Sale(Employee employee, Customer customer, Date dueDate, Date saleDate, boolean isPaid, double amountPaid, double tax)
+    public Sale(String id, Employee employee, Customer customer, List<Sellable> items, Date dueDate, Date saleDate, double amountPaid, double tax)
     {
+        _id = id;
         _employee = employee;
         _customer = _customer;
+        _items = items;
         _dueDate = _dueDate;
         _saleDate = saleDate;
-        _isPaid = _isPaid;
         _amountPaid = _amountPaid;
         _tax = _tax;
+        _isPaid = amountPaid >= getTotalPrice();
     }
      
     @Override

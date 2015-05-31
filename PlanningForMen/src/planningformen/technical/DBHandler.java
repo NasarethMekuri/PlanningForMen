@@ -589,6 +589,188 @@ public class DBHandler
         
         return rowCount >= 0; 
     }
+    
+    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            //Create Sale
+            cs = c.prepareCall("{call create_sale(?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setString(2, empID);
+            cs.setString(3, custID);
+            cs.setDate(4, saleDate);
+            cs.setDate(5, dueDate);
+            cs.setDouble(6, amountPaid);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+            if(rowCount >= 0) //Only continue if the initial creation succeeded!
+            {
+                //Create / update many-side
+                for(int i = 0; i < carIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_car_(?,?)}"); //FIXME: Update car here?
+
+                    cs.setString(1, id);
+                    cs.setString(2, carIDs[i]);
+                }
+
+                for(int i = 0; i < serviceIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_service_(?,?)}"); //FIXME: Update service here?
+
+                    cs.setString(1, id);
+                    cs.setString(2, serviceIDs[i]);
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Sale in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createSale\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0; 
+    }
+    
+    public void retrieveSales(ICallback owner) //FIXME: DB design needs to be done, to finish algorithm.
+    {
+        Connection c = _dbConnector.getConnection();
+        ResultSet sales = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_sales");
+            sales = ps.executeQuery();    
+            
+            owner.extractValues(sales);
+            
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("SQLException @retrieveSales - DBHandler\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveSales\n" + ex.getLocalizedMessage());
+            }
+        }
+    }
+    
+    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            //Update Sale
+            cs = c.prepareCall("{call update_sale(?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setString(2, empID);
+            cs.setString(3, custID);
+            cs.setDate(4, saleDate);
+            cs.setDate(5, dueDate);
+            cs.setDouble(6, amountPaid);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+            if(rowCount >= 0) //Only continue if the initial creation succeeded!
+            {
+                //Update many side
+                for(int i = 0; i < carIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_car(?,?)}"); //FIXME: Update car here?
+
+                    cs.setString(1, id);
+                    cs.setString(2, carIDs[i]);
+                }
+
+                for(int i = 0; i < serviceIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_service(?,?)}"); //FIXME: Update Service here?
+
+                    cs.setString(1, id);
+                    cs.setString(2, serviceIDs[i]);
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating Sale in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler updateSale\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0; 
+    }
+    
+    public boolean deleteSale(String id)
+    {
+        Connection c = _dbConnector.getConnection();
+        int rowCount = -1;
+        
+        try
+        {
+            CallableStatement cs = c.prepareCall("{call delete_sale(?)}");
+            cs.setString(1, id);
+            //FIXME: Remove FK to this sale from cars and services???
+            rowCount = cs.executeUpdate();
+            cs.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting a Sale in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteSale");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deleteSale\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0; 
+    }
+    
+    
 
    
 }

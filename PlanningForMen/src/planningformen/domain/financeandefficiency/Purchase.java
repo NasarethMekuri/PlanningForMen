@@ -15,7 +15,7 @@ public class Purchase implements Transaction
     @Override
     public double getTotalPrice()
     {
-        return 0.0;
+        return Math.random() * 1000f; //Dummy value
     }
     
 }
