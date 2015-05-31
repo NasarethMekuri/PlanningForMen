@@ -41,6 +41,7 @@ public class Service implements Sellable
     
     //Accessors
     public String getId()                               {return _id;}
+    @Override
     public double getSellPrice()                        {return _price;}
     public String getDescription()                      {return _description;}
     public ServiceType getType()                        {return _type;}

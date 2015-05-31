@@ -86,6 +86,7 @@ public class Car implements Sellable
     public String getPlate()        {return _plate;}
     public double getVolume()       {return _volume;}
     public double getPurchasePrice(){return _purchasePrice;}
+    @Override
     public double getSellPrice()    {return _sellPrice;}
     public int getYear()            {return _year;}
     public int getOdometer()        {return _odometer;}

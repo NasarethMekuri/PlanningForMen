@@ -43,7 +43,7 @@ public class Sale implements Transaction
         
         for(Sellable s : _items)
         {
-            totalPrice += s.getPrice();
+            totalPrice += s.getSellPrice();
         }
         return totalPrice;
     }
