@@ -25,14 +25,11 @@ public class ServiceManager
         this._converter = new ServiceConverter();
         _services = _converter.retrieveServices();
         
-        //How do I add employees to the garages? and who is responsible for creating them?
-        //Is it fair to assume that when the Servicemanager is instanciated, Garages should be created and Lists of employees aswell? -is there an issue here?
+        //TODO: AssignJobs... 
         _garages = new Garage[3];
-        _garages[0] = new Garage(ServiceType.NORMAL, new ArrayList(), new ArrayList<Service>());
-        _garages[1] = new Garage(ServiceType.DIESEL, new ArrayList(), new ArrayList<Service>());
-        _garages[2] = new Garage(ServiceType.TUNING, new ArrayList(), new ArrayList<Service>());
-        
-        
+        _garages[0] = new Garage(ServiceType.NORMAL);
+        _garages[1] = new Garage(ServiceType.DIESEL);
+        _garages[2] = new Garage(ServiceType.TUNING);
         assignJobsToGarages();
     }
     

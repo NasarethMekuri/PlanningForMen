@@ -29,8 +29,8 @@ public class PlanningForMen
         //System.out.println("#### TESTING CARS ####");
         //testApp.testCars();
         
-        System.out.println("#### TESTING SERVICES ####");
-        testApp.testServices();
+        //System.out.println("#### TESTING SERVICES ####");
+        //testApp.testServices();
         
         //System.out.println("#### TESTING CUSTOMERS ####");
         //testApp.testCustomers();

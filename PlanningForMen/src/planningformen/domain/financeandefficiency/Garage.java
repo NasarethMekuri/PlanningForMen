@@ -5,6 +5,7 @@
  */
 package planningformen.domain.financeandefficiency;
 
+import java.util.ArrayList;
 import java.util.List;
 import planningformen.domain.planning.Employee;
 
@@ -18,11 +19,11 @@ public class Garage
     private List<Employee> _employees;
     private List<Service> _jobs;
 
-    public Garage(ServiceType _type, List<Employee> _employees, List<Service> _jobs)
+    public Garage(ServiceType _type)
     {
         this._type = _type;
-        this._employees = _employees;
-        this._jobs = _jobs;
+        this._employees = new ArrayList<Employee>();
+        this._jobs = new ArrayList<Service>();
     }
     
     
