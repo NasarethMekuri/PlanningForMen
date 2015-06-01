@@ -60,7 +60,7 @@ public class ServiceManager
         List<Service> returnServices = new ArrayList();
         for (Service s : _services)
         {
-            if (minPrice <= s.getPrice() && maxPrice >= s.getPrice())
+            if (minPrice <= s.getSellPrice() && maxPrice >= s.getSellPrice())
             {
                 returnServices.add(s);
             }
