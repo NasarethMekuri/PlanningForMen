@@ -20,5 +20,5 @@ public enum ServiceType
         this._numericValue = numericValue;
     }
 
-    public int getNumericValue() {return _numericValue;}   
+    public int getNumericValue() {return _numericValue;}
 }

@@ -123,40 +123,33 @@ public class ServiceConverter implements ICallback
         return IOManager.getInstance().getDBHandler().deleteService(serviceToDelete.getId());
     }
     
-    public Service convertServiceNumberToState(Service s, int state)
+    public ServiceState convertToServiceStateFromInt(Service s, int state)
     {
         switch (state)
             {
                 case 1:
-                    s.setState(ServiceState.PENDING);
-                    break;
+                    return ServiceState.PENDING;
                 case 2:
-                    s.setState(ServiceState.RESERVED);
-                    break;
+                    return ServiceState.RESERVED;
                 case 3:
-                    s.setState(ServiceState.STARTED);
-                    break;
+                    return ServiceState.STARTED;
                 case 4:
-                    s.setState(ServiceState.FINISHED);
-                    break;
+                    return ServiceState.FINISHED;
             }
-        return s;
+        return null;
     }
     
-    public Service convertServiceNumberToType(Service s, int type)
+    public ServiceType convertToServiceTypeFromInt(Service s, int type)
     {
         switch (type)
         {
             case 1:
-                s.setType(ServiceType.DIESEL);
-                break;
+                return ServiceType.DIESEL;
             case 2:
-                 s.setType(ServiceType.NORMAL);
-                break;
+                 return ServiceType.NORMAL;
             case 3:
-                 s.setType(ServiceType.TUNING);
-                break;
+                 return ServiceType.TUNING;
         }
-        return s;
+        return null;
     }
 }
