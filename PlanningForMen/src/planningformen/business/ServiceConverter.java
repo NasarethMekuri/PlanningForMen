@@ -28,7 +28,7 @@ public class ServiceConverter implements ICallback
     public boolean createService(Service serviceToCreate)
     {
         return IOManager.getInstance().getDBHandler().createService(serviceToCreate.getId(), serviceToCreate.getSellPrice(), serviceToCreate.getDescription(),
-                                                                    serviceToCreate.getType().getNumericValue(), serviceToCreate.getState().getNumericValue(), serviceToCreate.getGarageThatStartedService().getNumericValue());
+                serviceToCreate.getType().getNumericValue(), serviceToCreate.getState().getNumericValue(), serviceToCreate.getGarageType().getNumericValue());
     }
     
     public List<Service> retrieveServices()
@@ -114,7 +114,7 @@ public class ServiceConverter implements ICallback
     public boolean updateService(Service serviceToUpdate)
     {
         return IOManager.getInstance().getDBHandler().updateService(serviceToUpdate.getId(), serviceToUpdate.getSellPrice(), serviceToUpdate.getDescription(),
-                                                                    serviceToUpdate.getType().getNumericValue(), serviceToUpdate.getState().getNumericValue(), serviceToUpdate.getGarageThatStartedService().getNumericValue());
+                serviceToUpdate.getType().getNumericValue(), serviceToUpdate.getState().getNumericValue(), serviceToUpdate.getGarageType().getNumericValue());
     }
     
     
@@ -123,5 +123,40 @@ public class ServiceConverter implements ICallback
         return IOManager.getInstance().getDBHandler().deleteService(serviceToDelete.getId());
     }
     
+    public Service convertServiceNumberToState(Service s, int state)
+    {
+        switch (state)
+            {
+                case 1:
+                    s.setState(ServiceState.PENDING);
+                    break;
+                case 2:
+                    s.setState(ServiceState.RESERVED);
+                    break;
+                case 3:
+                    s.setState(ServiceState.STARTED);
+                    break;
+                case 4:
+                    s.setState(ServiceState.FINISHED);
+                    break;
+            }
+        return s;
+    }
     
+    public Service convertServiceNumberToType(Service s, int type)
+    {
+        switch (type)
+        {
+            case 1:
+                s.setType(ServiceType.DIESEL);
+                break;
+            case 2:
+                 s.setType(ServiceType.NORMAL);
+                break;
+            case 3:
+                 s.setType(ServiceType.TUNING);
+                break;
+        }
+        return s;
+    }
 }

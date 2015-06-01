@@ -16,7 +16,7 @@ import planningformen.business.ServiceConverter;
 public class ServiceManager
 {
     private static ServiceManager _instance;
-    private List<Service> _services;
+    private List<Service> _services, _finishedServices;
     private Garage[] _garages;
     private ServiceConverter _converter;
     
@@ -25,12 +25,12 @@ public class ServiceManager
         this._converter = new ServiceConverter();
         _services = _converter.retrieveServices();
         
-        //TODO: AssignJobs... 
+        //TODO: AssignJobs...
         _garages = new Garage[3];
-        _garages[0] = new Garage(ServiceType.NORMAL);
-        _garages[1] = new Garage(ServiceType.DIESEL);
-        _garages[2] = new Garage(ServiceType.TUNING);
-        assignJobsToGarages();
+        _garages[0] = GarageFactory.getInstance().getGarage(ServiceType.DIESEL);
+        _garages[1] = GarageFactory.getInstance().getGarage(ServiceType.NORMAL);
+        _garages[2] = GarageFactory.getInstance().getGarage(ServiceType.TUNING);
+        getPrioritizedJobsList();
     }
     
     //Accessor for single instance
@@ -163,11 +163,188 @@ public class ServiceManager
         }
         return false;
     }
-
-    private void assignJobsToGarages()
+    
+    public void getPrioritizedJobsList()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        clearAllGarageJobLists(); //done
+        handleStates(); //done
+        reAllocateStartedJobs(); //done
+        allocateDieselJobs(); //done
+        allocateNormalPendingJobs(); //done
+        allocateTuningJobs(); //done
     }
+    
+    private void clearAllGarageJobLists()
+    {
+        for (int i = 0; i < _garages.length; i++)
+        {
+            _garages[i].getJobs().clear();
+        }
+    }
+    
+    private void handleStates()
+    {
+        for (Service s : _services)
+        {   //if service is finished move to finishedServices:
+            if (s.getState().getNumericValue() == 4)
+            {
+                _finishedServices.add(s);
+                _services.remove(s);
+            }
+            //if Service is reserved, set to pending
+            else if (s.getState().getNumericValue() == 2)
+            {
+                s.setState(ServiceState.PENDING);
+                _converter.updateService(s); //Update Service in DB.
+            }
+        }
+    }
+    
+    private void reAllocateStartedJobs()
+    {
+        for (Service s : _services)
+        {
+            if (s.getState() == ServiceState.STARTED)
+            {
+                switch (s.getGarageType().getNumericValue())
+                {
+                    case 1:
+                        _garages[0].getJobs().add(s);
+                        break;
+                    case 2:
+                        _garages[1].getJobs().add(s);
+                        break;
+                    case 3:
+                        _garages[2].getJobs().add(s);
+                        break;
+                }
+            }
+        }
+    }
+    
+    private void allocateDieselJobs()
+    {
+        for (Service s : _services)
+        {   //if Diesel
+            if (s.getType().getNumericValue() == 1)
+            {
+                _garages[0].getJobs().add(s);
+                s.setState(ServiceState.RESERVED);
+                s.setGarageType(ServiceType.DIESEL);
+            }
+        }
+    }
+    
+    private int getEmployeeCount()
+    {
+        int employees = 0;
+        for (Garage g : _garages)
+        {
+            employees += g.getEmployees().size();
+        }
+        return employees;
+    }
+    
+    private List<Service> getNormalJobsinServices()
+    {
+        List<Service> temp = new ArrayList<>();
+        
+        
+        for (Service s : _services)
+        {   //if pending && Normal
+            if (s.getState().getNumericValue() == 1 && s.getType().getNumericValue() == 2)
+            {
+                temp.add(s);
+            }
+            
+        }
+        return temp;
+    }
+    
+    private void allocateTuningJobs()
+    {
+        for (Service s : _services)
+        {
+            if (s.getType().getNumericValue() == 3)
+            {
+                _garages[2].getJobs().add(s);
+                s.setState(ServiceState.RESERVED);
+                s.setGarageType(ServiceType.TUNING);
+            }
+        }
+    }
+    
+    public Service setServiceState(Service s, int state)
+    {
+        return _converter.convertServiceNumberToState(s, state);
+    }
+    
+    public Service setServiceType(Service s, int state)
+    {
+        return _converter.convertServiceNumberToType(s, state);
+    }
+    
+    private int[] getJobPrEmployee(int pendingNormalJobsLeft, int totalEmployees)
+    {
+        int[] temp = new int[2];
+        
+        temp[0] = pendingNormalJobsLeft / totalEmployees;
+        temp[1] = pendingNormalJobsLeft % totalEmployees;
+        
+        return temp;
+    }
+    
+    private void allocateNormalPendingJobs()
+    {
+        int totalEmployees = getEmployeeCount();
+        List<Service> pendingNormalJobs = getNormalJobsinServices();
+        int pendingNormalJobsLeft = pendingNormalJobs.size();
+        
+        int[] temp = getJobPrEmployee(pendingNormalJobsLeft, totalEmployees);
+        int jobPrEmp = temp[0];
+        
+        int jobsForDieselGarage = jobPrEmp * _garages[0].getEmployees().size();
+        int jobsForNormalGarage = jobPrEmp * _garages[1].getEmployees().size();
+        int jobsForTuningGarage = jobPrEmp * _garages[2].getEmployees().size();
+        
+        
+        for (int i = 0; i < jobsForDieselGarage; i++)
+        {
+            _garages[0].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.remove(0);
+        }
+        
+        for (int i = 0; i < jobsForNormalGarage; i++)
+        {
+            _garages[1].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.remove(0);
+        }
+        
+        for (int i = 0; i < jobsForTuningGarage; i++)
+        {
+            _garages[2].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.remove(0);
+        }
+        
+        int jobsLeft = temp[1];
+        int counter = 0;
+        for (int i = 0; i < jobsLeft; i++)
+        {
+            _garages[counter].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.remove(0);
+            counter++;
+            if (counter >= _garages.length)
+            {
+                counter = 0;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
