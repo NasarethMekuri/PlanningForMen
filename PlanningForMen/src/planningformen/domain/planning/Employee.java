@@ -7,6 +7,7 @@ package planningformen.domain.planning;
 public class Employee extends Person
 {
     private String _employeeID;
+    private int _skillType;
     
     /***
      * Use this constructor for creating a new employee. This will autogenerate an employeeID.
@@ -18,10 +19,12 @@ public class Employee extends Person
      * @param postalNumber The postal number of the employee.
      * @param email The E-mail address of the employee.
      */
-    public Employee(String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    public Employee(String personID, String firstName, String lastName, String address, String phoneNumber, 
+                    String postalNumber, String email, int skillType)
     {
         super(personID, firstName, lastName, address, phoneNumber, postalNumber, email);
         _employeeID = generateID();
+        _skillType = skillType;
     }
     
     /***
@@ -35,11 +38,14 @@ public class Employee extends Person
      * @param phoneNumber The phonenumber of the employee.
      * @param postalNumber The postal number of the employee.
      * @param email The E-mail address of the employee.
+     * @param skillType The type of skill this employee has.
      */
-    public Employee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    public Employee(String employeeID, String personID, String firstName, String lastName, String address, 
+                    String phoneNumber, String postalNumber, String email, int skillType)
     {
         super(personID, firstName, lastName, address, phoneNumber, postalNumber, email);
         _employeeID = employeeID;
+        _skillType = skillType;
     }
     
     /**
@@ -55,4 +61,9 @@ public class Employee extends Person
     {
         return firstName.substring(0, 2) + lastName.substring(0, 2) + id.substring(0, 5);
     }
+    
+    
+    public int getSkillType() { return _skillType; }
+    
+    public void setSkillType(int skillType) { _skillType = skillType; }
 }

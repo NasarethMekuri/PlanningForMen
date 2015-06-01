@@ -49,8 +49,8 @@ public class SaleManager
         c.add(Calendar.DATE, 14);
         Date dueDate = new Date(c.getTimeInMillis());
         
-        //Sales ID made from customerID + duedate + size of sales list. May be changed later.
-        String saleID = cust.getCustomerID() + dueDate.toString().replace("-", "") + _sales.size();
+        //Sales ID made from customerID  + size of sales list. May be changed later.
+        String saleID = cust.getCustomerID() + "-" + _sales.size();
         
         Sale sale = new Sale(saleID, emp, cust, sellables, dueDate, sellDate, amountPaid, TAX);
         

@@ -59,7 +59,7 @@ public class PersonConverter implements ICallback
     {
         return _ioManager.getDBHandler().createEmployee(employee.getEmployeeID(), employee.getId(), employee.getFirstName(), 
                                                         employee.getLastName(), employee.getAddress(), employee.getPhoneNumber(), 
-                                                        employee.getPostalNumber(), employee.getEmail());
+                                                        employee.getPostalNumber(), employee.getEmail(), employee.getSkillType());
     }
     
     public List<Employee> retrieveEmployees()
@@ -73,7 +73,7 @@ public class PersonConverter implements ICallback
     {
         return _ioManager.getDBHandler().updateEmployee(employee.getEmployeeID(), employee.getId(), employee.getFirstName(), 
                                                         employee.getLastName(), employee.getAddress(), employee.getPhoneNumber(), 
-                                                        employee.getPostalNumber(), employee.getEmail());
+                                                        employee.getPostalNumber(), employee.getEmail(), employee.getSkillType());
     }
  
     @Override
@@ -119,7 +119,8 @@ public class PersonConverter implements ICallback
             String phoneNr = rs.getString(6);
             String postalNr = rs.getString(7);
             String email = rs.getString(8);
-            _convertedEmployees.add(new Employee(empID, personID, fName, lName, address, phoneNr, postalNr, email));
+            int skillType = rs.getInt(9);
+            _convertedEmployees.add(new Employee(empID, personID, fName, lName, address, phoneNr, postalNr, email, skillType));
         } while(rs.next());
         rs.close();
     }

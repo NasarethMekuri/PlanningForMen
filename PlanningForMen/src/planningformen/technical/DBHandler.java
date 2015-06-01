@@ -341,7 +341,8 @@ public class DBHandler
     
     //Employee Methods
     
-    public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address, 
+                                  String phoneNumber, String postalNumber, String email, int skillType)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -350,7 +351,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call create_employee(?,?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call create_employee(?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, employeeID);
             cs.setString(2, personID);
             cs.setString(3, firstName);
@@ -359,6 +360,7 @@ public class DBHandler
             cs.setString(6, phoneNumber);
             cs.setString(7, postalNumber);
             cs.setString(8, email);
+            cs.setInt(9, skillType);
             
             rowCount = cs.executeUpdate();
             cs.close();
@@ -411,7 +413,8 @@ public class DBHandler
         }
     }
     
-    public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
+    public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address, 
+                                  String phoneNumber, String postalNumber, String email, int skillType)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -420,7 +423,7 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call update_employee(?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_employee(?,?,?,?,?,?,?,?)}");
             //cs.setString(1, employeeID);  //This will be changed in future iterations when Employee "evolves". Same goes for the sql queries.
             cs.setString(1, personID);
             cs.setString(2, firstName);
@@ -429,6 +432,7 @@ public class DBHandler
             cs.setString(5, phoneNumber);
             cs.setString(6, postalNumber);
             cs.setString(7, email);
+            cs.setInt(8, skillType);
             
             rowCount = cs.executeUpdate();
             cs.close();
