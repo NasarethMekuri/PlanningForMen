@@ -7,9 +7,6 @@ package planningformen.technical;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
@@ -18,6 +15,7 @@ import java.util.logging.Logger;
 public class FileHandler
 {
     private final String FILE_EXTENSION = ".txt";
+    
     public boolean printInvoice(String input, String fileName)
     {
         boolean isErrorFree = true;

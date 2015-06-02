@@ -29,8 +29,6 @@ public class SaleConverter implements ICallback
     private List<Sale> _convertedSales;
     private List<String> _employeeIDs;
     private List<String> _customerIDs;
-
-    private List<Sellable> _sellables;
     
     @Override
     public void extractValues(ResultSet rs) throws SQLException
