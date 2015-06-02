@@ -41,7 +41,7 @@ public class SaleConverter implements ICallback
             Date dueDate = rs.getDate(5);
             double amountPaid = rs.getDouble(6);
             double tax = rs.getDouble(7);
-            _convertedsales.add(new Sale(saleID, empID, custID, _sellables, saleDate, dueDate, amountPaid, tax));   
+            //_convertedsales.add(new Sale(saleID, empID, custID, _sellables, saleDate, dueDate, amountPaid, tax));   
         }
     }
   

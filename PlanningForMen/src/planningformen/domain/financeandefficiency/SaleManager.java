@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
