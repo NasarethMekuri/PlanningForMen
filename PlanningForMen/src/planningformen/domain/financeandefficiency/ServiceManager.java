@@ -55,8 +55,10 @@ public class ServiceManager
     
     public boolean createService(double price, String description, ServiceType type)
     {
-        //TODO: Creation in DB
-        return _services.add(new Service(price, description, type)); //TODO: Flip on DB creation success
+        Service service = new Service(price, description, type);
+        if(_converter.createService(service))
+            return _services.add(service); //TODO: Flip on DB creation success
+        return false;
     }
     
     public List<Service> findServicesByPrice(double minPrice, double maxPrice)

@@ -77,6 +77,12 @@ public class SaleManager implements ISaleCallback
         return _saleConverter.updateSale(sale);
     }
     
+    public boolean deleteSale(Sale sale)
+    {
+        if(_saleConverter.deleteSale(sale))
+            return _sales.remove(sale);
+        return false;
+    }
     public boolean printInvoice(Sale sale)
     {
         StringBuilder output = new StringBuilder();

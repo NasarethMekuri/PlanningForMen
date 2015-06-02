@@ -228,7 +228,6 @@ public class PlanningForMen
             System.out.println(s.getType());
         }
         
-        
         System.out.println("\n Setting 4 states");
         boolean flip = false;
         for (Service s : ServiceManager.getInstance().findServicesByState(ServiceState.PENDING))
@@ -244,7 +243,6 @@ public class PlanningForMen
                 flip = true;
             }
         }
-        
         
         System.out.println("\n Getting services by State expecting 2");
         for (Service s : ServiceManager.getInstance().findServicesByState(ServiceState.RESERVED))
@@ -321,17 +319,23 @@ public class PlanningForMen
         int totalCars = CarManager.getInstance().getCars().size();
         items.add(ServiceManager.getInstance().getServices().get(totalServices - 1));
         items.add(CarManager.getInstance().getCars().get(totalCars - 1));
+        System.out.println("Items after adding: " + items.size());
         Employee emp = EmployeeManager.getInstance().getEmployees().get(0);
         Customer cust = CustomerManager.getInstance().getCustomers().get(0);
         SaleManager.getInstance().createSale(emp,cust, items, totalCars);
-        Sale sale = SaleManager.getInstance().getSales().get(0);
+        int index = SaleManager.getInstance().getSales().size() - 1;
+        Sale sale = SaleManager.getInstance().getSales().get(index);
+        System.out.println("Items after instantiation: " + sale.getItems().size());
         SaleManager.getInstance().printInvoice(sale);
         
         //Update Sale
-        /*System.out.println("TESTING UPDATE");
+        System.out.println("TESTING UPDATE");
         sale.getItems().add(CarManager.getInstance().getCars().get(0));
         SaleManager.getInstance().updateSale(sale);
-        SaleManager.getInstance().printInvoice(sale);*/
+        SaleManager.getInstance().printInvoice(sale);
+        
+        if(SaleManager.getInstance().deleteSale(sale))
+            System.out.println("Deletion succesful!");
     }
     
 }
