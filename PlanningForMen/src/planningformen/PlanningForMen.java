@@ -6,8 +6,11 @@
 package planningformen;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import planningformen.domain.Master;
+import planningformen.domain.financeandefficiency.Sale;
+import planningformen.domain.financeandefficiency.SaleManager;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceManager;
 import planningformen.domain.financeandefficiency.ServiceState;
@@ -39,8 +42,11 @@ public class PlanningForMen
         //System.out.println("#### TESTING EMPLOYEES ####");
         //testApp.testEmployees();
         
-        System.out.println("#### TESTING SERVICES V2.0 ####");
-        testApp.moreServiceTests();
+        //System.out.println("#### TESTING SERVICES V2.0 ####");
+        //testApp.moreServiceTests();
+        
+        System.out.println("#### Testing Sales ####");
+        testApp.testSales();
     }
     
     private void testCars()
@@ -149,16 +155,7 @@ public class PlanningForMen
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     private void testCustomers()
     {
         CustomerManager.getInstance().createCustomer("0102039877", "Mogens", "Lykketoft", "Somewhere", "666", "8888", "mogens@lykketoft.dk");
@@ -309,8 +306,32 @@ public class PlanningForMen
             System.out.println("TUNING JOB nr: " + i + 1);
             System.out.println(Master.getInstance().getServiceManager().getGarages()[2].getJobs().get(i));
         }
+    }
+    
+    private void testSales()
+    {
+        //Create Sale
+        System.out.println("TESTING CREATE!");
+        System.out.println("Customer Count: " + CustomerManager.getInstance().getCustomers().size());
+        System.out.println("Employee Count: " + EmployeeManager.getInstance().getEmployees().size());
+        System.out.println("Car Count: " + CarManager.getInstance().getCars().size());
+        System.out.println("Service Count: " + ServiceManager.getInstance().getServices().size());
+        List<Sellable> items = new ArrayList<Sellable>();
+        int totalServices = ServiceManager.getInstance().getServices().size();
+        int totalCars = CarManager.getInstance().getCars().size();
+        items.add(ServiceManager.getInstance().getServices().get(totalServices - 1));
+        items.add(CarManager.getInstance().getCars().get(totalCars - 1));
+        Employee emp = EmployeeManager.getInstance().getEmployees().get(0);
+        Customer cust = CustomerManager.getInstance().getCustomers().get(0);
+        SaleManager.getInstance().createSale(emp,cust, items, totalCars);
+        Sale sale = SaleManager.getInstance().getSales().get(0);
+        SaleManager.getInstance().printInvoice(sale);
         
-        
+        //Update Sale
+        /*System.out.println("TESTING UPDATE");
+        sale.getItems().add(CarManager.getInstance().getCars().get(0));
+        SaleManager.getInstance().updateSale(sale);
+        SaleManager.getInstance().printInvoice(sale);*/
     }
     
 }

@@ -54,6 +54,7 @@ public class SaleConverter implements ICallback
   
     public boolean createSale(Sale sale)
     {
+        System.out.println("CreateSale on Converter Level!!!");
         List<String> carIDs = new ArrayList<String>();
         List<String> serviceIDs = new ArrayList<String>();
        
@@ -64,9 +65,17 @@ public class SaleConverter implements ICallback
             else
                 serviceIDs.add(((Service)s).getId());
         }
-        return IOManager.getInstance().getDBHandler().createSale(sale.getId(), sale.getEmployee().getEmployeeID(), sale.getCustomer().getCustomerID(),
-                                                                 sale.getSaleDate(), sale.getDueDate(), carIDs.toArray(new String[0]), 
-                                                                 serviceIDs.toArray(new String[0]), sale.getAmountPaid());
+        //Explicit for bug-squashing reasons:
+        String saleID = sale.getId();
+        String empID = sale.getEmployee().getEmployeeID();
+        String custID = sale.getCustomer().getCustomerID();
+        Date saleDate = sale.getSaleDate();
+        Date dueDate = sale.getDueDate();
+        String[] carIDsArr = carIDs.toArray(new String[0]);
+        String[] serviceIDsArr = serviceIDs.toArray(new String[0]);
+        double amountPaid = sale.getAmountPaid();
+        double tax = sale.getTax();
+        return IOManager.getInstance().getDBHandler().createSale(saleID, empID, custID, saleDate, dueDate, carIDsArr, serviceIDsArr, amountPaid, tax);
     }
     
     public List<Sale> retrieveSales(ISaleCallback owner)
@@ -97,12 +106,18 @@ public class SaleConverter implements ICallback
         }
         return IOManager.getInstance().getDBHandler().updateSale(sale.getId(), sale.getEmployee().getEmployeeID(), sale.getCustomer().getCustomerID(),
                                                                  sale.getSaleDate(), sale.getDueDate(), carIDs.toArray(new String[0]), 
-                                                                 serviceIDs.toArray(new String[0]), sale.getAmountPaid());
+                                                                 serviceIDs.toArray(new String[0]), sale.getAmountPaid(), sale.getTax());
     }
     
     public boolean deleteSale(Sale sale)
     {
         return IOManager.getInstance().getDBHandler().deleteSale(sale.getId());
+    }
+    
+     
+    public boolean printInvoice(String input, String fileName)
+    {
+        return IOManager.getInstance().getFileHandler().printInvoice(input, fileName);
     }
     
 }

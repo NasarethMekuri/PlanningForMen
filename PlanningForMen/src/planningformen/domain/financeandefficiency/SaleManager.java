@@ -5,8 +5,6 @@
 */
 package planningformen.domain.financeandefficiency;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +47,7 @@ public class SaleManager implements ISaleCallback
     
     public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables, double amountPaid)
     {
+        System.out.println("CreateSale on Manager Level!!!");
         Calendar c = GregorianCalendar.getInstance();
         Date sellDate = new Date(c.getTimeInMillis());
         c.add(Calendar.DATE, 14);
@@ -59,9 +58,11 @@ public class SaleManager implements ISaleCallback
         
         Sale sale = new Sale(saleID, emp, cust, sellables, sellDate, dueDate, amountPaid, TAX);
         
-        //DO DB STUFF HERE
-        
-        _sales.add(sale);
+        if(_saleConverter.createSale(sale))
+        {
+            System.out.println("All DB stuff done @Sales!");
+            return _sales.add(sale);
+        }
 
         return false;
     }
@@ -78,26 +79,20 @@ public class SaleManager implements ISaleCallback
     
     public boolean printInvoice(Sale sale)
     {
-        PrintWriter output = null;
-        try
+        StringBuilder output = new StringBuilder();
+
+        output.append("SaleID: " + sale.getId() + "\n");
+        output.append("CustomerID: " + sale.getCustomer().getCustomerID() + "\n");
+        output.append("Customer Name: " + sale.getCustomer().getFirstName() + " " + sale.getCustomer().getLastName() + "\n");
+        output.append("Responsible employee: " + sale.getEmployee().getFirstName() + "" + sale.getEmployee().getLastName() + "\n");
+        output.append("\n");
+        for(Sellable s : sale.getItems())
         {
-            output = new PrintWriter(sale.getId() + ".txt");
-            output.println("SaleID: " + sale.getId());
-            output.println("CustomerID: " + sale.getCustomer().getCustomerID());
-            output.println("Customer Name: " + sale.getCustomer().getFirstName() + " " + sale.getCustomer().getLastName());
-            output.println("Responsible employee: " + sale.getEmployee().getFirstName() + "" + sale.getEmployee().getLastName());
-            output.println("\n");
-            for(Sellable s : sale.getItems())
-            {
-                output.println(" Item name goes here "  + s.getSellPrice()); //Need changes to sellable Interface to return a meaningful name.
-            }
+            output.append(" Item name goes here "  + s.getSellPrice() + "\n"); //Need changes to sellable Interface to return a meaningful name.
         }
-        catch (FileNotFoundException ex)
-        {
-            System.out.println("File not found Exception @SaleManager in printInvoice - " + ex.getLocalizedMessage());
-            return false;
-        }
-        return true;
+        //Send to tech layer here
+        System.out.println(output.toString());
+        return _saleConverter.printInvoice(output.toString(), sale.getId());
         
     }
     
@@ -116,7 +111,9 @@ public class SaleManager implements ISaleCallback
         return 0f;
     }
     
-    public List<Sale> getSales(Customer cust, Date fromDate, Date toDate)
+    public List<Sale> getSales() {return _sales; }
+    
+    public List<Sale> findSales(Customer cust, Date fromDate, Date toDate)
     {
         List<Sale> tmpList = new ArrayList<Sale>();
         for(Sale s : _sales)

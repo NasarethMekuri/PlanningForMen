@@ -33,7 +33,6 @@ public class DBHandler
         _dbConnector = new DBConnector();
     }
     
-    
     //Car Methods
     public boolean createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version,
             int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
@@ -597,45 +596,53 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid)
+    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
     {
+        System.out.println("CreateSale on DB Level - Pre-Connecting");
         Connection c = _dbConnector.getConnection();
-        
+        System.out.println("CreateSale on DB Level!!!");
         CallableStatement cs = null;
         int rowCount = -1;
         
         try
         {
             //Create Sale
-            cs = c.prepareCall("{call create_sale(?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call create_sale(?,?,?,?,?,?,?)}");
             cs.setString(1, id);
             cs.setString(2, empID);
             cs.setString(3, custID);
             cs.setDate(4, saleDate);
             cs.setDate(5, dueDate);
             cs.setDouble(6, amountPaid);
+            cs.setDouble(7, tax);
             
             rowCount = cs.executeUpdate();
             cs.close();
             
             if(rowCount >= 0) //Only continue if the initial creation succeeded!
             {
+                System.out.println("Create sale - Modify Cars & Services");
                 //Create / update many-side
                 for(int i = 0; i < carIDs.length; i++)
                 {
                     
                     cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
 
-                    cs.setString(1, id);
-                    cs.setString(2, carIDs[i]);
+                    cs.setString(1, carIDs[i]);
+                    cs.setString(2, id);
+                    
+                    rowCount = cs.executeUpdate();
+                    System.out.println("car with ID: " + carIDs[i] + " has been updated!");
                 }
 
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
+                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
 
-                    cs.setString(1, id);
-                    cs.setString(2, serviceIDs[i]);
+                    cs.setString(1, serviceIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
+                    System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");    
                 }
             }
         }
@@ -688,7 +695,7 @@ public class DBHandler
         }
     }
     
-    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid)
+    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -698,13 +705,14 @@ public class DBHandler
         try
         {
             //Update Sale
-            cs = c.prepareCall("{call update_sale(?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_sale(?,?,?,?,?,?,?)}");
             cs.setString(1, id);
             cs.setString(2, empID);
             cs.setString(3, custID);
             cs.setDate(4, saleDate);
             cs.setDate(5, dueDate);
             cs.setDouble(6, amountPaid);
+            cs.setDouble(7, tax);
             
             rowCount = cs.executeUpdate();
             cs.close();
@@ -717,16 +725,18 @@ public class DBHandler
                     
                     cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
 
-                    cs.setString(1, id);
-                    cs.setString(2, carIDs[i]);
+                    cs.setString(1, carIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
                 }
 
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
+                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
 
-                    cs.setString(1, id);
-                    cs.setString(2, serviceIDs[i]);
+                    cs.setString(1, serviceIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
                 }
             }
         }
@@ -748,7 +758,7 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public boolean deleteSale(String id, String[] carIDs, String[] serviceIDs)
+    public boolean deleteSale(String id)
     {
         Connection c = _dbConnector.getConnection();
         int rowCount = -1;
@@ -757,29 +767,9 @@ public class DBHandler
         {
             CallableStatement cs = c.prepareCall("{call delete_sale(?)}");
             cs.setString(1, id);
-            //FIXME: Remove FK to this sale from cars and services???
+
             rowCount = cs.executeUpdate();
             
-            if(rowCount >= 0) //Only continue if the initial creation succeeded!
-            {
-               //Create / update many-side
-                for(int i = 0; i < carIDs.length; i++)
-                {
-                    
-                    cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
-
-                    cs.setString(1, null);
-                    cs.setString(2, carIDs[i]);
-                }
-
-                for(int i = 0; i < serviceIDs.length; i++)
-                {
-                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
-
-                    cs.setString(1, null);
-                    cs.setString(2, serviceIDs[i]);
-                }
-            }
             cs.close();
         }
         catch (SQLException ex)

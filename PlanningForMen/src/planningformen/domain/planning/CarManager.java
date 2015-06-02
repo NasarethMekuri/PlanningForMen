@@ -229,6 +229,8 @@ public class CarManager
         
         for(Car c : _cars)
         {
+            if(c.getSaleID() == null)
+                continue;
             if(c.getSaleID().equals(saleID))
                 cars.add(c);
         }

@@ -149,6 +149,8 @@ public class ServiceManager
         
         for(Service s : _services)
         {
+            if(s.getSaleID() == null)
+                continue;
             if(s.getSaleID().equals(saleID))
                 services.add(s);
         }

@@ -30,12 +30,12 @@ public class Sale implements Transaction
     {
         _id = id;
         _employee = employee;
-        _customer = _customer;
+        _customer = customer;
         _items = items;
-        _dueDate = _dueDate;
+        _dueDate = dueDate;
         _saleDate = saleDate;
-        _amountPaid = _amountPaid;
-        _tax = _tax;
+        _amountPaid = amountPaid;
+        _tax = tax;
         _isPaid = amountPaid >= getTotalPrice();
     }
      
@@ -43,7 +43,8 @@ public class Sale implements Transaction
     public double getTotalPrice()
     {
         double totalPrice = 0;
-        
+        if(_items == null)
+            return 0;
         for(Sellable s : _items)
         {
             totalPrice += s.getSellPrice();

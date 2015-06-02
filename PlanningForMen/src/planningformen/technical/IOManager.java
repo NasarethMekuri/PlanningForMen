@@ -8,10 +8,12 @@ public class IOManager
 {
     private static IOManager _instance;
     private DBHandler _dbHandler;
+    private FileHandler _fileHandler;
 
     private  IOManager()
     {
         this._dbHandler = new DBHandler();
+        _fileHandler = new FileHandler();
     }
     
     public static synchronized IOManager getInstance()
@@ -25,4 +27,5 @@ public class IOManager
 
     
     public DBHandler getDBHandler()     {return _dbHandler;}
+    public FileHandler getFileHandler() {return _fileHandler; }
 }

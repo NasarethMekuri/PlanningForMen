@@ -22,7 +22,7 @@ public class DBConnector
     private final String DATABASE_NAME = "PlanningDB";
     private final int PORTNO = 1433;
     private final String USERNAME = "sa";
-    private final String PASSWORD = "Brutalis"; //offlimit
+    private final String PASSWORD = "offlimit"; //Brutalis
     
     public DBConnector()
     {}

@@ -1,0 +1,5 @@
+SaleID: inni01010101010101-0
+CustomerID: inni01010101010101
+Customer Name: Incog Nito
+Responsible employee: HairySchmidt
+
