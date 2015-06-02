@@ -12,22 +12,30 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.GregorianCalendar;
+import planningformen.business.SaleConverter;
+import planningformen.domain.planning.Car;
+import planningformen.domain.planning.CarManager;
 import planningformen.domain.planning.Customer;
+import planningformen.domain.planning.CustomerManager;
 import planningformen.domain.planning.Employee;
+import planningformen.domain.planning.EmployeeManager;
 import planningformen.domain.planning.Sellable;
 
 /**
  *
  * @author Simon
  */
-public class SaleManager
+public class SaleManager implements ISaleCallback
 {
     private static SaleManager _instance;
     private List<Sale> _sales;
     private final double TAX = .25f;
+    private SaleConverter _saleConverter;
 
     private  SaleManager()
     {
+        _saleConverter = new SaleConverter();
+        retrieveSales();
     }
     
     public static synchronized SaleManager getInstance()
@@ -38,7 +46,6 @@ public class SaleManager
         }
         return _instance;
     }
-    
     
     public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables, double amountPaid)
     {
@@ -57,6 +64,16 @@ public class SaleManager
         _sales.add(sale);
 
         return false;
+    }
+    
+    public void retrieveSales()
+    {
+        _sales = _saleConverter.retrieveSales(this);
+    }
+    
+    public boolean updateSale(Sale sale)
+    {
+        return _saleConverter.updateSale(sale);
     }
     
     public boolean printInvoice(Sale sale)
@@ -88,8 +105,13 @@ public class SaleManager
     {
         if(!sale.IsPaid())
         {
-            sale.setAmountPaid(sale.getAmountPaid() + amountPaid);
-            return sale.getTotalPrice() - sale.getAmountPaid();
+            double totalAmountPaid = sale.getAmountPaid() + amountPaid;
+            
+            if(updateSale(sale)) //If db stuff succeeds
+            {
+                sale.setAmountPaid(amountPaid);
+                return sale.getTotalPrice() - sale.getAmountPaid();
+            }
         }
         return 0f;
     }
@@ -108,5 +130,31 @@ public class SaleManager
             }
         }
         return tmpList;
+    }
+
+    @Override
+    public Employee getEmployeeByID(String empID)
+    {
+        return EmployeeManager.getInstance().findEmployee(empID);
+    }
+
+    @Override
+    public Customer getCustomerByID(String custID)
+    {
+        return CustomerManager.getInstance().findCustomer(custID);
+    }
+
+    @Override
+    public List<Car> getCarsBySaleID(String saleID)
+    {
+        //CarManager.getInstance().findCarsBySaleID(saleID);
+        return null;
+    }
+
+    @Override
+    public List<Service> getServicesBySaleID(String saleID)
+    {
+        //ServiceManager.getInstance().findServiceBySaleID(saleID);
+        return null;
     }
 }

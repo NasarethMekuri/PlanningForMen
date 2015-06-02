@@ -51,12 +51,12 @@ public class CustomerManager
         return _personConverter.retrieveCustomers();
     }
     
-    public Customer findCustomer(String id)
+    public Customer findCustomer(String custID)
     {
         Customer foundCustomer = null;
         for(Customer c : _customers)
         {
-            if(c.getId().equals(id))
+            if(c.getCustomerID().equals(custID))
             {
                 {
                     foundCustomer = c;

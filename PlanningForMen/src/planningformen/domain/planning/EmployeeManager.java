@@ -8,6 +8,9 @@ package planningformen.domain.planning;
 import java.util.ArrayList;
 import java.util.List;
 import planningformen.business.PersonConverter;
+import planningformen.domain.financeandefficiency.Garage;
+import planningformen.domain.financeandefficiency.ServiceManager;
+import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
@@ -25,6 +28,8 @@ public class EmployeeManager
     {
         _personConverter = new PersonConverter();
         _employees = retrieveEmployees();
+        
+        addAllEmployeesToGarage();
     }
     
     public static EmployeeManager getInstance()
@@ -51,12 +56,12 @@ public class EmployeeManager
         return _personConverter.retrieveEmployees();
     }
     
-    public Employee findEmployee(String id)
+    public Employee findEmployee(String empID)
     {
         Employee foundEmployee = null;
         for(Employee c : _employees)
         {
-            if(c.getId().equals(id))
+            if(c.getEmployeeID().equals(empID))
             {
                 {
                     foundEmployee = c;
@@ -114,5 +119,39 @@ public class EmployeeManager
             return _employees.remove(employee); //Look into this - Same as above. May return false, even though database was updated, in case remove returns false.
         }
         return false; 
+    }
+    
+    public boolean addEmployeeToGarage(Employee employee)
+    {
+        for(int i = 0; i < ServiceManager.getInstance().getGarages().length; i++)
+        {
+            if(ServiceManager.getInstance().getGarages()[i].getType().getNumericValue() == employee.getSkillType())
+            {
+                ServiceManager.getInstance().getGarages()[i].getEmployees().add(employee);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean removeEmployeeFromGarage(Employee employee)
+    {
+        for(int i = 0; i < ServiceManager.getInstance().getGarages().length; i++)
+        {
+            if(ServiceManager.getInstance().getGarages()[i].getType().getNumericValue() == employee.getSkillType())
+            {
+                ServiceManager.getInstance().getGarages()[i].getEmployees().remove(employee);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void addAllEmployeesToGarage()
+    {
+        for(Employee e : _employees)
+        {
+            addEmployeeToGarage(e);
+        }
     }
 }

@@ -11,6 +11,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import planningformen.domain.financeandefficiency.ISaleCallback;
 import planningformen.domain.financeandefficiency.Sale;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.planning.Car;
@@ -25,12 +26,16 @@ import planningformen.technical.IOManager;
 public class SaleConverter implements ICallback
 {
     private List<Sale> _convertedSales;
+    private String _employeeID;
+    private String _customerID;
+    //Create list of ids for Car and Service
     private List<Sellable> _sellables;
     
     @Override
     public void extractValues(ResultSet rs) throws SQLException
     {
         _convertedSales = new ArrayList<Sale>();
+        //Create list
         
         while(rs.next())
         {
@@ -62,9 +67,10 @@ public class SaleConverter implements ICallback
                                                                  serviceIDs.toArray(new String[0]), sale.getAmountPaid());
     }
     
-    public List<Sale> retrieveSales()
+    public List<Sale> retrieveSales(ISaleCallback owner)
     {
         IOManager.getInstance().getDBHandler().retrieveSales(this);
+        
         return _convertedSales;
     }
     
