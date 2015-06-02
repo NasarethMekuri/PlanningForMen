@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package planningformen.domain.planning;
+package planningformen.domain;
 
 import planningformen.domain.financeandefficiency.ServiceManager;
 import planningformen.domain.financeandefficiency.TransactionManager;
+import planningformen.domain.planning.CarManager;
+import planningformen.domain.planning.CustomerManager;
 
 /**
  *
@@ -38,5 +40,13 @@ public class Master
         }
         return _instance;
     }
+
+    
+    public CustomerManager getCustomerManager()         {return _customerManager;}
+    public CarManager getCarManager()                   {return _carManager;}
+    public ServiceManager getServiceManager()           {return _serviceManager;}
+    public TransactionManager getTransactionManager()   {return _transactionManager;}
+    
+    
     
 }

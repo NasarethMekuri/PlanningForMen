@@ -115,7 +115,7 @@ public class DBHandler
         }
     }
     
-    public boolean updateCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public boolean updateCar(String id, String saleID, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -124,21 +124,22 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_car(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, id);
-            cs.setString(2, plate);
-            cs.setInt(3, year);
-            cs.setString(4, make);
-            cs.setString(5, model);
-            cs.setDouble(6, volume);
-            cs.setString(7, fuel);
-            cs.setString(8, version);
-            cs.setInt(9, odometer);
-            cs.setDate(10, purchaseDate);
-            cs.setDouble(11, purchasePrice);
-            cs.setDouble(12, sellPrice);
-            cs.setString(13, description);
-            cs.setBoolean(14, inStock);
+            cs.setString(2, saleID);
+            cs.setString(3, plate);
+            cs.setInt(4, year);
+            cs.setString(5, make);
+            cs.setString(6, model);
+            cs.setDouble(7, volume);
+            cs.setString(8, fuel);
+            cs.setString(9, version);
+            cs.setInt(10, odometer);
+            cs.setDate(11, purchaseDate);
+            cs.setDouble(12, purchasePrice);
+            cs.setDouble(13, sellPrice);
+            cs.setString(14, description);
+            cs.setBoolean(15, inStock);
             
             rowCount = cs.executeUpdate();
             
@@ -530,7 +531,7 @@ public class DBHandler
         }
     }
 
-    public boolean updateService(String id, double price, String description, int type, int state, int garageThatStartedService)
+    public boolean updateService(String id, String saleID, double price, String description, int type, int state, int garageThatStartedService)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -539,13 +540,14 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call update_service(?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call update_service(?,?,?,?,?,?,?)}");
             cs.setString(1, id);
-            cs.setDouble(2, price);
-            cs.setString(3, description);
-            cs.setInt(4, type);
-            cs.setInt(5, state);
-            cs.setInt(6, garageThatStartedService);
+            cs.setString(2, saleID);
+            cs.setDouble(3, price);
+            cs.setString(4, description);
+            cs.setInt(5, type);
+            cs.setInt(6, state);
+            cs.setInt(7, garageThatStartedService);
            
             
             rowCount = cs.executeUpdate();

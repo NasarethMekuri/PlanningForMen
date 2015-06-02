@@ -44,8 +44,12 @@ public class ServiceManager
         return _instance;
     }
     
-    //Accessor for Services.
+    //Accessors
     public List<Service> getServices()  {return _services;}
+    public List<Service> getFinishedServices()  {return _finishedServices;}
+    public Garage[] getGarages()    {return _garages;}
+    
+    
     
     public boolean createService(double price, String description, ServiceType type)
     {
@@ -165,32 +169,62 @@ public class ServiceManager
         return false;
     }
     
+    public boolean startJob(Service serviceToStart, ServiceType garage)
+    {
+        for (Service s : _services)
+        {
+            if (serviceToStart.getId().equals(s.getId()))
+            {
+                s.setState(ServiceState.STARTED);
+                s.setGarageType(garage);
+                return _converter.updateService(s); //which one?
+            }
+        }
+        return false;
+    }
+    
+    public boolean finishJob(Service serviceToFinish, ServiceType garage)
+    {
+        for (Service s : _services)
+        {
+            if (serviceToFinish.getId().equals(s.getId()))
+            {
+                s.setState(ServiceState.FINISHED);
+                _services.remove(s);
+                getFinishedServices().add(s);
+                return _converter.updateService(s); //which one?
+            }
+        }
+        return false;
+    }
+    
     public void getPrioritizedJobsList()
     {
-        clearAllGarageJobLists(); //done
-        removeFinishedJobs(); //done
-        setReservedJobsToPending(); //done
-        reAllocateStartedJobs(); //done
-        allocateDieselJobs(); //done
-        allocateNormalPendingJobs(); //done
-        allocateTuningJobs(); //done
+        clearAllGarageJobLists();
+        removeFinishedJobs();
+        setReservedJobsToPending();
+        reAllocateStartedJobs();
+        allocateDieselJobs();
+        allocateNormalPendingJobs();
+        allocateTuningJobs();
+        updateServicesInDB();
     }
     
     private void clearAllGarageJobLists()
     {
-        for (int i = 0; i < _garages.length; i++)
+        for (int i = 0; i < getGarages().length; i++)
         {
-            _garages[i].getJobs().clear();
+            getGarages()[i].getJobs().clear();
         }
     }
     
-    private void removeFinishedJobs()
+    private void removeFinishedJobs() //Should not be neccesary?
     {
         for (Service s : _services)
         {   //if service is finished move to finishedServices:
             if (s.getState().getNumericValue() == 4)
             {
-                _finishedServices.add(s);
+                getFinishedServices().add(s);
                 _services.remove(s);
             }
         }
@@ -204,7 +238,7 @@ public class ServiceManager
             if (s.getState().getNumericValue() == 2)
             {
                 s.setState(ServiceState.PENDING);
-                _converter.updateService(s); //Update Service in DB.
+                s.setGarageType(null);
             }
         }
     }
@@ -218,13 +252,13 @@ public class ServiceManager
                 switch (s.getGarageType().getNumericValue())
                 {
                     case 1:
-                        _garages[0].getJobs().add(s);
+                        getGarages()[0].getJobs().add(s);
                         break;
                     case 2:
-                        _garages[1].getJobs().add(s);
+                        getGarages()[1].getJobs().add(s);
                         break;
                     case 3:
-                        _garages[2].getJobs().add(s);
+                        getGarages()[2].getJobs().add(s);
                         break;
                 }
             }
@@ -237,10 +271,9 @@ public class ServiceManager
         {   //if Diesel
             if (s.getType().getNumericValue() == 1)
             {
-                _garages[0].getJobs().add(s);
+                getGarages()[0].getJobs().add(s);
                 s.setState(ServiceState.RESERVED);
                 s.setGarageType(ServiceType.DIESEL);
-                _converter.updateService(s);
             }
         }
     }
@@ -251,42 +284,56 @@ public class ServiceManager
         
         int pendingNormalJobsLeft = pendingNormalJobs.size(); //Count Normal Pending jobs.
         int totalEmployees = getEmployeeCount(); //Count all employees in all garages.
-                
+        
+        //Calculate number of jobs each employee should have evenly
         int[] temp = getJobPrEmployee(pendingNormalJobsLeft, totalEmployees); //retrieve numbers of Services(jobs) pr. Employee at index 0, and the remainder at index 1.
         int jobPrEmp = temp[0];
         
-        //Define number of jobs for each garage.
-        int jobsForDieselGarage = jobPrEmp * _garages[0].getEmployees().size();
-        int jobsForNormalGarage = jobPrEmp * _garages[1].getEmployees().size();
-        int jobsForTuningGarage = jobPrEmp * _garages[2].getEmployees().size();
+        //Define number of jobs for each garage based on number of employees at that garage.
+        int jobsForDieselGarage = jobPrEmp * getGarages()[0].getEmployees().size();
+        int jobsForNormalGarage = jobPrEmp * getGarages()[1].getEmployees().size();
+        int jobsForTuningGarage = jobPrEmp * getGarages()[2].getEmployees().size();
         
         //Add jobs to Diesel Garage
         for (int i = 0; i < jobsForDieselGarage; i++)
         {
-            _garages[0].getJobs().add(pendingNormalJobs.get(0));
+            getGarages()[0].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.get(0).setState(ServiceState.RESERVED);
+            pendingNormalJobs.get(0).setGarageType(ServiceType.DIESEL);
             pendingNormalJobs.remove(0);
         }
         //Add jobs to Normal Garage
         for (int i = 0; i < jobsForNormalGarage; i++)
         {
-            _garages[1].getJobs().add(pendingNormalJobs.get(0));
+            getGarages()[1].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.get(0).setState(ServiceState.RESERVED);
+            pendingNormalJobs.get(0).setGarageType(ServiceType.NORMAL);
             pendingNormalJobs.remove(0);
         }
         //Add jobs to Tuning Garage
         for (int i = 0; i < jobsForTuningGarage; i++)
         {
-            _garages[2].getJobs().add(pendingNormalJobs.get(0));
+            getGarages()[2].getJobs().add(pendingNormalJobs.get(0));
+            pendingNormalJobs.get(0).setState(ServiceState.RESERVED);
+            pendingNormalJobs.get(0).setGarageType(ServiceType.TUNING);
             pendingNormalJobs.remove(0);
         }
         
-        int jobsLeft = temp[1]; //Number of jobs left
+        int jobsLeft = temp[1]; //Number of leftOver jobs
         int counter = 0; //this is used to switch between the 3 garages, to give them an even split of the remainding jobs.
+        ServiceType tempGarageType = null;
         for (int i = 0; i < jobsLeft; i++)
         {
-            _garages[counter].getJobs().add(pendingNormalJobs.get(0)); 
+            tempGarageType = getServiceTypeFromInt(counter + 1);
+            
+            getGarages()[counter].getJobs().add(pendingNormalJobs.get(0));
+            
+            pendingNormalJobs.get(0).setState(ServiceState.RESERVED);
+            pendingNormalJobs.get(0).setGarageType(tempGarageType);
+            
             pendingNormalJobs.remove(0);
             counter++;
-            if (counter >= _garages.length)
+            if (counter >= getGarages().length -1) //counter must max be 2 (_garages.length is 3)
             {
                 counter = 0;
             }
@@ -296,57 +343,81 @@ public class ServiceManager
     private void allocateTuningJobs()
     {
         for (Service s : _services)
-        {
+        {   //If type is tuning...
             if (s.getType().getNumericValue() == 3)
             {
-                _garages[2].getJobs().add(s);
+                getGarages()[2].getJobs().add(s);
                 s.setState(ServiceState.RESERVED);
                 s.setGarageType(ServiceType.TUNING);
             }
         }
     }
-          
+    
     private List<Service> getNormalPendingJobs()
     {
-        List<Service> temp = new LinkedList<Service>();
+        List<Service> pendingNormalJobsLeft = new LinkedList<Service>();
         
         for (Service s : _services)
         {   //if pending && Normal
             if (s.getState().getNumericValue() == 1 && s.getType().getNumericValue() == 2)
             {
-                temp.add(s);
+                pendingNormalJobsLeft.add(s);
             }
         }
-        return temp;
+        return pendingNormalJobsLeft;
     }
     
-     private int getEmployeeCount()
+    private int getEmployeeCount()
     {
         int employees = 0;
-        for (Garage g : _garages)
+        for (Garage g : getGarages())
         {
             employees += g.getEmployees().size();
         }
         return employees;
     }
-     
-      private int[] getJobPrEmployee(int pendingNormalJobsLeft, int totalEmployees)
+    
+    private int[] getJobPrEmployee(int pendingNormalJobsLeft, int totalEmployees)
     {
         int[] temp = new int[2];
         
-        temp[0] = pendingNormalJobsLeft / totalEmployees;
-        temp[1] = pendingNormalJobsLeft % totalEmployees;
+        if (totalEmployees != 0)
+        {
+            temp[0] = pendingNormalJobsLeft / totalEmployees;
+            temp[1] = pendingNormalJobsLeft % totalEmployees;
+        }
+        else 
+        {
+            System.out.println("Mads is out of business! -He has no employees!");
+        }
         
         return temp;
     }
-     
-    public ServiceState getServiceStateFromInt(Service s, int state)
+    
+    private void updateServicesInDB()
     {
-        return _converter.convertToServiceStateFromInt(s, state);
+        for (Service s : _services)
+        {
+            _converter.updateService(s);
+        }
+        
+        for (Service s : getFinishedServices())
+        {
+            _converter.updateService(s);
+        }
     }
     
-    public ServiceType getServiceTypeFromInt(Service s, int state)
+    public ServiceState getServiceStateFromInt(int state)
     {
-        return _converter.convertToServiceTypeFromInt(s, state);
+        return _converter.convertToServiceStateFromInt(state);
     }
+    
+    public ServiceType getServiceTypeFromInt(int state)
+    {
+        return _converter.convertToServiceTypeFromInt(state);
+    }
+    
+    
+    
+    
 }

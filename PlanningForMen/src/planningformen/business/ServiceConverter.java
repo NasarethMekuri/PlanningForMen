@@ -39,7 +39,7 @@ public class ServiceConverter implements ICallback
     
     
     @Override
-    public void extractValues(ResultSet rs) throws SQLException
+    public void extractValues(ResultSet rs) throws SQLException //TODO FIXME
     {
         Service aService = null;
         _convertedServices = new ArrayList();
@@ -52,7 +52,7 @@ public class ServiceConverter implements ICallback
         while (rs.next())
         {
             
-            switch (rs.getInt(4))
+            switch (rs.getInt(5))
             {
                 case 1:
                     type = ServiceType.DIESEL;
@@ -65,7 +65,7 @@ public class ServiceConverter implements ICallback
                     break;
             }
             
-            switch (rs.getInt(5))
+            switch (rs.getInt(6))
             {
                 case 1:
                     state = ServiceState.PENDING;
@@ -81,7 +81,7 @@ public class ServiceConverter implements ICallback
                     break;
             }
             
-            switch (rs.getInt(6))
+            switch (rs.getInt(7))
             {
                 case 1:
                     garage = ServiceType.DIESEL;
@@ -98,8 +98,9 @@ public class ServiceConverter implements ICallback
             
             aService = new Service(
                     rs.getString(1),
-                    rs.getDouble(2),
-                    rs.getString(3),
+                    rs.getString(2),
+                    rs.getDouble(3),
+                    rs.getString(4),
                     type,
                     state,
                     garage);
@@ -113,7 +114,7 @@ public class ServiceConverter implements ICallback
     
     public boolean updateService(Service serviceToUpdate)
     {
-        return IOManager.getInstance().getDBHandler().updateService(serviceToUpdate.getId(), serviceToUpdate.getSellPrice(), serviceToUpdate.getDescription(),
+        return IOManager.getInstance().getDBHandler().updateService(serviceToUpdate.getId(), serviceToUpdate.getSaleID(), serviceToUpdate.getSellPrice(), serviceToUpdate.getDescription(),
                 serviceToUpdate.getType().getNumericValue(), serviceToUpdate.getState().getNumericValue(), serviceToUpdate.getGarageType().getNumericValue());
     }
     
@@ -123,7 +124,7 @@ public class ServiceConverter implements ICallback
         return IOManager.getInstance().getDBHandler().deleteService(serviceToDelete.getId());
     }
     
-    public ServiceState convertToServiceStateFromInt(Service s, int state)
+    public ServiceState convertToServiceStateFromInt(int state)
     {
         switch (state)
             {
@@ -139,7 +140,7 @@ public class ServiceConverter implements ICallback
         return null;
     }
     
-    public ServiceType convertToServiceTypeFromInt(Service s, int type)
+    public ServiceType convertToServiceTypeFromInt(int type)
     {
         switch (type)
         {

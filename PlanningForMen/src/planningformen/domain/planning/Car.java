@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Car implements Sellable
 {
-    private String _id, _make, _model, _version, _fuel, _description, _plate;
+    private String _id, _make, _model, _version, _fuel, _description, _plate, _saleID;
     private double _volume, _purchasePrice, _sellPrice;
     private int _year, _odometer;
     private Date _purchaseDate;
@@ -25,7 +25,7 @@ public class Car implements Sellable
     
     public Car(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        this._id = purchaseDate.toString().replace("-", "") + "-" +  plate; 
+        this._id = purchaseDate.toString().replace("-", "") + "-" +  plate;
         this._make = make;
         this._model = model;
         this._version = version;
@@ -44,6 +44,7 @@ public class Car implements Sellable
     /**
      * This constructor is only used when the id is known in advance.
      * @param id
+     * @param saleID
      * @param plate
      * @param year
      * @param make
@@ -58,9 +59,10 @@ public class Car implements Sellable
      * @param description
      * @param inStock
      */
-    public Car(String id, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public Car(String id, String saleID, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        this._id = id; 
+        this._id = id;
+        this._saleID = saleID;
         this._make = make;
         this._model = model;
         this._version = version;
@@ -92,6 +94,7 @@ public class Car implements Sellable
     public int getOdometer()        {return _odometer;}
     public Date getPurchaseDate()   {return _purchaseDate;}
     public boolean isInStock()      {return _inStock;}
+    public String getSaleID()       {return _saleID;}
     //Mutators:
     
     public void setMake(String make)                   {this._make = make;}
@@ -106,6 +109,7 @@ public class Car implements Sellable
     public void setYear(int year)                      {this._year = year;}
     public void setOdometer(int odometer)              {this._odometer = odometer;}
     public void setPurchaseDate(Date purchaseDate)     {this._purchaseDate = purchaseDate;}
-    public void setInStock(boolean _inStock)            {this._inStock = _inStock;}
+    public void setInStock(boolean inStock)            {this._inStock = inStock;}
+    public void setSaleID(String saleID)               {this._saleID = saleID;}
     
 }

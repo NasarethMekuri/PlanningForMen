@@ -17,11 +17,11 @@ public class Service implements Sellable
     private ServiceType _type, _garageType;
     private ServiceState _state;
     private double _price;
-    private String _description, _id;
+    private String _description, _id , _saleID;
     
     public Service(double price, String description, ServiceType type) //@SBL/MKJ --> Should state be added here???
     {
-        this._id = UUID.randomUUID().toString(); //Maybe NOT
+        this._id = UUID.randomUUID().toString(); 
         this._price = price;
         this._description = description;
         this._type = type;
@@ -29,9 +29,10 @@ public class Service implements Sellable
         this._garageType = null;
     }
     
-    public Service(String ID, double price, String description, ServiceType type, ServiceState state, ServiceType garage)
+    public Service(String ID, String saleID, double price, String description, ServiceType type, ServiceState state, ServiceType garage)
     {
         this._id = ID;
+        this._saleID = saleID;
         this._price = price;
         this._description = description;
         this._type = type;
@@ -46,7 +47,8 @@ public class Service implements Sellable
     public String getDescription()                      {return _description;}
     public ServiceType getType()                        {return _type;}
     public ServiceState getState()                      {return _state;}
-    public ServiceType getGarageType()    {return _garageType;}
+    public ServiceType getGarageType()                  {return _garageType;}
+    public String getSaleID()                           {return _saleID;}
     
     
     
@@ -56,4 +58,5 @@ public class Service implements Sellable
     public void setState(ServiceState _state)                                       {this._state = _state;}
     public void setPrice(double _price)                                             {this._price = _price;}
     public void setDescription(String _description)                                 {this._description = _description;}
+    public void setSaleID(String saleID)                                            {this._saleID = saleID;}
 }

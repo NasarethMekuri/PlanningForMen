@@ -39,7 +39,7 @@ public class CarConverter implements ICallback
     
     
     @Override
-    public void extractValues(ResultSet rs) throws SQLException
+    public void extractValues(ResultSet rs) throws SQLException //TODO FIXME
     {
         Car aCar = null;
         _convertedCars = new ArrayList();
@@ -49,18 +49,19 @@ public class CarConverter implements ICallback
             aCar = new Car(
                     rs.getString(1),
                     rs.getString(2),
-                    rs.getInt(3),
-                    rs.getString(4),
+                    rs.getString(3),
+                    rs.getInt(4),
                     rs.getString(5),
-                    rs.getDouble(6),
-                    rs.getString(7),
+                    rs.getString(6),
+                    rs.getDouble(7),
                     rs.getString(8),
-                    rs.getInt(9),
-                    rs.getDate(10),
-                    rs.getDouble(11),
+                    rs.getString(9),
+                    rs.getInt(10),
+                    rs.getDate(11),
                     rs.getDouble(12),
-                    rs.getString(13),
-                    rs.getBoolean(14));
+                    rs.getDouble(13),
+                    rs.getString(14),
+                    rs.getBoolean(15));
             
             _convertedCars.add(aCar);
         }
@@ -71,7 +72,7 @@ public class CarConverter implements ICallback
     
     public boolean updateCar(Car carToUpdate)
     {
-        return IOManager.getInstance().getDBHandler().updateCar(carToUpdate.getId(), carToUpdate.getPlate(), carToUpdate.getYear(), carToUpdate.getMake(), carToUpdate.getModel(),
+        return IOManager.getInstance().getDBHandler().updateCar(carToUpdate.getId(), carToUpdate.getSaleID(), carToUpdate.getPlate(), carToUpdate.getYear(), carToUpdate.getMake(), carToUpdate.getModel(),
                 carToUpdate.getVolume(), carToUpdate.getFuel(), carToUpdate.getVersion(), carToUpdate.getOdometer(),
                 carToUpdate.getPurchaseDate(), carToUpdate.getPurchasePrice(), carToUpdate.getSellPrice(), carToUpdate.getDescription(),
                 carToUpdate.isInStock());
