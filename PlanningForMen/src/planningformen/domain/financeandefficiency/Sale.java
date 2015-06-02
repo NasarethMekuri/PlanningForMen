@@ -6,6 +6,7 @@
 package planningformen.domain.financeandefficiency;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
@@ -57,7 +58,12 @@ public class Sale implements Transaction
     public double getAmountPaid() { return _amountPaid; }
     public boolean IsPaid() { return _isPaid; }
     public double getTax() { return _tax; }
-    public List<Sellable> getItems() { return _items; }
+    public List<Sellable> getItems() 
+    { 
+        if(_items == null)
+            _items = new ArrayList<Sellable>();
+        return _items; 
+    }
     
     public void setCustomer(Customer customer) { _customer = customer; }
     public void setDueDate(Date dueDate) { _dueDate = dueDate; }

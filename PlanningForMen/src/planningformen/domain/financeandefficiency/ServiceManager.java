@@ -143,6 +143,18 @@ public class ServiceManager
         return returnServices;
     }
     
+    public List<Service> findServicesBySaleID(String saleID)
+    {
+        List<Service> services = new ArrayList<Service>();
+        
+        for(Service s : _services)
+        {
+            if(s.getSaleID().equals(saleID))
+                services.add(s);
+        }
+        return services;
+    }
+    
     public boolean updateService(Service service)
     {
         //TODO: update in DB

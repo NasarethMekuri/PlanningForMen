@@ -32,7 +32,7 @@ public class SaleManager implements ISaleCallback
     private final double TAX = .25f;
     private SaleConverter _saleConverter;
 
-    private  SaleManager()
+    private SaleManager()
     {
         _saleConverter = new SaleConverter();
         retrieveSales();
@@ -147,14 +147,12 @@ public class SaleManager implements ISaleCallback
     @Override
     public List<Car> getCarsBySaleID(String saleID)
     {
-        //CarManager.getInstance().findCarsBySaleID(saleID);
-        return null;
+        return CarManager.getInstance().findCarsBySaleID(saleID);
     }
 
     @Override
     public List<Service> getServicesBySaleID(String saleID)
     {
-        //ServiceManager.getInstance().findServiceBySaleID(saleID);
-        return null;
+        return ServiceManager.getInstance().findServicesBySaleID(saleID);
     }
 }

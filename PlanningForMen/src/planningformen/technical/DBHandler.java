@@ -7,6 +7,7 @@
 package planningformen.technical;
 
 import java.sql.*;
+import java.util.List;
 import planningformen.business.ICallback;
 import planningformen.core.DBConnector;
 
@@ -622,7 +623,8 @@ public class DBHandler
                 //Create / update many-side
                 for(int i = 0; i < carIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_car_(?,?)}"); //FIXME: Update car here?
+                    
+                    cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
 
                     cs.setString(1, id);
                     cs.setString(2, carIDs[i]);
@@ -630,7 +632,7 @@ public class DBHandler
 
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_service_(?,?)}"); //FIXME: Update service here?
+                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
 
                     cs.setString(1, id);
                     cs.setString(2, serviceIDs[i]);
@@ -709,10 +711,11 @@ public class DBHandler
             
             if(rowCount >= 0) //Only continue if the initial creation succeeded!
             {
-                //Update many side
+               //Create / update many-side
                 for(int i = 0; i < carIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_car(?,?)}"); //FIXME: Update car here?
+                    
+                    cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
 
                     cs.setString(1, id);
                     cs.setString(2, carIDs[i]);
@@ -720,7 +723,7 @@ public class DBHandler
 
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_service(?,?)}"); //FIXME: Update Service here?
+                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
 
                     cs.setString(1, id);
                     cs.setString(2, serviceIDs[i]);
@@ -745,7 +748,7 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public boolean deleteSale(String id)
+    public boolean deleteSale(String id, String[] carIDs, String[] serviceIDs)
     {
         Connection c = _dbConnector.getConnection();
         int rowCount = -1;
@@ -756,6 +759,27 @@ public class DBHandler
             cs.setString(1, id);
             //FIXME: Remove FK to this sale from cars and services???
             rowCount = cs.executeUpdate();
+            
+            if(rowCount >= 0) //Only continue if the initial creation succeeded!
+            {
+               //Create / update many-side
+                for(int i = 0; i < carIDs.length; i++)
+                {
+                    
+                    cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
+
+                    cs.setString(1, null);
+                    cs.setString(2, carIDs[i]);
+                }
+
+                for(int i = 0; i < serviceIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_saleid_on_service_(?,?)}"); 
+
+                    cs.setString(1, null);
+                    cs.setString(2, serviceIDs[i]);
+                }
+            }
             cs.close();
         }
         catch (SQLException ex)

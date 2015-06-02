@@ -16,6 +16,7 @@ import planningformen.domain.financeandefficiency.Sale;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.planning.Car;
 import planningformen.domain.planning.Customer;
+import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
 import planningformen.technical.IOManager;
 
@@ -26,27 +27,28 @@ import planningformen.technical.IOManager;
 public class SaleConverter implements ICallback
 {
     private List<Sale> _convertedSales;
-    private String _employeeID;
-    private String _customerID;
-    //Create list of ids for Car and Service
+    private List<String> _employeeIDs;
+    private List<String> _customerIDs;
+
     private List<Sellable> _sellables;
     
     @Override
     public void extractValues(ResultSet rs) throws SQLException
     {
         _convertedSales = new ArrayList<Sale>();
-        //Create list
+        _employeeIDs = new ArrayList<String>();
+        _customerIDs = new ArrayList<String>();
         
         while(rs.next())
         {
             String saleID = rs.getString(1);
-            String empID = rs.getString(2);
-            String custID = rs.getString(3);
+            _employeeIDs.add(rs.getString(2));
+            _customerIDs.add(rs.getString(3));
             Date saleDate = rs.getDate(4);
             Date dueDate = rs.getDate(5);
             double amountPaid = rs.getDouble(6);
             double tax = rs.getDouble(7);
-            //_convertedsales.add(new Sale(saleID, empID, custID, _sellables, saleDate, dueDate, amountPaid, tax));   
+            _convertedSales.add(new Sale(saleID, null, null, null, saleDate, dueDate, amountPaid, tax));   
         }
     }
   
@@ -71,6 +73,13 @@ public class SaleConverter implements ICallback
     {
         IOManager.getInstance().getDBHandler().retrieveSales(this);
         
+        for(int i = 0; i < _convertedSales.size(); i++)
+        {
+            _convertedSales.get(i).setEmployee(owner.getEmployeeByID(_employeeIDs.get(i)));
+            _convertedSales.get(i).setCustomer(owner.getCustomerByID(_customerIDs.get(i)));
+            _convertedSales.get(i).getItems().addAll(owner.getCarsBySaleID(_convertedSales.get(i).getId()));
+            _convertedSales.get(i).getItems().addAll(owner.getServicesBySaleID(_convertedSales.get(i).getId()));
+        }
         return _convertedSales;
     }
     

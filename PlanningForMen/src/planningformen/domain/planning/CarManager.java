@@ -223,6 +223,18 @@ public class CarManager
         return returnCars;
     }
     
+    public List<Car> findCarsBySaleID(String saleID)
+    {
+        List<Car> cars = new ArrayList<Car>();
+        
+        for(Car c : _cars)
+        {
+            if(c.getSaleID().equals(saleID))
+                cars.add(c);
+        }
+        return cars;
+    }
+    
     public boolean updateCar(Car updatedCar)
     {
         if (_converter.updateCar(updatedCar))
