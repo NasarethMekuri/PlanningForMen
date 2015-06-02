@@ -7,6 +7,7 @@ package planningformen;
 
 import java.sql.Date;
 import java.util.List;
+import planningformen.domain.Master;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceManager;
 import planningformen.domain.financeandefficiency.ServiceState;
@@ -37,6 +38,9 @@ public class PlanningForMen
         
         //System.out.println("#### TESTING EMPLOYEES ####");
         //testApp.testEmployees();
+        
+        System.out.println("#### TESTING SERVICES V2.0 ####");
+        testApp.moreServiceTests();
     }
     
     private void testCars()
@@ -183,8 +187,8 @@ public class PlanningForMen
     
     private void testEmployees()
     {
-        EmployeeManager.getInstance().createEmployee("0102089877", "Anders", "Fjog", "EU", "666", "9999", "dumb@ass.dk");
-        EmployeeManager.getInstance().createEmployee("1102089877", "Secret", "even more secret", "hidden", "1234", "5678", "dont@know.it");
+        //EmployeeManager.getInstance().createEmployee("0102089877", "Anders", "Fjog", "EU", "666", "9999", "dumb@ass.dk");
+        //EmployeeManager.getInstance().createEmployee("1102089877", "Secret", "even more secret", "hidden", "1234", "5678", "dont@know.it");
         //Retrieve Test
         
         List<Employee> employees = EmployeeManager.getInstance().getEmployees();
@@ -284,6 +288,26 @@ public class PlanningForMen
         for (Service s : ServiceManager.getInstance().getServices())
         {
             System.out.println(s.getId().toString());
+        }
+        
+        
+    }
+
+    private void moreServiceTests()
+    {
+        System.out.println("Checking the List");
+        Master.getInstance().getServiceManager().getPrioritizedJobsList();
+        
+        for (int i = 0; i < Master.getInstance().getServiceManager().getGarages().length; i++)
+        {
+            System.out.println("DIESEL JOB nr: " + i + 1);
+            System.out.println(Master.getInstance().getServiceManager().getGarages()[0].getJobs().get(i));
+            System.out.println();
+            System.out.println("NORMAL JOB nr: " + i + 1);
+            System.out.println(Master.getInstance().getServiceManager().getGarages()[1].getJobs().get(i));
+            System.out.println();
+            System.out.println("TUNING JOB nr: " + i + 1);
+            System.out.println(Master.getInstance().getServiceManager().getGarages()[2].getJobs().get(i));
         }
         
         
