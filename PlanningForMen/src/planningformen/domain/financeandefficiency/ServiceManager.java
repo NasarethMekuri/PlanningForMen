@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import planningformen.business.ServiceConverter;
+import planningformen.domain.planning.EmployeeManager;
 
 /**
  *
@@ -25,13 +26,11 @@ public class ServiceManager
     {
         this._converter = new ServiceConverter();
         _services = _converter.retrieveServices();
-        
-        //TODO: AssignJobs...
+        _finishedServices = new ArrayList<>();
         _garages = new Garage[3];
         _garages[0] = GarageFactory.getInstance().getGarage(ServiceType.DIESEL);
         _garages[1] = GarageFactory.getInstance().getGarage(ServiceType.NORMAL);
         _garages[2] = GarageFactory.getInstance().getGarage(ServiceType.TUNING);
-        getPrioritizedJobsList();
     }
     
     //Accessor for single instance
@@ -40,6 +39,9 @@ public class ServiceManager
         if (_instance == null)
         {
             _instance = new ServiceManager();
+            EmployeeManager.getInstance().addAllEmployeesToGarage(); //This has to happen after the instanciation of ServiceManager!
+            _instance.getPrioritizedJobsList(); //This has to happen after the instanciation of ServiceManager!
+
         }
         return _instance;
     }
@@ -201,7 +203,7 @@ public class ServiceManager
     public void getPrioritizedJobsList()
     {
         clearAllGarageJobLists();
-        removeFinishedJobs();
+        removeFinishedJobs(); //Should be unnessecary
         setReservedJobsToPending();
         reAllocateStartedJobs();
         allocateDieselJobs();
@@ -220,12 +222,13 @@ public class ServiceManager
     
     private void removeFinishedJobs() //Should not be neccesary?
     {
-        for (Service s : _services)
+        for (int i = 0; i < _services.size(); i++) //ISSUE--> MUST NOT CHANGE SIZE OF _services WHILE USING ITERATOR!
         {   //if service is finished move to finishedServices:
-            if (s.getState().getNumericValue() == 4)
+            if (_services.get(i).getState().getNumericValue() == 4)
             {
-                getFinishedServices().add(s);
-                _services.remove(s);
+                getFinishedServices().add(_services.get(i));
+                _services.remove(_services.get(i));
+                i--;
             }
         }
     }
@@ -234,7 +237,7 @@ public class ServiceManager
     {
         for (Service s : _services)
         {
-            //if Service is reserved, set to pending
+            //if Service is reserved, set to pending and set GarageType to null
             if (s.getState().getNumericValue() == 2)
             {
                 s.setState(ServiceState.PENDING);
@@ -401,10 +404,14 @@ public class ServiceManager
             _converter.updateService(s);
         }
         
-        for (Service s : getFinishedServices())
+        if (!_finishedServices.isEmpty())
+        {
+            for (Service s : getFinishedServices())
         {
             _converter.updateService(s);
         }
+        }
+        
     }
     
     public ServiceState getServiceStateFromInt(int state)

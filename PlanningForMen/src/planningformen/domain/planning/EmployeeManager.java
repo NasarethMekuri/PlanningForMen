@@ -1,16 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.domain.planning;
 
 import java.util.ArrayList;
 import java.util.List;
 import planningformen.business.PersonConverter;
-import planningformen.domain.financeandefficiency.Garage;
 import planningformen.domain.financeandefficiency.ServiceManager;
-import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
@@ -23,13 +21,11 @@ public class EmployeeManager
     private PersonConverter _personConverter;
     
     public List<Employee> getEmployees() { return _employees; }
-   
+    
     private EmployeeManager()
     {
         _personConverter = new PersonConverter();
         _employees = retrieveEmployees();
-        
-        addAllEmployeesToGarage();
     }
     
     public static EmployeeManager getInstance()
@@ -39,8 +35,8 @@ public class EmployeeManager
         return _instance;
     }
     
-    public boolean createEmployee(String id, String firstName, String lastName, String address, String phoneNumber, 
-                                  String postalNumber, String email, int skillType)
+    public boolean createEmployee(String id, String firstName, String lastName, String address, String phoneNumber,
+            String postalNumber, String email, int skillType)
     {
         Employee tmpEmployee = new Employee(id, firstName, lastName, address, phoneNumber, postalNumber, email, skillType);
         if(_personConverter.createEmployee(tmpEmployee))
@@ -118,16 +114,17 @@ public class EmployeeManager
         {
             return _employees.remove(employee); //Look into this - Same as above. May return false, even though database was updated, in case remove returns false.
         }
-        return false; 
+        return false;
     }
     
     public boolean addEmployeeToGarage(Employee employee)
     {
-        for(int i = 0; i < ServiceManager.getInstance().getGarages().length; i++)
+        ServiceManager sm = ServiceManager.getInstance(); 
+        for(int i = 0; i < sm.getGarages().length; i++) 
         {
-            if(ServiceManager.getInstance().getGarages()[i].getType().getNumericValue() == employee.getSkillType())
+            if(sm.getGarages()[i].getType().getNumericValue() == employee.getSkillType())
             {
-                ServiceManager.getInstance().getGarages()[i].getEmployees().add(employee);
+                sm.getGarages()[i].getEmployees().add(employee);
                 return true;
             }
         }
@@ -147,7 +144,7 @@ public class EmployeeManager
         return false;
     }
     
-    private void addAllEmployeesToGarage()
+    public void addAllEmployeesToGarage()
     {
         for(Employee e : _employees)
         {
