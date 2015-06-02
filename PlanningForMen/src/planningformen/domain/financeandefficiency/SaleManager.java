@@ -52,7 +52,7 @@ public class SaleManager
         //Sales ID made from customerID  + size of sales list. May be changed later.
         String saleID = cust.getCustomerID() + "-" + _sales.size();
         
-        Sale sale = new Sale(saleID, emp, cust, sellables, dueDate, sellDate, amountPaid, TAX);
+        Sale sale = new Sale(saleID, emp, cust, sellables, sellDate, dueDate, amountPaid, TAX);
         
         //DO DB STUFF HERE
         

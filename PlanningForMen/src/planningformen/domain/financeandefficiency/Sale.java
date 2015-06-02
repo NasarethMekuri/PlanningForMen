@@ -25,7 +25,7 @@ public class Sale implements Transaction
     private double _amountPaid, _tax;
     private List<Sellable> _items;
 
-    public Sale(String id, Employee employee, Customer customer, List<Sellable> items, Date dueDate, Date saleDate, double amountPaid, double tax)
+    public Sale(String id, Employee employee, Customer customer, List<Sellable> items, Date saleDate, Date dueDate, double amountPaid, double tax)
     {
         _id = id;
         _employee = employee;
