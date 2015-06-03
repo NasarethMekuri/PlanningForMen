@@ -9,12 +9,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import planningformen.domain.Master;
-import planningformen.domain.financeandefficiency.Sale;
-import planningformen.domain.financeandefficiency.SaleManager;
-import planningformen.domain.financeandefficiency.Service;
-import planningformen.domain.financeandefficiency.ServiceManager;
-import planningformen.domain.financeandefficiency.ServiceState;
-import planningformen.domain.financeandefficiency.ServiceType;
+import planningformen.domain.financeandefficiency.*;
 import planningformen.domain.planning.*;
 
 /**
@@ -52,7 +47,7 @@ public class PlanningForMen
     private void testCars()
     {
         
-        Date specifiedDate = new Date(0).valueOf("2015-05-25");
+        Date specifiedDate = Date.valueOf("2015-05-25");
         /*
         TESTING ORDER:
         1) Instanciate from DB
@@ -291,7 +286,7 @@ public class PlanningForMen
     private void moreServiceTests()
     {
         System.out.println("Checking the List");
-        Master.getInstance().getServiceManager().getPrioritizedJobsList();
+        Master.getInstance().getServiceManager().planJobPriorityForMechanics();
         
         for (int i = 0; i < Master.getInstance().getServiceManager().getGarages().length; i++)
         {
