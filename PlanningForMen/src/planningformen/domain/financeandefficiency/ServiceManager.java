@@ -41,7 +41,7 @@ public class ServiceManager
             _instance = new ServiceManager();
             EmployeeManager.getInstance().addAllEmployeesToGarage(); //This has to happen after the instanciation of ServiceManager!
             _instance.getPrioritizedJobsList(); //This has to happen after the instanciation of ServiceManager!
-
+            
         }
         return _instance;
     }
@@ -159,28 +159,33 @@ public class ServiceManager
         return services;
     }
     
-    public boolean updateService(Service service)
-    {
-        //TODO: update in DB
+    public boolean updateService(Service updatedService) //TODO: Re-test!
+    {   
         for (Service s : _services)
         {
-            if (s.getId().equals(service.getId()))
+            if (s.getId().equals(updatedService.getId()))
             {
-                s = service;
+                if (_converter.updateService(updatedService)) 
+                {
+                    s = updatedService;
+                }
+                
                 return true;
             }
         }
         return false;
     }
     
-    public boolean deleteService(Service service)
+    public boolean deleteService(Service serviceToDelete) //TODO: Re-test!
     {
-        //TODO: delete in DB
         for (int i = 0; i < _services.size(); i++)
         {
-            if (_services.get(i).getId().equals(service.getId()))
+            if (_services.get(i).getId().equals(serviceToDelete.getId()))
             {
-                _services.remove(i);
+                if (_converter.deleteService(serviceToDelete))
+                {
+                    _services.remove(i);
+                }
                 return true;
             }
         }
@@ -405,7 +410,7 @@ public class ServiceManager
             temp[0] = pendingNormalJobsLeft / totalEmployees;
             temp[1] = pendingNormalJobsLeft % totalEmployees;
         }
-        else 
+        else
         {
             System.out.println("Mads is out of business! -He has no employees!");
         }
@@ -423,9 +428,9 @@ public class ServiceManager
         if (!_finishedServices.isEmpty())
         {
             for (Service s : getFinishedServices())
-        {
-            _converter.updateService(s);
-        }
+            {
+                _converter.updateService(s);
+            }
         }
         
     }

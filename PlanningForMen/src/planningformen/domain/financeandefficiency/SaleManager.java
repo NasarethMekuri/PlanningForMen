@@ -8,16 +8,10 @@ package planningformen.domain.financeandefficiency;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.GregorianCalendar;
+import java.util.List;
 import planningformen.business.SaleConverter;
-import planningformen.domain.planning.Car;
-import planningformen.domain.planning.CarManager;
-import planningformen.domain.planning.Customer;
-import planningformen.domain.planning.CustomerManager;
-import planningformen.domain.planning.Employee;
-import planningformen.domain.planning.EmployeeManager;
-import planningformen.domain.planning.Sellable;
+import planningformen.domain.planning.*;
 
 /**
  *
@@ -190,4 +184,10 @@ public class SaleManager implements ISaleCallback
     {
         return ServiceManager.getInstance().findServicesBySaleID(saleID);
     }
+    
+    public SalesNumbers generateYearlySales(int year)
+    {
+        return new SalesNumbers(year);
+    }
+    
 }
