@@ -142,8 +142,8 @@ public class SaleManager implements ISaleCallback
     
     public List<Sale> findSales(int year)
     {
-        Date startDate = new Date(year - 1, 12, 31);
-        Date endDate = new Date(year + 1, 1, 1);
+        Date startDate = Date.valueOf(year - 1 + "-12-31");
+        Date endDate = Date.valueOf(year + 1 + "-01-01");
         List<Sale> tmpList = new ArrayList<Sale>();
         for(Sale s : _sales)
         {

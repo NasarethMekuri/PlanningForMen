@@ -57,6 +57,7 @@ public class TransactionManager
                 text = "Sale - " + text;
             text += "\t\t" + price + "\n";
             output.append(text);
+            System.out.println("added one transaction!");
         }
         String fileName = "Trans-" + fromDate.toString() + "-" + toDate.toString();
                 

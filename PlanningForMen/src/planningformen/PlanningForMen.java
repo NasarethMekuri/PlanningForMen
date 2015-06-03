@@ -15,6 +15,7 @@ import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceManager;
 import planningformen.domain.financeandefficiency.ServiceState;
 import planningformen.domain.financeandefficiency.ServiceType;
+import planningformen.domain.financeandefficiency.TransactionManager;
 import planningformen.domain.planning.*;
 
 /**
@@ -47,6 +48,7 @@ public class PlanningForMen
         
         System.out.println("#### Testing Sales ####");
         testApp.testSales();
+        testApp.testTransactions();
     }
     
     private void testCars()
@@ -284,7 +286,7 @@ public class PlanningForMen
         {
             System.out.println(s.getId().toString());
         }
-        
+       
         
     }
 
@@ -334,8 +336,13 @@ public class PlanningForMen
         SaleManager.getInstance().updateSale(sale);
         SaleManager.getInstance().printInvoice(sale);
         
-        if(SaleManager.getInstance().deleteSale(sale))
-            System.out.println("Deletion succesful!");
+        //if(SaleManager.getInstance().deleteSale(sale))
+        //    System.out.println("Deletion succesful!");
+    }
+    
+    public void testTransactions()
+    {
+        TransactionManager.getInstance().createTransactionsFile(Date.valueOf("2014-01-01"), Date.valueOf("2015-12-31"));
     }
     
 }
