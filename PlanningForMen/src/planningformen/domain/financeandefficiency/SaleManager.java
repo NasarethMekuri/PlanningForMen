@@ -134,6 +134,35 @@ public class SaleManager implements ISaleCallback
         }
         return tmpList;
     }
+    
+    public List<Sale> findSales(int year)
+    {
+        Date startDate = new Date(year - 1, 12, 31);
+        Date endDate = new Date(year + 1, 1, 1);
+        List<Sale> tmpList = new ArrayList<Sale>();
+        for(Sale s : _sales)
+        {
+            if(s.getSaleDate().after(startDate) && s.getSaleDate().before(endDate))
+            {
+                tmpList.add(s);
+            }
+        }
+        return tmpList;
+    }
+    
+    public double calculateTaxes(Sale sale)
+    {
+        return sale.getTotalPrice() * sale.getTax();
+    }
+    
+    public double calculateTaxes(List<Sale> sales)
+    {
+        double totalTax = 0;
+        
+        for(Sale s : sales)
+            totalTax = calculateTaxes(s);
+        return totalTax;
+    }
 
     @Override
     public Employee getEmployeeByID(String empID)
