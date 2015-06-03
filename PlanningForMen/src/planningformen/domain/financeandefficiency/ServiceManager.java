@@ -57,7 +57,7 @@ public class ServiceManager
     {
         Service service = new Service(price, description, type);
         if(_converter.createService(service))
-            return _services.add(service); //TODO: Flip on DB creation success
+            return _services.add(service); 
         return false;
     }
     
@@ -233,6 +233,16 @@ public class ServiceManager
         updateServicesInDB();
     }
     
+     public ServiceState convertIntToServiceState(int state)
+    {
+        return _converter.convertIntToServiceState(state);
+    }
+    
+    public ServiceType convertIntToServiceType(int state)
+    {
+        return _converter.convertIntToServiceType(state);
+    }
+    
     private void clearAllGarageJobLists()
     {
         for (int i = 0; i < getGarages().length; i++)
@@ -348,7 +358,7 @@ public class ServiceManager
         ServiceType tempGarageType = null;
         for (int i = 0; i < jobsLeft; i++)
         {
-            tempGarageType = getServiceTypeFromInt(counter + 1);
+            tempGarageType = convertIntToServiceType(counter + 1);
             
             getGarages()[counter].getJobs().add(pendingNormalJobs.get(0));
             
@@ -435,15 +445,7 @@ public class ServiceManager
         
     }
     
-    public ServiceState getServiceStateFromInt(int state)
-    {
-        return _converter.convertToServiceStateFromInt(state);
-    }
-    
-    public ServiceType getServiceTypeFromInt(int state)
-    {
-        return _converter.convertToServiceTypeFromInt(state);
-    }
+   
     
     
     

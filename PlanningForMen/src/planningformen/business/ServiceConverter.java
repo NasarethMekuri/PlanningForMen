@@ -124,7 +124,7 @@ public class ServiceConverter implements ICallback
         return IOManager.getInstance().getDBHandler().deleteService(serviceToDelete.getId());
     }
     
-    public ServiceState convertToServiceStateFromInt(int state)
+    public ServiceState convertIntToServiceState(int state)
     {
         switch (state)
             {
@@ -140,7 +140,7 @@ public class ServiceConverter implements ICallback
         return null;
     }
     
-    public ServiceType convertToServiceTypeFromInt(int type)
+    public ServiceType convertIntToServiceType(int type)
     {
         switch (type)
         {
