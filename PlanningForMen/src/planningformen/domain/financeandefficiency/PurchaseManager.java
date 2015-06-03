@@ -8,6 +8,7 @@ package planningformen.domain.financeandefficiency;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import planningformen.domain.planning.Customer;
 
 /**
  *
@@ -37,7 +38,7 @@ public class PurchaseManager
         return _instance;
     }
     
-    List<Purchase> findPurchases(int year)
+    public List<Purchase> findPurchases(int year)
     {
         Date startDate = new Date(year - 1, 12, 31);
         Date endDate = new Date(year + 1, 1, 1);
@@ -45,6 +46,19 @@ public class PurchaseManager
         for(Purchase p : _purchases)
         {
             if(p.getPurchaseDate().after(startDate) && p.getPurchaseDate().before(endDate))
+            {
+                tmpList.add(p);
+            }
+        }
+        return tmpList;
+    }
+    
+    public List<Purchase> findpurchases(Date fromDate, Date toDate)
+    {
+        List<Purchase> tmpList = new ArrayList<Purchase>();
+        for(Purchase p : _purchases)
+        {
+            if(p.getPurchaseDate().after(fromDate) && p.getPurchaseDate().before(toDate))
             {
                 tmpList.add(p);
             }

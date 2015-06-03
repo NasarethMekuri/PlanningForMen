@@ -6,6 +6,9 @@
 package planningformen.domain.financeandefficiency;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import planningformen.technical.IOManager;
 
 /**
  *
@@ -32,20 +35,32 @@ public class TransactionManager
         return _instance;
     }
     
-    
     public boolean createTransactionsFile(Date fromDate, Date toDate)
     {
-        return false; //TODO: work-work
-    }
-    
-    public SalesNumbers retrieveyearlySales(int year)
-    {
-        return null; //TODO work-work
-    }
-    
-    private SalesNumbers generateNewSalesNumbers()
-    {
-        return null; //TODO work-work
+        List<Transaction> transactions = new ArrayList<Transaction>();
+        transactions.addAll(_saleManager.findSales(null, fromDate, toDate));
+        transactions.addAll(_purchaseManager.findpurchases(fromDate, toDate));
+        
+        StringBuilder output = new StringBuilder();
+        output.append("Transaction log for period " + fromDate.toString() + " to " + toDate.toString() + "\n\n");
+        
+        for(Transaction t : transactions)
+        {
+            String text = t.getTransactionDate().toString();
+            double price = t.getTotalPrice();
+            if(t instanceof Purchase)
+            {
+                price *= -1;
+                text = "Purchase - " + text;
+            }
+            else
+                text = "Sale - " + text;
+            text += "\t\t" + price + "\n";
+            output.append(text);
+        }
+        String fileName = "Trans-" + fromDate.toString() + "-" + toDate.toString();
+                
+        return IOManager.getInstance().getFileHandler().createTextFile(output.toString(), fileName);
     }
     
 }

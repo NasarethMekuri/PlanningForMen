@@ -17,7 +17,7 @@ public class Purchase implements Transaction
 
     public Purchase(String date)
     {
-        _purchaseDate = new Date(0).valueOf(date); //@MKJ Dummy values only
+        _purchaseDate = new Date(0).valueOf(date); //Dummy values only
     }
     
     @Override
@@ -30,4 +30,10 @@ public class Purchase implements Transaction
     {
         return _purchaseDate;
     } 
+
+    @Override
+    public Date getTransactionDate()
+    {
+        return getPurchaseDate();
+    }
 }

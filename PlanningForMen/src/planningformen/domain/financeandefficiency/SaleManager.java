@@ -116,12 +116,20 @@ public class SaleManager implements ISaleCallback
     
     public List<Sale> getSales() {return _sales; }
     
+    
+    /**
+     * returns a list of sales adhering to the desired parameters. If cust is null, it will not be taken into consideration.
+     * @param cust The desired customer. Can be null if customer is not a search criteria.
+     * @param fromDate The beginning of the desired period.
+     * @param toDate The end of the desired period.
+     * @return a list of sales adhering to the arguments given.
+     */
     public List<Sale> findSales(Customer cust, Date fromDate, Date toDate)
     {
         List<Sale> tmpList = new ArrayList<Sale>();
         for(Sale s : _sales)
         {
-            if(s.getCustomer() == cust)
+            if(s.getCustomer() == cust || cust == null)
             {
                 if(s.getSaleDate().after(fromDate) && s.getSaleDate().before(toDate))
                 {

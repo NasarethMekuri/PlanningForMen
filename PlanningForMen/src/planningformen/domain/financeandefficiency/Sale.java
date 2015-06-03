@@ -80,6 +80,12 @@ public class Sale implements Transaction
         if(_amountPaid >= getTotalPrice())
             _isPaid = true;
     }
+
+    @Override
+    public Date getTransactionDate()
+    {
+        return getSaleDate();
+    }
 }
 
 

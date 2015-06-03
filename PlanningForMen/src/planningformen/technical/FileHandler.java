@@ -16,7 +16,7 @@ public class FileHandler
 {
     private final String FILE_EXTENSION = ".txt";
     
-    public boolean printInvoice(String input, String fileName)
+    public boolean createTextFile(String input, String fileName)
     {
         boolean isErrorFree = true;
         PrintWriter output = null;

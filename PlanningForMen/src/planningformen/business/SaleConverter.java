@@ -115,7 +115,6 @@ public class SaleConverter implements ICallback
      
     public boolean printInvoice(String input, String fileName)
     {
-        return IOManager.getInstance().getFileHandler().printInvoice(input, fileName);
+        return IOManager.getInstance().getFileHandler().createTextFile(input, fileName);
     }
-    
 }

@@ -5,6 +5,8 @@
  */
 package planningformen.domain.financeandefficiency;
 
+import java.sql.Date;
+
 /**
  *
  * @author Simon
@@ -12,4 +14,5 @@ package planningformen.domain.financeandefficiency;
 public interface Transaction
 {
     public double getTotalPrice();
+    public Date getTransactionDate();
 }
