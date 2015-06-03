@@ -5,28 +5,67 @@
  */
 package planningformen.domain.financeandefficiency;
 
+import java.util.List;
+
 /**
  *
  * @author Simon
  */
 public class SalesNumbers
 {
-    private double _turnover, _costOfSales, _grossProfit, _expenses, _corporationTax, _profitAfterTax, _operatingProfit;
-    private int _id; //year
+    private final double _turnover, _costOfSales, _grossProfit, _expenses, _corporationTax, _profitAfterTax, _operatingProfit;
+    private final int _id; //year
+    private List<Sale> _yearlySales;
+    private List<Purchase> _yearlyPurchases;
 
-    public SalesNumbers(double turnover, double costOfSales, int id)
+    public SalesNumbers(int year)
     {
-        this._turnover = turnover;
-        this._costOfSales = costOfSales;
-        this._id = id;
-        this._grossProfit = turnover - costOfSales;
-        this._expenses = 450; //HARDCODE
-        this._operatingProfit = _grossProfit - _expenses;
-        this._corporationTax = 5000; //HARDCODE -skal måske regnes ud fra salesList på saleManager?
-        this._profitAfterTax = _operatingProfit - _corporationTax;
+        _yearlySales = SaleManager.getInstance().findSales(year);
+        _yearlyPurchases = PurchaseManager.getInstance().findPurchases(year);
         
+        this._id = year;
+        this._turnover = getYearlyTurnover();
+        this._costOfSales = getYearlyCostOfSales();
+        this._grossProfit = _turnover - _costOfSales;
+        this._expenses = 10000; //HARDCODE
+        this._operatingProfit = _grossProfit - _expenses;
+        this._corporationTax = SaleManager.getInstance().calculateTaxes(_yearlySales); 
+        this._profitAfterTax = _operatingProfit - _corporationTax;
     }
-    
+
+    private double getYearlyTurnover()
+    {
+        double temp = 0;
+        for (Sale s : getYearlySales())
+        {
+            if (s.IsPaid())
+            {
+                temp += s.getTotalPrice();
+            }
+        }
+        return temp;
+    }
+
+    private double getYearlyCostOfSales()
+    {
+        double temp = 0;
+        for (Purchase p : getYearlyPurchases())
+        {
+            temp += p.getTotalPrice();
+        }
+        return temp;
+    }
+
+    public double getTurnover()                 {return _turnover;}
+    public double getCostOfSales()              {return _costOfSales;}
+    public double getGrossProfit()              {return _grossProfit;}
+    public double getExpenses()                 {return _expenses;}
+    public double getCorporationTax()           {return _corporationTax;}
+    public double getProfitAfterTax()           {return _profitAfterTax;}
+    public double getOperatingProfit()          {return _operatingProfit;}
+    public int getId()                          {return _id;}
+    public List<Sale> getYearlySales()          {return _yearlySales;}
+    public List<Purchase> getYearlyPurchases()  {return _yearlyPurchases;}
     
     
 }
