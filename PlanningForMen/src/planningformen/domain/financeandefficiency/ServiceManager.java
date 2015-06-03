@@ -40,7 +40,7 @@ public class ServiceManager
         {
             _instance = new ServiceManager();
             EmployeeManager.getInstance().addAllEmployeesToGarage(); //This has to happen after the instanciation of ServiceManager!
-            _instance.getPrioritizedJobsList(); //This has to happen after the instanciation of ServiceManager!
+            _instance.planJobPriorityForMechanics(); //This has to happen after the instanciation of ServiceManager!
             
         }
         return _instance;
@@ -221,7 +221,7 @@ public class ServiceManager
         return false;
     }
     
-    public void getPrioritizedJobsList()
+    public void planJobPriorityForMechanics()
     {
         clearAllGarageJobLists();
         removeFinishedJobs(); //Should be unnessecary
