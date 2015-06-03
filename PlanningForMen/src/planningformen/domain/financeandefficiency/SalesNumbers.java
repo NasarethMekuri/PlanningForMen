@@ -5,6 +5,7 @@
  */
 package planningformen.domain.financeandefficiency;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -20,10 +21,17 @@ public class SalesNumbers
 
     public SalesNumbers(int year)
     {
+        if (year > 2013 && year <= Calendar.getInstance().get(Calendar.YEAR))
+        {
+            this._id = year;
+        }
+        else
+        {
+            _id = Calendar.getInstance().get(Calendar.YEAR);
+        }
         _yearlySales = SaleManager.getInstance().findSales(year);
         _yearlyPurchases = PurchaseManager.getInstance().findPurchases(year);
         
-        this._id = year;
         this._turnover = getYearlyTurnover();
         this._costOfSales = getYearlyCostOfSales();
         this._grossProfit = _turnover - _costOfSales;
