@@ -29,6 +29,7 @@ public class SaleManager implements ISaleCallback
     private List<Sale> _sales;
     private final double TAX = .25f;
     private SaleConverter _saleConverter;
+    private final String INVOICE_HEAD = "MADS' USED CAR SALES\nØrstedsgade 52, 6400 Sønderborg\nPhone: +45 12345678 \n\n\n";
 
     private SaleManager()
     {
@@ -86,11 +87,13 @@ public class SaleManager implements ISaleCallback
     public boolean printInvoice(Sale sale)
     {
         StringBuilder output = new StringBuilder();
-
+        output.append(INVOICE_HEAD);
         output.append("SaleID: " + sale.getId() + "\n");
+        output.append("Sale handled by: " + sale.getEmployee().getFirstName() + " " + sale.getEmployee().getLastName() + "\n\n\n");
         output.append("CustomerID: " + sale.getCustomer().getCustomerID() + "\n");
-        output.append("Customer Name: " + sale.getCustomer().getFirstName() + " " + sale.getCustomer().getLastName() + "\n");
-        output.append("Responsible employee: " + sale.getEmployee().getFirstName() + "" + sale.getEmployee().getLastName() + "\n");
+        output.append("Customer:\n" + sale.getCustomer().getFirstName() + " " + sale.getCustomer().getLastName() + "\n");
+        output.append(sale.getCustomer().getAddress() + " " + sale.getCustomer().getPostalNumber() +"\n");
+        output.append("Phone: " + sale.getCustomer().getPhoneNumber());
         output.append("\n");
         for(Sellable s : sale.getItems())
         {
