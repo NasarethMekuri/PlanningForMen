@@ -664,7 +664,7 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public void retrieveSales(ICallback owner) //FIXME: DB design needs to be done, to finish algorithm.
+    public void retrieveSales(ICallback owner) 
     {
         Connection c = _dbConnector.getConnection();
         ResultSet sales = null;

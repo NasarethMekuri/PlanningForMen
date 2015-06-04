@@ -5,11 +5,22 @@
  */
 package planningformen.domain.tyre;
 
+import planningformen.domain.planning.Sellable;
+
 /**
  *
- * @author Simon
+ * @author Morten
  */
-public class Tyre
+public class Tyre implements Sellable
 {
+    private String _saleID;
+    
+    @Override
+    public double getSellPrice()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public String getSaleID() { return _saleID; }
     
 }

@@ -41,6 +41,7 @@ public class SalesNumbers
         this._profitAfterTax = _operatingProfit - _corporationTax;
     }
 
+
     private double getYearlyTurnover()
     {
         double temp = 0;
