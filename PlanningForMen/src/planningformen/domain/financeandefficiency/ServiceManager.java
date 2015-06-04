@@ -422,7 +422,7 @@ public class ServiceManager
         }
         else
         {
-            System.out.println("Mads is out of business! -He has no employees!");
+            System.out.println("no employees!");
         }
         
         return temp;
