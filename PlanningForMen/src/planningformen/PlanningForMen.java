@@ -290,7 +290,7 @@ public class PlanningForMen
         
     }
 
-    private void moreServiceTests()
+    /*private void moreServiceTests()
     {
         System.out.println("Checking the List");
         Master.getInstance().getServiceManager().getPrioritizedJobsList();
@@ -306,7 +306,7 @@ public class PlanningForMen
             System.out.println("TUNING JOB nr: " + i + 1);
             System.out.println(Master.getInstance().getServiceManager().getGarages()[2].getJobs().get(i));
         }
-    }
+    }*/
     
     private void testSales()
     {

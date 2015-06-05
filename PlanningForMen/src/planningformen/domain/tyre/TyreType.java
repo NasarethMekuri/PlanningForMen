@@ -11,5 +11,5 @@ package planningformen.domain.tyre;
  */
 public enum TyreType
 {
-    
+    SUMMER, WINTER, ALL_SEASON, MC, FOUR_BY_FOUR;
 }
