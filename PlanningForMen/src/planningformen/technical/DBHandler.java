@@ -596,7 +596,7 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
+    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         System.out.println("CreateSale on DB Level - Pre-Connecting");
         Connection c = _dbConnector.getConnection();
@@ -643,6 +643,16 @@ public class DBHandler
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
                     System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");    
+                }
+                
+                
+                for(int i = 0; i < tyreIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
+
+                    cs.setString(1, tyreIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
                 }
             }
         }
@@ -695,7 +705,7 @@ public class DBHandler
         }
     }
     
-    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
+    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -735,6 +745,15 @@ public class DBHandler
                     cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
 
                     cs.setString(1, serviceIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
+                }
+                
+                for(int i = 0; i < tyreIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
+
+                    cs.setString(1, tyreIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
                 }

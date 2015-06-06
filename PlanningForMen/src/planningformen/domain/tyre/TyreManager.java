@@ -63,6 +63,18 @@ public class TyreManager
         return null;
     }
     
+    public List<Tyre> findTyres(String saleID)
+    {
+        List<Tyre> foundTyres = new ArrayList<Tyre>();
+        
+        for(Tyre t : _tyres)
+        {
+            if(t.getSaleID().equals(saleID))
+                foundTyres.add(t);
+        }
+        return foundTyres;
+    }
+    
     public boolean createTyre(double purchasePrice, double sellPrice, TyreSize size, TyreType type)
     {
         Tyre tyre = new Tyre(purchasePrice, sellPrice, size, type);

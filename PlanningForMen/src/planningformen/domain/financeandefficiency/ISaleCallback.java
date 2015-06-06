@@ -9,6 +9,7 @@ import java.util.List;
 import planningformen.domain.planning.Car;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
+import planningformen.domain.tyre.Tyre;
 
 /**
  *
@@ -20,4 +21,5 @@ public interface ISaleCallback
     public Customer getCustomerByID(String custID);
     public List<Car> getCarsBySaleID(String saleID);
     public List<Service> getServicesBySaleID(String saleID);
+    public List<Tyre> getTyresBySaleID(String saleID);
 }

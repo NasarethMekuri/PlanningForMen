@@ -18,6 +18,7 @@ import planningformen.domain.planning.Car;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
+import planningformen.domain.tyre.Tyre;
 import planningformen.technical.IOManager;
 
 /**
@@ -55,13 +56,16 @@ public class SaleConverter implements ICallback
         System.out.println("CreateSale on Converter Level!!!");
         List<String> carIDs = new ArrayList<String>();
         List<String> serviceIDs = new ArrayList<String>();
+        List<String> tyreIDs = new ArrayList<String>();
        
         for(Sellable s : sale.getItems())
         {
             if(s instanceof Car)
                 carIDs.add(((Car)s).getId());
-            else
+            else if(s instanceof Service)
                 serviceIDs.add(((Service)s).getId());
+            else
+                tyreIDs.add(((Tyre)s).getId());
         }
         //Explicit for bug-squashing reasons:
         String saleID = sale.getId();
@@ -71,9 +75,10 @@ public class SaleConverter implements ICallback
         Date dueDate = sale.getDueDate();
         String[] carIDsArr = carIDs.toArray(new String[0]);
         String[] serviceIDsArr = serviceIDs.toArray(new String[0]);
+        String[] tyreIDsArr = tyreIDs.toArray(new String[0]);
         double amountPaid = sale.getAmountPaid();
         double tax = sale.getTax();
-        return IOManager.getInstance().getDBHandler().createSale(saleID, empID, custID, saleDate, dueDate, carIDsArr, serviceIDsArr, amountPaid, tax);
+        return IOManager.getInstance().getDBHandler().createSale(saleID, empID, custID, saleDate, dueDate, carIDsArr, serviceIDsArr, tyreIDsArr, amountPaid, tax);
     }
     
     public List<Sale> retrieveSales(ISaleCallback owner)
@@ -86,6 +91,7 @@ public class SaleConverter implements ICallback
             _convertedSales.get(i).setCustomer(owner.getCustomerByID(_customerIDs.get(i)));
             _convertedSales.get(i).getItems().addAll(owner.getCarsBySaleID(_convertedSales.get(i).getId()));
             _convertedSales.get(i).getItems().addAll(owner.getServicesBySaleID(_convertedSales.get(i).getId()));
+            _convertedSales.get(i).getItems().addAll(owner.getTyresBySaleID(_convertedSales.get(i).getId()));
         }
         return _convertedSales;
     }
@@ -94,17 +100,21 @@ public class SaleConverter implements ICallback
     {
         List<String> carIDs = new ArrayList<String>();
         List<String> serviceIDs = new ArrayList<String>();
+        List<String> tyreIDs = new ArrayList<String>();
        
         for(Sellable s : sale.getItems())
         {
             if(s instanceof Car)
                 carIDs.add(((Car)s).getId());
-            else
+            else if(s instanceof Service)
                 serviceIDs.add(((Service)s).getId());
+            else
+                tyreIDs.add(((Tyre)s).getId());
         }
         return IOManager.getInstance().getDBHandler().updateSale(sale.getId(), sale.getEmployee().getEmployeeID(), sale.getCustomer().getCustomerID(),
                                                                  sale.getSaleDate(), sale.getDueDate(), carIDs.toArray(new String[0]), 
-                                                                 serviceIDs.toArray(new String[0]), sale.getAmountPaid(), sale.getTax());
+                                                                 serviceIDs.toArray(new String[0]), tyreIDs.toArray(new String[0]), sale.getAmountPaid(), 
+                                                                 sale.getTax());
     }
     
     public boolean deleteSale(Sale sale)

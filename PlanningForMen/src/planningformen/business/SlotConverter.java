@@ -14,7 +14,6 @@ import java.sql.SQLException;
  */
 public class SlotConverter implements ICallback
 {
-    
     @Override
     public void extractValues(ResultSet rs) throws SQLException
     {
@@ -39,6 +38,7 @@ public class SlotConverter implements ICallback
         int i = (b & 0xFF);
         
         String value = Integer.toBinaryString(i);
+
         //ensure 8 bits
         if (i < 2)
         {
