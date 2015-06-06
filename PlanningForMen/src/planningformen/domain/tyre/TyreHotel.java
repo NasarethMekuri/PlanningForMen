@@ -251,22 +251,52 @@ public class TyreHotel
         return _slotConverter;
     }
     
+    /**
+     * This method adds a Customer to the waiting list, and stores his index in the DB.
+     * @param c the customer to add to the List.
+     * @return int the Customers' "number in line" on the waiting list.
+     */
     public int addCustomerToWaitingList(Customer c)
     {
-        if (true)
+        int nextFreeIndex = _waitingList.size();
+        
+        if (_waitingListConverter.createWaitingPosition(nextFreeIndex, c.getCustomerID()))
         {
-            _waitingList.add(c.getCustomerID());
+            _waitingList.add(nextFreeIndex, c.getCustomerID());
 
-            for (int i = 0; i < _waitingList.size(); i++)
-            {
-                if (_waitingList.get(i).equals(c.getCustomerID()))
-                {
-                    return i;
-                }
-            }    
+            return nextFreeIndex;
         }
         return -1;
     }
     
-    
+    public boolean removeCustomerFromWaitingList(Customer c)
+    {
+        int index = 0;
+        
+        for (String custID : _waitingList)
+        {
+            if (custID.equals(c.getCustomerID()))
+            {
+                break;
+            }
+            index ++;
+        }
+        
+        if (_waitingListConverter.deleteWaitingPosition(index))
+        {
+            _waitingList.remove(index);
+            updateAllCustomersWaitingPositions();
+            return true;
+        }
+        return false;
+    }
+
+    private void updateAllCustomersWaitingPositions()
+    {
+        for (int i = 0; i < _waitingList.size(); i++)
+        {
+            String custID = _waitingList.get(i);
+            _waitingListConverter.updateWaitingPosition(i, custID);
+        }
+    }
 }

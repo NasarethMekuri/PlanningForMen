@@ -25,18 +25,18 @@ import planningformen.core.DBConnector;
  */
 public class DBHandler
 {
-    private DBConnector _dbConnector;
+    private final DBConnector _DBCONNECTOR;
     
     public DBHandler()
     {
-        _dbConnector = new DBConnector();
+        _DBCONNECTOR = new DBConnector();
     }
     
     //Car Methods
     public boolean createCar(String id, String plate, int year, String make, String model, double volume, String fuel, String version,
             int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -85,7 +85,7 @@ public class DBHandler
     
     public void retrieveCars(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet allCars = null;
         
         try
@@ -116,7 +116,7 @@ public class DBHandler
     
     public boolean updateCar(String id, String saleID, String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -156,7 +156,7 @@ public class DBHandler
     
     public boolean deleteCar(String id)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
@@ -189,7 +189,7 @@ public class DBHandler
     //Customer Methods
     public boolean createCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -230,7 +230,7 @@ public class DBHandler
     
     public void retrieveCustomers(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet rs = null;
         
         try
@@ -260,7 +260,7 @@ public class DBHandler
     
     public boolean updateCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -306,7 +306,7 @@ public class DBHandler
      */
     public boolean deletePerson(String personID)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -342,7 +342,7 @@ public class DBHandler
     public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address,
             String phoneNumber, String postalNumber, String email, int skillType)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -384,7 +384,7 @@ public class DBHandler
     
     public void retrieveEmployees(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet employees = null;
         
         try
@@ -414,7 +414,7 @@ public class DBHandler
     public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address,
             String phoneNumber, String postalNumber, String email, int skillType)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -457,7 +457,7 @@ public class DBHandler
     //Service Methods:
     public boolean createService(String id, double price, String description, int type, int state, int garageThatStartedService)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -499,7 +499,7 @@ public class DBHandler
     
     public void retrieveServices(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet allServices = null;
         
         try
@@ -530,7 +530,7 @@ public class DBHandler
     
     public boolean updateService(String id, String saleID, double price, String description, int type, int state, int garageThatStartedService)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -563,7 +563,7 @@ public class DBHandler
     
     public boolean deleteService(String id)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
@@ -597,7 +597,7 @@ public class DBHandler
     public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         System.out.println("CreateSale on DB Level - Pre-Connecting");
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         System.out.println("CreateSale on DB Level!!!");
         CallableStatement cs = null;
         int rowCount = -1;
@@ -674,7 +674,7 @@ public class DBHandler
     
     public void retrieveSales(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet sales = null;
         
         try
@@ -705,7 +705,7 @@ public class DBHandler
     
     public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -777,7 +777,7 @@ public class DBHandler
     
     public boolean deleteSale(String id)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
@@ -810,7 +810,7 @@ public class DBHandler
     //Slots Methods:
     public boolean createSlot(int position, String customerID, Date freeDate)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -857,7 +857,7 @@ public class DBHandler
     
     public void retrieveSlots(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet slots = null;
         
         try
@@ -888,7 +888,7 @@ public class DBHandler
     
     public boolean updateSlot(int position, String customerID, Date freeDate)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -925,7 +925,7 @@ public class DBHandler
     
     public boolean deleteSlot(int position, String customerID, Date freeDate)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
@@ -958,7 +958,7 @@ public class DBHandler
     //Waiting List Methods:
     public boolean createWaitingPosition(int index, String custID)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -996,7 +996,7 @@ public class DBHandler
     
     public void retrieveWaitingList(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet waitingPositions = null;
         
         try
@@ -1027,7 +1027,7 @@ public class DBHandler
     
     public boolean updateWaitingPosition(int index, String custID)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -1065,7 +1065,7 @@ public class DBHandler
     
     public boolean deleteWaitingPosition(int index)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
@@ -1098,7 +1098,7 @@ public class DBHandler
     //Tyres Methods:
     public boolean createTyre(String id, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -1138,7 +1138,7 @@ public class DBHandler
     
     public void retrieveTyres(ICallback owner)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         ResultSet tyres = null;
         
         try
@@ -1169,7 +1169,7 @@ public class DBHandler
     
     public boolean updateTyre(String id, String saleID, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         
         CallableStatement cs = null;
         int rowCount = -1;
@@ -1210,7 +1210,7 @@ public class DBHandler
     
     public boolean deleteTyre(String id)
     {
-        Connection c = _dbConnector.getConnection();
+        Connection c = _DBCONNECTOR.getConnection();
         int rowCount = -1;
         
         try
