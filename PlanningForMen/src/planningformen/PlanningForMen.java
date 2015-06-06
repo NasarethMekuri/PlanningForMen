@@ -8,18 +8,9 @@ package planningformen;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import planningformen.domain.Master;
-import planningformen.domain.financeandefficiency.Sale;
-import planningformen.domain.financeandefficiency.SaleManager;
-import planningformen.domain.financeandefficiency.Service;
-import planningformen.domain.financeandefficiency.ServiceManager;
-import planningformen.domain.financeandefficiency.ServiceState;
-import planningformen.domain.financeandefficiency.ServiceType;
-import planningformen.domain.financeandefficiency.TransactionManager;
+import planningformen.domain.financeandefficiency.*;
 import planningformen.domain.planning.*;
-import planningformen.domain.tyre.TyreManager;
-import planningformen.domain.tyre.TyreSize;
-import planningformen.domain.tyre.TyreType;
+import planningformen.domain.tyre.*;
 
 /**
  *
@@ -52,7 +43,9 @@ public class PlanningForMen
         /*System.out.println("#### Testing Sales ####");
         testApp.testSales();
         testApp.testTransactions();*/
-        testApp.testTyres();
+        //testApp.testTyres();
+        
+        testApp.testSlotRetrieval();
     }
     
     private void testCars()
@@ -161,7 +154,7 @@ public class PlanningForMen
         }
         
     }
-
+    
     private void testCustomers()
     {
         CustomerManager.getInstance().createCustomer("0102039877", "Mogens", "Lykketoft", "Somewhere", "666", "8888", "mogens@lykketoft.dk");
@@ -270,7 +263,7 @@ public class PlanningForMen
         {
         ServiceManager.getInstance().updateService(setter);
         }
-        */  
+        */
         
         /*
         System.out.println("\nDeleting service: expecting 2 services");
@@ -290,26 +283,26 @@ public class PlanningForMen
         {
             System.out.println(s.getId().toString());
         }
-       
+        
         
     }
-
+    
     /*private void moreServiceTests()
     {
-        System.out.println("Checking the List");
-        Master.getInstance().getServiceManager().getPrioritizedJobsList();
-        
-        for (int i = 0; i < Master.getInstance().getServiceManager().getGarages().length; i++)
-        {
-            System.out.println("DIESEL JOB nr: " + i + 1);
-            System.out.println(Master.getInstance().getServiceManager().getGarages()[0].getJobs().get(i));
-            System.out.println();
-            System.out.println("NORMAL JOB nr: " + i + 1);
-            System.out.println(Master.getInstance().getServiceManager().getGarages()[1].getJobs().get(i));
-            System.out.println();
-            System.out.println("TUNING JOB nr: " + i + 1);
-            System.out.println(Master.getInstance().getServiceManager().getGarages()[2].getJobs().get(i));
-        }
+    System.out.println("Checking the List");
+    Master.getInstance().getServiceManager().getPrioritizedJobsList();
+    
+    for (int i = 0; i < Master.getInstance().getServiceManager().getGarages().length; i++)
+    {
+    System.out.println("DIESEL JOB nr: " + i + 1);
+    System.out.println(Master.getInstance().getServiceManager().getGarages()[0].getJobs().get(i));
+    System.out.println();
+    System.out.println("NORMAL JOB nr: " + i + 1);
+    System.out.println(Master.getInstance().getServiceManager().getGarages()[1].getJobs().get(i));
+    System.out.println();
+    System.out.println("TUNING JOB nr: " + i + 1);
+    System.out.println(Master.getInstance().getServiceManager().getGarages()[2].getJobs().get(i));
+    }
     }*/
     
     private void testSales()
@@ -353,6 +346,40 @@ public class PlanningForMen
     {
         TyreManager.getInstance().createTyre(500f, 800f, new TyreSize(60, 70, 80), TyreType.MC);
         
+    }
+    
+    private void testSlotRetrieval()
+    {
+        /*
+        Slot[][][] slots = TyreHotel.getInstance().getSlots();
+        int counter = 0;
+        for (Slot[][] z : slots)
+        {
+        for (Slot[] y : z)
+        {
+        for (Slot s : y)
+        {
+        if (s != null)
+        {
+        System.out.println(s.getBinaryStringPosition());
+        }
+        
+        }
+        }
+        }
+        */
+        
+        
+        byte b = -128;
+        System.out.println(
+        TyreHotel.getInstance().findCustomerBySlot(new Slot(b, "inni01010101010101", null)).getAddress()
+        );
+        
+        /*
+        byte b = -128;
+        System.out.println(
+        TyreHotel.getInstance().findSlotByCustomer(CustomerManager.getInstance().findCustomer("inni01010101010101")).getBinaryStringPosition());
+        */
     }
     
 }
