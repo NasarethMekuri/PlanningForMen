@@ -5,6 +5,9 @@
 */
 package planningformen.domain.tyre;
 
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import planningformen.business.SlotConverter;
 import planningformen.business.WaitingListConverter;
@@ -25,10 +28,12 @@ public class TyreHotel
     
     private TyreHotel()
     {
-        _slots = _slotConverter.retrieveSlots();
-       // _waitingList = _waitingListConverter.retrieveWaitingList();
         _slotConverter = new SlotConverter();
         _waitingListConverter = new WaitingListConverter();
+        
+        _slots = _slotConverter.retrieveSlots();
+        // _waitingList = _waitingListConverter.retrieveWaitingList();
+        
     }
     
     public static synchronized TyreHotel getInstance()
@@ -52,7 +57,7 @@ public class TyreHotel
             {
                 for (Slot x:  y)
                 {
-                    if (!x.isFree())
+                    if (x != null)
                     {
                         if (x.getCustomerID().equals(c.getCustomerID()))
                         {
@@ -77,8 +82,46 @@ public class TyreHotel
         return null;
     }
     
-    public boolean reserveSlot(Customer cust, Slot slot)
+    public boolean reserveSlot(Customer cust, String binaryString)
     {
+        if (binaryString.length() > 8)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < binaryString.length(); i++)
+            {
+                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
+                {
+                    return false;
+                }
+            }
+        }
+        return reserveSlot(cust, binaryString.substring(3), binaryString.substring(1, 3), binaryString.substring(0, 1));
+    }
+    
+    
+    public boolean reserveSlot(Customer cust, String x, String y, String z)
+    {
+        Slot s = _slots[_slotConverter.convertStringToByte(z)][_slotConverter.convertStringToByte(y)][_slotConverter.convertStringToByte(x)];
+        byte b = _slotConverter.convertStringToByte(z+y+x);       
+        
+        
+        Calendar c = GregorianCalendar.getInstance();
+        Date today = new Date(c.getTimeInMillis());
+        c.add(Calendar.MONTH, 6);
+        Date freeDate = new Date(c.getTimeInMillis());
+        
+        if (s == null)
+        {
+            _slotConverter.createSlot(new Slot(b, cust.getCustomerID(),freeDate));
+        }
+        else
+        {
+            System.out.println("TRYING TO RESERVE OCCUPIED SLOT @TyreHotel -  reserveSlot");
+        }
+        
         //findSlot
         //update slot (insert customer)
         
@@ -86,7 +129,26 @@ public class TyreHotel
         
     }
     
-    public boolean endReservation(Slot s)
+    public boolean endReservation(String binaryString)
+    {
+        if (binaryString.length() > 8)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < binaryString.length(); i++)
+            {
+                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
+                {
+                    return false;
+                }
+            }
+        }
+        return endReservation(binaryString.substring(3), binaryString.substring(1, 3), binaryString.substring(0, 1));
+    }
+    
+    public boolean endReservation(String x, String y, String z)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

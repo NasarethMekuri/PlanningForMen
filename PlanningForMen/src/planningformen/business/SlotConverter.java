@@ -16,10 +16,11 @@ import planningformen.technical.IOManager;
  */
 public class SlotConverter implements ICallback
 {
-
+    private final int MAX_BITS_IN_BYTE = 8;
+    private final int SIGNED_UNSIGNED_BYTE_DIFFERENCE = 128;
     private Slot[][][] _convertedSlots;
     
-
+    
     public Slot[][][] retrieveSlots()
     {
         IOManager.getInstance().getDBHandler().retrieveSlots(this);
@@ -38,8 +39,8 @@ public class SlotConverter implements ICallback
         
         while (rs.next())
         {
-            byte b = (byte) (-128 + rs.getByte(1)); //-128 can be wrong depends on how the overflow works!?
-        
+            byte b = (byte) (-SIGNED_UNSIGNED_BYTE_DIFFERENCE + rs.getByte(1));
+            
             aSlot = new Slot(
                     b,
                     rs.getString(2),
@@ -53,10 +54,20 @@ public class SlotConverter implements ICallback
             x = convertStringToByte(aSlot.getBinaryStringPosition().substring(3));
             
             _convertedSlots[z][y][x] = aSlot;
+            
         }
         
         rs.close();
     }
+    
+    public boolean createSlot(Slot slot)
+    {
+        //return IOManager.getInstance().getDBHandler().createSlot(slot.getPosition(), slot.getCustomerID(), slot.getFreeDate());
+        return false;
+    }
+    
+    
+    
     
     public String convertByteToString(Byte b)
     {
@@ -71,7 +82,7 @@ public class SlotConverter implements ICallback
         int i = (b & 0xFF);
         
         String value = Integer.toBinaryString(i);
-
+        
         //ensure 8 bits
         if (i < 2)
         {
@@ -108,45 +119,65 @@ public class SlotConverter implements ICallback
     
     public byte convertStringToByte(String binaryString) //needs to be try-catched !!
     {
-        int i = 0;
-        if (binaryString.length() > 8)
+        int parsedValue = 0;
+        if (binaryString.length() > MAX_BITS_IN_BYTE)
         {
-            System.out.println("Not a Binary String");
-            //TODO:Display ERROR
+            System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
+        }
+        else
+        {
+            for (int i = 0; i < binaryString.length(); i++)
+            {
+                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
+                {
+                    System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
+                }
+            }
         }
         
         try
         {
-            i = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
+            parsedValue = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
         }
         catch (NumberFormatException nfe)
         {
             System.out.println("Bad binary String @SlotConverter - convertStringToByte " + nfe.getLocalizedMessage());
         }
-        i = (i & 0xFF); //Comparing mathcing bits
-        byte b = (byte) i; //typecasting to byte
+        parsedValue = (parsedValue & 0xFF); //Comparing mathcing bits to a "full byte"
+        byte b = (byte) parsedValue; //typecasting to byte
         return b;
     }
     
     public int convertStringToInt(String binaryString)
     {
-        int i = 0;
-        if (binaryString.length() > 8)
+        int parsedValue = 0;
+        if (binaryString.length() > MAX_BITS_IN_BYTE)
         {
-            System.out.println("Not a Binary String");
-            //TODO:Display ERROR
+            System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
+        }
+        else
+        {
+            for (int i = 0; i < binaryString.length(); i++)
+            {
+                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
+                {
+                    System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
+                }
+            }
         }
         
         try
         {
-            i = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
+            parsedValue = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
         }
         catch (NumberFormatException nfe)
         {
             System.out.println("Bad binary String @SlotConverter - convertStringToByte " + nfe.getLocalizedMessage());
         }
         
-        return (i & 0xFF);
+        return (parsedValue & 0xFF);
     }
+
+    
     
 }

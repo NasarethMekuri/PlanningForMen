@@ -6,7 +6,7 @@
 package planningformen.domain.tyre;
 
 import java.sql.Date;
-import planningformen.domain.Master;
+import planningformen.business.SlotConverter;
 
 /**
  *
@@ -16,8 +16,8 @@ public class Slot
 {
     private byte _position;
     private String _binaryStringPosition, _customerID;
-    private boolean _isFree;
     private Date _freeDate;
+    private SlotConverter _converter;
 
     public Slot(){}
 
@@ -26,17 +26,18 @@ public class Slot
         this._position = position;
         this._customerID = customerID;
         this._freeDate = freeDate;
-        this._binaryStringPosition = Master.getInstance().getTyreHotel().getSlotConverter().convertByteToString(position);
+        _converter = new SlotConverter();
+        this._binaryStringPosition = _converter.convertByteToString(position); //NOOOOO
     }
     
     //Accessors
     public byte getPosition()               {return _position;}
     public String getBinaryStringPosition() {return _binaryStringPosition;}
     public String getCustomerID()           {return _customerID;}
-    public boolean isFree()                 {return _isFree;}
     public Date getFreeDate()               {return _freeDate;}
     //Mutators
-    public void setFreeDate(Date freeDate)     {this._freeDate = freeDate;}
+    public void setFreeDate(Date freeDate)      {this._freeDate = freeDate;}
+  
 
     
     
