@@ -14,6 +14,7 @@ public class TyreManager
     private List<Tyre> _tyres;
     private TyreConverter _tyreConverter;
     
+    public List<Tyre> getTyres() { return _tyres; }
     private TyreManager()
     {
         _tyreConverter = new TyreConverter();

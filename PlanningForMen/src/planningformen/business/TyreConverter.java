@@ -39,14 +39,13 @@ public class TyreConverter implements ICallback
     public boolean createTyre(Tyre tyre)
     {
         String id = tyre.getId();
-        String saleID = tyre.getSaleID();
         double purchasePrice = tyre.getPurchasePrice();
         double sellPrice = tyre.getSellPrice();
         int width = tyre.getSize().getWidth();
         int profile = tyre.getSize().getProfile();
         int diameter = tyre.getSize().getDiameter();
         int type = tyre.getType().getNumericValue();
-        return IOManager.getInstance().getDBHandler().createTyre(id, saleID, purchasePrice, sellPrice, width, profile, diameter, type);
+        return IOManager.getInstance().getDBHandler().createTyre(id, purchasePrice, sellPrice, width, profile, diameter, type);
     }
     
     public List<Tyre> retrieveTyres()
