@@ -595,7 +595,7 @@ public class DBHandler
         return rowCount >= 0; 
     }
     
-    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
+    public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         System.out.println("CreateSale on DB Level - Pre-Connecting");
         Connection c = _dbConnector.getConnection();
@@ -642,6 +642,16 @@ public class DBHandler
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
                     System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");    
+                }
+                
+                
+                for(int i = 0; i < tyreIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
+
+                    cs.setString(1, tyreIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
                 }
             }
         }
@@ -694,7 +704,7 @@ public class DBHandler
         }
     }
     
-    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, double amountPaid, double tax)
+    public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -734,6 +744,15 @@ public class DBHandler
                     cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
 
                     cs.setString(1, serviceIDs[i]);
+                    cs.setString(2, id);
+                    rowCount = cs.executeUpdate();
+                }
+                
+                for(int i = 0; i < tyreIDs.length; i++)
+                {
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
+
+                    cs.setString(1, tyreIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
                 }
@@ -849,5 +868,150 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler retrieveWaitingList\n" + ex.getLocalizedMessage());
             }
         }
+    }
+    
+    public boolean createTyre(String id, String saleID, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call create_tyre(?,?,?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setString(2, saleID);
+            cs.setDouble(3, purchasePrice);
+            cs.setDouble(4, sellPrice);
+            cs.setInt(5, width);
+            cs.setInt(6, profile);
+            cs.setInt(7, diameter);
+            cs.setInt(8, type);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Tyre in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createTyre\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0;
+    }
+    
+    public void retrieveTyres(ICallback owner) 
+    {
+        Connection c = _dbConnector.getConnection();
+        ResultSet tyres = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_tyres");
+            tyres = ps.executeQuery();    
+            
+            owner.extractValues(tyres);
+            
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("SQLException @retrieveTyres - DBHandler\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveTyres\n" + ex.getLocalizedMessage());
+            }
+        }
+    }
+    
+    public boolean updateTyre(String id, String saleID, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call update_tyre(?,?,?,?,?,?,?,?)}");
+            cs.setString(1, id);
+            cs.setString(2, saleID);
+            cs.setDouble(3, purchasePrice);
+            cs.setDouble(4, sellPrice);
+            cs.setInt(5, width);
+            cs.setInt(6, profile);
+            cs.setInt(7, diameter);
+            cs.setInt(8, type);
+            
+            rowCount = cs.executeUpdate();
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when update Tyre in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler updateTyre\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0;
+    }
+    
+    public boolean deleteTyre(String id)
+    {
+        Connection c = _dbConnector.getConnection();
+        int rowCount = -1;
+        
+        try
+        {
+            CallableStatement cs = c.prepareCall("{call delete_tyre(?)}");
+            cs.setString(1, id);
+
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting a Tyre in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteTyre");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deleteTyre\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0; 
     }
 }
