@@ -16,8 +16,10 @@ import planningformen.technical.IOManager;
  */
 public class SlotConverter implements ICallback
 {
+
     private Slot[][][] _convertedSlots;
     
+
     public Slot[][][] retrieveSlots()
     {
         IOManager.getInstance().getDBHandler().retrieveSlots(this);
@@ -69,6 +71,7 @@ public class SlotConverter implements ICallback
         int i = (b & 0xFF);
         
         String value = Integer.toBinaryString(i);
+
         //ensure 8 bits
         if (i < 2)
         {
