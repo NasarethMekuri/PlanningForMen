@@ -27,7 +27,7 @@ public class Slot
         this._customerID = customerID;
         this._freeDate = freeDate;
         _converter = new SlotConverter();
-        this._binaryStringPosition = _converter.convertByteToString(position); //NOOOOO
+        this._binaryStringPosition = _converter.convertByteToString(position); 
     }
     
     //Accessors
@@ -36,7 +36,8 @@ public class Slot
     public String getCustomerID()           {return _customerID;}
     public Date getFreeDate()               {return _freeDate;}
     //Mutators
-    public void setFreeDate(Date freeDate)      {this._freeDate = freeDate;}
+    public void setFreeDate(Date freeDate)          {this._freeDate = freeDate;}
+    public void setCustomerID(String _customerID)   {this._customerID = _customerID;}
   
 
     

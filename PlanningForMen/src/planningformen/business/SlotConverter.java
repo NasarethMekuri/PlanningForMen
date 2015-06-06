@@ -62,13 +62,20 @@ public class SlotConverter implements ICallback
     
     public boolean createSlot(Slot slot)
     {
-        //return IOManager.getInstance().getDBHandler().createSlot(slot.getPosition(), slot.getCustomerID(), slot.getFreeDate());
-        return false;
+        return IOManager.getInstance().getDBHandler().createSlot((slot.getPosition() +SIGNED_UNSIGNED_BYTE_DIFFERENCE), slot.getCustomerID(), slot.getFreeDate());
     }
     
+    public boolean updateSlot(Slot slot)
+    {
+        return IOManager.getInstance().getDBHandler().updateSlot((slot.getPosition() +SIGNED_UNSIGNED_BYTE_DIFFERENCE), slot.getCustomerID(), slot.getFreeDate());
+    }
     
-    
-    
+     public boolean deleteSlot(Slot slot)
+    {
+        return IOManager.getInstance().getDBHandler().deleteSlot((slot.getPosition() +SIGNED_UNSIGNED_BYTE_DIFFERENCE), slot.getCustomerID(), slot.getFreeDate());
+    }
+     
+     
     public String convertByteToString(Byte b)
     {
         StringBuilder sb = new StringBuilder();
@@ -177,6 +184,10 @@ public class SlotConverter implements ICallback
         
         return (parsedValue & 0xFF);
     }
+
+    
+
+   
 
     
     

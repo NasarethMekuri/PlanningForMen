@@ -40,6 +40,21 @@ public class WaitingListConverter implements ICallback
         rs.close();
     }
 
+    
+    public boolean createWaitingPosition(int index, String custID)
+    {
+        return IOManager.getInstance().getDBHandler().createWaitingPosition(index, custID);
+    }
+    
+    public boolean updateWaitingPosition(int index, String custID)
+    {
+        return IOManager.getInstance().getDBHandler().updateWaitingPosition(index, custID);
+    }
+    
+     public boolean deleteWaitingPosition(int index, String custID)
+    {
+        return IOManager.getInstance().getDBHandler().deleteWaitingPosition(index);
+    }
    
     
 }

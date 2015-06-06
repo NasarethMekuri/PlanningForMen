@@ -80,7 +80,7 @@ public class DBHandler
             }
         }
         
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
     
     public void retrieveCars(ICallback owner)
@@ -91,7 +91,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_cars");
-            allCars = ps.executeQuery();    
+            allCars = ps.executeQuery();
             
             owner.extractValues(allCars);
             
@@ -187,7 +187,6 @@ public class DBHandler
     }
     
     //Customer Methods
-    
     public boolean createCustomer(String customerID, String personID, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
         Connection c = _dbConnector.getConnection();
@@ -228,7 +227,7 @@ public class DBHandler
         }
         return rowCount >= 0;
     }
-
+    
     public void retrieveCustomers(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
@@ -271,9 +270,9 @@ public class DBHandler
             cs = c.prepareCall("{call update_customer(?,?,?,?,?,?,?)}");
             //cs.setString(1, customerID);  //This will be changed in future iterations when Customer "evolves". Same goes for the sql queries.
             cs.setString(1, personID); //@Cymon: check db script. Update tager ikke CustomerID (Endnu) Discuss tomorrow evt.
-            cs.setString(2, firstName); 
-            cs.setString(3, lastName); 
-            cs.setString(4, address); 
+            cs.setString(2, firstName);
+            cs.setString(3, lastName);
+            cs.setString(4, address);
             cs.setString(5, phoneNumber);
             cs.setString(6, postalNumber);
             cs.setString(7, email);
@@ -316,7 +315,7 @@ public class DBHandler
         {
             cs = c.prepareCall("{call delete_person(?)}");
             cs.setString(1, personID);
-
+            
             rowCount = cs.executeUpdate();
             cs.close();
             
@@ -340,9 +339,8 @@ public class DBHandler
     }
     
     //Employee Methods
-    
-    public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address, 
-                                  String phoneNumber, String postalNumber, String email, int skillType)
+    public boolean createEmployee(String employeeID, String personID, String firstName, String lastName, String address,
+            String phoneNumber, String postalNumber, String email, int skillType)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -383,7 +381,7 @@ public class DBHandler
         }
         return rowCount >= 0;
     }
-
+    
     public void retrieveEmployees(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
@@ -413,8 +411,8 @@ public class DBHandler
         }
     }
     
-    public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address, 
-                                  String phoneNumber, String postalNumber, String email, int skillType)
+    public boolean updateEmployee(String employeeID, String personID, String firstName, String lastName, String address,
+            String phoneNumber, String postalNumber, String email, int skillType)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -454,10 +452,10 @@ public class DBHandler
             }
         }
         return rowCount >= 0;
-    }   
+    }
     
     //Service Methods:
-     public boolean createService(String id, double price, String description, int type, int state, int garageThatStartedService)
+    public boolean createService(String id, double price, String description, int type, int state, int garageThatStartedService)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -496,7 +494,7 @@ public class DBHandler
             }
         }
         
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
     
     public void retrieveServices(ICallback owner)
@@ -507,7 +505,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_services");
-            allServices = ps.executeQuery();    
+            allServices = ps.executeQuery();
             
             owner.extractValues(allServices);
             
@@ -529,7 +527,7 @@ public class DBHandler
             }
         }
     }
-
+    
     public boolean updateService(String id, String saleID, double price, String description, int type, int state, int garageThatStartedService)
     {
         Connection c = _dbConnector.getConnection();
@@ -547,7 +545,7 @@ public class DBHandler
             cs.setInt(5, type);
             cs.setInt(6, state);
             cs.setInt(7, garageThatStartedService);
-           
+            
             
             rowCount = cs.executeUpdate();
             
@@ -560,9 +558,9 @@ public class DBHandler
         }
         
         
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
-
+    
     public boolean deleteService(String id)
     {
         Connection c = _dbConnector.getConnection();
@@ -592,9 +590,10 @@ public class DBHandler
             }
         }
         
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
     
+    //Sales methods
     public boolean createSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         System.out.println("CreateSale on DB Level - Pre-Connecting");
@@ -626,29 +625,29 @@ public class DBHandler
                 {
                     
                     cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
-
+                    
                     cs.setString(1, carIDs[i]);
                     cs.setString(2, id);
                     
                     rowCount = cs.executeUpdate();
                     System.out.println("car with ID: " + carIDs[i] + " has been updated!");
                 }
-
+                
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
-
+                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}");
+                    
                     cs.setString(1, serviceIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
-                    System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");    
+                    System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");
                 }
                 
                 
                 for(int i = 0; i < tyreIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
-
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}");
+                    
                     cs.setString(1, tyreIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
@@ -670,10 +669,10 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler createSale\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
     
-    public void retrieveSales(ICallback owner) 
+    public void retrieveSales(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
         ResultSet sales = null;
@@ -681,7 +680,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_sales");
-            sales = ps.executeQuery();    
+            sales = ps.executeQuery();
             
             owner.extractValues(sales);
             
@@ -728,21 +727,21 @@ public class DBHandler
             
             if(rowCount >= 0) //Only continue if the initial creation succeeded!
             {
-               //Create / update many-side
+                //Create / update many-side
                 for(int i = 0; i < carIDs.length; i++)
                 {
                     
                     cs = c.prepareCall("{call update_saleid_on_car(?,?)}");
-
+                    
                     cs.setString(1, carIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
                 }
-
+                
                 for(int i = 0; i < serviceIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}"); 
-
+                    cs = c.prepareCall("{call update_saleid_on_service(?,?)}");
+                    
                     cs.setString(1, serviceIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
@@ -750,8 +749,8 @@ public class DBHandler
                 
                 for(int i = 0; i < tyreIDs.length; i++)
                 {
-                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}"); 
-
+                    cs = c.prepareCall("{call update_saleid_on_tyre(?,?)}");
+                    
                     cs.setString(1, tyreIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
@@ -773,7 +772,7 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler updateSale\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
     
     public boolean deleteSale(String id)
@@ -785,7 +784,7 @@ public class DBHandler
         {
             CallableStatement cs = c.prepareCall("{call delete_sale(?)}");
             cs.setString(1, id);
-
+            
             rowCount = cs.executeUpdate();
             
             cs.close();
@@ -805,9 +804,57 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler deleteSale\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
-
+    
+    //Slots Methods:
+    public boolean createSlot(int position, String customerID, Date freeDate)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call create_slot(?,?,?)}");
+            
+            if (position <= 255)
+            {
+                cs.setInt(1, position); //Might be flawed sql is expecting tinyint
+            }
+            else
+            {
+                System.out.println("Trying to pass overflowed byte-value into DB");
+            }
+            
+            cs.setString(2, customerID);
+            cs.setDate(3, freeDate);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating Slot in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createSlot\n" + ex.getLocalizedMessage());
+            }
+        }
+        
+        return rowCount >= 0;
+    }
+    
     public void retrieveSlots(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
@@ -816,7 +863,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_slots");
-            slots = ps.executeQuery();    
+            slots = ps.executeQuery();
             
             owner.extractValues(slots);
             
@@ -838,7 +885,115 @@ public class DBHandler
             }
         }
     }
-
+    
+    public boolean updateSlot(int position, String customerID, Date freeDate)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call update_slot(?,?,?)}");
+            
+            if (position <= 255)
+            {
+                cs.setInt(1, position); //Might be flawed sql is expecting tinyint
+            }
+            else
+            {
+                System.out.println("Trying to pass overflowed byte-value into DB");
+            }
+            
+            cs.setString(2, customerID);
+            cs.setDate(3, freeDate);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating Slot in DB!\n" + ex.getLocalizedMessage());
+        }
+        
+        
+        return rowCount >= 0; //NEEDS TESTING (not sure that 0 is the right number??)
+    }
+    
+    public boolean deleteSlot(int position, String customerID, Date freeDate)
+    {
+        Connection c = _dbConnector.getConnection();
+        int rowCount = -1;
+        
+        try
+        {
+            CallableStatement cs = c.prepareCall("{call delete_slot(?)}");
+            cs.setInt(1, position);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting a Slot in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteSlot");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deleteSlot\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0;
+    }
+    
+    //Waiting List Methods:
+    public boolean createWaitingPosition(int index, String custID)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call create_waiting_posistion(?,?)}");
+            
+            cs.setInt(1, index);
+            cs.setString(2, custID);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when creating WaitingPosition in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler createWaitingPosition\n" + ex.getLocalizedMessage());
+            }
+        }
+        
+        return rowCount >= 0;
+    }
+    
     public void retrieveWaitingList(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
@@ -847,7 +1002,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_waiting_positions");
-            waitingPositions = ps.executeQuery();    
+            waitingPositions = ps.executeQuery();
             
             owner.extractValues(waitingPositions);
             
@@ -870,6 +1025,77 @@ public class DBHandler
         }
     }
     
+    public boolean updateWaitingPosition(int index, String custID)
+    {
+        Connection c = _dbConnector.getConnection();
+        
+        CallableStatement cs = null;
+        int rowCount = -1;
+        
+        try
+        {
+            cs = c.prepareCall("{call update_waiting_posistion(?,?)}");
+            
+            cs.setInt(1, index);
+            cs.setString(2, custID);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when updating WaitingPosition in DB!\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler updateWaitingPosition\n" + ex.getLocalizedMessage());
+            }
+        }
+        
+        return rowCount >= 0;
+    }
+    
+    public boolean deleteWaitingPosition(int index)
+    {
+        Connection c = _dbConnector.getConnection();
+        int rowCount = -1;
+        
+        try
+        {
+            CallableStatement cs = c.prepareCall("{call delete_waiting_posistion(?)}");
+            cs.setInt(1, index);
+            
+            rowCount = cs.executeUpdate();
+            
+            cs.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error when deleting a WaitingPosition in DB!\n" + ex.getLocalizedMessage() + "\n@DBHandler deleteWaitingPosition");
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler deleteWaitingPosition\n" + ex.getLocalizedMessage());
+            }
+        }
+        return rowCount >= 0;
+    }
+    
+    //Tyres Methods:
     public boolean createTyre(String id, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
     {
         Connection c = _dbConnector.getConnection();
@@ -910,7 +1136,7 @@ public class DBHandler
         return rowCount >= 0;
     }
     
-    public void retrieveTyres(ICallback owner) 
+    public void retrieveTyres(ICallback owner)
     {
         Connection c = _dbConnector.getConnection();
         ResultSet tyres = null;
@@ -918,7 +1144,7 @@ public class DBHandler
         try
         {
             PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_tyres");
-            tyres = ps.executeQuery();    
+            tyres = ps.executeQuery();
             
             owner.extractValues(tyres);
             
@@ -991,7 +1217,7 @@ public class DBHandler
         {
             CallableStatement cs = c.prepareCall("{call delete_tyre(?)}");
             cs.setString(1, id);
-
+            
             rowCount = cs.executeUpdate();
             
             cs.close();
@@ -1011,6 +1237,14 @@ public class DBHandler
                 System.out.println("Failed to close connection! @DBHandler deleteTyre\n" + ex.getLocalizedMessage());
             }
         }
-        return rowCount >= 0; 
+        return rowCount >= 0;
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }
