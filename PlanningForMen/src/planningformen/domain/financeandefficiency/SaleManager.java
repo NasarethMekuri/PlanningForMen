@@ -12,6 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import planningformen.business.SaleConverter;
 import planningformen.domain.planning.*;
+import planningformen.domain.tyre.Tyre;
+import planningformen.domain.tyre.TyreManager;
 
 /**
  *
@@ -42,7 +44,6 @@ public class SaleManager implements ISaleCallback
     
     public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables, double amountPaid)
     {
-        System.out.println("CreateSale on Manager Level!!!");
         Calendar c = GregorianCalendar.getInstance();
         Date sellDate = new Date(c.getTimeInMillis());
         c.add(Calendar.DATE, 14);
@@ -107,7 +108,7 @@ public class SaleManager implements ISaleCallback
             
             if(updateSale(sale)) //If db stuff succeeds
             {
-                sale.setAmountPaid(amountPaid);
+                sale.setAmountPaid(totalAmountPaid);
                 return sale.getTotalPrice() - sale.getAmountPaid();
             }
         }
@@ -115,7 +116,6 @@ public class SaleManager implements ISaleCallback
     }
     
     public List<Sale> getSales() {return _sales; }
-    
     
     /**
      * returns a list of sales adhering to the desired parameters. If cust is null, it will not be taken into consideration.
@@ -193,9 +193,14 @@ public class SaleManager implements ISaleCallback
         return ServiceManager.getInstance().findServicesBySaleID(saleID);
     }
     
+    @Override
+    public List<Tyre> getTyresBySaleID(String saleID)
+    {
+        return TyreManager.getInstance().findTyres(saleID);
+    }
+    
     public SalesNumbers generateYearlySales(int year)
     {
         return new SalesNumbers(year);
     }
-    
 }
