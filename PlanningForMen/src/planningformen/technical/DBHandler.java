@@ -7,7 +7,6 @@
 package planningformen.technical;
 
 import java.sql.*;
-import java.util.List;
 import planningformen.business.ICallback;
 import planningformen.core.DBConnector;
 
@@ -788,6 +787,68 @@ public class DBHandler
             }
         }
         return rowCount >= 0; 
+    }
+
+    public void retrieveSlots(ICallback owner)
+    {
+        Connection c = _dbConnector.getConnection();
+        ResultSet slots = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_slots");
+            slots = ps.executeQuery();    
+            
+            owner.extractValues(slots);
+            
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("SQLException @retrieveSlots - DBHandler\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveSlots\n" + ex.getLocalizedMessage());
+            }
+        }
+    }
+
+    public void retrieveWaitingList(ICallback owner)
+    {
+        Connection c = _dbConnector.getConnection();
+        ResultSet waitingPositions = null;
+        
+        try
+        {
+            PreparedStatement ps = c.prepareCall("SELECT * FROM retrieve_all_waiting_positions");
+            waitingPositions = ps.executeQuery();    
+            
+            owner.extractValues(waitingPositions);
+            
+            ps.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("SQLException @retrieveWaitingList - DBHandler\n" + ex.getLocalizedMessage());
+        }
+        finally
+        {
+            try
+            {
+                c.close();
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Failed to close connection! @DBHandler retrieveWaitingList\n" + ex.getLocalizedMessage());
+            }
+        }
     }
     
     

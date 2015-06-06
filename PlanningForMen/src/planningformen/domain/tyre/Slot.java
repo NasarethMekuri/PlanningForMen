@@ -6,7 +6,7 @@
 package planningformen.domain.tyre;
 
 import java.sql.Date;
-import planningformen.domain.planning.Customer;
+import planningformen.domain.Master;
 
 /**
  *
@@ -15,24 +15,27 @@ import planningformen.domain.planning.Customer;
 public class Slot
 {
     private byte _position;
-    private String _binaryStringPosition;
-    private Customer _customer;
+    private String _binaryStringPosition, _customerID;
     private boolean _isFree;
     private Date _freeDate;
 
-    public Slot()
+    public Slot(){}
+
+    public Slot(byte position, String customerID, Date freeDate)
     {
-        
+        this._position = position;
+        this._customerID = customerID;
+        this._freeDate = freeDate;
+        this._binaryStringPosition = Master.getInstance().getTyreHotel().getSlotConverter().convertByteToString(position);
     }
     
     //Accessors
     public byte getPosition()               {return _position;}
     public String getBinaryStringPosition() {return _binaryStringPosition;}
-    public Customer getCustomer()           {return _customer;}
+    public String getCustomerID()           {return _customerID;}
     public boolean isFree()                 {return _isFree;}
     public Date getFreeDate()               {return _freeDate;}
     //Mutators
-    public void setCustomer(Customer customer) {this._customer = customer;}
     public void setFreeDate(Date freeDate)     {this._freeDate = freeDate;}
 
     

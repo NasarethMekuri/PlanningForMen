@@ -9,6 +9,7 @@ import planningformen.domain.financeandefficiency.ServiceManager;
 import planningformen.domain.financeandefficiency.TransactionManager;
 import planningformen.domain.planning.CarManager;
 import planningformen.domain.planning.CustomerManager;
+import planningformen.domain.tyre.TyreHotel;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Master
     //TODO: Der mangler en EmployeeManager
     private ServiceManager _serviceManager;
     private TransactionManager _transactionManager;
+    private TyreHotel _tyreHotel;
     
     private  Master()
     {
@@ -30,6 +32,7 @@ public class Master
         //TODO: Der mangler en EmployeeManager
         _serviceManager = _serviceManager.getInstance();
         _transactionManager = _transactionManager.getInstance();
+        _tyreHotel = TyreHotel.getInstance();
     }
     
     public static synchronized Master getInstance()
@@ -46,6 +49,7 @@ public class Master
     public CarManager getCarManager()                   {return _carManager;}
     public ServiceManager getServiceManager()           {return _serviceManager;}
     public TransactionManager getTransactionManager()   {return _transactionManager;}
+    public TyreHotel getTyreHotel()                     {return _tyreHotel;}
     
     
     
