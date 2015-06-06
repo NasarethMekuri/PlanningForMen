@@ -870,7 +870,7 @@ public class DBHandler
         }
     }
     
-    public boolean createTyre(String id, String saleID, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
+    public boolean createTyre(String id, double purchasePrice, double sellPrice, int width, int profile, int diameter, int type)
     {
         Connection c = _dbConnector.getConnection();
         
@@ -879,15 +879,14 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call create_tyre(?,?,?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call create_tyre(?,?,?,?,?,?,?)}");
             cs.setString(1, id);
-            cs.setString(2, saleID);
-            cs.setDouble(3, purchasePrice);
-            cs.setDouble(4, sellPrice);
-            cs.setInt(5, width);
-            cs.setInt(6, profile);
-            cs.setInt(7, diameter);
-            cs.setInt(8, type);
+            cs.setDouble(2, purchasePrice);
+            cs.setDouble(3, sellPrice);
+            cs.setInt(4, width);
+            cs.setInt(5, profile);
+            cs.setInt(6, diameter);
+            cs.setInt(7, type);
             
             rowCount = cs.executeUpdate();
             cs.close();
