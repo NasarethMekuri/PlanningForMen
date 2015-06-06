@@ -850,8 +850,4 @@ public class DBHandler
             }
         }
     }
-    
-    
-
-   
 }

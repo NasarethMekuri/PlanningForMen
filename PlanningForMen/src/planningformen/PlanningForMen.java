@@ -17,6 +17,9 @@ import planningformen.domain.financeandefficiency.ServiceState;
 import planningformen.domain.financeandefficiency.ServiceType;
 import planningformen.domain.financeandefficiency.TransactionManager;
 import planningformen.domain.planning.*;
+import planningformen.domain.tyre.TyreManager;
+import planningformen.domain.tyre.TyreSize;
+import planningformen.domain.tyre.TyreType;
 
 /**
  *
@@ -46,9 +49,10 @@ public class PlanningForMen
         //System.out.println("#### TESTING SERVICES V2.0 ####");
         //testApp.moreServiceTests();
         
-        System.out.println("#### Testing Sales ####");
+        /*System.out.println("#### Testing Sales ####");
         testApp.testSales();
-        testApp.testTransactions();
+        testApp.testTransactions();*/
+        testApp.testTyres();
     }
     
     private void testCars()
@@ -342,7 +346,13 @@ public class PlanningForMen
     
     public void testTransactions()
     {
-        TransactionManager.getInstance().createTransactionsFile(Date.valueOf("2014-01-01"), Date.valueOf("2015-12-31"));
+        //TransactionManager.getInstance().createTransactionsFile(Date.valueOf("2014-01-01"), Date.valueOf("2015-12-31"));
+    }
+    
+    public void testTyres()
+    {
+        TyreManager.getInstance().createTyre(500f, 800f, new TyreSize(60, 70, 80), TyreType.MC);
+        
     }
     
 }
