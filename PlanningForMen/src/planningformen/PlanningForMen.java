@@ -8,6 +8,7 @@ package planningformen;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import planningformen.business.SlotConverter;
 import planningformen.domain.financeandefficiency.*;
 import planningformen.domain.planning.*;
 import planningformen.domain.tyre.*;
@@ -369,17 +370,47 @@ public class PlanningForMen
         }
         */
         
-        
+        /*
         byte b = -128;
         System.out.println(
         TyreHotel.getInstance().findCustomerBySlot(new Slot(b, "inni01010101010101", null)).getAddress()
         );
-        
+        */
         /*
         byte b = -128;
         System.out.println(
         TyreHotel.getInstance().findSlotByCustomer(CustomerManager.getInstance().findCustomer("inni01010101010101")).getBinaryStringPosition());
         */
+        
+        SlotConverter sc = TyreHotel.getInstance().getSlotConverter();
+        byte b = -128;
+        for (int i = -127; i < 129; i++)
+        {
+            System.out.print("Converting " + b + " into: " + sc.convertByteToStringSimple(b));
+            System.out.println(" | Converted back = " + sc.convertStringToByte(sc.convertByteToString(b)));
+            b++;
+        }
+        
+        /* THIS SHOULD WORK!?
+        byte b = 0;
+        int x = b;
+        
+        String zeroes = "0000000";
+        
+        for (int i = -127; i < 129; i++)
+        {
+        String binaryString = Integer.toBinaryString(i);
+        
+        binaryString = zeroes + binaryString;
+        
+        binaryString = binaryString.substring(binaryString.length() - 8);
+        
+        System.out.println(binaryString);
+        }
+        */
+        
+        
+        //System.out.println(TyreHotel.getInstance().getSlotConverter().convertStringToByte("10011100"));
     }
     
 }

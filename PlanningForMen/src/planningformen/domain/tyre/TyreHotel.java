@@ -111,8 +111,8 @@ public class TyreHotel
     
     public boolean reserveSlot(Customer cust, String position)
     {
-        byte b = _slotConverter.convertStringToByte(position);
-        return reserveSlot(cust, b);
+        byte bytePosition = _slotConverter.convertStringToByte(position);
+        return reserveSlot(cust, bytePosition);
     }
     
     public boolean reserveSlot(Customer cust, String x, String y, String z) //main
@@ -193,7 +193,7 @@ public class TyreHotel
         return endReservation(binaryString.substring(3), binaryString.substring(1, 3), binaryString.substring(0, 1));
     }
     
-    public boolean endReservation(String x, String y, String z)
+    public boolean endReservation(String x, String y, String z) //main
     {
         Slot s = _slots[_slotConverter.convertStringToByte(z)][_slotConverter.convertStringToByte(y)][_slotConverter.convertStringToByte(x)];
         

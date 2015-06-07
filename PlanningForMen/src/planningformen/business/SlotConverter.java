@@ -93,35 +93,48 @@ public class SlotConverter implements ICallback
         //ensure 8 bits
         if (i < 2)
         {
-            sb.append("0000000");
+        sb.append("0000000");
         }
         else if (i < 4)
         {
-            sb.append("000000");
+        sb.append("000000");
         }
         else if (i < 8)
         {
-            sb.append("00000");
+        sb.append("00000");
         }
         else if (i < 16)
         {
-            sb.append("0000");
+        sb.append("0000");
         }
         else if (i < 32)
         {
-            sb.append("000");
+        sb.append("000");
         }
         else if (i < 64)
         {
-            sb.append("00");
+        sb.append("00");
         }
         else if (i < 128)
         {
-            sb.append("0");
+        sb.append("0");
         }
         
         sb.append(value);
         return sb.toString();
+    }
+    
+    public String convertByteToStringSimple(Byte b)
+    {     
+        int i = b;
+        
+        final String sevenZeroes = "0000000";
+        
+        String value = Integer.toBinaryString(i);
+        
+        value = sevenZeroes + value;
+        
+        return value.substring(value.length() - 8);
     }
     
     public byte convertStringToByte(String binaryString) //needs to be try-catched !!
