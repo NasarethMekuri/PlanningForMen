@@ -19,8 +19,6 @@ public class Slot
     private Date _freeDate;
     private SlotConverter _converter;
 
-    public Slot(){}
-
     public Slot(byte position, String customerID, Date freeDate)
     {
         this._position = position;

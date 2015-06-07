@@ -111,24 +111,11 @@ public class TyreHotel
     
     public boolean reserveSlot(Customer cust, String position)
     {
-        if (position.length() > 8)
-        {
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i < position.length(); i++)
-            {
-                if (position.charAt(i) != '0' || position.charAt(i) != '1')
-                {
-                    return false;
-                }
-            }
-        }
-        return reserveSlot(cust, position.substring(3), position.substring(1, 3), position.substring(0, 1));
+        byte b = _slotConverter.convertStringToByte(position);
+        return reserveSlot(cust, b);
     }
     
-    public boolean reserveSlot(Customer cust, String x, String y, String z)
+    public boolean reserveSlot(Customer cust, String x, String y, String z) //main
     {
         Slot s = _slots[_slotConverter.convertStringToByte(z)][_slotConverter.convertStringToByte(y)][_slotConverter.convertStringToByte(x)];
         byte b = _slotConverter.convertStringToByte(z+y+x);
@@ -150,13 +137,20 @@ public class TyreHotel
         else
         {
             System.out.println("TRYING TO RESERVE OCCUPIED SLOT @TyreHotel -  reserveSlot");
+            return false;
         }
-        return false;
     }
     
     public boolean reserveSlot(Customer cust, Slot s)
     {
         return reserveSlot(cust, s.getBinaryStringPosition());
+    }
+    
+    public boolean reserveSlot(Customer cust, byte position)
+    {
+        String binaryPosition = _slotConverter.convertByteToString(position);
+        
+        return reserveSlot(cust, binaryPosition.substring(3),binaryPosition.substring(1,3), binaryPosition.substring(0,1));
     }
     
     public boolean updateSlot(Slot s)
@@ -177,37 +171,25 @@ public class TyreHotel
     public boolean endReservation(Slot s)
     {
         String binaryString = s.getBinaryStringPosition();
-        byte z = _slotConverter.convertStringToByte(binaryString.substring(0, 1));
-        byte y = _slotConverter.convertStringToByte(binaryString.substring(1, 3));
-        byte x = _slotConverter.convertStringToByte(binaryString.substring(3));
+                        
+        String x = binaryString.substring(3);
+        String y = binaryString.substring(1,3);
+        String z = binaryString.substring(0,1);
         
-        Calendar c = GregorianCalendar.getInstance();
-        Date today = new Date(c.getTimeInMillis());
-        
-        if (s.getFreeDate().after(today) && _slotConverter.deleteSlot(s))
-        {
-            _slots[z][y][x] = null;
-            return true;
-        }
-        return false;
+        return endReservation(x, y, z);
     }
     
-    public boolean endReservation(String binaryString)
+    public boolean endReservation(String position) 
     {
-        if (binaryString.length() > 8)
-        {
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i < binaryString.length(); i++)
-            {
-                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
-                {
-                    return false;
-                }
-            }
-        }
+        Byte b = _slotConverter.convertStringToByte(position);
+        
+        return endReservation(b);
+    }
+    
+    public boolean endReservation(Byte position)
+    {
+        String binaryString = _slotConverter.convertByteToString(position);
+        
         return endReservation(binaryString.substring(3), binaryString.substring(1, 3), binaryString.substring(0, 1));
     }
     
@@ -225,7 +207,7 @@ public class TyreHotel
         
         if (s == null)
         {
-            System.out.println("There is no need to end this reservation!");
+            System.out.println("Trying to end reservation on a Slot that does not exist");
             return false;
         }
         else if (s.getFreeDate().after(today) && _slotConverter.deleteSlot(s))
@@ -263,7 +245,7 @@ public class TyreHotel
         if (_waitingListConverter.createWaitingPosition(nextFreeIndex, c.getCustomerID()))
         {
             _waitingList.add(nextFreeIndex, c.getCustomerID());
-
+            
             return nextFreeIndex;
         }
         return -1;
@@ -290,7 +272,7 @@ public class TyreHotel
         }
         return false;
     }
-
+    
     private void updateAllCustomersWaitingPositions()
     {
         for (int i = 0; i < _waitingList.size(); i++)

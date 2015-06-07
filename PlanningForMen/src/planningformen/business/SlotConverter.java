@@ -70,12 +70,12 @@ public class SlotConverter implements ICallback
         return IOManager.getInstance().getDBHandler().updateSlot((slot.getPosition() +SIGNED_UNSIGNED_BYTE_DIFFERENCE), slot.getCustomerID(), slot.getFreeDate());
     }
     
-     public boolean deleteSlot(Slot slot)
+    public boolean deleteSlot(Slot slot)
     {
         return IOManager.getInstance().getDBHandler().deleteSlot((slot.getPosition() +SIGNED_UNSIGNED_BYTE_DIFFERENCE), slot.getCustomerID(), slot.getFreeDate());
     }
-     
-     
+    
+    
     public String convertByteToString(Byte b)
     {
         StringBuilder sb = new StringBuilder();
@@ -127,52 +127,28 @@ public class SlotConverter implements ICallback
     public byte convertStringToByte(String binaryString) //needs to be try-catched !!
     {
         int parsedValue = 0;
+        
         if (binaryString.length() > MAX_BITS_IN_BYTE)
         {
-            System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
+            System.out.println("Bad binary String STRING IS TOO BIG @SlotConverter - convertStringToByte ");
         }
-        else
-        {
-            for (int i = 0; i < binaryString.length(); i++)
-            {
-                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
-                {
-                    System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
-                }
-            }
-        }
-        
+                
         try
         {
             parsedValue = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
         }
         catch (NumberFormatException nfe)
         {
-            System.out.println("Bad binary String @SlotConverter - convertStringToByte " + nfe.getLocalizedMessage());
+            System.out.println("Bad binary String @SlotConverter - convertStringToByte \n" + nfe.getLocalizedMessage());
         }
         parsedValue = (parsedValue & 0xFF); //Comparing mathcing bits to a "full byte"
-        byte b = (byte) parsedValue; //typecasting to byte
-        return b;
+        return (byte) parsedValue; //typecasting to byte
     }
     
     public int convertStringToInt(String binaryString)
     {
         int parsedValue = 0;
-        if (binaryString.length() > MAX_BITS_IN_BYTE)
-        {
-            System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
-        }
-        else
-        {
-            for (int i = 0; i < binaryString.length(); i++)
-            {
-                if (binaryString.charAt(i) != '0' || binaryString.charAt(i) != '1')
-                {
-                    System.out.println("Bad binary String @SlotConverter - convertStringToByte ");
-                }
-            }
-        }
-        
+                    
         try
         {
             parsedValue = Integer.parseInt(binaryString, 2); //Parsing int into a binaryString (using radix 2)
@@ -184,11 +160,11 @@ public class SlotConverter implements ICallback
         
         return (parsedValue & 0xFF);
     }
-
     
-
-   
-
+    
+    
+    
+    
     
     
 }
