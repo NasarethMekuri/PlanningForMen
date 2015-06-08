@@ -1,5 +1,6 @@
 package planningformen.ui.gui;
 
+import javax.swing.JPanel;
 import planningformen.ui.gui.*;
 
 /**
@@ -8,13 +9,14 @@ import planningformen.ui.gui.*;
  */
 public class MainFrame extends javax.swing.JFrame
 {
-
+    private JPanel _currentPanel;
     /**
      * Creates new form MainFrame
      */
     public MainFrame()
     {
         initComponents();
+        _currentPanel = pnlLanding;
     }
 
     /**
@@ -27,15 +29,20 @@ public class MainFrame extends javax.swing.JFrame
     private void initComponents()
     {
 
+        MasterPanel = new javax.swing.JPanel();
         pnlLanding = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
         btnHotel = new javax.swing.JButton();
         Quit = new javax.swing.JButton();
         createMainPanel1 = new planningformen.ui.gui.CreateMainPanel();
+        findMainPanel1 = new planningformen.ui.gui.FindMainPanel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.CardLayout());
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        MasterPanel.setLayout(new java.awt.CardLayout());
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener()
@@ -47,6 +54,13 @@ public class MainFrame extends javax.swing.JFrame
         });
 
         btnFind.setText("Find");
+        btnFind.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFindActionPerformed(evt);
+            }
+        });
 
         btnHotel.setText("TyreHotel");
 
@@ -83,11 +97,51 @@ public class MainFrame extends javax.swing.JFrame
                 .addComponent(btnHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Quit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlLanding, "card2");
-        getContentPane().add(createMainPanel1, "card3");
+        MasterPanel.add(pnlLanding, "card2");
+        MasterPanel.add(createMainPanel1, "card3");
+
+        javax.swing.GroupLayout findMainPanel1Layout = new javax.swing.GroupLayout(findMainPanel1);
+        findMainPanel1.setLayout(findMainPanel1Layout);
+        findMainPanel1Layout.setHorizontalGroup(
+            findMainPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1049, Short.MAX_VALUE)
+        );
+        findMainPanel1Layout.setVerticalGroup(
+            findMainPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 535, Short.MAX_VALUE)
+        );
+
+        MasterPanel.add(findMainPanel1, "card4");
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MasterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(418, 418, 418)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MasterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,8 +149,8 @@ public class MainFrame extends javax.swing.JFrame
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
     {//GEN-HEADEREND:event_btnCreateActionPerformed
         // Switch to "CreateMainPanel"
-        pnlLanding.setVisible(false);
-        createMainPanel1.setVisible(true);
+        changePanel(createMainPanel1);
+        
         
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -104,6 +158,16 @@ public class MainFrame extends javax.swing.JFrame
     {//GEN-HEADEREND:event_QuitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_QuitActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBackActionPerformed
+    {//GEN-HEADEREND:event_btnBackActionPerformed
+        changePanel(pnlLanding);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
+    {//GEN-HEADEREND:event_btnFindActionPerformed
+        changePanel(findMainPanel1);
+    }//GEN-LAST:event_btnFindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,13 +213,25 @@ public class MainFrame extends javax.swing.JFrame
             }
         });
     }
+    
+    private void changePanel(JPanel newPanel)
+    {
+        _currentPanel.setVisible(false);
+        _currentPanel = newPanel;
+        _currentPanel.setVisible(true);
+        btnBack.setVisible(_currentPanel != pnlLanding); //Hides back button if going to landing page.
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel MasterPanel;
     private javax.swing.JButton Quit;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnHotel;
     private planningformen.ui.gui.CreateMainPanel createMainPanel1;
+    private planningformen.ui.gui.FindMainPanel findMainPanel1;
     private javax.swing.JPanel pnlLanding;
     // End of variables declaration//GEN-END:variables
 }

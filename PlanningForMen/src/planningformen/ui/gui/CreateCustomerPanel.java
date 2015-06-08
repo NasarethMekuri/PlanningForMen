@@ -7,15 +7,15 @@ package planningformen.ui.gui;
 
 /**
  *
- * @author Morten
+ * @author bruger
  */
-public class CreateTyre extends javax.swing.JPanel
+public class CreateCustomerPanel extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form CreateTyre
+     * Creates new form CreateCustomerPanel
      */
-    public CreateTyre()
+    public CreateCustomerPanel()
     {
         initComponents();
     }
