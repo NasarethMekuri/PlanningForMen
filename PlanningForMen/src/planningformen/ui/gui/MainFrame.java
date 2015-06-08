@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package planningformen.ui.gui;
-import planningformen.ui.*;
+
+import planningformen.ui.gui.*;
 
 /**
  *
@@ -31,29 +27,83 @@ public class MainFrame extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        pnlLanding = new javax.swing.JPanel();
+        btnCreate = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
+        btnHotel = new javax.swing.JButton();
+        Quit = new javax.swing.JButton();
+        createMainPanel1 = new planningformen.ui.gui.CreateMainPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                .addContainerGap())
+        btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        btnFind.setText("Find");
+
+        btnHotel.setText("TyreHotel");
+
+        Quit.setText("Quit");
+        Quit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                QuitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlLandingLayout = new javax.swing.GroupLayout(pnlLanding);
+        pnlLanding.setLayout(pnlLandingLayout);
+        pnlLandingLayout.setHorizontalGroup(
+            pnlLandingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLandingLayout.createSequentialGroup()
+                .addGap(383, 383, 383)
+                .addGroup(pnlLandingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Quit, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
-                .addContainerGap())
+        pnlLandingLayout.setVerticalGroup(
+            pnlLandingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLandingLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Quit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
+
+        getContentPane().add(pnlLanding, "card2");
+        getContentPane().add(createMainPanel1, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
+    {//GEN-HEADEREND:event_btnCreateActionPerformed
+        // Switch to "CreateMainPanel"
+        pnlLanding.setVisible(false);
+        createMainPanel1.setVisible(true);
+        
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void QuitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_QuitActionPerformed
+    {//GEN-HEADEREND:event_QuitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_QuitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,6 +151,11 @@ public class MainFrame extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton Quit;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnHotel;
+    private planningformen.ui.gui.CreateMainPanel createMainPanel1;
+    private javax.swing.JPanel pnlLanding;
     // End of variables declaration//GEN-END:variables
 }
