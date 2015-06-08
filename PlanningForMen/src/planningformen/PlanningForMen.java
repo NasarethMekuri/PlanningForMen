@@ -346,7 +346,9 @@ public class PlanningForMen
     public void testTyres()
     {
         TyreManager.getInstance().createTyre(500f, 800f, new TyreSize(60, 70, 80), TyreType.MC);
-        
+        System.out.println("List Length: " + TyreManager.getInstance().getTyres().size());
+        TyreManager.getInstance().deleteTyre(TyreManager.getInstance().getTyres().get(TyreManager.getInstance().getTyres().size() - 1));
+        System.out.println("List Length: " + TyreManager.getInstance().getTyres().size());
     }
     
     private void testSlotRetrieval()
