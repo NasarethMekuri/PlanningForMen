@@ -7,6 +7,7 @@ package planningformen.application;
 
 import java.util.List;
 import planningformen.domain.planning.Customer;
+import planningformen.domain.Master;
 
 /**
  *
@@ -16,9 +17,10 @@ public class CustomerController implements ICustomerController
 {
 
     @Override
-    public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String email)
+    public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCustomerManager().createCustomer(id.trim(), firstName.trim(), lastName.trim(), address.trim(),
+                                                                        phoneNumber.trim(), postalNumber.trim(), email.trim());
     }
 
     @Override

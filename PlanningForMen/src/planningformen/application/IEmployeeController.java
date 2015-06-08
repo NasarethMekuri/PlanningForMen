@@ -11,5 +11,6 @@ package planningformen.application;
  */
 public interface IEmployeeController
 {
-    
+    public boolean createEmployee(String personID, String firstName, String lastName, String address, String phoneNumber,
+            String postalNumber, String email, int skillType);
 }

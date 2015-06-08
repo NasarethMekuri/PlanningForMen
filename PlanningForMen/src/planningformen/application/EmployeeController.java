@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package planningformen.application;
 
+import planningformen.domain.Master;
 /**
- *
- * @author Simon
+  * @author MKJ
  */
 public class EmployeeController implements IEmployeeController
 {
-    
+    public boolean createEmployee(String personID, String firstName, String lastName, String address, String phoneNumber,
+            String postalNumber, String email, int skillType)
+    {
+        return Master.getInstance().getEmployeeManager().createEmployee(personID, firstName, lastName, address, phoneNumber, postalNumber, email, skillType);
+    }
 }

@@ -38,7 +38,8 @@ public class EmployeeManager
     public boolean createEmployee(String id, String firstName, String lastName, String address, String phoneNumber,
             String postalNumber, String email, int skillType)
     {
-        Employee tmpEmployee = new Employee(id, firstName, lastName, address, phoneNumber, postalNumber, email, skillType);
+        Employee tmpEmployee = new Employee(id.trim(), firstName.trim(), lastName.trim(), address.trim(), phoneNumber.trim(),
+                                            postalNumber.trim(), email.trim(), skillType);
         if(_personConverter.createEmployee(tmpEmployee))
         {
             _employees.add(tmpEmployee);

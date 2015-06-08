@@ -5,6 +5,7 @@
  */
 package planningformen.ui.gui;
 import planningformen.ui.gui.*;
+import planningformen.ui.gui.CreateEmployeePanel;
 /**
  *
  * @author Morten
@@ -31,81 +32,13 @@ public class CreateMainPanel extends javax.swing.JPanel
     {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        createCarPanel1 = new planningformen.ui.gui.CreateCarPanel();
+        createEmployee1 = new planningformen.ui.gui.CreateEmployeePanel();
         createCustomerPanel1 = new planningformen.ui.gui.CreateCustomerPanel();
-        createEmployee2 = new planningformen.ui.gui.CreateEmployee();
-        createServicePanel1 = new planningformen.ui.gui.CreateServicePanel();
-        createTyrePanel1 = new planningformen.ui.gui.CreateTyrePanel();
-        createSalePanel1 = new planningformen.ui.gui.CreateSalePanel();
         jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jTabbedPane1.addTab("Car", createCarPanel1);
-
-        javax.swing.GroupLayout createCustomerPanel1Layout = new javax.swing.GroupLayout(createCustomerPanel1);
-        createCustomerPanel1.setLayout(createCustomerPanel1Layout);
-        createCustomerPanel1Layout.setHorizontalGroup(
-            createCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createCustomerPanel1Layout.setVerticalGroup(
-            createCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
+        jTabbedPane1.addTab("Employee", createEmployee1);
         jTabbedPane1.addTab("Customer", createCustomerPanel1);
-
-        javax.swing.GroupLayout createEmployee2Layout = new javax.swing.GroupLayout(createEmployee2);
-        createEmployee2.setLayout(createEmployee2Layout);
-        createEmployee2Layout.setHorizontalGroup(
-            createEmployee2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createEmployee2Layout.setVerticalGroup(
-            createEmployee2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Employee", createEmployee2);
-
-        javax.swing.GroupLayout createServicePanel1Layout = new javax.swing.GroupLayout(createServicePanel1);
-        createServicePanel1.setLayout(createServicePanel1Layout);
-        createServicePanel1Layout.setHorizontalGroup(
-            createServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createServicePanel1Layout.setVerticalGroup(
-            createServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Service", createServicePanel1);
-
-        javax.swing.GroupLayout createTyrePanel1Layout = new javax.swing.GroupLayout(createTyrePanel1);
-        createTyrePanel1.setLayout(createTyrePanel1Layout);
-        createTyrePanel1Layout.setHorizontalGroup(
-            createTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createTyrePanel1Layout.setVerticalGroup(
-            createTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Tyre", createTyrePanel1);
-
-        javax.swing.GroupLayout createSalePanel1Layout = new javax.swing.GroupLayout(createSalePanel1);
-        createSalePanel1.setLayout(createSalePanel1Layout);
-        createSalePanel1Layout.setHorizontalGroup(
-            createSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createSalePanel1Layout.setVerticalGroup(
-            createSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Sale", createSalePanel1);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Create");
@@ -136,12 +69,8 @@ public class CreateMainPanel extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private planningformen.ui.gui.CreateCarPanel createCarPanel1;
     private planningformen.ui.gui.CreateCustomerPanel createCustomerPanel1;
-    private planningformen.ui.gui.CreateEmployee createEmployee2;
-    private planningformen.ui.gui.CreateSalePanel createSalePanel1;
-    private planningformen.ui.gui.CreateServicePanel createServicePanel1;
-    private planningformen.ui.gui.CreateTyrePanel createTyrePanel1;
+    private planningformen.ui.gui.CreateEmployeePanel createEmployee1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

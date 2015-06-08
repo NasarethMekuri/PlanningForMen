@@ -5,19 +5,25 @@
  */
 package planningformen.ui.gui;
 
+import planningformen.application.ITyreController;
+import planningformen.application.TyreController;
+import planningformen.domain.tyre.TyreSize;
+import planningformen.domain.tyre.TyreType;
+
 /**
  *
  * @author Morten
  */
 public class CreateTyrePanel extends javax.swing.JPanel
 {
-
+    private ITyreController _controller;
     /**
      * Creates new form CreateTyre
      */
     public CreateTyrePanel()
     {
         initComponents();
+        _controller = new TyreController();
     }
 
     /**
@@ -30,19 +36,175 @@ public class CreateTyrePanel extends javax.swing.JPanel
     private void initComponents()
     {
 
+        jLabel1 = new javax.swing.JLabel();
+        tfPurchasePrice = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfSellPrice = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfWidth = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfProfile = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        tfDiameter = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cbTyreType = new javax.swing.JComboBox();
+        btnCreateTyre = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        lblMessage = new javax.swing.JLabel();
+
+        jLabel1.setText("Purchase Price:");
+
+        jLabel2.setText("Sell Price:");
+
+        jLabel3.setText("Width:");
+
+        jLabel4.setText("Profile:");
+
+        jLabel5.setText("Diameter:");
+
+        jLabel6.setText("Tyre Type:");
+
+        cbTyreType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Summer", "Winter", "All_Season", "MC", "Four_By_Four" }));
+
+        btnCreateTyre.setText("Create Tyre");
+        btnCreateTyre.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCreateTyreActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfSellPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbTyreType, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(227, 227, 227))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCreateTyre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnReset)))
+                .addContainerGap(567, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfSellPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbTyreType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateTyre)
+                    .addComponent(btnReset)
+                    .addComponent(lblMessage))
+                .addContainerGap(427, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnResetActionPerformed
+    {//GEN-HEADEREND:event_btnResetActionPerformed
+        tfDiameter.setText("");
+        tfProfile.setText("");
+        tfPurchasePrice.setText("");
+        tfSellPrice.setText("");
+        tfWidth.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnCreateTyreActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateTyreActionPerformed
+    {//GEN-HEADEREND:event_btnCreateTyreActionPerformed
+        int diameter = 0;
+        int profile = 0;
+        int width = 0;
+        double purchasePrice = 0f;
+        double sellPrice = 0f;
+        try
+        {
+            diameter = Integer.parseInt(tfDiameter.getText());
+            profile =  Integer.parseInt(tfProfile.getText());
+            width = Integer.parseInt(tfWidth.getText());
+            tfPurchasePrice.setText(tfPurchasePrice.getText().replace(',', '.'));
+            purchasePrice = Double.parseDouble(tfPurchasePrice.getText());
+            tfSellPrice.setText(tfSellPrice.getText().replace(',', '.'));
+            sellPrice = Double.parseDouble(tfSellPrice.getText());
+        }
+        catch(NumberFormatException e)
+        {
+            lblMessage.setText("Error in one or more inputs. Make sure all numeric values are in fact numbers!");
+        }
+        _controller.createTyre(purchasePrice, sellPrice, new TyreSize(width, profile, diameter), TyreType.intToType(cbTyreType.getSelectedIndex() + 1));
+        
+         
+
+    }//GEN-LAST:event_btnCreateTyreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateTyre;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JComboBox cbTyreType;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblMessage;
+    private javax.swing.JTextField tfDiameter;
+    private javax.swing.JTextField tfProfile;
+    private javax.swing.JTextField tfPurchasePrice;
+    private javax.swing.JTextField tfSellPrice;
+    private javax.swing.JTextField tfWidth;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,7 +46,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findCarPanel1.setLayout(findCarPanel1Layout);
         findCarPanel1Layout.setHorizontalGroup(
             findCarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findCarPanel1Layout.setVerticalGroup(
             findCarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,7 +59,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findCustomerPanel1.setLayout(findCustomerPanel1Layout);
         findCustomerPanel1Layout.setHorizontalGroup(
             findCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findCustomerPanel1Layout.setVerticalGroup(
             findCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +72,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findEmployeePanel1.setLayout(findEmployeePanel1Layout);
         findEmployeePanel1Layout.setHorizontalGroup(
             findEmployeePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findEmployeePanel1Layout.setVerticalGroup(
             findEmployeePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +85,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findServicePanel1.setLayout(findServicePanel1Layout);
         findServicePanel1Layout.setHorizontalGroup(
             findServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findServicePanel1Layout.setVerticalGroup(
             findServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +98,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findTyrePanel1.setLayout(findTyrePanel1Layout);
         findTyrePanel1Layout.setHorizontalGroup(
             findTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findTyrePanel1Layout.setVerticalGroup(
             findTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +111,7 @@ public class FindMainPanel extends javax.swing.JPanel
         findSalePanel1.setLayout(findSalePanel1Layout);
         findSalePanel1Layout.setHorizontalGroup(
             findSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         findSalePanel1Layout.setVerticalGroup(
             findSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +129,7 @@ public class FindMainPanel extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(379, 379, 379)
@@ -139,11 +139,10 @@ public class FindMainPanel extends javax.swing.JPanel
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -14,7 +14,7 @@ import planningformen.domain.planning.Customer;
  */
 public interface ICustomerController
 {
-    public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String email);
+    public boolean createCustomer(String id, String firstName, String lastName, String address, String phoneNumber, String postalNumber, String email);
     public Customer findCustomer(String custID);
     public List<Customer> findCustomers (String firstName, String lastName);
     public List<Customer> findCustomers (String lastName);

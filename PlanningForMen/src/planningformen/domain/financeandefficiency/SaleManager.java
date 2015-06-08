@@ -59,7 +59,6 @@ public class SaleManager implements ISaleCallback
             System.out.println("All DB stuff done @Sales!");
             return _sales.add(sale);
         }
-
         return false;
     }
     

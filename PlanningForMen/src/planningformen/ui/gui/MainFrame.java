@@ -36,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame
         btnHotel = new javax.swing.JButton();
         Quit = new javax.swing.JButton();
         createMainPanel1 = new planningformen.ui.gui.CreateMainPanel();
-        findMainPanel1 = new planningformen.ui.gui.FindMainPanel();
+        findMainPanel2 = new planningformen.ui.gui.FindMainPanel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,19 +102,7 @@ public class MainFrame extends javax.swing.JFrame
 
         MasterPanel.add(pnlLanding, "card2");
         MasterPanel.add(createMainPanel1, "card3");
-
-        javax.swing.GroupLayout findMainPanel1Layout = new javax.swing.GroupLayout(findMainPanel1);
-        findMainPanel1.setLayout(findMainPanel1Layout);
-        findMainPanel1Layout.setHorizontalGroup(
-            findMainPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1049, Short.MAX_VALUE)
-        );
-        findMainPanel1Layout.setVerticalGroup(
-            findMainPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-
-        MasterPanel.add(findMainPanel1, "card4");
+        MasterPanel.add(findMainPanel2, "card4");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener()
@@ -138,7 +126,7 @@ public class MainFrame extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(MasterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -166,7 +154,7 @@ public class MainFrame extends javax.swing.JFrame
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
-        changePanel(findMainPanel1);
+        changePanel(findMainPanel2);
     }//GEN-LAST:event_btnFindActionPerformed
 
     /**
@@ -231,7 +219,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnHotel;
     private planningformen.ui.gui.CreateMainPanel createMainPanel1;
-    private planningformen.ui.gui.FindMainPanel findMainPanel1;
+    private planningformen.ui.gui.FindMainPanel findMainPanel2;
     private javax.swing.JPanel pnlLanding;
     // End of variables declaration//GEN-END:variables
 }
