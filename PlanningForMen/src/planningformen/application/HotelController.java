@@ -5,115 +5,109 @@
  */
 package planningformen.application;
 
-import java.sql.Date;
 import java.util.List;
-import planningformen.domain.planning.Car;
+import planningformen.domain.planning.Customer;
+import planningformen.domain.tyre.Slot;
 
 /**
  *
  * @author Simon
  */
-public class CarController implements ICarController
+public class HotelController implements IHotelController
 {
 
     @Override
-    public boolean createCar(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public Slot findSlot(String position)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Car findCarByID(String id)
+    public Slot findSlot(String x, String y, String z)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Car findCarByPlate(String plate)
+    public List<Slot> findSlotsByCustomer(Customer c)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMake(String make)
+    public Customer findCustomerBySlot(Slot slot)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByModel(String model)
+    public boolean reserveSlot(Customer cust, String position)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMakeAndModel(String make, String model)
+    public boolean reserveSlot(Customer cust, String x, String y, String z)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByVersion(String version)
+    public boolean reserveSlot(Customer cust, Slot s)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMakeModelVersion(String make, String model, String version)
+    public boolean reserveSlot(Customer cust, byte position)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByVolume(double volumeFrom, double volumeTo)
+    public boolean updateSlot(Slot s)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByPurchasePrice(double priceMin, double priceMax)
+    public boolean endReservation(Slot s)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsBySellPrice(double priceMin, double priceMax)
+    public boolean endReservation(String position)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMiles(int milesMin, int milesMax)
+    public boolean endReservation(Byte position)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByYear(int yearFrom, int yearTo)
+    public boolean endReservation(String x, String y, String z)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByPurchaseDate(Date from, Date to)
+    public boolean endReservation(Customer cust)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsBySaleID(String saleID)
+    public int addCustomerToWaitingList(Customer c)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateCar(Car updatedCar)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deleteCar(Car carToDelete)
+    public boolean removeCustomerFromWaitingList(Customer c)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

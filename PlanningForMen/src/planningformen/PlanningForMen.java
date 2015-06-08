@@ -384,6 +384,7 @@ public class PlanningForMen
         TyreHotel.getInstance().findSlotByCustomer(CustomerManager.getInstance().findCustomer("inni01010101010101")).getBinaryStringPosition());
         */
         
+        //################################## #MKJ USE IN REPORT  ####################################
         SlotConverter sc = TyreHotel.getInstance().getSlotConverter();
         byte b = -128;
         for (int i = -127; i < 129; i++)

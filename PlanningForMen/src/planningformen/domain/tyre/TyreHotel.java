@@ -69,7 +69,7 @@ public class TyreHotel
         return findSlot(position.substring(3), position.substring(1, 3), position.substring(0, 1));
     }
     
-    private Slot findSlot(String x, String y, String z)
+    public Slot findSlot(String x, String y, String z)
     {
         return _slots[_slotConverter.convertStringToByte(z)][_slotConverter.convertStringToByte(y)][_slotConverter.convertStringToByte(x)];
     }
@@ -171,7 +171,7 @@ public class TyreHotel
     public boolean endReservation(Slot s)
     {
         String binaryString = s.getBinaryStringPosition();
-                        
+        
         String x = binaryString.substring(3);
         String y = binaryString.substring(1,3);
         String z = binaryString.substring(0,1);
@@ -179,7 +179,7 @@ public class TyreHotel
         return endReservation(x, y, z);
     }
     
-    public boolean endReservation(String position) 
+    public boolean endReservation(String position)
     {
         Byte b = _slotConverter.convertStringToByte(position);
         
@@ -195,12 +195,11 @@ public class TyreHotel
     
     public boolean endReservation(String x, String y, String z) //main
     {
-        Slot s = _slots[_slotConverter.convertStringToByte(z)][_slotConverter.convertStringToByte(y)][_slotConverter.convertStringToByte(x)];
-        
         byte zByte = _slotConverter.convertStringToByte(z);
         byte yByte = _slotConverter.convertStringToByte(y);
         byte xByte = _slotConverter.convertStringToByte(x);
         
+        Slot s = _slots[zByte][yByte][xByte];
         
         Calendar c = GregorianCalendar.getInstance();
         Date today = new Date(c.getTimeInMillis());
@@ -259,16 +258,14 @@ public class TyreHotel
         {
             if (custID.equals(c.getCustomerID()))
             {
-                break;
+                if (_waitingListConverter.deleteWaitingPosition(index))
+                {
+                    _waitingList.remove(index);
+                    updateAllCustomersWaitingPositions();
+                    return true;
+                }
             }
             index ++;
-        }
-        
-        if (_waitingListConverter.deleteWaitingPosition(index))
-        {
-            _waitingList.remove(index);
-            updateAllCustomersWaitingPositions();
-            return true;
         }
         return false;
     }

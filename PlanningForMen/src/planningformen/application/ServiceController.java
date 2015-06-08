@@ -5,115 +5,92 @@
  */
 package planningformen.application;
 
-import java.sql.Date;
 import java.util.List;
-import planningformen.domain.planning.Car;
+import planningformen.domain.financeandefficiency.Service;
+import planningformen.domain.financeandefficiency.ServiceState;
+import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
  * @author Simon
  */
-public class CarController implements ICarController
+public class ServiceController implements IServiceController
 {
 
     @Override
-    public boolean createCar(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
+    public boolean createService(double price, String description, ServiceType type)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Car findCarByID(String id)
+    public List<Service> findServicesByPrice(double minPrice, double maxPrice)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Car findCarByPlate(String plate)
+    public List<Service> findServicesByType(ServiceType type)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMake(String make)
+    public List<Service> findServicesByTypes(ServiceType type1, ServiceType type2)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByModel(String model)
+    public List<Service> findServicesByState(ServiceState state)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMakeAndModel(String make, String model)
+    public List<Service> findServicesByStates(ServiceState state1, ServiceState state2)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByVersion(String version)
+    public List<Service> findServicesByTypeAndState(ServiceType type, ServiceState state)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMakeModelVersion(String make, String model, String version)
+    public List<Service> findServicesBySaleID(String saleID)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByVolume(double volumeFrom, double volumeTo)
+    public boolean updateService(Service updatedService)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByPurchasePrice(double priceMin, double priceMax)
+    public boolean deleteService(Service serviceToDelete)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsBySellPrice(double priceMin, double priceMax)
+    public boolean startJob(Service serviceToStart, ServiceType garage)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByMiles(int milesMin, int milesMax)
+    public boolean finishJob(Service serviceToFinish, ServiceType garage)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Car> findCarsByYear(int yearFrom, int yearTo)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Car> findCarsByPurchaseDate(Date from, Date to)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Car> findCarsBySaleID(String saleID)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean updateCar(Car updatedCar)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deleteCar(Car carToDelete)
+    public void planJobPriorityForMechanics()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
