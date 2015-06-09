@@ -1,9 +1,7 @@
 package planningformen.application;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import planningformen.domain.Master;
 import planningformen.domain.planning.Employee;
 /**
@@ -25,8 +23,7 @@ public class EmployeeController implements IEmployeeController
     
     public List<Employee> findEmployees(String employeeID, String firstName, String lastName)
     {
-        //List<Employee> foundEmployees = new ArrayList<Employee>();
-        Set<Employee> foundEmployees = new HashSet<Employee>();
+        List<Employee> foundEmployees = new ArrayList<Employee>();
         if(employeeID.trim().length() > 0)
         {
             foundEmployees.add(Master.getInstance().getEmployeeManager().findEmployee(employeeID.trim()));
@@ -67,6 +64,15 @@ public class EmployeeController implements IEmployeeController
                 continue;
             }
         }
+        
+        //Remove Duplicates
+        List<Employee> tmp = foundEmployees;
+        
+        for(int i = 0; i < foundEmployees.size(); i++)
+        {
+            
+        }
+            
 
         System.out.println("List Length: " + foundEmployees.size());
         return foundEmployees;
