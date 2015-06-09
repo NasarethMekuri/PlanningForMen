@@ -69,10 +69,12 @@ public class FindEmployeePanel extends javax.swing.JPanel
         lblPersonID = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblEmployeeID = new javax.swing.JLabel();
+        lblMessage = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listEmployees = new javax.swing.JList();
         btnDelete = new javax.swing.JButton();
+        lblDeleteMessage = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setName("pnlFind"); // NOI18N
@@ -209,7 +211,11 @@ public class FindEmployeePanel extends javax.swing.JPanel
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblEmployeeID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                    .addComponent(btnUpdate))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -244,7 +250,9 @@ public class FindEmployeePanel extends javax.swing.JPanel
                     .addComponent(jLabel10)
                     .addComponent(cbSkillType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(lblMessage))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -278,7 +286,8 @@ public class FindEmployeePanel extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnDelete)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDeleteMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -287,7 +296,9 @@ public class FindEmployeePanel extends javax.swing.JPanel
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDelete)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(lblDeleteMessage))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -314,13 +325,18 @@ public class FindEmployeePanel extends javax.swing.JPanel
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 236, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUpdateActionPerformed
     {//GEN-HEADEREND:event_btnUpdateActionPerformed
+      if(listEmployees.getSelectedIndex() < 0)
+      {
+          lblMessage.setText("Nothing to update!");
+          return;
+      }
         Employee employee = _foundEmployees.get(listEmployees.getSelectedIndex());
         
         employee.setFirstName(tfFirstNameUpdate.getText());
@@ -331,14 +347,15 @@ public class FindEmployeePanel extends javax.swing.JPanel
         employee.setEmail(tfEmail.getText());
         employee.setSkillType(cbSkillType.getSelectedIndex() + 1);
         if(_controller.updateEmployee(employee))
-        {
-            //lblMessage.setText("Employee sucessfully updated!");
-        }
+            lblMessage.setText("Employee sucessfully updated!");
+        else
+            lblMessage.setText("Failed to update Employee");
     }//GEN-LAST:event_btnUpdateActionPerformed
     
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
         _foundEmployees = _controller.findEmployees(tfEmployeeID.getText(), tfFirstName.getText(), tfLastName.getText());
+        _list.clear();
         for(Employee e : _foundEmployees)
         {
             _list.addElement(e);
@@ -357,7 +374,11 @@ public class FindEmployeePanel extends javax.swing.JPanel
         {
             _foundEmployees.remove(listEmployees.getSelectedIndex());
             _list.remove(listEmployees.getSelectedIndex());
+            lblDeleteMessage.setText("Employee sucessfully deleted!");
+            
         }
+        else
+            lblDeleteMessage.setText("Failed to delete Employee");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void displayEmployee(int index)
@@ -400,7 +421,9 @@ public class FindEmployeePanel extends javax.swing.JPanel
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDeleteMessage;
     private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblPersonID;
     private javax.swing.JList listEmployees;
     private javax.swing.JTextField tfAddress;

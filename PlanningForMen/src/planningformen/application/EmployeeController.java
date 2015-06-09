@@ -28,18 +28,14 @@ public class EmployeeController implements IEmployeeController
         {
             foundEmployees.add(Master.getInstance().getEmployeeManager().findEmployee(employeeID.trim()));
         }
-
-        if(firstName.trim().length() > 0)
+        if(firstName.trim().length() > 0 && lastName.trim().length() > 0)
         {
             foundEmployees.addAll(Master.getInstance().getEmployeeManager().findEmployees(firstName.trim(), lastName.trim()));
-            
         }
-        
         if(lastName.trim().length() > 0)
         {
             foundEmployees.addAll(Master.getInstance().getEmployeeManager().findEmployees(lastName.trim()));
         }
-        System.out.println("Presort List length:" + foundEmployees.size());
         for(int i = 0; i < foundEmployees.size(); i++)
         {
             if(!foundEmployees.get(i).getEmployeeID().equals(employeeID.trim()) && employeeID.trim().length() > 0)

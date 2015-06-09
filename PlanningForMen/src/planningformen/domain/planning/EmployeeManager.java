@@ -58,7 +58,7 @@ public class EmployeeManager
         Employee foundEmployee = null;
         for(Employee c : _employees)
         {
-            if(c.getEmployeeID().equals(empID))
+            if(c.getEmployeeID().equalsIgnoreCase(empID))
             {
                 {
                     foundEmployee = c;
@@ -75,7 +75,7 @@ public class EmployeeManager
         
         for(Employee c : _employees)
         {
-            if(c.getFirstName().equals(firstName) && c.getLastName().equals(lastName))
+            if(c.getFirstName().equalsIgnoreCase(firstName) && c.getLastName().equalsIgnoreCase(lastName))
                 foundEmployees.add(c);
         }
         return foundEmployees;
@@ -87,7 +87,7 @@ public class EmployeeManager
         
         for(Employee c : _employees)
         {
-            if(c.getLastName().equals(lastName))
+            if(c.getLastName().equalsIgnoreCase(lastName))
                 foundEmployees.add(c);
         }
         return foundEmployees;
@@ -99,7 +99,7 @@ public class EmployeeManager
         {
             for(int i = 0; i < _employees.size(); i++)
             {
-                if(_employees.get(i).getId().equals(employee.getId()))
+                if(_employees.get(i).getId().equalsIgnoreCase(employee.getId()))
                 {
                     _employees.set(i, employee);
                     return true;

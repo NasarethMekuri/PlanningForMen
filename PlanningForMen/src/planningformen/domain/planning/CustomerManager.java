@@ -56,7 +56,7 @@ public class CustomerManager
         Customer foundCustomer = null;
         for(Customer c : _customers)
         {
-            if(c.getCustomerID().equals(custID))
+            if(c.getCustomerID().equalsIgnoreCase(custID))
             {
                 {
                     foundCustomer = c;
@@ -73,7 +73,7 @@ public class CustomerManager
         
         for(Customer c : _customers)
         {
-            if(c.getFirstName().equals(firstName) && c.getLastName().equals(lastName))
+            if(c.getFirstName().equalsIgnoreCase(firstName) && c.getLastName().equalsIgnoreCase(lastName))
                 foundCustomers.add(c);
         }
         return foundCustomers;
@@ -85,7 +85,7 @@ public class CustomerManager
         
         for(Customer c : _customers)
         {
-            if(c.getLastName().equals(lastName))
+            if(c.getLastName().equalsIgnoreCase(lastName))
                 foundCustomers.add(c);
         }
         return foundCustomers;
@@ -97,7 +97,7 @@ public class CustomerManager
         {
             for(int i = 0; i < _customers.size(); i++)
             {
-                if(_customers.get(i).getId().equals(customer.getId()))
+                if(_customers.get(i).getId().equalsIgnoreCase(customer.getId()))
                 {
                     _customers.set(i, customer);
                     return true;
