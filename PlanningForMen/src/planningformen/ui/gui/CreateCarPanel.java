@@ -30,30 +30,216 @@ public class CreateCarPanel extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnCreate = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        kilometers = new javax.swing.JLabel();
+        version = new javax.swing.JLabel();
+        sellPriceTxtField = new javax.swing.JTextField();
+        purchasePriceTxtField = new javax.swing.JTextField();
+        year = new javax.swing.JLabel();
+        model = new javax.swing.JLabel();
+        purchaseDateTxtField = new javax.swing.JTextField();
+        plateTxtField = new javax.swing.JTextField();
+        kilometersTxtField = new javax.swing.JTextField();
+        yearTxtField = new javax.swing.JTextField();
+        makeTxtField = new javax.swing.JTextField();
+        modelTxtField = new javax.swing.JTextField();
+        versionTxtField = new javax.swing.JTextField();
+        volumeTxtField = new javax.swing.JTextField();
+        sellPrice = new javax.swing.JLabel();
+        volume = new javax.swing.JLabel();
+        purchasePrice = new javax.swing.JLabel();
+        plate = new javax.swing.JLabel();
+        purchaseDate = new javax.swing.JLabel();
+        make = new javax.swing.JLabel();
 
-        jLabel1.setText("Derp changes");
+        btnCreate.setText("Create Car");
+        btnCreate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        kilometers.setText("Odometer");
+
+        version.setText("Version");
+
+        year.setText("Year");
+
+        model.setText("Model");
+
+        sellPrice.setText("Sell Price");
+
+        volume.setText("Volume");
+
+        purchasePrice.setText("Purchase Price");
+
+        plate.setText("Plate");
+
+        purchaseDate.setText("Purchase Date");
+
+        make.setText("Make");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(405, 405, 405)
-                .addComponent(jLabel1)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(plate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(plateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(year)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(volume)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(volumeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(make)
+                                .addComponent(model)
+                                .addComponent(version))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(versionTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(modelTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(makeTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(kilometers)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(kilometersTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(purchaseDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(purchaseDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(purchasePrice)
+                            .addComponent(sellPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCreate)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReset))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(purchasePriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sellPriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {kilometersTxtField, makeTxtField, modelTxtField, plateTxtField, purchasePriceTxtField, sellPriceTxtField, versionTxtField, yearTxtField});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLabel1)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(year)
+                            .addComponent(yearTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(volume)
+                            .addComponent(volumeTxtField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(plate)
+                            .addComponent(plateTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(make)
+                            .addComponent(makeTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(model)
+                            .addComponent(modelTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(version)
+                            .addComponent(versionTxtField))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kilometers)
+                            .addComponent(kilometersTxtField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(purchaseDate)
+                            .addComponent(purchaseDateTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(purchasePrice)
+                            .addComponent(purchasePriceTxtField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sellPrice)
+                            .addComponent(sellPriceTxtField))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreate)
+                    .addComponent(btnReset))
+                .addGap(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
+    {//GEN-HEADEREND:event_btnCreateActionPerformed
+     
+
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnResetActionPerformed
+    {//GEN-HEADEREND:event_btnResetActionPerformed
+        
+    }//GEN-LAST:event_btnResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JLabel kilometers;
+    private javax.swing.JTextField kilometersTxtField;
+    private javax.swing.JLabel make;
+    private javax.swing.JTextField makeTxtField;
+    private javax.swing.JLabel model;
+    private javax.swing.JTextField modelTxtField;
+    private javax.swing.JLabel plate;
+    private javax.swing.JTextField plateTxtField;
+    private javax.swing.JLabel purchaseDate;
+    private javax.swing.JTextField purchaseDateTxtField;
+    private javax.swing.JLabel purchasePrice;
+    private javax.swing.JTextField purchasePriceTxtField;
+    private javax.swing.JLabel sellPrice;
+    private javax.swing.JTextField sellPriceTxtField;
+    private javax.swing.JLabel version;
+    private javax.swing.JTextField versionTxtField;
+    private javax.swing.JLabel volume;
+    private javax.swing.JTextField volumeTxtField;
+    private javax.swing.JLabel year;
+    private javax.swing.JTextField yearTxtField;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,13 +16,287 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="criteria" max="32767" attributes="0"/>
+                          <Component id="jLabel2" pref="153" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="703" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="criteria" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="412" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FIND CAR"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="criteria">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Choose search criteria&quot;, &quot;CarID&quot;, &quot;Plate&quot;, &quot;Year&quot;, &quot;Make&quot;, &quot;Model&quot;, &quot;Make and Model&quot;, &quot;Version&quot;, &quot;Make, Model, and Version&quot;, &quot;Volume&quot;, &quot;Purchase Price&quot;, &quot;Sell Price&quot;, &quot;Kilometers&quot;, &quot;Purchase Date&quot;})" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criteriaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Choose what to search by:"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="plate" min="-2" max="-2" attributes="0"/>
+                      <Component id="carID" min="-2" max="-2" attributes="0"/>
+                      <Component id="make" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="model" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="version" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="volume" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchasePrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="sellPrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="kilometers" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="year" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchaseDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="kilometersTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="purchaseDateTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="purchasePriceTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="sellPriceTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="versionTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="volumeTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="modelTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="makeTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="yearTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="plateTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
+                      <Component id="carIdTxtField" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="carID" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="carIdTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="plate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="plateTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="year" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="make" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="makeTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="model" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="modelTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="version" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="versionTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="volume" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="volumeTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="purchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchasePriceTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="sellPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sellPriceTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="kilometers" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="kilometersTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="purchaseDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchaseDateTxtField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="kilometers">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kilometers"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="version">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Version"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="make">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Make"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="purchaseDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Date"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="plate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Plate"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="purchasePrice">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="volume">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Volume"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="sellPrice">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sell Price"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="model">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Model"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="carID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Car ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="carIdTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="plateTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="yearTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="makeTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="modelTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="versionTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="volumeTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="purchasePriceTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="sellPriceTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="kilometersTxtField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="purchaseDateTxtField">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Find Cars"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jList2">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+                <StringItem index="4" value="Item 5"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>

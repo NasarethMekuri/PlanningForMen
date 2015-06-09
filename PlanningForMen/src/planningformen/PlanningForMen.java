@@ -29,8 +29,8 @@ public class PlanningForMen
         //System.out.println("#### TESTING CARS ####");
         //testApp.testCars();
         
-        //System.out.println("#### TESTING SERVICES ####");
-        //testApp.testServices();
+        System.out.println("#### TESTING SERVICES ####");
+        testApp.testServices();
         
         //System.out.println("#### TESTING CUSTOMERS ####");
         //testApp.testCustomers();
@@ -46,7 +46,7 @@ public class PlanningForMen
         testApp.testTransactions();*/
         //testApp.testTyres();
         
-        testApp.testSlotRetrieval();
+        //testApp.testSlotRetrieval();
     }
     
     private void testCars()
@@ -213,7 +213,7 @@ public class PlanningForMen
         System.out.println(ServiceManager.getInstance().createService(25.25, "firstService", ServiceType.NORMAL));
         System.out.println(ServiceManager.getInstance().createService(12, "secondService", ServiceType.DIESEL));
         System.out.println(ServiceManager.getInstance().createService(49, "thirdService", ServiceType.NORMAL));
-        System.out.println(ServiceManager.getInstance().createService(200, "thirdService", ServiceType.TUNING));
+        System.out.println(ServiceManager.getInstance().createService(200, "fourthService", ServiceType.TUNING));
         
         System.out.println("\n Getting services by price expecting 2");
         System.out.println(ServiceManager.getInstance().findServicesByPrice(15, 50));

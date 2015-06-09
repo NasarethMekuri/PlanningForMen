@@ -137,13 +137,13 @@ public class SlotConverter implements ICallback
         return value.substring(value.length() - 8);
     }
     
-    public byte convertStringToByte(String binaryString) //needs to be try-catched !!
+    public byte convertStringToByte(String binaryString) 
     {
         int parsedValue = 0;
         
         if (binaryString.length() > MAX_BITS_IN_BYTE)
         {
-            System.out.println("Bad binary String STRING IS TOO BIG @SlotConverter - convertStringToByte ");
+            System.out.println("Bad binary String >>STRING IS TOO BIG<< @SlotConverter - convertStringToByte ");
         }
                 
         try

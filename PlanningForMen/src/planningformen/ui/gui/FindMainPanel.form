@@ -22,19 +22,32 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
               <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
+=======
+              <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
+>>>>>>> origin/master
               <Component id="jLabel1" min="-2" pref="82" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="819" max="32767" attributes="0"/>
           </Group>
+<<<<<<< HEAD
           <Group type="102" alignment="0" attributes="0">
               <Component id="jTabbedPane1" min="-2" pref="908" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="372" max="32767" attributes="0"/>
           </Group>
+=======
+          <Component id="jTabbedPane1" alignment="0" pref="1280" max="32767" attributes="0"/>
+>>>>>>> origin/master
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+=======
+              <EmptySpace pref="160" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+>>>>>>> origin/master
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -49,7 +62,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="planningformen.ui.gui.FindCarPanel" name="findCarPanel1">
+        <Component class="planningformen.ui.gui.FindCarPanel" name="findCarPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Car">
@@ -57,6 +70,7 @@
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
+<<<<<<< HEAD
 
           <Layout>
             <DimensionLayout dim="0">
@@ -71,6 +85,9 @@
             </DimensionLayout>
           </Layout>
         </Container>
+=======
+        </Component>
+>>>>>>> origin/master
         <Container class="planningformen.ui.gui.FindCustomerPanel" name="findCustomerPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -83,7 +100,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="1275" max="32767" attributes="0"/>
+>>>>>>> origin/master
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -105,7 +126,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="1275" max="32767" attributes="0"/>
+>>>>>>> origin/master
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -127,7 +152,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="1275" max="32767" attributes="0"/>
+>>>>>>> origin/master
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -149,7 +178,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="1275" max="32767" attributes="0"/>
+>>>>>>> origin/master
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -171,7 +204,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="1275" max="32767" attributes="0"/>
+>>>>>>> origin/master
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
