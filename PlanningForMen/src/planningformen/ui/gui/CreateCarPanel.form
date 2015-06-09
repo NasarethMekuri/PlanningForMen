@@ -16,27 +16,232 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="435" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="plate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="plateTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="year" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="yearTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="volume" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="volumeTxtField" min="-2" pref="205" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="make" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="model" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="version" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="versionTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Component id="modelTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Component id="makeTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="kilometers" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="kilometersTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="purchaseDate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="purchaseDateTxtField" min="-2" pref="205" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="purchasePrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="sellPrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnReset" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="purchasePriceTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Component id="sellPriceTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="372" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="289" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="year" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="yearTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="volume" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="volumeTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="217" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="plate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="plateTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="make" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="makeTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="model" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modelTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="version" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="versionTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="kilometers" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kilometersTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="purchaseDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="purchaseDateTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="purchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="purchasePriceTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="sellPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="sellPriceTxtField" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JButton" name="btnCreate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Derp changes"/>
+        <Property name="text" type="java.lang.String" value="Create Car"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReset">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reset"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="kilometers">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Odometer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="version">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Version"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="sellPriceTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="purchasePriceTxtField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="year">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Year"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="model">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Model"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="purchaseDateTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="plateTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="kilometersTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="yearTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="makeTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="modelTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="versionTxtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="volumeTxtField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="sellPrice">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sell Price"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="volume">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volume"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="purchasePrice">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Purchase Price"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="plate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Plate"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="purchaseDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Purchase Date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="make">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Make"/>
       </Properties>
     </Component>
   </SubComponents>

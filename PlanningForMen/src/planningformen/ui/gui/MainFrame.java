@@ -1,7 +1,6 @@
 package planningformen.ui.gui;
 
 import javax.swing.JPanel;
-import planningformen.ui.gui.*;
 
 /**
  *
@@ -126,7 +125,7 @@ public class MainFrame extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(MasterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );

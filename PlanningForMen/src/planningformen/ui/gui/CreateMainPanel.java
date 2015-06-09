@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package planningformen.ui.gui;
-import planningformen.ui.gui.*;
-import planningformen.ui.gui.CreateEmployeePanel;
 /**
  *
  * @author Morten
@@ -34,11 +32,13 @@ public class CreateMainPanel extends javax.swing.JPanel
         jTabbedPane1 = new javax.swing.JTabbedPane();
         createEmployee1 = new planningformen.ui.gui.CreateEmployeePanel();
         createCustomerPanel1 = new planningformen.ui.gui.CreateCustomerPanel();
+        createCarPanel2 = new planningformen.ui.gui.CreateCarPanel();
         jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jTabbedPane1.addTab("Employee", createEmployee1);
         jTabbedPane1.addTab("Customer", createCustomerPanel1);
+        jTabbedPane1.addTab("Car", createCarPanel2);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Create");
@@ -69,6 +69,7 @@ public class CreateMainPanel extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private planningformen.ui.gui.CreateCarPanel createCarPanel2;
     private planningformen.ui.gui.CreateCustomerPanel createCustomerPanel1;
     private planningformen.ui.gui.CreateEmployeePanel createEmployee1;
     private javax.swing.JLabel jLabel1;
