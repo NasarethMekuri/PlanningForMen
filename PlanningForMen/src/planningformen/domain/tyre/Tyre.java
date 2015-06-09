@@ -65,4 +65,10 @@ public class Tyre implements Sellable
     public void setSize(TyreSize size) { _size = size; }
     public void setType(TyreType type) { _type = _type; }
     
+    @Override
+    public String toString()
+    {
+        return "W-" + _size.getWidth() + " d-" + _size.getDiameter() + " p-" + _size.getProfile();
+    }
+    
 }

@@ -19,8 +19,6 @@ public interface ITyreController
     public boolean createTyre(double purchasePrice, double sellPrice, TyreSize size, TyreType type);
     public boolean updateTyre(Tyre tyre);
     public boolean deleteTyre(Tyre tyre);
-    public List<Tyre> findTyres(TyreSize size);
-    public List<Tyre> findTyres(TyreType type);
-    public Tyre findTyre(String tyreID);
-    public List<Tyre> findTyres(String saleID);
+    public List<Tyre> findTyres(String tyreID, String saleID, TyreSize size, TyreType type);
+
 }
