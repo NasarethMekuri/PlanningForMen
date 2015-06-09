@@ -1,7 +1,9 @@
 package planningformen.application;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import planningformen.domain.Master;
 import planningformen.domain.planning.Employee;
 /**
@@ -23,7 +25,8 @@ public class EmployeeController implements IEmployeeController
     
     public List<Employee> findEmployees(String employeeID, String firstName, String lastName)
     {
-        List<Employee> foundEmployees = new ArrayList<Employee>();
+        //List<Employee> foundEmployees = new ArrayList<Employee>();
+        Set<Employee> foundEmployees = new HashSet<Employee>();
         if(employeeID.trim().length() > 0)
         {
             foundEmployees.add(Master.getInstance().getEmployeeManager().findEmployee(employeeID.trim()));
@@ -39,28 +42,33 @@ public class EmployeeController implements IEmployeeController
         {
             foundEmployees.addAll(Master.getInstance().getEmployeeManager().findEmployees(lastName.trim()));
         }
-        
+        System.out.println("Presort List length:" + foundEmployees.size());
         for(int i = 0; i < foundEmployees.size(); i++)
         {
-            if(!foundEmployees.get(i).getEmployeeID().equals(employeeID.trim()))
+            if(!foundEmployees.get(i).getEmployeeID().equals(employeeID.trim()) && employeeID.trim().length() > 0)
             {
                 foundEmployees.remove(i);
                 i--;
                 continue;
             }
-            if(!foundEmployees.get(i).getLastName().equals(lastName.trim()) || !foundEmployees.get(i).getFirstName().equals(firstName.trim()))
+            if(firstName.trim().length() > 0 && lastName.trim().length() > 0)
             {
-                foundEmployees.remove(i);
-                i--;
-                continue;
+                if(!foundEmployees.get(i).getLastName().equals(lastName.trim()) || !foundEmployees.get(i).getFirstName().equals(firstName.trim()))
+                {
+                    foundEmployees.remove(i);
+                    i--;
+                    continue;
+                }
             }
-            if(!foundEmployees.get(i).getLastName().equals(lastName.trim()))
+            if(!foundEmployees.get(i).getLastName().equals(lastName.trim()) && lastName.trim().length() > 0)
             {
                 foundEmployees.remove(i);
                 i--;
                 continue;
             }
         }
+
+        System.out.println("List Length: " + foundEmployees.size());
         return foundEmployees;
     }
     

@@ -1,6 +1,7 @@
 package planningformen.ui.gui;
 
 import javax.swing.JPanel;
+import planningformen.domain.Master;
 
 /**
  *
@@ -17,6 +18,7 @@ public class MainFrame extends javax.swing.JFrame
         initComponents();
         _currentPanel = pnlLanding;
         setExtendedState(getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
+        Master.getInstance(); //Prepare domain early to avoid load times later.
     }
 
     /**

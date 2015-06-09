@@ -25,7 +25,9 @@ public class FindEmployeePanel extends javax.swing.JPanel
      */
     public FindEmployeePanel()
     {
+        _list = new DefaultListModel();
         initComponents();
+        listEmployees.setModel(_list);
         _controller = new EmployeeController();
     }
 
@@ -341,7 +343,6 @@ public class FindEmployeePanel extends javax.swing.JPanel
         {
             _list.addElement(e);
         }
-        listEmployees.setModel(_list);
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void listEmployeesValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listEmployeesValueChanged

@@ -33,7 +33,7 @@ public class Master
     {
         _customerManager = _customerManager.getInstance();
         _carManager = _carManager.getInstance();
-        //TODO: Der mangler en EmployeeManager
+        _employeeManager = EmployeeManager.getInstance();
         _serviceManager = _serviceManager.getInstance();
         _transactionManager = _transactionManager.getInstance();
         _tyreHotel = TyreHotel.getInstance();

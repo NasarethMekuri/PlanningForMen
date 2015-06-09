@@ -171,11 +171,11 @@ public class CreateCustomerPanel extends javax.swing.JPanel
         if(_controller.createCustomer(tfpersonID.getText(), tfFirstName.getText(), tfLastName.getText(), tfAddress.getText(), tfPhone.getText(), 
                                    tfPostal.getText(), tfEmail.getText()))
         {
-            lblMessage.setText("Employee succesfully created!");
+            lblMessage.setText("Customer succesfully created!");
             resetInput();
         }
         else
-            lblMessage.setText("Failed to create Employee!");
+            lblMessage.setText("Failed to create Customer!");
         
         
         
