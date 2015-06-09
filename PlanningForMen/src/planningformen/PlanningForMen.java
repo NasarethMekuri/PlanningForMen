@@ -184,9 +184,8 @@ public class PlanningForMen
     
     private void testEmployees()
     {
-        //EmployeeManager.getInstance().createEmployee("0102089877", "Anders", "Fjog", "EU", "666", "9999", "dumb@ass.dk");
+        //EmployeeManager.getInstance().createEmployee("0102089877", "Anders", "Fjog", "EU", "666", "9999", "gone@from.dk");
         //EmployeeManager.getInstance().createEmployee("1102089877", "Secret", "even more secret", "hidden", "1234", "5678", "dont@know.it");
-        //Retrieve Test
         
         List<Employee> employees = EmployeeManager.getInstance().getEmployees();
         employees.get(0).setFirstName("Bamse");
