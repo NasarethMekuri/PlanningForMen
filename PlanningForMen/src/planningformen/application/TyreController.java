@@ -44,7 +44,10 @@ public class TyreController implements ITyreController
         foundTyres.addAll(Master.getInstance().getTyreManager().findTyres(saleID));
         foundTyres.addAll(Master.getInstance().getTyreManager().findTyres(size));
         foundTyres.addAll(Master.getInstance().getTyreManager().findTyres(type));
-        foundTyres.add(Master.getInstance().getTyreManager().findTyre(tyreID));
+        
+        Tyre tyre = Master.getInstance().getTyreManager().findTyre(tyreID);
+        if(tyre != null)
+            foundTyres.add(tyre);
         
         for(int i = 0; i < foundTyres.size(); i++)
         {
@@ -66,13 +69,16 @@ public class TyreController implements ITyreController
                     continue;
                 }
             }
-            if(size.getWidth() > 0 && size.getDiameter() > 0 && size.getProfile() > 0)
+            if(size != null)
             {
-                if(size.equals(foundTyres.get(i).getSize()))
+                if(size.getWidth() > 0 && size.getDiameter() > 0 && size.getProfile() > 0)
                 {
-                    foundTyres.remove(i);
-                    i--;
-                    continue;
+                    if(size.equals(foundTyres.get(i).getSize()))
+                    {
+                        foundTyres.remove(i);
+                        i--;
+                        continue;
+                    }
                 }
             }
             if(type != null)

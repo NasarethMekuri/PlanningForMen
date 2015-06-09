@@ -484,6 +484,8 @@ public class FindTyrePanel extends javax.swing.JPanel
 
     private void displayTyre(int index)
     {
+        if(index < 0)
+            return;
         if(_foundTyres == null)
             return;
         if(_foundTyres.size() > 0)

@@ -369,6 +369,8 @@ public class FindCustomerPanel extends javax.swing.JPanel
 
     private void displayCustomer(int index)
     {
+        if(index < 0)
+            return;
         if(_foundCustomers == null)
             return;
         if(_foundCustomers.size() > 0)
