@@ -66,11 +66,17 @@ public class EmployeeController implements IEmployeeController
         }
         
         //Remove Duplicates
-        List<Employee> tmp = foundEmployees;
         
         for(int i = 0; i < foundEmployees.size(); i++)
         {
-            
+            for(int j = i + 1; j < foundEmployees.size(); j++)
+            {
+                if(foundEmployees.get(i).equals(foundEmployees.get(j)))
+                {
+                    foundEmployees.remove(j);
+                    j--;
+                }
+            }
         }
             
 

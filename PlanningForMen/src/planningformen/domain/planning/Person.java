@@ -45,4 +45,10 @@ public abstract class Person
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public void setPostalNumber(String postalNumber) { this.postalNumber = postalNumber; }
     public void setEmail(String email) { this.email = email; }
+    
+    @Override
+    public String toString()
+    {
+        return firstName + " " + lastName;
+    }
 }
