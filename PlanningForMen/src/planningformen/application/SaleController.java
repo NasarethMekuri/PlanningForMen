@@ -34,7 +34,7 @@ public class SaleController implements ISaleController
         //Remove all Sellables already attached to a sale.
         for(int i = 0; i < sellables.size(); i++)
         {
-            if(sellables.get(i).getSaleID() == null)
+            if(sellables.get(i).getSaleID() != null)
             {
                 if(sellables.get(i).getSaleID().length() == 0)
                     continue;

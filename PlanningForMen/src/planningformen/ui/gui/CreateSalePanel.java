@@ -29,14 +29,16 @@ public class CreateSalePanel extends javax.swing.JPanel
      */
     public CreateSalePanel()
     {
+        initComponents();
         _controller = new SaleController();
         _saleList = new DefaultListModel();
         _sellableList = new DefaultListModel();
         _saleItems = new ArrayList<Sellable>();
         _sellables = new ArrayList<Sellable>();
+        if(listSaleItems == null)
+            System.out.println("WHY?");
         listSaleItems.setModel(_saleList);
         listSellables.setModel(_sellableList);
-        initComponents();
     }
 
     /**
@@ -58,8 +60,6 @@ public class CreateSalePanel extends javax.swing.JPanel
         tfAmountPaid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listSaleItems = new javax.swing.JList();
         btnRemoveSale = new javax.swing.JButton();
         createSale = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
@@ -69,6 +69,8 @@ public class CreateSalePanel extends javax.swing.JPanel
         lblDescriptionSale = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblPriceSale = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listSaleItems = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,21 +97,6 @@ public class CreateSalePanel extends javax.swing.JPanel
         jLabel4.setText("Total Price:");
 
         lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
-        listSaleItems.setModel(new javax.swing.AbstractListModel()
-        {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        listSaleItems.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-        {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-            {
-                listSaleItemsValueChanged(evt);
-            }
-        });
-        jScrollPane2.setViewportView(listSaleItems);
 
         btnRemoveSale.setText("Remove From Sale");
 
@@ -166,6 +153,14 @@ public class CreateSalePanel extends javax.swing.JPanel
                     .addComponent(lblPriceSale)))
         );
 
+        listSaleItems.setModel(new javax.swing.AbstractListModel()
+        {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(listSaleItems);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,6 +168,14 @@ public class CreateSalePanel extends javax.swing.JPanel
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(createSale, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRemoveSale))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -191,15 +194,7 @@ public class CreateSalePanel extends javax.swing.JPanel
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfAmountPaid, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                             .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 43, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(createSale, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRemoveSale))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -217,16 +212,16 @@ public class CreateSalePanel extends javax.swing.JPanel
                     .addComponent(tfEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(lblTotalPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemoveSale)
                     .addComponent(createSale)
                     .addComponent(lblMessage))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -389,11 +384,6 @@ public class CreateSalePanel extends javax.swing.JPanel
         displaySellables(_sellables, listSellables.getSelectedIndex());
     }//GEN-LAST:event_listSellablesValueChanged
 
-    private void listSaleItemsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listSaleItemsValueChanged
-    {//GEN-HEADEREND:event_listSaleItemsValueChanged
-        displaySellables(_saleItems, listSellables.getSelectedIndex());
-    }//GEN-LAST:event_listSaleItemsValueChanged
-
     private void createSaleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_createSaleActionPerformed
     {//GEN-HEADEREND:event_createSaleActionPerformed
         double amountPaid = 0;
@@ -453,7 +443,7 @@ public class CreateSalePanel extends javax.swing.JPanel
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private java.awt.Label label1;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblDescriptionSale;

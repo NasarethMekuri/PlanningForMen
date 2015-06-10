@@ -33,30 +33,18 @@ public class CreateMainPanel extends javax.swing.JPanel
         createEmployee1 = new planningformen.ui.gui.CreateEmployeePanel();
         createCustomerPanel1 = new planningformen.ui.gui.CreateCustomerPanel();
         createCarPanel2 = new planningformen.ui.gui.CreateCarPanel();
-        createSalePanel1 = new planningformen.ui.gui.CreateSalePanel();
         createTyrePanel2 = new planningformen.ui.gui.CreateTyrePanel();
         createServicePanel2 = new planningformen.ui.gui.CreateServicePanel();
+        createSalePanel2 = new planningformen.ui.gui.CreateSalePanel();
         jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jTabbedPane1.addTab("Employee", createEmployee1);
         jTabbedPane1.addTab("Customer", createCustomerPanel1);
         jTabbedPane1.addTab("Car", createCarPanel2);
-
-        javax.swing.GroupLayout createSalePanel1Layout = new javax.swing.GroupLayout(createSalePanel1);
-        createSalePanel1.setLayout(createSalePanel1Layout);
-        createSalePanel1Layout.setHorizontalGroup(
-            createSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createSalePanel1Layout.setVerticalGroup(
-            createSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Sale", createSalePanel1);
         jTabbedPane1.addTab("Tyre", createTyrePanel2);
         jTabbedPane1.addTab("Service", createServicePanel2);
+        jTabbedPane1.addTab("Sale", createSalePanel2);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Create");
@@ -90,7 +78,7 @@ public class CreateMainPanel extends javax.swing.JPanel
     private planningformen.ui.gui.CreateCarPanel createCarPanel2;
     private planningformen.ui.gui.CreateCustomerPanel createCustomerPanel1;
     private planningformen.ui.gui.CreateEmployeePanel createEmployee1;
-    private planningformen.ui.gui.CreateSalePanel createSalePanel1;
+    private planningformen.ui.gui.CreateSalePanel createSalePanel2;
     private planningformen.ui.gui.CreateServicePanel createServicePanel2;
     private planningformen.ui.gui.CreateTyrePanel createTyrePanel2;
     private javax.swing.JLabel jLabel1;
