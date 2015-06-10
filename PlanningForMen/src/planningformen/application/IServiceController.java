@@ -32,4 +32,5 @@ public interface IServiceController
     public void planJobPriorityForMechanics();
     public Garage[] getGarages(); //this is wrong, out of time.
     public List<Service> getFinishedJobs(); //this is wrong, out of time.
+    public List<Service> getServices(); //this is wrong, out of time.
 }

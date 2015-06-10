@@ -305,9 +305,13 @@ public class ServiceManager
         {   //if Diesel
             if (s.getType().getNumericValue() == 1)
             {
-                getGarages()[0].getJobs().add(s);
-                s.setState(ServiceState.RESERVED);
-                s.setGarageType(ServiceType.DIESEL);
+                if (s.getState().getNumericValue() != 3)
+                {
+                    getGarages()[0].getJobs().add(s);
+                    s.setState(ServiceState.RESERVED);
+                    s.setGarageType(ServiceType.DIESEL);
+                }
+                
             }
         }
     }
@@ -380,9 +384,12 @@ public class ServiceManager
         {   //If type is tuning...
             if (s.getType().getNumericValue() == 3)
             {
+                if (s.getState().getNumericValue() != 3)
+                {
                 getGarages()[2].getJobs().add(s);
                 s.setState(ServiceState.RESERVED);
                 s.setGarageType(ServiceType.TUNING);
+                }
             }
         }
     }

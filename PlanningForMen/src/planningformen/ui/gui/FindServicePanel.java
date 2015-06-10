@@ -852,8 +852,8 @@ public class FindServicePanel extends javax.swing.JPanel
             EDITtxtAreaDescr.setText(s.getDescription());
             EDITpriceSelector.setValue(num);
             EDITcBoxState.setSelectedIndex(s.getState().getNumericValue());
-            EDITcBoxType.setSelectedIndex(s.getType().getNumericValue());;
-            EDITcBoxGarage.setSelectedIndex(s.getGarageType().getNumericValue());;
+            EDITcBoxType.setSelectedIndex(s.getType().getNumericValue());
+            EDITcBoxGarage.setSelectedIndex(s.getGarageType().getNumericValue());
             
             
         }

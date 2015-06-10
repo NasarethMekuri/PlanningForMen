@@ -82,19 +82,19 @@ public class ServiceController implements IServiceController
     @Override
     public boolean startJob(Service serviceToStart, ServiceType garage)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getServiceManager().startJob(serviceToStart, garage);
     }
 
     @Override
     public boolean finishJob(Service serviceToFinish, ServiceType garage)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getServiceManager().finishJob(serviceToFinish, garage);
     }
 
     @Override
     public void planJobPriorityForMechanics()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Master.getInstance().getServiceManager().planJobPriorityForMechanics();
     }
     
     @Override //this is wrong, out of time.
@@ -107,6 +107,12 @@ public class ServiceController implements IServiceController
     public List<Service> getFinishedJobs()
     {
         return Master.getInstance().getServiceManager().getFinishedServices();
+    }
+
+    @Override //this is wrong, out of time.
+    public List<Service> getServices()
+    {
+        return Master.getInstance().getServiceManager().getServices();
     }
     
     

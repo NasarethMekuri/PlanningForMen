@@ -11,6 +11,7 @@ import planningformen.application.IServiceController;
 import planningformen.application.ServiceController;
 import planningformen.domain.financeandefficiency.Garage;
 import planningformen.domain.financeandefficiency.Service;
+import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
@@ -41,6 +42,7 @@ public class GaragesPanel extends javax.swing.JPanel
         finsihedList.setModel(_finishedList);
         _controller = new ServiceController();
         _garages = _controller.getGarages();
+        _jobs = _controller.getServices();
         
     }
     
@@ -59,16 +61,22 @@ public class GaragesPanel extends javax.swing.JPanel
         normalList = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnStartNormal = new javax.swing.JButton();
+        btnFinishNormal = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dieselList = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnFinishDiesel = new javax.swing.JButton();
+        btnStartDiesel = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tuningList = new javax.swing.JList();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnStartTuning = new javax.swing.JButton();
+        btnFinishTuning = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -81,8 +89,6 @@ public class GaragesPanel extends javax.swing.JPanel
         lblState = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnStart = new javax.swing.JButton();
-        btnFinish = new javax.swing.JButton();
         btnReload = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -97,11 +103,38 @@ public class GaragesPanel extends javax.swing.JPanel
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        normalList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                normalListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(normalList);
 
         jLabel2.setText("Garage 2 Prioritized Job List:");
 
         jLabel8.setText("Normal");
+
+        btnStartNormal.setText("Start Job");
+        btnStartNormal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnStartNormal.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnStartNormalActionPerformed(evt);
+            }
+        });
+
+        btnFinishNormal.setText("Finish Job");
+        btnFinishNormal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinishNormal.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFinishNormalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -110,10 +143,17 @@ public class GaragesPanel extends javax.swing.JPanel
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnStartNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFinishNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +164,11 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStartNormal)
+                    .addComponent(btnFinishNormal))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -135,11 +179,38 @@ public class GaragesPanel extends javax.swing.JPanel
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        dieselList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                dieselListValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(dieselList);
 
         jLabel3.setText("Garage 1 Prioritized Job List:");
 
         jLabel10.setText("Diesel");
+
+        btnFinishDiesel.setText("Finish Job");
+        btnFinishDiesel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinishDiesel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFinishDieselActionPerformed(evt);
+            }
+        });
+
+        btnStartDiesel.setText("Start Job");
+        btnStartDiesel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnStartDiesel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnStartDieselActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -148,10 +219,17 @@ public class GaragesPanel extends javax.swing.JPanel
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnStartDiesel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFinishDiesel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +240,11 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFinishDiesel)
+                    .addComponent(btnStartDiesel))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -173,11 +255,38 @@ public class GaragesPanel extends javax.swing.JPanel
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        tuningList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                tuningListValueChanged(evt);
+            }
+        });
         jScrollPane4.setViewportView(tuningList);
 
         jLabel6.setText("Garage 3 Prioritized Job List:");
 
         jLabel7.setText("Tuning");
+
+        btnStartTuning.setText("Start Job");
+        btnStartTuning.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnStartTuning.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnStartTuningActionPerformed(evt);
+            }
+        });
+
+        btnFinishTuning.setText("Finish Job");
+        btnFinishTuning.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinishTuning.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFinishTuningActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -186,10 +295,17 @@ public class GaragesPanel extends javax.swing.JPanel
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnStartTuning, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFinishTuning, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +316,11 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStartTuning)
+                    .addComponent(btnFinishTuning))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
@@ -232,7 +352,7 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -287,12 +407,6 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnStart.setText("Start Job");
-        btnStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnFinish.setText("Finish Job");
-        btnFinish.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         btnReload.setText("Reload Lists");
         btnReload.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnReload.addActionListener(new java.awt.event.ActionListener()
@@ -313,28 +427,19 @@ public class GaragesPanel extends javax.swing.JPanel
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(btnStart)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFinish)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReload)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -346,6 +451,13 @@ public class GaragesPanel extends javax.swing.JPanel
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        finsihedList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                finsihedListValueChanged(evt);
+            }
         });
         jScrollPane5.setViewportView(finsihedList);
 
@@ -360,7 +472,7 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,7 +502,7 @@ public class GaragesPanel extends javax.swing.JPanel
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel6, jPanel7});
@@ -407,7 +519,7 @@ public class GaragesPanel extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel3, jPanel4, jPanel5});
@@ -421,12 +533,84 @@ public class GaragesPanel extends javax.swing.JPanel
         _controller.planJobPriorityForMechanics();
         applySearchResults();
     }//GEN-LAST:event_btnReloadActionPerformed
+
+    private void dieselListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_dieselListValueChanged
+    {//GEN-HEADEREND:event_dieselListValueChanged
+        displayDieselJob(dieselList.getSelectedIndex());
+    }//GEN-LAST:event_dieselListValueChanged
+
+    private void normalListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_normalListValueChanged
+    {//GEN-HEADEREND:event_normalListValueChanged
+        displayNormalJob(normalList.getSelectedIndex());
+    }//GEN-LAST:event_normalListValueChanged
+
+    private void tuningListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_tuningListValueChanged
+    {//GEN-HEADEREND:event_tuningListValueChanged
+        displayTuningJob(tuningList.getSelectedIndex());
+    }//GEN-LAST:event_tuningListValueChanged
+
+    private void finsihedListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_finsihedListValueChanged
+    {//GEN-HEADEREND:event_finsihedListValueChanged
+        displayFinishedJob(finsihedList.getSelectedIndex());
+    }//GEN-LAST:event_finsihedListValueChanged
+
+    private void btnStartNormalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStartNormalActionPerformed
+    {//GEN-HEADEREND:event_btnStartNormalActionPerformed
+        Service s = _garages[1].getJobs().get(normalList.getSelectedIndex());
+        _controller.startJob(s, ServiceType.NORMAL);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnStartNormalActionPerformed
+
+    private void btnStartTuningActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStartTuningActionPerformed
+    {//GEN-HEADEREND:event_btnStartTuningActionPerformed
+        Service s = _garages[2].getJobs().get(tuningList.getSelectedIndex());
+        _controller.startJob(s, ServiceType.TUNING);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnStartTuningActionPerformed
+
+    private void btnStartDieselActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStartDieselActionPerformed
+    {//GEN-HEADEREND:event_btnStartDieselActionPerformed
+        Service s = _garages[0].getJobs().get(dieselList.getSelectedIndex());
+        _controller.startJob(s, ServiceType.DIESEL);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnStartDieselActionPerformed
+
+    private void btnFinishDieselActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFinishDieselActionPerformed
+    {//GEN-HEADEREND:event_btnFinishDieselActionPerformed
+        Service s = _garages[0].getJobs().get(dieselList.getSelectedIndex());
+        _controller.finishJob(s, ServiceType.DIESEL);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnFinishDieselActionPerformed
+
+    private void btnFinishNormalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFinishNormalActionPerformed
+    {//GEN-HEADEREND:event_btnFinishNormalActionPerformed
+        Service s = _garages[1].getJobs().get(normalList.getSelectedIndex());
+        _controller.finishJob(s, ServiceType.NORMAL);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnFinishNormalActionPerformed
+
+    private void btnFinishTuningActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFinishTuningActionPerformed
+    {//GEN-HEADEREND:event_btnFinishTuningActionPerformed
+        Service s = _garages[2].getJobs().get(tuningList.getSelectedIndex());
+        _controller.finishJob(s, ServiceType.TUNING);
+        _controller.planJobPriorityForMechanics();
+        applySearchResults();
+    }//GEN-LAST:event_btnFinishTuningActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFinish;
+    private javax.swing.JButton btnFinishDiesel;
+    private javax.swing.JButton btnFinishNormal;
+    private javax.swing.JButton btnFinishTuning;
     private javax.swing.JButton btnReload;
-    private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnStartDiesel;
+    private javax.swing.JButton btnStartNormal;
+    private javax.swing.JButton btnStartTuning;
     private javax.swing.JList dieselList;
     private javax.swing.JList finsihedList;
     private javax.swing.JLabel jLabel10;
@@ -485,4 +669,236 @@ public class GaragesPanel extends javax.swing.JPanel
             _finishedList.addElement(s);
         }
     }
+    
+    
+    private void displayDieselJob(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+        if(_dieselList == null)
+            return;
+        if(_dieselList.size() > 0)
+        {
+            Service s = (Service) _dieselList.get(index);
+            
+            switch (s.getType().getNumericValue())
+            {
+                case 1:
+                    lblType.setText("Diesel");
+                    break;
+                case 2:
+                    lblType.setText("Normal");
+                    break;
+                case 3:
+                    lblType.setText("Tuning");
+                    break;
+            }
+            
+            switch (s.getState().getNumericValue())
+            {
+                case 1:
+                    lblState.setText("Pending");
+                    break;
+                case 2:
+                    lblState.setText("Reserved");
+                    break;
+                case 3:
+                    lblState.setText("Started");
+                    break;
+                case 4:
+                    lblState.setText("Finished");
+                    break;
+            }
+            
+            switch (s.getGarageType().getNumericValue())
+            {
+                case 1:
+                    lblGarage.setText("Diesel");
+                    break;
+                case 2:
+                    lblGarage.setText("Normal");
+                    break;
+                case 3:
+                    lblGarage.setText("Tuning");
+                    break;
+            }
+            txtFieldDescription.setText(s.getDescription());
+        }
+    }
+    
+    private void displayNormalJob(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+        if(_normalList == null)
+            return;
+        if(_normalList.size() > 0)
+        {
+            Service s = (Service) _normalList.get(index);
+            
+            switch (s.getType().getNumericValue())
+            {
+                case 1:
+                    lblType.setText("Diesel");
+                    break;
+                case 2:
+                    lblType.setText("Normal");
+                    break;
+                case 3:
+                    lblType.setText("Tuning");
+                    break;
+            }
+            
+            switch (s.getState().getNumericValue())
+            {
+                case 1:
+                    lblState.setText("Pending");
+                    break;
+                case 2:
+                    lblState.setText("Reserved");
+                    break;
+                case 3:
+                    lblState.setText("Started");
+                    break;
+                case 4:
+                    lblState.setText("Finished");
+                    break;
+            }
+            
+            switch (s.getGarageType().getNumericValue())
+            {
+                case 1:
+                    lblGarage.setText("Diesel");
+                    break;
+                case 2:
+                    lblGarage.setText("Normal");
+                    break;
+                case 3:
+                    lblGarage.setText("Tuning");
+                    break;
+            }
+            txtFieldDescription.setText(s.getDescription());
+        }
+    }
+
+    private void displayTuningJob(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+        if(_tuningList == null)
+            return;
+        if(_tuningList.size() > 0)
+        {
+            Service s = (Service) _tuningList.get(index);
+            
+            switch (s.getType().getNumericValue())
+            {
+                case 1:
+                    lblType.setText("Diesel");
+                    break;
+                case 2:
+                    lblType.setText("Normal");
+                    break;
+                case 3:
+                    lblType.setText("Tuning");
+                    break;
+            }
+            
+            switch (s.getState().getNumericValue())
+            {
+                case 1:
+                    lblState.setText("Pending");
+                    break;
+                case 2:
+                    lblState.setText("Reserved");
+                    break;
+                case 3:
+                    lblState.setText("Started");
+                    break;
+                case 4:
+                    lblState.setText("Finished");
+                    break;
+            }
+            
+            switch (s.getGarageType().getNumericValue())
+            {
+                case 1:
+                    lblGarage.setText("Diesel");
+                    break;
+                case 2:
+                    lblGarage.setText("Normal");
+                    break;
+                case 3:
+                    lblGarage.setText("Tuning");
+                    break;
+            }
+            txtFieldDescription.setText(s.getDescription());
+        }
+    }
+
+    private void displayFinishedJob(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+        if(_finishedList == null)
+            return;
+        if(_finishedList.size() > 0)
+        {
+            Service s = (Service) _finishedList.get(index);
+            
+            switch (s.getType().getNumericValue())
+            {
+                case 1:
+                    lblType.setText("Diesel");
+                    break;
+                case 2:
+                    lblType.setText("Normal");
+                    break;
+                case 3:
+                    lblType.setText("Tuning");
+                    break;
+            }
+            
+            switch (s.getState().getNumericValue())
+            {
+                case 1:
+                    lblState.setText("Pending");
+                    break;
+                case 2:
+                    lblState.setText("Reserved");
+                    break;
+                case 3:
+                    lblState.setText("Started");
+                    break;
+                case 4:
+                    lblState.setText("Finished");
+                    break;
+            }
+            
+            switch (s.getGarageType().getNumericValue())
+            {
+                case 1:
+                    lblGarage.setText("Diesel");
+                    break;
+                case 2:
+                    lblGarage.setText("Normal");
+                    break;
+                case 3:
+                    lblGarage.setText("Tuning");
+                    break;
+            }
+            txtFieldDescription.setText(s.getDescription());
+        }
+    }
+    
+    
+    
 }
