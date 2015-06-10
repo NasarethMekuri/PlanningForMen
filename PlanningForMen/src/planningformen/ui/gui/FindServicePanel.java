@@ -33,6 +33,7 @@ public class FindServicePanel extends javax.swing.JPanel
      */
     public FindServicePanel()
     {
+        _list = new DefaultListModel();
         _controller = new ServiceController();
         initComponents();
         listServices.setModel(_list);
