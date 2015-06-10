@@ -5,7 +5,6 @@
 */
 package planningformen.ui.gui;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import planningformen.application.IServiceController;
@@ -34,8 +33,6 @@ public class GaragesPanel extends javax.swing.JPanel
         _normalList = new DefaultListModel();
         _tuningList = new DefaultListModel();
         _finishedList = new DefaultListModel();
-        
-        _jobs = new ArrayList<>();
         
         
         dieselList.setModel(_dieselList);
