@@ -22,8 +22,8 @@ public class FindCarPanel extends javax.swing.JPanel
 {
     private List<Car> _foundCars;
     private DefaultListModel _list;
-    private List<JComponent> searchItems;
     private ICarController _controller;
+    private List<JComponent> searchItems;
     
     /**
      * Creates new form FindCarPanel
@@ -34,7 +34,6 @@ public class FindCarPanel extends javax.swing.JPanel
         initComponents();
         listCars.setModel(_list);
         _controller = new CarController();
-        _foundCars = new ArrayList();
     }
     
     /**
@@ -59,7 +58,7 @@ public class FindCarPanel extends javax.swing.JPanel
         lblSellPriceFrom = new javax.swing.JLabel();
         lblYearFrom = new javax.swing.JLabel();
         lblModel = new javax.swing.JLabel();
-        lblCarID = new javax.swing.JLabel();
+        fuel = new javax.swing.JLabel();
         carIdTxtField = new javax.swing.JTextField();
         plateTxtField = new javax.swing.JTextField();
         makeTxtField = new javax.swing.JTextField();
@@ -115,6 +114,11 @@ public class FindCarPanel extends javax.swing.JPanel
         purchaseDateTxtFieldEdit = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
         lblcarIDDisplay = new javax.swing.JLabel();
+        fuelSelector = new javax.swing.JComboBox();
+        fuel1 = new javax.swing.JLabel();
+        Description = new javax.swing.JLabel();
+        DescriptionTxtField = new javax.swing.JTextField();
+        checkSold = new javax.swing.JCheckBox();
         btnDelete = new javax.swing.JButton();
         lblSucces = new javax.swing.JLabel();
 
@@ -128,6 +132,8 @@ public class FindCarPanel extends javax.swing.JPanel
         });
 
         jLabel2.setText("Choose what to search by:");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblkmFrom.setText("Kilometers from:");
 
@@ -147,7 +153,7 @@ public class FindCarPanel extends javax.swing.JPanel
 
         lblModel.setText("Model");
 
-        lblCarID.setText("Car ID");
+        fuel.setText("Car ID");
 
         btnFind.setText("Find Cars");
         btnFind.addActionListener(new java.awt.event.ActionListener()
@@ -166,6 +172,7 @@ public class FindCarPanel extends javax.swing.JPanel
 
         lblVolTo.setText("Volume to:");
 
+        volFrom.setName(""); // NOI18N
         volFrom.setValue(1.8);
 
         volTo.setValue(2.0);
@@ -214,7 +221,7 @@ public class FindCarPanel extends javax.swing.JPanel
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblPlate)
-                            .addComponent(lblCarID)
+                            .addComponent(fuel)
                             .addComponent(lblMake)
                             .addComponent(lblModel)
                             .addComponent(lblVersion)
@@ -248,10 +255,8 @@ public class FindCarPanel extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnFind)
-                                    .addComponent(carIdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(carIdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 27, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(kmFrom)
@@ -274,19 +279,22 @@ public class FindCarPanel extends javax.swing.JPanel
                                 .addComponent(lblpurchDateTo)
                                 .addGap(16, 16, 16)))
                         .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFind)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(pDyearTo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(pDMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(pDyearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pDMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pDDayFrom, 0, 62, Short.MAX_VALUE)
-                            .addComponent(pDDayTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(pDyearTo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(pDMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(pDyearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(pDMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pDDayFrom, 0, 62, Short.MAX_VALUE)
+                                    .addComponent(pDDayTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -294,7 +302,7 @@ public class FindCarPanel extends javax.swing.JPanel
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCarID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fuel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(carIdTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -354,9 +362,9 @@ public class FindCarPanel extends javax.swing.JPanel
                     .addComponent(pDMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pDDayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pDyearTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(72, 72, 72)
                 .addComponent(btnFind)
-                .addGap(39, 39, 39))
+                .addContainerGap())
         );
 
         listCars.addMouseListener(new java.awt.event.MouseAdapter()
@@ -381,6 +389,8 @@ public class FindCarPanel extends javax.swing.JPanel
             }
         });
         jScrollPane2.setViewportView(listCars);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblKilometersEdit.setText("Kilometers");
 
@@ -413,6 +423,30 @@ public class FindCarPanel extends javax.swing.JPanel
             }
         });
 
+        fuelSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "choose", "Petrol", "Diesel" }));
+        fuelSelector.setToolTipText("");
+
+        fuel1.setText("Fuel");
+
+        Description.setText("Description");
+
+        DescriptionTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                DescriptionTxtFieldActionPerformed(evt);
+            }
+        });
+
+        checkSold.setText("Sold");
+        checkSold.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                checkSoldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -420,6 +454,7 @@ public class FindCarPanel extends javax.swing.JPanel
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Description)
                     .addComponent(lblPlateEdit)
                     .addComponent(lblCarIDEdit)
                     .addComponent(lblMakeEdit)
@@ -430,23 +465,27 @@ public class FindCarPanel extends javax.swing.JPanel
                     .addComponent(lblSellPriceEdit)
                     .addComponent(lblKilometersEdit)
                     .addComponent(lblYearEdit)
-                    .addComponent(lblPurchaseDateEdit))
+                    .addComponent(lblPurchaseDateEdit)
+                    .addComponent(fuel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kilometersTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(purchaseDateTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(purchasePriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(sellPriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(versionTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(volumeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(modelTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(makeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(yearTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnEdit)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(fuelSelector, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kilometersTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(purchaseDateTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(purchasePriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(sellPriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(versionTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(volumeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(modelTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(makeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(yearTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(lblcarIDDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plateTxtFieldEdit))
+                    .addComponent(plateTxtFieldEdit)
+                    .addComponent(DescriptionTxtField)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(checkSold)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEdit)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -496,9 +535,22 @@ public class FindCarPanel extends javax.swing.JPanel
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPurchaseDateEdit)
                     .addComponent(purchaseDateTxtFieldEdit))
-                .addGap(18, 18, 18)
-                .addComponent(btnEdit)
-                .addGap(72, 72, 72))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fuel1)
+                    .addComponent(fuelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescriptionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Description))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnEdit))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(checkSold)))
+                .addContainerGap())
         );
 
         btnDelete.setText("Delete Car");
@@ -518,45 +570,48 @@ public class FindCarPanel extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(criteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+                        .addGap(740, 740, 740))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
                                 .addComponent(btnDelete))
-                            .addComponent(lblSucces, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(criteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addGap(703, 703, 703))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSucces, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(criteria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSucces)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblSucces))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                        .addGap(13, 13, 13))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -570,7 +625,7 @@ public class FindCarPanel extends javax.swing.JPanel
         switch (criteria.getSelectedIndex())
         {
             case 1:
-                lblCarID.setEnabled(true);
+                fuel.setEnabled(true);
                 carIdTxtField.setEnabled(true);
                 break;
             case 2:
@@ -653,10 +708,18 @@ public class FindCarPanel extends javax.swing.JPanel
         switch (criteria.getSelectedIndex())
         {
             case 1:
+                if (_foundCars == null)
+                {
+                    _foundCars = new ArrayList();
+                }
                 _foundCars.add(_controller.findCarByID(carIdTxtField.getText().trim()));
                 applySearchResults();
                 break;
             case 2:
+                if (_foundCars == null)
+                {
+                    _foundCars = new ArrayList();
+                }
                 _foundCars.add(_controller.findCarByPlate(plateTxtField.getText().trim()));
                 applySearchResults();
                 break;
@@ -773,7 +836,52 @@ public class FindCarPanel extends javax.swing.JPanel
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
     {//GEN-HEADEREND:event_btnEditActionPerformed
-        // TODO add your handling code here:
+        if(listCars.getSelectedIndex() < 0)
+        {
+            lblSucces.setText("Nothing to update!");
+            return;
+        }
+        Car c = _foundCars.get(listCars.getSelectedIndex());
+        
+        double volume = 0;
+        double pPrice = 0;
+        double sPrice = 0;
+        int year = 0;
+        int km = 0;
+        try
+        {
+            volume = Double.parseDouble(volumeTxtFieldEdit.getText());
+            pPrice = Double.parseDouble(purchasePriceTxtFieldEdit.getText());
+            sPrice = Double.parseDouble(sellPriceTxtFieldEdit.getText());
+            year = Integer.parseInt(yearTxtFieldEdit.getText());
+            km = Integer.parseInt(kilometersTxtFieldEdit.getText());
+        }
+        catch (NumberFormatException numberFormatException)
+        {
+            lblSucces.setText("wrong number format!");
+        }
+        
+        boolean inStock = !checkSold.isSelected();
+        Date pDate = Date.valueOf(purchaseDateTxtFieldEdit.getText());
+        
+        c.setPlate(plateTxtFieldEdit.getText());
+        c.setMake(makeTxtFieldEdit.getText());
+        c.setModel(modelTxtFieldEdit.getText());
+        c.setVersion(versionTxtFieldEdit.getText());
+        c.setFuel(fuelSelector.getSelectedItem().toString());
+        c.setDescription(DescriptionTxtField.getText());
+        c.setVolume(volume); //double
+        c.setPurchasePrice(pPrice);
+        c.setSellPrice(sPrice);
+        c.setYear(year);
+        c.setOdometer(km);
+        c.setInStock(inStock);
+        c.setPurchaseDate(pDate);
+        
+        if(_controller.updateCar(c))
+            lblSucces.setText("Car sucessfully updated!");
+        else
+            lblSucces.setText("Failed to update Car");
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void listCarsComponentAdded(java.awt.event.ContainerEvent evt)//GEN-FIRST:event_listCarsComponentAdded
@@ -797,9 +905,8 @@ public class FindCarPanel extends javax.swing.JPanel
         {
             if(_controller.deleteCar(_foundCars.get(listCars.getSelectedIndex())))
             {
-               //TODO Refresh List !! (kan da ikke være så svært!?!?!)
-                //_foundCars.remove(listCars.getSelectedIndex()); //ERROR IN THIS LINE !!  java.lang.ArrayIndexOutOfBoundsException: -1
-                //applySearchResults();
+                _foundCars.remove(listCars.getSelectedIndex()); //ERROR IN THIS LINE !!  java.lang.ArrayIndexOutOfBoundsException: -1
+                _list.remove(listCars.getSelectedIndex());
                 lblSucces.setText("Car sucessfully deleted!");
             }
             else
@@ -812,14 +919,30 @@ public class FindCarPanel extends javax.swing.JPanel
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void DescriptionTxtFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_DescriptionTxtFieldActionPerformed
+    {//GEN-HEADEREND:event_DescriptionTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescriptionTxtFieldActionPerformed
+
+    private void checkSoldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_checkSoldActionPerformed
+    {//GEN-HEADEREND:event_checkSoldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkSoldActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Description;
+    private javax.swing.JTextField DescriptionTxtField;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnFind;
     private javax.swing.JTextField carIdTxtField;
+    private javax.swing.JCheckBox checkSold;
     private javax.swing.JComboBox criteria;
+    private javax.swing.JLabel fuel;
+    private javax.swing.JLabel fuel1;
+    private javax.swing.JComboBox fuelSelector;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -827,7 +950,6 @@ public class FindCarPanel extends javax.swing.JPanel
     private javax.swing.JTextField kilometersTxtFieldEdit;
     private javax.swing.JSpinner kmFrom;
     private javax.swing.JSpinner kmTo;
-    private javax.swing.JLabel lblCarID;
     private javax.swing.JLabel lblCarIDEdit;
     private javax.swing.JLabel lblKilometersEdit;
     private javax.swing.JLabel lblMake;
@@ -890,8 +1012,8 @@ public class FindCarPanel extends javax.swing.JPanel
     private List<JComponent> populateSearchItemsList()
     {
         List<JComponent> returnList = new ArrayList();
-        returnList.add(lblCarID);
-        returnList.add(carIdTxtField);
+        returnList.add(fuel);
+        returnList.add(fuelSelector);
         returnList.add(lblPlate);
         returnList.add(plateTxtField);
         returnList.add(lblYearFrom);
@@ -952,6 +1074,10 @@ public class FindCarPanel extends javax.swing.JPanel
     
     private void displayCar(int index)
     {
+        if (index < 0)
+        {
+            return;
+        }
         if(_foundCars == null)
             return;
         if(_foundCars.size() > 0)
@@ -968,6 +1094,11 @@ public class FindCarPanel extends javax.swing.JPanel
             sellPriceTxtFieldEdit.setText(""+ c.getSellPrice());
             kilometersTxtFieldEdit.setText(""+c.getOdometer());
             purchaseDateTxtFieldEdit.setText(c.getPurchaseDate().toString());
+            fuelSelector.setEnabled(true);
+            if (c.getFuel().equalsIgnoreCase("Fuel"))
+                fuelSelector.setSelectedIndex(1);
+            else
+                fuelSelector.setSelectedIndex(2);
         }
     }
 }

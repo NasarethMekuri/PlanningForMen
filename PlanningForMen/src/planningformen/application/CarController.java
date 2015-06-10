@@ -107,13 +107,13 @@ public class CarController implements ICarController
     public List<Car> findCarsBySaleID(String saleID)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //@MKJ get down, get down, and move it all around...
     }
 
     @Override
     public boolean updateCar(Car updatedCar)
     {
-        //@MKJ get down, get down, and move it all around...
-        return false;
+        return Master.getInstance().getCarManager().updateCar(updatedCar);
     }
 
     @Override
