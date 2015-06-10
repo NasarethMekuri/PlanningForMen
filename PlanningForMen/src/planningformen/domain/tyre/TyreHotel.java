@@ -257,7 +257,7 @@ public class TyreHotel
             {
                 if (_waitingListConverter.deleteWaitingPosition(index))
                 {
-                    _waitingList.remove(index);
+                    _waitingList.remove(index); //delete @list
                     updateAllCustomersWaitingPositions();
                     return true;
                 }
@@ -281,10 +281,14 @@ public class TyreHotel
     
     private void updateAllCustomersWaitingPositions()
     {
+        for (int i = 0; i < _waitingList.size() + 1; i++)
+        {
+            _waitingListConverter.deleteWaitingPosition(i);   
+        }
         for (int i = 0; i < _waitingList.size(); i++)
         {
             String custID = _waitingList.get(i);
-            _waitingListConverter.updateWaitingPosition(i, custID);
+            _waitingListConverter.createWaitingPosition(i, custID);
         }
     }
 }

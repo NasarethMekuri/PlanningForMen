@@ -629,9 +629,9 @@ public class FindCustomerPanel extends javax.swing.JPanel
     {//GEN-HEADEREND:event_btnAddToWaitingListActionPerformed
         if(listCustomers.getSelectedIndex() >= 0)
         {
-            int z = _hotelController.addCustomerToWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
-            
-            lblNumberInLine.setText(""+z);
+        int z = _hotelController.addCustomerToWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
+        
+        lblNumberInLine.setText(""+z);
         }
     }//GEN-LAST:event_btnAddToWaitingListActionPerformed
 
@@ -639,17 +639,17 @@ public class FindCustomerPanel extends javax.swing.JPanel
     {//GEN-HEADEREND:event_btnRemoveFromWaitingListActionPerformed
         if(listCustomers.getSelectedIndex() >= 0)
         {
-            boolean succes = _hotelController.removeCustomerFromWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
-            
-            if (succes)
-            {
-                lblNumberInLine.setText("--");
-            }
-            else
-            {
-                lblSuccess.setText("Customer could not be romeved.");
-            }
-            
+        boolean succes = _hotelController.removeCustomerFromWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
+        
+        if (succes)
+        {
+        lblNumberInLine.setText("--");
+        }
+        else
+        {
+        lblSuccess.setText("Customer could not be romeved.");
+        }
+        
         }
     }//GEN-LAST:event_btnRemoveFromWaitingListActionPerformed
 

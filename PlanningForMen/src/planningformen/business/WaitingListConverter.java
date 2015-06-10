@@ -7,7 +7,7 @@ package planningformen.business;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import planningformen.technical.IOManager;
 
@@ -29,7 +29,7 @@ public class WaitingListConverter implements ICallback
     public void extractValues(ResultSet rs) throws SQLException
     {
         String customerID = null;
-        _convertedWaitingList = new LinkedList();
+        _convertedWaitingList = new ArrayList();
         
         int numberInLine = 0;
         while (rs.next())
