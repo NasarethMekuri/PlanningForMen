@@ -1,9 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.ui.gui;
+
+import java.sql.Date;
+import planningformen.application.CarController;
+import planningformen.application.ICarController;
 
 /**
  *
@@ -11,15 +15,23 @@ package planningformen.ui.gui;
  */
 public class CreateCarPanel extends javax.swing.JPanel
 {
-
+    private ICarController _controller;
+    
+    private String _make, _model, _version, _fuel, _description, _plate;
+    private double _volume, _purchasePrice, _sellPrice;
+    private int _year, _odometer;
+    private Date _purchaseDate;
+    private boolean _inStock;
+    
     /**
      * Creates new form CreateCarPanel
      */
     public CreateCarPanel()
     {
+        _controller = new CarController();
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +50,6 @@ public class CreateCarPanel extends javax.swing.JPanel
         purchasePriceTxtField = new javax.swing.JTextField();
         year = new javax.swing.JLabel();
         model = new javax.swing.JLabel();
-        purchaseDateTxtField = new javax.swing.JTextField();
         plateTxtField = new javax.swing.JTextField();
         kilometersTxtField = new javax.swing.JTextField();
         yearTxtField = new javax.swing.JTextField();
@@ -52,6 +63,14 @@ public class CreateCarPanel extends javax.swing.JPanel
         plate = new javax.swing.JLabel();
         purchaseDate = new javax.swing.JLabel();
         make = new javax.swing.JLabel();
+        fuel = new javax.swing.JLabel();
+        Description = new javax.swing.JLabel();
+        DescriptionTxtField = new javax.swing.JTextField();
+        lblMessage = new javax.swing.JLabel();
+        fuelSelector = new javax.swing.JComboBox();
+        purchaseMonth = new javax.swing.JComboBox();
+        purchaseDay = new javax.swing.JComboBox();
+        purchaseYear = new javax.swing.JSpinner();
 
         btnCreate.setText("Create Car");
         btnCreate.addActionListener(new java.awt.event.ActionListener()
@@ -79,6 +98,14 @@ public class CreateCarPanel extends javax.swing.JPanel
 
         model.setText("Model");
 
+        yearTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                yearTxtFieldActionPerformed(evt);
+            }
+        });
+
         sellPrice.setText("Sell Price");
 
         volume.setText("Volume");
@@ -91,63 +118,82 @@ public class CreateCarPanel extends javax.swing.JPanel
 
         make.setText("Make");
 
+        fuel.setText("Fuel");
+
+        Description.setText("Description");
+
+        DescriptionTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                DescriptionTxtFieldActionPerformed(evt);
+            }
+        });
+
+        lblMessage.setText(".");
+
+        fuelSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "choose", "Petrol", "Diesel" }));
+
+        purchaseMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12" }));
+
+        purchaseDay.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        purchaseYear.setValue(2015);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(purchaseDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(make, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sellPrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(version, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(kilometers, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(purchasePrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(plate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(model, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fuel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(plate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(plateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCreate)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnReset))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(purchaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(purchaseMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(purchaseDay, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))
+                            .addComponent(purchasePriceTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(sellPriceTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(plateTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(versionTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(kilometersTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(makeTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fuelSelector, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modelTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(year)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(yearTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(volume)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(volumeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(make)
-                                .addComponent(model)
-                                .addComponent(version))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(versionTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(modelTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(makeTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(kilometers)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(kilometersTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(purchaseDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(purchaseDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(purchasePrice)
-                            .addComponent(sellPrice))
+                                .addComponent(year, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(volume, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(Description))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCreate)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnReset))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(purchasePriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sellPriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(372, Short.MAX_VALUE))
+                            .addComponent(DescriptionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(volumeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(yearTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(405, 405, 405))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {kilometersTxtField, makeTxtField, modelTxtField, plateTxtField, purchasePriceTxtField, sellPriceTxtField, versionTxtField, yearTxtField});
@@ -165,7 +211,8 @@ public class CreateCarPanel extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(volume)
                             .addComponent(volumeTxtField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(DescriptionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(plate)
@@ -177,8 +224,13 @@ public class CreateCarPanel extends javax.swing.JPanel
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(model)
-                            .addComponent(modelTxtField))
-                        .addGap(18, 18, 18)
+                            .addComponent(modelTxtField)
+                            .addComponent(Description))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fuel)
+                            .addComponent(fuelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(version)
                             .addComponent(versionTxtField))
@@ -189,7 +241,9 @@ public class CreateCarPanel extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(purchaseDate)
-                            .addComponent(purchaseDateTxtField))
+                            .addComponent(purchaseMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(purchaseDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(purchaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(purchasePrice)
@@ -201,28 +255,129 @@ public class CreateCarPanel extends javax.swing.JPanel
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
-                    .addComponent(btnReset))
-                .addGap(32, 32, 32))
+                    .addComponent(btnReset)
+                    .addComponent(lblMessage))
+                .addGap(274, 274, 274))
         );
+
+        yearTxtField.setText("yyyy");
+        yearTxtField.setToolTipText("Format must be yyyy");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
     {//GEN-HEADEREND:event_btnCreateActionPerformed
-     
+        
+        if (plateTxtField.getText().trim().equals("") ||
+                makeTxtField.getText().trim().equals("") ||
+                modelTxtField.getText().trim().equals("") ||
+                kilometersTxtField.getText().trim().equals("") ||
+                //purchaseDateTxtField.getText().trim().equals("") ||
+                purchasePriceTxtField.getText().trim().equals("") ||
+                sellPriceTxtField.getText().trim().equals("") ||
+                yearTxtField.getText().trim().equals("")
+                )
+        {
+            fail();
+            return;
+        }
+        
+        boolean diesel = false;
+        if (fuelSelector.getSelectedIndex() == 0)
+        {
+            fail();
+            return;
+        }
+        else if (fuelSelector.getSelectedIndex() == 2)
+        {
+            diesel = true;
+        }
+        //set values:
+        this._make = makeTxtField.getText().trim();
+        this._model = modelTxtField.getText().trim();
+        this._version = versionTxtField.getText().trim();//can be null
+        this._fuel = (diesel) ? "Diesel" : "Petrol";
+        this._description = DescriptionTxtField.getText().trim();//can be null
+        this._plate = plateTxtField.getText().trim();
+        try
+        {
+            
+            this._volume = Double.parseDouble(volumeTxtField.getText().trim()); //can be null
+            this._purchasePrice = Double.parseDouble(purchasePriceTxtField.getText().trim());
+            this._sellPrice = Double.parseDouble(sellPriceTxtField.getText().trim());
+            this._year = Integer.parseInt(yearTxtField.getText().trim());
+            this._odometer = Integer.parseInt(kilometersTxtField.getText().trim());
+        }
+        catch (NumberFormatException numberFormatException)
+        {
+            fail();
+            return;
+        }
+        
+        
+        this._purchaseDate = Date.valueOf(purchaseYear.getValue().toString() + "-" + purchaseMonth.getSelectedItem().toString() + "-" + purchaseDay.getSelectedItem().toString());
+        
+        this._inStock = true;
+        
+        
+        
+        
+        
+        if (_controller.createCar(
+                _plate, _year, _make, _model, _volume, _fuel, _version, _odometer,
+                _purchaseDate, _purchasePrice, _sellPrice, _description, _inStock
+        ))
+        {
+            lblMessage.setText("Car succesfully Created");
+        }
+        else
+        {
+            lblMessage.setText("Car could not be Created ");
+        }
+        
+        
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnResetActionPerformed
     {//GEN-HEADEREND:event_btnResetActionPerformed
+        plateTxtField.setText("");
+        makeTxtField.setText("");
+        modelTxtField.setText("");
+        versionTxtField.setText("");
+        fuelSelector.setSelectedIndex(0);
+        DescriptionTxtField.setText("");
+        volumeTxtField.setText("");
+        purchasePriceTxtField.setText("");
+        sellPriceTxtField.setText("");
+        yearTxtField.setText("");
+        kilometersTxtField.setText("");
+        purchaseYear.setValue("2015");
+        purchaseMonth.setSelectedIndex(0);
+        purchaseDay.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void DescriptionTxtFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_DescriptionTxtFieldActionPerformed
+    {//GEN-HEADEREND:event_DescriptionTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescriptionTxtFieldActionPerformed
+
+    private void yearTxtFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_yearTxtFieldActionPerformed
+    {//GEN-HEADEREND:event_yearTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearTxtFieldActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Description;
+    private javax.swing.JTextField DescriptionTxtField;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnReset;
+    private javax.swing.JLabel fuel;
+    private javax.swing.JComboBox fuelSelector;
     private javax.swing.JLabel kilometers;
     private javax.swing.JTextField kilometersTxtField;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel make;
     private javax.swing.JTextField makeTxtField;
     private javax.swing.JLabel model;
@@ -230,9 +385,11 @@ public class CreateCarPanel extends javax.swing.JPanel
     private javax.swing.JLabel plate;
     private javax.swing.JTextField plateTxtField;
     private javax.swing.JLabel purchaseDate;
-    private javax.swing.JTextField purchaseDateTxtField;
+    private javax.swing.JComboBox purchaseDay;
+    private javax.swing.JComboBox purchaseMonth;
     private javax.swing.JLabel purchasePrice;
     private javax.swing.JTextField purchasePriceTxtField;
+    private javax.swing.JSpinner purchaseYear;
     private javax.swing.JLabel sellPrice;
     private javax.swing.JTextField sellPriceTxtField;
     private javax.swing.JLabel version;
@@ -242,4 +399,9 @@ public class CreateCarPanel extends javax.swing.JPanel
     private javax.swing.JLabel year;
     private javax.swing.JTextField yearTxtField;
     // End of variables declaration//GEN-END:variables
+    
+    private void fail()
+    {
+        lblMessage.setText("Not all fields were filled (correctly)!");
+    }
 }

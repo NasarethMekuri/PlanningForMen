@@ -5,9 +5,14 @@
 */
 package planningformen.ui.gui;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
+import planningformen.application.CarController;
+import planningformen.application.ICarController;
+import planningformen.domain.planning.Car;
 
 /**
  *
@@ -15,15 +20,21 @@ import javax.swing.JComponent;
  */
 public class FindCarPanel extends javax.swing.JPanel
 {
+    private List<Car> _foundCars;
+    private DefaultListModel _list;
     private List<JComponent> searchItems;
+    private ICarController _controller;
     
     /**
      * Creates new form FindCarPanel
      */
     public FindCarPanel()
     {
+        _list = new DefaultListModel();
         initComponents();
-        
+        listCars.setModel(_list);
+        _controller = new CarController();
+        _foundCars = new ArrayList();
     }
     
     /**
@@ -36,38 +47,76 @@ public class FindCarPanel extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
         criteria = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        kilometers = new javax.swing.JLabel();
-        version = new javax.swing.JLabel();
-        make = new javax.swing.JLabel();
-        purchaseDate = new javax.swing.JLabel();
-        plate = new javax.swing.JLabel();
-        purchasePrice = new javax.swing.JLabel();
-        volume = new javax.swing.JLabel();
-        sellPrice = new javax.swing.JLabel();
-        year = new javax.swing.JLabel();
-        model = new javax.swing.JLabel();
-        carID = new javax.swing.JLabel();
+        lblkmFrom = new javax.swing.JLabel();
+        lblVersion = new javax.swing.JLabel();
+        lblMake = new javax.swing.JLabel();
+        lblPlate = new javax.swing.JLabel();
+        lblpPriceFrom = new javax.swing.JLabel();
+        lblVolFrom = new javax.swing.JLabel();
+        lblSellPriceFrom = new javax.swing.JLabel();
+        lblYearFrom = new javax.swing.JLabel();
+        lblModel = new javax.swing.JLabel();
+        lblCarID = new javax.swing.JLabel();
         carIdTxtField = new javax.swing.JTextField();
         plateTxtField = new javax.swing.JTextField();
-        yearTxtField = new javax.swing.JTextField();
         makeTxtField = new javax.swing.JTextField();
         modelTxtField = new javax.swing.JTextField();
         versionTxtField = new javax.swing.JTextField();
-        volumeTxtField = new javax.swing.JTextField();
-        purchasePriceTxtField = new javax.swing.JTextField();
-        sellPriceTxtField = new javax.swing.JTextField();
-        kilometersTxtField = new javax.swing.JTextField();
-        purchaseDateTxtField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
+        yearFrom = new javax.swing.JSpinner();
+        yearTo = new javax.swing.JSpinner();
+        lblYearTo = new javax.swing.JLabel();
+        lblVolTo = new javax.swing.JLabel();
+        volFrom = new javax.swing.JSpinner();
+        volTo = new javax.swing.JSpinner();
+        pPriceFrom = new javax.swing.JSpinner();
+        pPriceTo = new javax.swing.JSpinner();
+        lblpPriceTo = new javax.swing.JLabel();
+        sPriceFrom = new javax.swing.JSpinner();
+        lblSellPriceTo = new javax.swing.JLabel();
+        sPriceTo = new javax.swing.JSpinner();
+        kmFrom = new javax.swing.JSpinner();
+        lblkmTo = new javax.swing.JLabel();
+        kmTo = new javax.swing.JSpinner();
+        lblpurchDateTo = new javax.swing.JLabel();
+        pDyearTo = new javax.swing.JSpinner();
+        pDMonthTo = new javax.swing.JComboBox();
+        pDDayTo = new javax.swing.JComboBox();
+        lblpurchDateFrom = new javax.swing.JLabel();
+        pDyearFrom = new javax.swing.JSpinner();
+        pDMonthFrom = new javax.swing.JComboBox();
+        pDDayFrom = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("FIND CAR");
+        listCars = new javax.swing.JList();
+        jPanel2 = new javax.swing.JPanel();
+        lblKilometersEdit = new javax.swing.JLabel();
+        lblVersionEdit = new javax.swing.JLabel();
+        lblMakeEdit = new javax.swing.JLabel();
+        lblPurchaseDateEdit = new javax.swing.JLabel();
+        lblPlateEdit = new javax.swing.JLabel();
+        lblPurchasePriceEdit = new javax.swing.JLabel();
+        lblVolumeEdit = new javax.swing.JLabel();
+        lblSellPriceEdit = new javax.swing.JLabel();
+        lblYearEdit = new javax.swing.JLabel();
+        lblModelEdit = new javax.swing.JLabel();
+        lblCarIDEdit = new javax.swing.JLabel();
+        plateTxtFieldEdit = new javax.swing.JTextField();
+        yearTxtFieldEdit = new javax.swing.JTextField();
+        makeTxtFieldEdit = new javax.swing.JTextField();
+        modelTxtFieldEdit = new javax.swing.JTextField();
+        versionTxtFieldEdit = new javax.swing.JTextField();
+        volumeTxtFieldEdit = new javax.swing.JTextField();
+        purchasePriceTxtFieldEdit = new javax.swing.JTextField();
+        sellPriceTxtFieldEdit = new javax.swing.JTextField();
+        kilometersTxtFieldEdit = new javax.swing.JTextField();
+        purchaseDateTxtFieldEdit = new javax.swing.JTextField();
+        btnEdit = new javax.swing.JButton();
+        lblcarIDDisplay = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
+        lblSucces = new javax.swing.JLabel();
 
         criteria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose search criteria", "CarID", "Plate", "Year", "Make", "Model", "Make and Model", "Version", "Make, Model, and Version", "Volume", "Purchase Price", "Sell Price", "Kilometers", "Purchase Date"}));
         criteria.addActionListener(new java.awt.event.ActionListener()
@@ -80,29 +129,80 @@ public class FindCarPanel extends javax.swing.JPanel
 
         jLabel2.setText("Choose what to search by:");
 
-        kilometers.setText("Kilometers");
+        lblkmFrom.setText("Kilometers from:");
 
-        version.setText("Version");
+        lblVersion.setText("Version");
 
-        make.setText("Make");
+        lblMake.setText("Make");
 
-        purchaseDate.setText("Purchase Date");
+        lblPlate.setText("Plate");
 
-        plate.setText("Plate");
+        lblpPriceFrom.setText("Purchase Price from:");
 
-        purchasePrice.setText("Purchase Price");
+        lblVolFrom.setText("Volume from:");
 
-        volume.setText("Volume");
+        lblSellPriceFrom.setText("Sell Price from:");
 
-        sellPrice.setText("Sell Price");
+        lblYearFrom.setText("Year from:");
 
-        year.setText("Year");
+        lblModel.setText("Model");
 
-        model.setText("Model");
+        lblCarID.setText("Car ID");
 
-        carID.setText("Car ID");
+        btnFind.setText("Find Cars");
+        btnFind.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFindActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Find Cars");
+        yearFrom.setValue(2015);
+
+        yearTo.setValue(2015);
+
+        lblYearTo.setText("Year to:");
+
+        lblVolTo.setText("Volume to:");
+
+        volFrom.setValue(1.8);
+
+        volTo.setValue(2.0);
+
+        pPriceFrom.setValue(0);
+
+        pPriceTo.setValue(100000);
+
+        lblpPriceTo.setText("Price to:");
+
+        sPriceFrom.setValue(0);
+
+        lblSellPriceTo.setText("Price to:");
+
+        sPriceTo.setValue(100000);
+
+        kmFrom.setValue(0);
+
+        lblkmTo.setText("km to:");
+
+        kmTo.setValue(230000);
+
+        lblpurchDateTo.setText("Purchase Date To");
+
+        pDyearTo.setValue(2015);
+
+        pDMonthTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12" }));
+
+        pDDayTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        lblpurchDateFrom.setText("Purchase Date From");
+
+        pDyearFrom.setValue(2015);
+
+        pDMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12" }));
+
+        pDDayFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4" , "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,34 +210,83 @@ public class FindCarPanel extends javax.swing.JPanel
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(plate)
-                    .addComponent(carID)
-                    .addComponent(make)
-                    .addComponent(model)
-                    .addComponent(version)
-                    .addComponent(volume)
-                    .addComponent(purchasePrice)
-                    .addComponent(sellPrice)
-                    .addComponent(kilometers)
-                    .addComponent(year)
-                    .addComponent(purchaseDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(kilometersTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(purchaseDateTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(purchasePriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(sellPriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(versionTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(volumeTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(modelTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(makeTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(yearTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(plateTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(carIdTxtField, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPlate)
+                            .addComponent(lblCarID)
+                            .addComponent(lblMake)
+                            .addComponent(lblModel)
+                            .addComponent(lblVersion)
+                            .addComponent(lblVolFrom)
+                            .addComponent(lblpPriceFrom)
+                            .addComponent(lblSellPriceFrom)
+                            .addComponent(lblkmFrom)
+                            .addComponent(lblYearFrom))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(versionTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(modelTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(makeTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(plateTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(yearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblYearTo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(volFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblVolTo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(volTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(pPriceFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblpPriceTo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnFind)
+                                    .addComponent(carIdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(kmFrom)
+                                    .addComponent(sPriceFrom, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblSellPriceTo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblkmTo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(kmTo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblpurchDateFrom, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblpurchDateTo)
+                                .addGap(16, 16, 16)))
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pDyearTo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(pDMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pDyearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pDMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pDDayFrom, 0, 62, Short.MAX_VALUE)
+                            .addComponent(pDDayTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -145,96 +294,268 @@ public class FindCarPanel extends javax.swing.JPanel
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCarID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(carIdTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(plate)
+                    .addComponent(lblPlate)
                     .addComponent(plateTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(year)
-                    .addComponent(yearTxtField))
+                    .addComponent(lblYearFrom)
+                    .addComponent(yearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblYearTo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(make)
+                    .addComponent(lblMake)
                     .addComponent(makeTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(model)
+                    .addComponent(lblModel)
                     .addComponent(modelTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(version)
+                    .addComponent(lblVersion)
                     .addComponent(versionTxtField))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volume)
-                    .addComponent(volumeTxtField))
+                    .addComponent(lblVolFrom)
+                    .addComponent(volFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVolTo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(purchasePrice)
-                    .addComponent(purchasePriceTxtField))
+                    .addComponent(lblpPriceFrom)
+                    .addComponent(pPriceFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblpPriceTo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sellPrice)
-                    .addComponent(sellPriceTxtField))
+                    .addComponent(lblSellPriceFrom)
+                    .addComponent(sPriceFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSellPriceTo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(kilometers)
-                    .addComponent(kilometersTxtField))
-                .addGap(18, 18, 18)
+                    .addComponent(lblkmFrom)
+                    .addComponent(kmFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kmTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblkmTo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(purchaseDate)
-                    .addComponent(purchaseDateTxtField))
-                .addGap(52, 52, 52)
-                .addComponent(jButton1)
-                .addGap(38, 38, 38))
+                    .addComponent(lblpurchDateFrom)
+                    .addComponent(pDMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pDDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pDyearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblpurchDateTo)
+                    .addComponent(pDMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pDDayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pDyearTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btnFind)
+                .addGap(39, 39, 39))
         );
 
-        jList2.setModel(new javax.swing.AbstractListModel()
+        listCars.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                listCarsMouseClicked(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList2);
+        listCars.addContainerListener(new java.awt.event.ContainerAdapter()
+        {
+            public void componentAdded(java.awt.event.ContainerEvent evt)
+            {
+                listCarsComponentAdded(evt);
+            }
+        });
+        listCars.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                listCarsValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(listCars);
+
+        lblKilometersEdit.setText("Kilometers");
+
+        lblVersionEdit.setText("Version");
+
+        lblMakeEdit.setText("Make");
+
+        lblPurchaseDateEdit.setText("Purchase Date");
+
+        lblPlateEdit.setText("Plate");
+
+        lblPurchasePriceEdit.setText("Purchase Price");
+
+        lblVolumeEdit.setText("Volume");
+
+        lblSellPriceEdit.setText("Sell Price");
+
+        lblYearEdit.setText("Year");
+
+        lblModelEdit.setText("Model");
+
+        lblCarIDEdit.setText("Car ID");
+
+        btnEdit.setText("Edit Car");
+        btnEdit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPlateEdit)
+                    .addComponent(lblCarIDEdit)
+                    .addComponent(lblMakeEdit)
+                    .addComponent(lblModelEdit)
+                    .addComponent(lblVersionEdit)
+                    .addComponent(lblVolumeEdit)
+                    .addComponent(lblPurchasePriceEdit)
+                    .addComponent(lblSellPriceEdit)
+                    .addComponent(lblKilometersEdit)
+                    .addComponent(lblYearEdit)
+                    .addComponent(lblPurchaseDateEdit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kilometersTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(purchaseDateTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(purchasePriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(sellPriceTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(versionTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(volumeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(modelTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(makeTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(yearTxtFieldEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnEdit)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblcarIDDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plateTxtFieldEdit))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCarIDEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblcarIDDisplay))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPlateEdit)
+                    .addComponent(plateTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblYearEdit)
+                    .addComponent(yearTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMakeEdit)
+                    .addComponent(makeTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblModelEdit)
+                    .addComponent(modelTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVersionEdit)
+                    .addComponent(versionTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVolumeEdit)
+                    .addComponent(volumeTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPurchasePriceEdit)
+                    .addComponent(purchasePriceTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSellPriceEdit)
+                    .addComponent(sellPriceTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblKilometersEdit)
+                    .addComponent(kilometersTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPurchaseDateEdit)
+                    .addComponent(purchaseDateTxtFieldEdit))
+                .addGap(18, 18, 18)
+                .addComponent(btnEdit)
+                .addGap(72, 72, 72))
+        );
+
+        btnDelete.setText("Delete Car");
+        btnDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        lblSucces.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSucces.setText("_");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(btnDelete))
+                            .addComponent(lblSucces, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(criteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                        .addGap(703, 703, 703))))
+                    .addComponent(criteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                .addGap(703, 703, 703))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24)
+                .addContainerGap(86, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(criteria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSucces))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -249,126 +570,364 @@ public class FindCarPanel extends javax.swing.JPanel
         switch (criteria.getSelectedIndex())
         {
             case 1:
-                carID.setEnabled(true);
+                lblCarID.setEnabled(true);
                 carIdTxtField.setEnabled(true);
                 break;
             case 2:
-                plate.setEnabled(true);
+                lblPlate.setEnabled(true);
                 plateTxtField.setEnabled(true);
                 break;
             case 3:
-                year.setEnabled(true);
-                yearTxtField.setEnabled(true);
+                lblYearFrom.setEnabled(true);
+                yearFrom.setEnabled(true);
+                lblYearTo.setEnabled(false);
+                yearTo.setEnabled(true);
                 break;
             case 4:
-                make.setEnabled(true);
+                lblMake.setEnabled(true);
                 makeTxtField.setEnabled(true);
                 break;
             case 5:
-                model.setEnabled(true);
+                lblModel.setEnabled(true);
                 modelTxtField.setEnabled(true);
                 break;
             case 6:
-                make.setEnabled(true);
+                lblMake.setEnabled(true);
                 makeTxtField.setEnabled(true);
-                model.setEnabled(true);
+                lblModel.setEnabled(true);
                 modelTxtField.setEnabled(true);
                 break;
             case 7:
-                version.setEnabled(true);
+                lblVersion.setEnabled(true);
                 versionTxtField.setEnabled(true);
                 break;
             case 8:
-                make.setEnabled(true);
+                lblMake.setEnabled(true);
                 makeTxtField.setEnabled(true);
-                model.setEnabled(true);
+                lblModel.setEnabled(true);
                 modelTxtField.setEnabled(true);
-                version.setEnabled(true);
+                lblVersion.setEnabled(true);
                 versionTxtField.setEnabled(true);
                 break;
             case 9:
-                volume.setEnabled(true);
-                volumeTxtField.setEnabled(true);
+                lblVolFrom.setEnabled(true);
+                volFrom.setEnabled(true);
+                lblVolFrom.setEnabled(true);
+                volTo.setEnabled(true);
                 break;
             case 10:
-                purchasePrice.setEnabled(true);
-                purchasePriceTxtField.setEnabled(true);
+                lblpPriceFrom.setEnabled(true);
+                pPriceFrom.setEnabled(true);
+                lblpPriceTo.setEnabled(true);
+                pPriceTo.setEnabled(true);
                 break;
             case 11:
-                sellPrice.setEnabled(true);
-                sellPriceTxtField.setEnabled(true);
+                lblSellPriceFrom.setEnabled(true);
+                sPriceFrom.setEnabled(true);
+                lblSellPriceTo.setEnabled(true);
+                sPriceTo.setEnabled(true);
                 break;
             case 12:
-                kilometers.setEnabled(true);
-                kilometersTxtField.setEnabled(true);
+                lblkmFrom.setEnabled(true);
+                kmFrom.setEnabled(true);
+                lblkmTo.setEnabled(true);
+                kmTo.setEnabled(true);
                 break;
             case 13:
-                purchaseDate.setEnabled(true);
-                purchaseDateTxtField.setEnabled(true);
+                lblpurchDateFrom.setEnabled(true);
+                lblpurchDateTo.setEnabled(true);
+                pDyearFrom.setEnabled(true);
+                pDyearTo.setEnabled(true);
+                pDMonthFrom.setEnabled(true);
+                pDMonthTo.setEnabled(true);
+                pDDayFrom.setEnabled(true);
+                pDDayTo.setEnabled(true);
                 break;
                 
         }
         
     }//GEN-LAST:event_criteriaActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
+    {//GEN-HEADEREND:event_btnFindActionPerformed
+        switch (criteria.getSelectedIndex())
+        {
+            case 1:
+                _foundCars.add(_controller.findCarByID(carIdTxtField.getText().trim()));
+                applySearchResults();
+                break;
+            case 2:
+                _foundCars.add(_controller.findCarByPlate(plateTxtField.getText().trim()));
+                applySearchResults();
+                break;
+            case 3:
+                int _yearFrom = 0;
+                int _yearTo = 0;
+                try
+                {
+                    _yearFrom = Integer.parseInt(yearFrom.getValue().toString());
+                    _yearTo = Integer.parseInt(yearTo.getValue().toString());
+                }
+                catch (NumberFormatException numberFormatException)
+                {
+                    lblSucces.setText("Error Year-search.");
+                }
+                _foundCars = _controller.findCarsByYear(_yearFrom, _yearTo);
+                applySearchResults();
+                break;
+            case 4:
+                _foundCars = _controller.findCarsByMake(makeTxtField.getText().trim());
+                applySearchResults();
+                break;
+            case 5:
+                _foundCars = _controller.findCarsByModel(modelTxtField.getText().trim());
+                applySearchResults();
+                break;
+            case 6:
+                _foundCars = _controller.findCarsByMakeAndModel(makeTxtField.getText().trim(), modelTxtField.getText().trim());
+                applySearchResults();
+                break;
+            case 7:
+                _foundCars = _controller.findCarsByVersion(versionTxtField.getText().trim());
+                applySearchResults();
+                break;
+            case 8:
+                _foundCars = _controller.findCarsByMakeModelVersion(makeTxtField.getText().trim(), modelTxtField.getText().trim(), versionTxtField.getText().trim());
+                applySearchResults();
+                break;
+            case 9:
+                double _volFrom = 0;
+                double _volTo = 0;
+                try
+                {
+                    _volFrom = Double.parseDouble(volFrom.getValue().toString());
+                    _volTo = Double.parseDouble(volTo.getValue().toString());
+                }
+                catch (NumberFormatException numberFormatException)
+                {
+                    lblSucces.setText("Error Volume-search.");
+                }
+                _foundCars = _controller.findCarsByVolume(_volFrom, _volTo);
+                applySearchResults();
+                break;
+            case 10:
+                double _pPriceFrom = 0;
+                double _pPriceTo = 0;
+                try
+                {
+                    _pPriceFrom = Double.parseDouble(pPriceFrom.getValue().toString());
+                    _pPriceTo = Double.parseDouble(pPriceTo.getValue().toString());
+                }
+                catch (NumberFormatException numberFormatException)
+                {
+                    lblSucces.setText("Error pPrice-search.");
+                }
+                _foundCars = _controller.findCarsByPurchasePrice(_pPriceFrom, _pPriceTo);
+                applySearchResults();
+                break;
+            case 11:
+                double _sPriceFrom = 0;
+                double _sPriceTo = 0;
+                try
+                {
+                    _sPriceFrom = Double.parseDouble(sPriceFrom.getValue().toString());
+                    _sPriceTo = Double.parseDouble(sPriceTo.getValue().toString());
+                }
+                catch (NumberFormatException numberFormatException)
+                {
+                    lblSucces.setText("Error sPrice-search.");
+                }
+                _foundCars = _controller.findCarsBySellPrice(_sPriceFrom, _sPriceTo);
+                applySearchResults();
+                break;
+            case 12:
+                int _kmFrom = 0;
+                int _kmTo = 0;
+                try
+                {
+                    _kmFrom = Integer.parseInt(kmFrom.getValue().toString());
+                    _kmTo = Integer.parseInt(kmTo.getValue().toString());
+                }
+                catch (NumberFormatException numberFormatException)
+                {
+                    lblSucces.setText("Error KM-search.");
+                }
+                _foundCars = _controller.findCarsByMiles(_kmFrom, _kmTo);
+                applySearchResults();
+                break;
+            case 13:
+                Number yearFromNum = (Number) pDyearFrom.getValue();
+                int yearFromInt = yearFromNum.intValue();
+                
+                Number yearToNum = (Number) pDyearTo.getValue();
+                int yearToInt = yearToNum.intValue();
+                
+                Date _dFrom = Date.valueOf(yearFromInt + "-" + pDMonthFrom.getSelectedItem().toString() + "-" + pDDayFrom.getSelectedItem().toString());
+                Date _dTo = Date.valueOf(yearToInt + "-" + pDMonthTo.getSelectedItem().toString() + "-" + pDDayTo.getSelectedItem().toString());
+                
+                _foundCars = _controller.findCarsByPurchaseDate(_dFrom, _dTo);
+                applySearchResults();
+                break;
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
+    {//GEN-HEADEREND:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void listCarsComponentAdded(java.awt.event.ContainerEvent evt)//GEN-FIRST:event_listCarsComponentAdded
+    {//GEN-HEADEREND:event_listCarsComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listCarsComponentAdded
+
+    private void listCarsMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listCarsMouseClicked
+    {//GEN-HEADEREND:event_listCarsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listCarsMouseClicked
+
+    private void listCarsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listCarsValueChanged
+    {//GEN-HEADEREND:event_listCarsValueChanged
+        displayCar(listCars.getSelectedIndex()); 
+    }//GEN-LAST:event_listCarsValueChanged
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteActionPerformed
+    {//GEN-HEADEREND:event_btnDeleteActionPerformed
+        if(listCars.getSelectedIndex() >= 0)
+        {
+            if(_controller.deleteCar(_foundCars.get(listCars.getSelectedIndex())))
+            {
+               //TODO Refresh List !! (kan da ikke være så svært!?!?!)
+                //_foundCars.remove(listCars.getSelectedIndex()); //ERROR IN THIS LINE !!  java.lang.ArrayIndexOutOfBoundsException: -1
+                //applySearchResults();
+                lblSucces.setText("Car sucessfully deleted!");
+            }
+            else
+            {
+                lblSucces.setText("Failed to delete Car1");
+            }
+        }else
+        {
+            lblSucces.setText("Failed to delete Car2");
+        }
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel carID;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnFind;
     private javax.swing.JTextField carIdTxtField;
     private javax.swing.JComboBox criteria;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel kilometers;
-    private javax.swing.JTextField kilometersTxtField;
-    private javax.swing.JLabel make;
+    private javax.swing.JTextField kilometersTxtFieldEdit;
+    private javax.swing.JSpinner kmFrom;
+    private javax.swing.JSpinner kmTo;
+    private javax.swing.JLabel lblCarID;
+    private javax.swing.JLabel lblCarIDEdit;
+    private javax.swing.JLabel lblKilometersEdit;
+    private javax.swing.JLabel lblMake;
+    private javax.swing.JLabel lblMakeEdit;
+    private javax.swing.JLabel lblModel;
+    private javax.swing.JLabel lblModelEdit;
+    private javax.swing.JLabel lblPlate;
+    private javax.swing.JLabel lblPlateEdit;
+    private javax.swing.JLabel lblPurchaseDateEdit;
+    private javax.swing.JLabel lblPurchasePriceEdit;
+    private javax.swing.JLabel lblSellPriceEdit;
+    private javax.swing.JLabel lblSellPriceFrom;
+    private javax.swing.JLabel lblSellPriceTo;
+    private javax.swing.JLabel lblSucces;
+    private javax.swing.JLabel lblVersion;
+    private javax.swing.JLabel lblVersionEdit;
+    private javax.swing.JLabel lblVolFrom;
+    private javax.swing.JLabel lblVolTo;
+    private javax.swing.JLabel lblVolumeEdit;
+    private javax.swing.JLabel lblYearEdit;
+    private javax.swing.JLabel lblYearFrom;
+    private javax.swing.JLabel lblYearTo;
+    private javax.swing.JLabel lblcarIDDisplay;
+    private javax.swing.JLabel lblkmFrom;
+    private javax.swing.JLabel lblkmTo;
+    private javax.swing.JLabel lblpPriceFrom;
+    private javax.swing.JLabel lblpPriceTo;
+    private javax.swing.JLabel lblpurchDateFrom;
+    private javax.swing.JLabel lblpurchDateTo;
+    private javax.swing.JList listCars;
     private javax.swing.JTextField makeTxtField;
-    private javax.swing.JLabel model;
+    private javax.swing.JTextField makeTxtFieldEdit;
     private javax.swing.JTextField modelTxtField;
-    private javax.swing.JLabel plate;
+    private javax.swing.JTextField modelTxtFieldEdit;
+    private javax.swing.JComboBox pDDayFrom;
+    private javax.swing.JComboBox pDDayTo;
+    private javax.swing.JComboBox pDMonthFrom;
+    private javax.swing.JComboBox pDMonthTo;
+    private javax.swing.JSpinner pDyearFrom;
+    private javax.swing.JSpinner pDyearTo;
+    private javax.swing.JSpinner pPriceFrom;
+    private javax.swing.JSpinner pPriceTo;
     private javax.swing.JTextField plateTxtField;
-    private javax.swing.JLabel purchaseDate;
-    private javax.swing.JTextField purchaseDateTxtField;
-    private javax.swing.JLabel purchasePrice;
-    private javax.swing.JTextField purchasePriceTxtField;
-    private javax.swing.JLabel sellPrice;
-    private javax.swing.JTextField sellPriceTxtField;
-    private javax.swing.JLabel version;
+    private javax.swing.JTextField plateTxtFieldEdit;
+    private javax.swing.JTextField purchaseDateTxtFieldEdit;
+    private javax.swing.JTextField purchasePriceTxtFieldEdit;
+    private javax.swing.JSpinner sPriceFrom;
+    private javax.swing.JSpinner sPriceTo;
+    private javax.swing.JTextField sellPriceTxtFieldEdit;
     private javax.swing.JTextField versionTxtField;
-    private javax.swing.JLabel volume;
-    private javax.swing.JTextField volumeTxtField;
-    private javax.swing.JLabel year;
-    private javax.swing.JTextField yearTxtField;
+    private javax.swing.JTextField versionTxtFieldEdit;
+    private javax.swing.JSpinner volFrom;
+    private javax.swing.JSpinner volTo;
+    private javax.swing.JTextField volumeTxtFieldEdit;
+    private javax.swing.JSpinner yearFrom;
+    private javax.swing.JSpinner yearTo;
+    private javax.swing.JTextField yearTxtFieldEdit;
     // End of variables declaration//GEN-END:variables
     
     private List<JComponent> populateSearchItemsList()
     {
         List<JComponent> returnList = new ArrayList();
-        returnList.add(carID);
+        returnList.add(lblCarID);
         returnList.add(carIdTxtField);
-        returnList.add(plate);
+        returnList.add(lblPlate);
         returnList.add(plateTxtField);
-        returnList.add(year);
-        returnList.add(yearTxtField);
-        returnList.add(make);
+        returnList.add(lblYearFrom);
+        returnList.add(yearFrom);
+        returnList.add(lblYearTo);
+        returnList.add(yearTo);
+        returnList.add(lblMake);
         returnList.add(makeTxtField);
-        returnList.add(model);
+        returnList.add(lblModel);
         returnList.add(modelTxtField);
-        returnList.add(version);
+        returnList.add(lblVersion);
         returnList.add(versionTxtField);
-        returnList.add(volume);
-        returnList.add(volumeTxtField);
-        returnList.add(purchasePrice);
-        returnList.add(purchasePriceTxtField);
-        returnList.add(sellPrice);
-        returnList.add(sellPriceTxtField);
-        returnList.add(kilometers);
-        returnList.add(kilometersTxtField);
-        returnList.add(purchaseDate);
-        returnList.add(purchaseDateTxtField);
+        returnList.add(lblVolFrom);
+        returnList.add(volFrom);
+        returnList.add(lblVolTo);
+        returnList.add(volTo);
+        returnList.add(lblpPriceFrom);
+        returnList.add(pPriceFrom);
+        returnList.add(lblpPriceTo);
+        returnList.add(pPriceTo);
+        returnList.add(lblSellPriceFrom);
+        returnList.add(sPriceFrom);
+        returnList.add(lblSellPriceTo);
+        returnList.add(sPriceTo);
+        returnList.add(lblkmFrom);
+        returnList.add(kmFrom);
+        returnList.add(lblkmTo);
+        returnList.add(kmTo);
+        returnList.add(lblpurchDateFrom);
+        returnList.add(lblpurchDateTo);
+        returnList.add(pDyearFrom);
+        returnList.add(pDyearTo);
+        returnList.add(pDMonthFrom);
+        returnList.add(pDMonthTo);
+        returnList.add(pDDayFrom);
+        returnList.add(pDDayTo);
         
         return returnList;
     }
@@ -378,6 +937,37 @@ public class FindCarPanel extends javax.swing.JPanel
         for (JComponent se : searchItems)
         {
             se.setEnabled(false);
+        }
+    }
+    
+    private void applySearchResults()
+    {
+        _list.clear();
+        
+        for (Car c : _foundCars)
+        {
+            _list.addElement(c);
+        }
+    }
+    
+    private void displayCar(int index)
+    {
+        if(_foundCars == null)
+            return;
+        if(_foundCars.size() > 0)
+        {
+            Car c = _foundCars.get(index);
+            lblcarIDDisplay.setText(c.getId());
+            plateTxtFieldEdit.setText(c.getPlate());
+            yearTxtFieldEdit.setText(""+c.getYear());
+            makeTxtFieldEdit.setText(c.getMake());
+            modelTxtFieldEdit.setText(c.getModel());
+            versionTxtFieldEdit.setText(c.getVersion());
+            volumeTxtFieldEdit.setText(""+c.getVolume());
+            purchasePriceTxtFieldEdit.setText(""+c.getPurchasePrice());
+            sellPriceTxtFieldEdit.setText(""+ c.getSellPrice());
+            kilometersTxtFieldEdit.setText(""+c.getOdometer());
+            purchaseDateTxtFieldEdit.setText(c.getPurchaseDate().toString());
         }
     }
 }

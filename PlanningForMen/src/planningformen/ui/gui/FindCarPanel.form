@@ -17,43 +17,53 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="125" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblSucces" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane2" min="-2" pref="183" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="criteria" max="32767" attributes="0"/>
-                          <Component id="jLabel2" pref="153" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="703" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="criteria" max="32767" attributes="0"/>
+                  <Component id="jLabel2" pref="153" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="703" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="criteria" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="412" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane2" min="-2" pref="412" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblSucces" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
@@ -61,14 +71,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="FIND CAR"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JComboBox" name="criteria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -89,38 +91,105 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="plate" min="-2" max="-2" attributes="0"/>
-                      <Component id="carID" min="-2" max="-2" attributes="0"/>
-                      <Component id="make" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="model" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="version" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="volume" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="purchasePrice" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="sellPrice" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="kilometers" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="year" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="purchaseDate" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblPlate" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCarID" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMake" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblModel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVersion" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVolFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblpPriceFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSellPriceFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblkmFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblYearFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="versionTxtField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="modelTxtField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="makeTxtField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="plateTxtField" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="yearFrom" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lblYearTo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="yearTo" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="volFrom" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lblVolTo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="volTo" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="pPriceFrom" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lblpPriceTo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="pPriceTo" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnFind" min="-2" max="-2" attributes="0"/>
+                                      <Component id="carIdTxtField" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="kmFrom" max="32767" attributes="0"/>
+                                      <Component id="sPriceFrom" pref="62" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lblSellPriceTo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="sPriceTo" min="-2" pref="62" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lblkmTo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="kmTo" min="-2" pref="62" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Component id="kilometersTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="purchaseDateTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="purchasePriceTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="sellPriceTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="versionTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="volumeTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="modelTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="makeTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="yearTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="plateTxtField" alignment="1" pref="158" max="32767" attributes="0"/>
-                      <Component id="carIdTxtField" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblpurchDateFrom" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblpurchDateTo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="pDyearTo" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Component id="pDMonthTo" min="-2" pref="61" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="pDyearFrom" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="pDMonthFrom" min="-2" pref="61" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="pDDayFrom" pref="62" max="32767" attributes="0"/>
+                              <Component id="pDDayTo" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -131,118 +200,132 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="carID" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="lblCarID" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="carIdTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="plate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPlate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="plateTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="year" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="yearTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblYearFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblYearTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="make" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblMake" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="makeTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="model" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblModel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="modelTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="version" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVersion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="versionTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="volume" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="volumeTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblVolFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="volFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="volTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVolTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="purchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="purchasePriceTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblpPriceFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pPriceFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pPriceTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblpPriceTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="sellPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sellPriceTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblSellPriceFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sPriceFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sPriceTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSellPriceTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="kilometers" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="kilometersTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblkmFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="kmFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="kmTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblkmTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="purchaseDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="purchaseDateTxtField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblpurchDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDMonthFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDDayFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDyearFrom" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblpurchDateTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDMonthTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDDayTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pDyearTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="btnFind" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="kilometers">
+        <Component class="javax.swing.JLabel" name="lblkmFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kilometers"/>
+            <Property name="text" type="java.lang.String" value="Kilometers from:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="version">
+        <Component class="javax.swing.JLabel" name="lblVersion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Version"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="make">
+        <Component class="javax.swing.JLabel" name="lblMake">
           <Properties>
             <Property name="text" type="java.lang.String" value="Make"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="purchaseDate">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Purchase Date"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="plate">
+        <Component class="javax.swing.JLabel" name="lblPlate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Plate"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="purchasePrice">
+        <Component class="javax.swing.JLabel" name="lblpPriceFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+            <Property name="text" type="java.lang.String" value="Purchase Price from:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="volume">
+        <Component class="javax.swing.JLabel" name="lblVolFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Volume"/>
+            <Property name="text" type="java.lang.String" value="Volume from:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="sellPrice">
+        <Component class="javax.swing.JLabel" name="lblSellPriceFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sell Price"/>
+            <Property name="text" type="java.lang.String" value="Sell Price from:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="year">
+        <Component class="javax.swing.JLabel" name="lblYearFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Year"/>
+            <Property name="text" type="java.lang.String" value="Year from:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="model">
+        <Component class="javax.swing.JLabel" name="lblModel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Model"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="carID">
+        <Component class="javax.swing.JLabel" name="lblCarID">
           <Properties>
             <Property name="text" type="java.lang.String" value="Car ID"/>
           </Properties>
@@ -251,27 +334,165 @@
         </Component>
         <Component class="javax.swing.JTextField" name="plateTxtField">
         </Component>
-        <Component class="javax.swing.JTextField" name="yearTxtField">
-        </Component>
         <Component class="javax.swing.JTextField" name="makeTxtField">
         </Component>
         <Component class="javax.swing.JTextField" name="modelTxtField">
         </Component>
         <Component class="javax.swing.JTextField" name="versionTxtField">
         </Component>
-        <Component class="javax.swing.JTextField" name="volumeTxtField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="purchasePriceTxtField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="sellPriceTxtField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="kilometersTxtField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="purchaseDateTxtField">
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnFind">
           <Properties>
             <Property name="text" type="java.lang.String" value="Find Cars"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="yearFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2015" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="yearTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2015" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblYearTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year to:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblVolTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Volume to:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="volFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="1.8" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="volTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2.0" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="pPriceFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="0" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="pPriceTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="100000" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblpPriceTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Price to:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="sPriceFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="0" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSellPriceTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Price to:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="sPriceTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="100000" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="kmFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="0" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblkmTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="km to:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="kmTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="230000" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblpurchDateTo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Date To"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="pDyearTo">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2015" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="pDMonthTo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot; })" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="pDDayTo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;15&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;, &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot; })" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblpurchDateFrom">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Date From"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="pDyearFrom">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2015" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="pDMonthFrom">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot; })" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="pDDayFrom">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;15&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;, &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot; })" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -283,20 +504,223 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList2">
-          <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="Item 5"/>
-              </StringArray>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JList" name="listCars">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listCarsMouseClicked"/>
+            <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="listCarsComponentAdded"/>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listCarsValueChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblPlateEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCarIDEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblMakeEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblModelEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVersionEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVolumeEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPurchasePriceEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSellPriceEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblKilometersEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblYearEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPurchaseDateEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="kilometersTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="purchaseDateTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="purchasePriceTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="sellPriceTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="versionTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="volumeTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="modelTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="makeTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Component id="yearTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="lblcarIDDisplay" max="32767" attributes="0"/>
+                      <Component id="plateTxtFieldEdit" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCarIDEdit" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="lblcarIDDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblPlateEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="plateTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblYearEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblMakeEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="makeTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblModelEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="modelTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblVersionEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="versionTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblVolumeEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="volumeTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblPurchasePriceEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchasePriceTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblSellPriceEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sellPriceTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblKilometersEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="kilometersTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblPurchaseDateEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="purchaseDateTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblKilometersEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kilometers"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblVersionEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Version"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblMakeEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Make"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPurchaseDateEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Date"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPlateEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Plate"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPurchasePriceEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblVolumeEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Volume"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSellPriceEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sell Price"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblYearEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblModelEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Model"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCarIDEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Car ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="plateTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="yearTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="makeTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="modelTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="versionTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="volumeTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="purchasePriceTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="sellPriceTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="kilometersTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JTextField" name="purchaseDateTxtFieldEdit">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit Car"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblcarIDDisplay">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete Car"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSucces">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="_"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

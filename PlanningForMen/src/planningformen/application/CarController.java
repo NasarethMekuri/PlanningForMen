@@ -7,6 +7,7 @@ package planningformen.application;
 
 import java.sql.Date;
 import java.util.List;
+import planningformen.domain.Master;
 import planningformen.domain.planning.Car;
 
 /**
@@ -15,89 +16,91 @@ import planningformen.domain.planning.Car;
  */
 public class CarController implements ICarController
 {
+ 
 
     @Override
     public boolean createCar(String plate, int year, String make, String model, double volume, String fuel, String version, int odometer, Date purchaseDate, double purchasePrice, double sellPrice, String description, boolean inStock)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().createCar(plate, year, make, model, volume, fuel, version, odometer, purchaseDate, purchasePrice, sellPrice, description, inStock);
     }
 
     @Override
     public Car findCarByID(String id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return Master.getInstance().getCarManager().findCarByID(id);
     }
 
     @Override
     public Car findCarByPlate(String plate)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarByPlate(plate);
     }
 
     @Override
     public List<Car> findCarsByMake(String make)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByMake(make);
     }
 
     @Override
     public List<Car> findCarsByModel(String model)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByModel(model);
     }
 
     @Override
     public List<Car> findCarsByMakeAndModel(String make, String model)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByMakeAndModel(make, model);
     }
 
     @Override
     public List<Car> findCarsByVersion(String version)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByVersion(version);
     }
 
     @Override
     public List<Car> findCarsByMakeModelVersion(String make, String model, String version)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByMakeModelVersion(make, model, version);
     }
 
     @Override
     public List<Car> findCarsByVolume(double volumeFrom, double volumeTo)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByVolume(volumeFrom, volumeTo);
     }
 
     @Override
     public List<Car> findCarsByPurchasePrice(double priceMin, double priceMax)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByPurchasePrice(priceMin, priceMax);
     }
 
     @Override
     public List<Car> findCarsBySellPrice(double priceMin, double priceMax)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsBySellPrice(priceMin, priceMax);
     }
 
     @Override
     public List<Car> findCarsByMiles(int milesMin, int milesMax)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByMiles(milesMin, milesMax);
     }
 
     @Override
     public List<Car> findCarsByYear(int yearFrom, int yearTo)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByYear(yearFrom, yearTo);
     }
 
     @Override
     public List<Car> findCarsByPurchaseDate(Date from, Date to)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().findCarsByPurchaseDate(from, to);
     }
 
     @Override
@@ -109,13 +112,14 @@ public class CarController implements ICarController
     @Override
     public boolean updateCar(Car updatedCar)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //@MKJ get down, get down, and move it all around...
+        return false;
     }
 
     @Override
     public boolean deleteCar(Car carToDelete)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCarManager().deleteCar(carToDelete);
     }
     
 }

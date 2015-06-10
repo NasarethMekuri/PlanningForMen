@@ -78,6 +78,14 @@ public class Car implements Sellable
         this._inStock = inStock;
     }
     
+    
+    @Override
+    public String toString()
+    {
+        return _year + " " + _make + " " + _model;
+    }
+    
+    
     //Accessors:
     public String getId()           {return _id;}
     public String getMake()         {return _make;}

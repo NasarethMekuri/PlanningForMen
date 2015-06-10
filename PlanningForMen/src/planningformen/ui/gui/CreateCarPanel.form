@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,75 +16,66 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="plate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="plateTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="year" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="yearTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="volume" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="volumeTxtField" min="-2" pref="205" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Component id="purchaseDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="make" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="sellPrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="version" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="kilometers" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="purchasePrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="plate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="model" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="fuel" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblMessage" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnReset" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="make" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="model" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="version" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="versionTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                              <Component id="modelTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                              <Component id="makeTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="kilometers" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="kilometersTxtField" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="purchaseDate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="purchaseDateTxtField" min="-2" pref="205" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="purchasePrice" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="sellPrice" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="purchaseYear" min="-2" pref="86" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnReset" min="-2" max="-2" attributes="0"/>
+                              <Component id="purchaseMonth" min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="purchaseDay" min="-2" pref="48" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="purchasePriceTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="sellPriceTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="plateTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="versionTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="kilometersTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="makeTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="fuelSelector" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modelTxtField" linkSize="1" alignment="0" pref="205" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="purchasePriceTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                              <Component id="sellPriceTxtField" linkSize="1" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Component id="year" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="volume" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="Description" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="DescriptionTxtField" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="volumeTxtField" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="yearTxtField" linkSize="1" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="372" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,7 +94,8 @@
                           <Component id="volume" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="volumeTxtField" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="217" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="DescriptionTxtField" min="-2" pref="227" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -119,8 +111,14 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="model" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="modelTxtField" alignment="3" max="32767" attributes="0"/>
+                          <Component id="Description" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fuel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fuelSelector" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="version" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="versionTxtField" alignment="3" max="32767" attributes="0"/>
@@ -133,7 +131,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="purchaseDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="purchaseDateTxtField" alignment="3" max="32767" attributes="0"/>
+                          <Component id="purchaseMonth" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="purchaseDay" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="purchaseYear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -151,8 +151,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMessage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -198,13 +199,17 @@
         <Property name="text" type="java.lang.String" value="Model"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="purchaseDateTxtField">
-    </Component>
     <Component class="javax.swing.JTextField" name="plateTxtField">
     </Component>
     <Component class="javax.swing.JTextField" name="kilometersTxtField">
     </Component>
     <Component class="javax.swing.JTextField" name="yearTxtField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearTxtFieldActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="yearTxtField.setText(&quot;yyyy&quot;);&#xa;yearTxtField.setToolTipText(&quot;Format must be yyyy&quot;);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="makeTxtField">
     </Component>
@@ -242,6 +247,54 @@
     <Component class="javax.swing.JLabel" name="make">
       <Properties>
         <Property name="text" type="java.lang.String" value="Make"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fuel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fuel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Description">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Description"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="DescriptionTxtField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescriptionTxtFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMessage">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="fuelSelector">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;choose&quot;, &quot;Petrol&quot;, &quot;Diesel&quot; })" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="purchaseMonth">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot; })" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="purchaseDay">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot; , &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;15&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;, &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot; })" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="purchaseYear">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="2015" type="code"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

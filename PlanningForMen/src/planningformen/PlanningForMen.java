@@ -8,10 +8,13 @@ package planningformen;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import planningformen.business.SlotConverter;
 import planningformen.domain.financeandefficiency.*;
 import planningformen.domain.planning.*;
 import planningformen.domain.tyre.*;
+import planningformen.ui.gui.MainFrame;
 
 /**
  *
@@ -29,8 +32,8 @@ public class PlanningForMen
         //System.out.println("#### TESTING CARS ####");
         //testApp.testCars();
         
-        System.out.println("#### TESTING SERVICES ####");
-        testApp.testServices();
+        //System.out.println("#### TESTING SERVICES ####");
+        //testApp.testServices();
         
         //System.out.println("#### TESTING CUSTOMERS ####");
         //testApp.testCustomers();
@@ -47,6 +50,8 @@ public class PlanningForMen
         //testApp.testTyres();
         
         //testApp.testSlotRetrieval();
+        
+        testApp.testGUI();
     }
     
     private void testCars()
@@ -155,6 +160,12 @@ public class PlanningForMen
         }
         
     }
+    
+    
+    
+    
+    
+    
     
     private void testCustomers()
     {
@@ -413,6 +424,14 @@ public class PlanningForMen
         
         
         //System.out.println(TyreHotel.getInstance().getSlotConverter().convertStringToByte("10011100"));
+    }
+
+    private void testGUI()
+    {
+        JFrame frame = new MainFrame();
+         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
     
 }
