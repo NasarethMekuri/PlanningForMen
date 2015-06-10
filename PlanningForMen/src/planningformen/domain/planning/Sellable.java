@@ -12,4 +12,6 @@ package planningformen.domain.planning;
 public interface Sellable
 {
     public double getSellPrice();
+    public String getSaleID();
+    public void setSaleID(String saleID);
 }

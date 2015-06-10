@@ -70,5 +70,4 @@ public class Tyre implements Sellable
     {
         return "W-" + _size.getWidth() + " d-" + _size.getDiameter() + " p-" + _size.getProfile();
     }
-    
 }

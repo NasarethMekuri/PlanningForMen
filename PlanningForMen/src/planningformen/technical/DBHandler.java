@@ -619,7 +619,6 @@ public class DBHandler
             
             if(rowCount >= 0) //Only continue if the initial creation succeeded!
             {
-                System.out.println("Create sale - Modify Cars & Services");
                 //Create / update many-side
                 for(int i = 0; i < carIDs.length; i++)
                 {
@@ -640,7 +639,6 @@ public class DBHandler
                     cs.setString(1, serviceIDs[i]);
                     cs.setString(2, id);
                     rowCount = cs.executeUpdate();
-                    System.out.println("Service with ID: " + serviceIDs[i] + " has been updated!");
                 }
                 
                 
