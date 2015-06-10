@@ -33,28 +33,15 @@ public class CreateMainPanel extends javax.swing.JPanel
         createEmployee1 = new planningformen.ui.gui.CreateEmployeePanel();
         createCustomerPanel1 = new planningformen.ui.gui.CreateCustomerPanel();
         createCarPanel2 = new planningformen.ui.gui.CreateCarPanel();
-        createServicePanel1 = new planningformen.ui.gui.CreateServicePanel();
         createSalePanel1 = new planningformen.ui.gui.CreateSalePanel();
         createTyrePanel2 = new planningformen.ui.gui.CreateTyrePanel();
+        createServicePanel2 = new planningformen.ui.gui.CreateServicePanel();
         jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jTabbedPane1.addTab("Employee", createEmployee1);
         jTabbedPane1.addTab("Customer", createCustomerPanel1);
         jTabbedPane1.addTab("Car", createCarPanel2);
-
-        javax.swing.GroupLayout createServicePanel1Layout = new javax.swing.GroupLayout(createServicePanel1);
-        createServicePanel1.setLayout(createServicePanel1Layout);
-        createServicePanel1Layout.setHorizontalGroup(
-            createServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        createServicePanel1Layout.setVerticalGroup(
-            createServicePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Service", createServicePanel1);
 
         javax.swing.GroupLayout createSalePanel1Layout = new javax.swing.GroupLayout(createSalePanel1);
         createSalePanel1.setLayout(createSalePanel1Layout);
@@ -69,6 +56,7 @@ public class CreateMainPanel extends javax.swing.JPanel
 
         jTabbedPane1.addTab("Sale", createSalePanel1);
         jTabbedPane1.addTab("Tyre", createTyrePanel2);
+        jTabbedPane1.addTab("Service", createServicePanel2);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Create");
@@ -79,7 +67,7 @@ public class CreateMainPanel extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(411, 411, 411)
@@ -92,7 +80,7 @@ public class CreateMainPanel extends javax.swing.JPanel
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -103,7 +91,7 @@ public class CreateMainPanel extends javax.swing.JPanel
     private planningformen.ui.gui.CreateCustomerPanel createCustomerPanel1;
     private planningformen.ui.gui.CreateEmployeePanel createEmployee1;
     private planningformen.ui.gui.CreateSalePanel createSalePanel1;
-    private planningformen.ui.gui.CreateServicePanel createServicePanel1;
+    private planningformen.ui.gui.CreateServicePanel createServicePanel2;
     private planningformen.ui.gui.CreateTyrePanel createTyrePanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;

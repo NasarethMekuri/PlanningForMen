@@ -38,6 +38,7 @@ public class MainFrame extends javax.swing.JFrame
         Quit = new javax.swing.JButton();
         createMainPanel1 = new planningformen.ui.gui.CreateMainPanel();
         findMainPanel2 = new planningformen.ui.gui.FindMainPanel();
+        tyreHotelPanel1 = new planningformen.ui.gui.TyreHotelPanel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,6 +65,13 @@ public class MainFrame extends javax.swing.JFrame
         });
 
         btnHotel.setText("TyreHotel");
+        btnHotel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnHotelActionPerformed(evt);
+            }
+        });
 
         Quit.setText("Quit");
         Quit.addActionListener(new java.awt.event.ActionListener()
@@ -85,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(741, Short.MAX_VALUE))
         );
         pnlLandingLayout.setVerticalGroup(
             pnlLandingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,6 +112,7 @@ public class MainFrame extends javax.swing.JFrame
         MasterPanel.add(pnlLanding, "card2");
         MasterPanel.add(createMainPanel1, "card3");
         MasterPanel.add(findMainPanel2, "card4");
+        MasterPanel.add(tyreHotelPanel1, "card5");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener()
@@ -157,6 +166,11 @@ public class MainFrame extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnFindActionPerformed
         changePanel(findMainPanel2);
     }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnHotelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnHotelActionPerformed
+    {//GEN-HEADEREND:event_btnHotelActionPerformed
+        changePanel(tyreHotelPanel1);
+    }//GEN-LAST:event_btnHotelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,5 +236,6 @@ public class MainFrame extends javax.swing.JFrame
     private planningformen.ui.gui.CreateMainPanel createMainPanel1;
     private planningformen.ui.gui.FindMainPanel findMainPanel2;
     private javax.swing.JPanel pnlLanding;
+    private planningformen.ui.gui.TyreHotelPanel tyreHotelPanel1;
     // End of variables declaration//GEN-END:variables
 }

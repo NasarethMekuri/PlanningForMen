@@ -7,15 +7,15 @@ package planningformen.ui.gui;
 
 /**
  *
- * @author bruger
+ * @author Morten
  */
-public class CreateSalePanel extends javax.swing.JPanel
+public class FindSalesNumber extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form CreateSalePanel
+     * Creates new form FindSalesNumber
      */
-    public CreateSalePanel()
+    public FindSalesNumber()
     {
         initComponents();
     }
@@ -30,19 +30,30 @@ public class CreateSalePanel extends javax.swing.JPanel
     private void initComponents()
     {
 
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setText("Fubar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 994, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(jLabel1)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jLabel1)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
