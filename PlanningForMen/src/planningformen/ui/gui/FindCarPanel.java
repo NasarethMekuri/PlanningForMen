@@ -1095,10 +1095,20 @@ public class FindCarPanel extends javax.swing.JPanel
             kilometersTxtFieldEdit.setText(""+c.getOdometer());
             purchaseDateTxtFieldEdit.setText(c.getPurchaseDate().toString());
             fuelSelector.setEnabled(true);
+            if (!c.isInStock())
+            {
+                checkSold.setSelected(true);
+            }
+            else
+            {
+                checkSold.setSelected(false);
+            }
+                    
             if (c.getFuel().equalsIgnoreCase("Fuel"))
                 fuelSelector.setSelectedIndex(1);
             else
-                fuelSelector.setSelectedIndex(2);
+                fuelSelector.setSelectedIndex(2); 
+            
         }
     }
 }

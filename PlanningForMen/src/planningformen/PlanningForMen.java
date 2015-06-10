@@ -433,5 +433,13 @@ public class PlanningForMen
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
+    private void moreServiceTests()
+    {
+        System.out.println(ServiceManager.getInstance().createService(5000, "Tune 1", ServiceType.TUNING));
+        System.out.println(ServiceManager.getInstance().createService(5000, "Tune 2", ServiceType.TUNING));
+        System.out.println(ServiceManager.getInstance().createService(5000, "Tune 3", ServiceType.TUNING));
+        System.out.println(ServiceManager.getInstance().createService(5000, "Tune 4", ServiceType.TUNING));
+    }
     
 }

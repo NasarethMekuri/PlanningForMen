@@ -455,7 +455,7 @@ public class DBHandler
     }
     
     //Service Methods:
-    public boolean createService(String id, double price, String description, int type, int state, int garageThatStartedService)
+    public boolean createService(String id, String saleID, double price, String description, int type, int state, int garageThatStartedService)
     {
         Connection c = _DBCONNECTOR.getConnection();
         
@@ -464,13 +464,14 @@ public class DBHandler
         
         try
         {
-            cs = c.prepareCall("{call create_service(?,?,?,?,?,?)}");
+            cs = c.prepareCall("{call create_service(?,?,?,?,?,?,?)}");
             cs.setString(1, id);
-            cs.setDouble(2, price);
-            cs.setString(3, description);
-            cs.setInt(4, type);
-            cs.setInt(5, state);
-            cs.setInt(6, garageThatStartedService);
+            cs.setString(2, saleID);
+            cs.setDouble(3, price);
+            cs.setString(4, description);
+            cs.setInt(5, type);
+            cs.setInt(6, state);
+            cs.setInt(7, garageThatStartedService);
             
             
             rowCount = cs.executeUpdate();

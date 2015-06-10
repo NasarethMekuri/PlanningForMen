@@ -30,30 +30,38 @@ public class TyreHotelPanel extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        garage1Panel1 = new planningformen.ui.gui.Garage1Panel();
+        garage2Panel1 = new planningformen.ui.gui.Garage2Panel();
+        garage3Panel1 = new planningformen.ui.gui.Garage3Panel();
+        hotelPanel2 = new planningformen.ui.gui.HotelPanel();
+        waitingListPanel2 = new planningformen.ui.gui.WaitingListPanel();
 
-        jLabel1.setText("Tyre Hotel stuff goes here. NOTE: This is NOT \"Hotel For Men\"");
+        jTabbedPane1.addTab("Garage 1", garage1Panel1);
+        jTabbedPane1.addTab("Garage 2", garage2Panel1);
+        jTabbedPane1.addTab("Garage 3", garage3Panel1);
+        jTabbedPane1.addTab("Hotel", hotelPanel2);
+        jTabbedPane1.addTab("WaitingList", waitingListPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(351, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(330, 330, 330))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(jLabel1)
-                .addContainerGap(336, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private planningformen.ui.gui.Garage1Panel garage1Panel1;
+    private planningformen.ui.gui.Garage2Panel garage2Panel1;
+    private planningformen.ui.gui.Garage3Panel garage3Panel1;
+    private planningformen.ui.gui.HotelPanel hotelPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private planningformen.ui.gui.WaitingListPanel waitingListPanel2;
     // End of variables declaration//GEN-END:variables
 }

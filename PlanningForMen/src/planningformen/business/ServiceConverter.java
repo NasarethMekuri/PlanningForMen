@@ -27,8 +27,8 @@ public class ServiceConverter implements ICallback
     
     public boolean createService(Service serviceToCreate)
     {
-        return IOManager.getInstance().getDBHandler().createService(serviceToCreate.getId(), serviceToCreate.getSellPrice(), serviceToCreate.getDescription(),
-                serviceToCreate.getType().getNumericValue(), serviceToCreate.getState().getNumericValue(), serviceToCreate.getGarageType().getNumericValue());
+        return IOManager.getInstance().getDBHandler().createService(serviceToCreate.getId(), serviceToCreate.getSaleID(), serviceToCreate.getSellPrice(), serviceToCreate.getDescription(),
+                serviceToCreate.getType().getNumericValue(), serviceToCreate.getState().getNumericValue(), -1);
     }
     
     public List<Service> retrieveServices()
@@ -83,6 +83,9 @@ public class ServiceConverter implements ICallback
             
             switch (rs.getInt(7))
             {
+                case -1:
+                    garage = null;
+                    break;
                 case 1:
                     garage = ServiceType.DIESEL;
                     break;

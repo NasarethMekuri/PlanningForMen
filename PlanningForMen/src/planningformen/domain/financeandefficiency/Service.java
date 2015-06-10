@@ -27,6 +27,7 @@ public class Service implements Sellable
         this._type = type;
         this._state = ServiceState.PENDING;
         this._garageType = null;
+        this._saleID = null;
     }
     
     public Service(String ID, String saleID, double price, String description, ServiceType type, ServiceState state, ServiceType garage)
@@ -39,6 +40,14 @@ public class Service implements Sellable
         this._state = state;
         this._garageType = garage;
     }
+    
+    
+    @Override
+    public String toString()
+    {
+        return "this is a " + _type.toString() + "Service";
+    }
+    
     
     //Accessors
     public String getId()                               {return _id;}
