@@ -6,10 +6,7 @@
 package planningformen.domain.tyre;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 import planningformen.business.SlotConverter;
 import planningformen.business.WaitingListConverter;
 import planningformen.domain.Master;
@@ -268,6 +265,18 @@ public class TyreHotel
             index ++;
         }
         return false;
+    }
+    
+    public int findWaitingNumberByCustomer(Customer c)
+    {
+        for (int i = 0; i < _waitingList.size(); i++)
+        {
+            if (c.getId().equals(_waitingList.get(i)))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
     
     private void updateAllCustomersWaitingPositions()

@@ -31,4 +31,5 @@ public interface IHotelController
     public boolean endReservation(Customer cust);
     public int addCustomerToWaitingList(Customer c);
     public boolean removeCustomerFromWaitingList(Customer c);
+    public int findWaitingNumberByCustomer(Customer c);
 }

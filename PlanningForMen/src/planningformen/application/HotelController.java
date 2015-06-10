@@ -6,6 +6,7 @@
 package planningformen.application;
 
 import java.util.List;
+import planningformen.domain.Master;
 import planningformen.domain.planning.Customer;
 import planningformen.domain.tyre.Slot;
 
@@ -31,7 +32,7 @@ public class HotelController implements IHotelController
     @Override
     public List<Slot> findSlotsByCustomer(Customer c)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().findSlotsByCustomer(c);
     }
 
     @Override
@@ -103,13 +104,19 @@ public class HotelController implements IHotelController
     @Override
     public int addCustomerToWaitingList(Customer c)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().addCustomerToWaitingList(c);
     }
 
     @Override
     public boolean removeCustomerFromWaitingList(Customer c)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().removeCustomerFromWaitingList(c);
+    }
+    
+    @Override
+    public int findWaitingNumberByCustomer(Customer c)
+    {
+        return Master.getInstance().getTyreHotel().findWaitingNumberByCustomer(c);
     }
     
 }

@@ -8,15 +8,20 @@ package planningformen.ui.gui;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import planningformen.application.CustomerController;
+import planningformen.application.HotelController;
 import planningformen.application.ICustomerController;
+import planningformen.application.IHotelController;
 import planningformen.domain.planning.Customer;
+import planningformen.domain.tyre.Slot;
 
 /**
  *
  * @author bruger
  */
 public class FindCustomerPanel extends javax.swing.JPanel
-{
+{   private IHotelController _hotelController;
+    private List<Slot> _slots;
+
     private List<Customer> _foundCustomers;
     private DefaultListModel _list;
     private ICustomerController _controller;
@@ -29,6 +34,8 @@ public class FindCustomerPanel extends javax.swing.JPanel
         initComponents();
         listCustomers.setModel(_list);
         _controller = new CustomerController();
+        _hotelController = new HotelController();
+        lblNoSlot.setVisible(false);
     }
 
     /**
@@ -41,6 +48,13 @@ public class FindCustomerPanel extends javax.swing.JPanel
     private void initComponents()
     {
 
+        jPanel5 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        tfBinaryPOS1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        tfSlotNumber1 = new javax.swing.JTextField();
+        btnFindHotel1 = new javax.swing.JButton();
+        lblNoSlot1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tfCustomerID = new javax.swing.JTextField();
@@ -73,6 +87,84 @@ public class FindCustomerPanel extends javax.swing.JPanel
         listCustomers = new javax.swing.JList();
         btnDelete = new javax.swing.JButton();
         lblDeleteMessage = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        tfBinaryPOS = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tfSlotNumber = new javax.swing.JTextField();
+        btnFindHotel = new javax.swing.JButton();
+        lblNoSlot = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        btnAddToWaitingList = new javax.swing.JButton();
+        lblNoSlot2 = new javax.swing.JLabel();
+        lblNumberInLine = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        btnRemoveFromWaitingList = new javax.swing.JButton();
+        lblSuccess = new javax.swing.JLabel();
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setName("pnlFind"); // NOI18N
+
+        jLabel13.setText("Slot binary position:");
+
+        tfBinaryPOS1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel15.setText("Slot position (1 - 150):");
+
+        tfSlotNumber1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnFindHotel1.setText("Find Hotel Slot");
+        btnFindHotel1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFindHotel1ActionPerformed(evt);
+            }
+        });
+
+        lblNoSlot1.setText("Customer has not slot in the Tyre Hotel");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFindHotel1)
+                            .addComponent(lblNoSlot1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel15)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfSlotNumber1)
+                    .addComponent(tfBinaryPOS1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tfBinaryPOS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNoSlot1))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(tfSlotNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFindHotel1)
+                .addContainerGap())
+        );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setName("pnlFind"); // NOI18N
@@ -131,7 +223,7 @@ public class FindCustomerPanel extends javax.swing.JPanel
                     .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnFind)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -197,7 +289,7 @@ public class FindCustomerPanel extends javax.swing.JPanel
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(tfLastNameUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGap(0, 60, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,11 +362,11 @@ public class FindCustomerPanel extends javax.swing.JPanel
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDeleteMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblDeleteMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 9, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -289,6 +381,139 @@ public class FindCustomerPanel extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setName("pnlFind"); // NOI18N
+
+        jLabel10.setText("Slot binary position:");
+
+        tfBinaryPOS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel14.setText("Slot position (1 - 150):");
+
+        tfSlotNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnFindHotel.setText("Find Hotel Slot");
+        btnFindHotel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFindHotelActionPerformed(evt);
+            }
+        });
+
+        lblNoSlot.setText("Customer has not slot in the Tyre Hotel");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFindHotel)
+                            .addComponent(lblNoSlot))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfSlotNumber)
+                    .addComponent(tfBinaryPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfBinaryPOS, tfSlotNumber});
+
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tfBinaryPOS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNoSlot))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(tfSlotNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFindHotel)
+                .addContainerGap())
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel6.setName("pnlFind"); // NOI18N
+
+        btnAddToWaitingList.setText("Add Customer to Hotel Waiting List");
+        btnAddToWaitingList.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAddToWaitingListActionPerformed(evt);
+            }
+        });
+
+        lblNoSlot2.setText("Customer is now number ");
+
+        lblNumberInLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberInLine.setText("--");
+
+        jLabel17.setText("in line.");
+
+        btnRemoveFromWaitingList.setText("Remove Customer from Hotel Waiting List");
+        btnRemoveFromWaitingList.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveFromWaitingListActionPerformed(evt);
+            }
+        });
+
+        lblSuccess.setText("-");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRemoveFromWaitingList)
+                    .addComponent(btnAddToWaitingList, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblNoSlot2)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblNumberInLine)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel17))
+                    .addComponent(lblSuccess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddToWaitingList)
+                    .addComponent(lblSuccess))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNoSlot2)
+                    .addComponent(lblNumberInLine)
+                    .addComponent(jLabel17)
+                    .addComponent(btnRemoveFromWaitingList))
+                .addGap(4, 4, 4))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,23 +522,28 @@ public class FindCustomerPanel extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -367,6 +597,62 @@ public class FindCustomerPanel extends javax.swing.JPanel
             lblDeleteMessage.setText("Failed to delete Customer");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnFindHotelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindHotelActionPerformed
+    {//GEN-HEADEREND:event_btnFindHotelActionPerformed
+       if(listCustomers.getSelectedIndex() >= 0)
+       {
+           Customer c = _foundCustomers.get(listCustomers.getSelectedIndex());
+           _slots = _hotelController.findSlotsByCustomer(c);
+           
+           if (!_slots.isEmpty())
+           {
+               Slot s = _slots.get(0);
+               lblNoSlot.setVisible(false);
+               tfBinaryPOS.setText(s.getBinaryStringPosition());
+               int i = s.getPosition() + 128;
+               tfSlotNumber.setText(""+i);
+           }
+           else
+           {
+               lblNoSlot.setText("Customer has not slot in the Tyre Hotel");
+               lblNoSlot.setVisible(true);
+           }
+       }
+    }//GEN-LAST:event_btnFindHotelActionPerformed
+
+    private void btnFindHotel1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindHotel1ActionPerformed
+    {//GEN-HEADEREND:event_btnFindHotel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFindHotel1ActionPerformed
+
+    private void btnAddToWaitingListActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAddToWaitingListActionPerformed
+    {//GEN-HEADEREND:event_btnAddToWaitingListActionPerformed
+        if(listCustomers.getSelectedIndex() >= 0)
+        {
+            int z = _hotelController.addCustomerToWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
+            
+            lblNumberInLine.setText(""+z);
+        }
+    }//GEN-LAST:event_btnAddToWaitingListActionPerformed
+
+    private void btnRemoveFromWaitingListActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveFromWaitingListActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveFromWaitingListActionPerformed
+        if(listCustomers.getSelectedIndex() >= 0)
+        {
+            boolean succes = _hotelController.removeCustomerFromWaitingList(_foundCustomers.get(listCustomers.getSelectedIndex()));
+            
+            if (succes)
+            {
+                lblNumberInLine.setText("--");
+            }
+            else
+            {
+                lblSuccess.setText("Customer could not be romeved.");
+            }
+            
+        }
+    }//GEN-LAST:event_btnRemoveFromWaitingListActionPerformed
+
     private void displayCustomer(int index)
     {
         if(index < 0)
@@ -384,16 +670,36 @@ public class FindCustomerPanel extends javax.swing.JPanel
             tfPostal.setText(e.getPostalNumber());
             tfPhone.setText(e.getPhoneNumber());
             tfEmail.setText(e.getEmail());
+            
+           
+           int z = _hotelController.findWaitingNumberByCustomer(e);
+           if (z >= 0)
+           {
+               lblNumberInLine.setText(""+z);
+           }
+           else
+           {
+               lblNumberInLine.setText("--");
+           }
         }
             
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddToWaitingList;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnFindHotel;
+    private javax.swing.JButton btnFindHotel1;
+    private javax.swing.JButton btnRemoveFromWaitingList;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -405,13 +711,23 @@ public class FindCustomerPanel extends javax.swing.JPanel
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCustomerID;
     private javax.swing.JLabel lblDeleteMessage;
     private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblNoSlot;
+    private javax.swing.JLabel lblNoSlot1;
+    private javax.swing.JLabel lblNoSlot2;
+    private javax.swing.JLabel lblNumberInLine;
     private javax.swing.JLabel lblPersonID;
+    private javax.swing.JLabel lblSuccess;
     private javax.swing.JList listCustomers;
     private javax.swing.JTextField tfAddress;
+    private javax.swing.JTextField tfBinaryPOS;
+    private javax.swing.JTextField tfBinaryPOS1;
     private javax.swing.JTextField tfCustomerID;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfFirstName;
@@ -420,5 +736,7 @@ public class FindCustomerPanel extends javax.swing.JPanel
     private javax.swing.JTextField tfLastNameUpdate;
     private javax.swing.JTextField tfPhone;
     private javax.swing.JTextField tfPostal;
+    private javax.swing.JTextField tfSlotNumber;
+    private javax.swing.JTextField tfSlotNumber1;
     // End of variables declaration//GEN-END:variables
 }
