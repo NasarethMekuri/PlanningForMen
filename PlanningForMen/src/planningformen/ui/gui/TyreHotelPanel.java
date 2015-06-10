@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package planningformen.ui.gui;
-import planningformen.ui.gui.*;
+
 /**
  *
  * @author Morten
  */
-public class HotelMainPanel extends javax.swing.JPanel
+public class TyreHotelPanel extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form HotelMainPanel
+     * Creates new form TyreHotelPanel
      */
-    public HotelMainPanel()
+    public TyreHotelPanel()
     {
         initComponents();
     }
@@ -30,24 +30,30 @@ public class HotelMainPanel extends javax.swing.JPanel
     private void initComponents()
     {
 
-        MainPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        MainPanel.setLayout(new java.awt.CardLayout());
+        jLabel1.setText("Tyre Hotel stuff goes here. NOTE: This is NOT \"Hotel For Men\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(351, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(330, 330, 330))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabel1)
+                .addContainerGap(336, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel MainPanel;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
