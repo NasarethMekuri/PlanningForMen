@@ -10,7 +10,6 @@ import java.util.List;
 import planningformen.domain.financeandefficiency.Sale;
 import planningformen.domain.financeandefficiency.SalesNumbers;
 import planningformen.domain.planning.Customer;
-import planningformen.domain.planning.Employee;
 import planningformen.domain.planning.Sellable;
 
 /**
@@ -19,8 +18,7 @@ import planningformen.domain.planning.Sellable;
  */
 public interface ISaleController
 {
-    public boolean createSale(Employee emp, Customer cust, List<Sellable> sellables, double amountPaid);
-    public void retrieveSales();
+    public boolean createSale(String employeeID, String customerID, List<Sellable> sellables, double amountPaid);
     public boolean updateSale(Sale sale);
     public boolean deleteSale(Sale sale);
     public boolean printInvoice(Sale sale);
@@ -30,4 +28,5 @@ public interface ISaleController
     public double calculateTaxes(Sale sale);
     public double calculateTaxes(List<Sale> sales);
     public SalesNumbers generateYearlySales(int year);
+    public List<Sellable> getAvailableSellables();
 }

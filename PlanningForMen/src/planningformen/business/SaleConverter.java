@@ -50,7 +50,6 @@ public class SaleConverter implements ICallback
   
     public boolean createSale(Sale sale)
     {
-        System.out.println("CreateSale on Converter Level!!!");
         List<String> carIDs = new ArrayList<String>();
         List<String> serviceIDs = new ArrayList<String>();
         List<String> tyreIDs = new ArrayList<String>();

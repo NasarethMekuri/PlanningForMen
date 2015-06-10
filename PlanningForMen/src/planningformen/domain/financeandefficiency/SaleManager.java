@@ -56,7 +56,8 @@ public class SaleManager implements ISaleCallback
         
         if(_saleConverter.createSale(sale))
         {
-            System.out.println("All DB stuff done @Sales!");
+            for(Sellable s : sellables)
+                s.setSaleID(saleID);
             return _sales.add(sale);
         }
         return false;
