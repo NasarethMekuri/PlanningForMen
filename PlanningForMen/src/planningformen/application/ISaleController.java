@@ -23,7 +23,7 @@ public interface ISaleController
     public boolean deleteSale(Sale sale);
     public boolean printInvoice(Sale sale);
     public double paySale(Sale sale, double amountPaid);
-    public List<Sale> findSales(Customer cust, Date fromDate, Date toDate);
+    public List<Sale> findSales(String customerID, Date fromDate, Date toDate);
     public List<Sale> findSales(int year);
     public double calculateTaxes(Sale sale);
     public double calculateTaxes(List<Sale> sales);

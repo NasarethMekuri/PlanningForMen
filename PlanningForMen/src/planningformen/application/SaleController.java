@@ -36,7 +36,7 @@ public class SaleController implements ISaleController
         {
             if(sellables.get(i).getSaleID() == null)
             {
-                
+                continue;
             }
             else
             {
@@ -86,33 +86,41 @@ public class SaleController implements ISaleController
     }
 
     @Override
-    public List<Sale> findSales(Customer cust, Date fromDate, Date toDate)
+    public List<Sale> findSales(String customerID, Date fromDate, Date toDate)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Customer customer = Master.getInstance().getCustomerManager().findCustomer(customerID);
+        List<Sale> sales = new ArrayList<Sale>();
+        
+        if(customer != null)
+            sales.addAll(Master.getInstance().getSaleManager().findSales(customer, fromDate, toDate));
+        else
+            sales.addAll(Master.getInstance().getSaleManager().findSales(fromDate, toDate));
+        
+      return sales;
     }
 
     @Override
     public List<Sale> findSales(int year)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getSaleManager().findSales(year);
     }
 
     @Override
     public double calculateTaxes(Sale sale)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getSaleManager().calculateTaxes(sale);
     }
 
     @Override
     public double calculateTaxes(List<Sale> sales)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getSaleManager().calculateTaxes(sales);
     }
 
     @Override
     public SalesNumbers generateYearlySales(int year)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getSaleManager().generateYearlySales(year);
     }
     
 }
