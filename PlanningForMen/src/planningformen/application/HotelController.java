@@ -20,13 +20,13 @@ public class HotelController implements IHotelController
     @Override
     public Slot findSlot(String position)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().findSlot(position);
     }
 
     @Override
     public Slot findSlot(String x, String y, String z)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().findSlot(x, y, z);
     }
 
     @Override
@@ -38,13 +38,13 @@ public class HotelController implements IHotelController
     @Override
     public Customer findCustomerBySlot(Slot slot)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().findCustomerBySlot(slot);
     }
 
     @Override
     public boolean reserveSlot(Customer cust, String position)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getTyreHotel().reserveSlot(cust, position);
     }
 
     @Override

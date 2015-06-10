@@ -33,11 +33,9 @@ public class TyreHotelPanel extends javax.swing.JPanel
         jTabbedPane1 = new javax.swing.JTabbedPane();
         garage1Panel1 = new planningformen.ui.gui.GaragesPanel();
         hotelPanel2 = new planningformen.ui.gui.HotelPanel();
-        waitingListPanel2 = new planningformen.ui.gui.WaitingListPanel();
 
         jTabbedPane1.addTab("Garages", garage1Panel1);
         jTabbedPane1.addTab("Hotel", hotelPanel2);
-        jTabbedPane1.addTab("WaitingList", waitingListPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,6 +54,5 @@ public class TyreHotelPanel extends javax.swing.JPanel
     private planningformen.ui.gui.GaragesPanel garage1Panel1;
     private planningformen.ui.gui.HotelPanel hotelPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private planningformen.ui.gui.WaitingListPanel waitingListPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -48,15 +48,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="planningformen.ui.gui.WaitingListPanel" name="waitingListPanel2">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="WaitingList">
-                <Property name="tabTitle" type="java.lang.String" value="WaitingList"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
