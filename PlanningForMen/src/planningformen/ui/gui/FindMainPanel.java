@@ -32,28 +32,15 @@ public class FindMainPanel extends javax.swing.JPanel
 
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        findCustomerPanel1 = new planningformen.ui.gui.FindCustomerPanel();
         findServicePanel1 = new planningformen.ui.gui.FindServicePanel();
-        findTyrePanel1 = new planningformen.ui.gui.FindTyrePanel();
         findSalePanel1 = new planningformen.ui.gui.FindSalePanel();
         findCarPanel2 = new planningformen.ui.gui.FindCarPanel();
         findEmployeePanel2 = new planningformen.ui.gui.FindEmployeePanel();
+        findCustomerPanel1 = new planningformen.ui.gui.FindCustomerPanel();
+        findTyrePanel2 = new planningformen.ui.gui.FindTyrePanel();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("FIND");
-
-        javax.swing.GroupLayout findCustomerPanel1Layout = new javax.swing.GroupLayout(findCustomerPanel1);
-        findCustomerPanel1.setLayout(findCustomerPanel1Layout);
-        findCustomerPanel1Layout.setHorizontalGroup(
-            findCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
-        );
-        findCustomerPanel1Layout.setVerticalGroup(
-            findCustomerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Customer", findCustomerPanel1);
 
         javax.swing.GroupLayout findServicePanel1Layout = new javax.swing.GroupLayout(findServicePanel1);
         findServicePanel1.setLayout(findServicePanel1Layout);
@@ -67,19 +54,6 @@ public class FindMainPanel extends javax.swing.JPanel
         );
 
         jTabbedPane1.addTab("Service", findServicePanel1);
-
-        javax.swing.GroupLayout findTyrePanel1Layout = new javax.swing.GroupLayout(findTyrePanel1);
-        findTyrePanel1.setLayout(findTyrePanel1Layout);
-        findTyrePanel1Layout.setHorizontalGroup(
-            findTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
-        );
-        findTyrePanel1Layout.setVerticalGroup(
-            findTyrePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Tyre", findTyrePanel1);
 
         javax.swing.GroupLayout findSalePanel1Layout = new javax.swing.GroupLayout(findSalePanel1);
         findSalePanel1.setLayout(findSalePanel1Layout);
@@ -95,6 +69,8 @@ public class FindMainPanel extends javax.swing.JPanel
         jTabbedPane1.addTab("Sale", findSalePanel1);
         jTabbedPane1.addTab("Car", findCarPanel2);
         jTabbedPane1.addTab("Employee", findEmployeePanel2);
+        jTabbedPane1.addTab("Customer", findCustomerPanel1);
+        jTabbedPane1.addTab("Tyre", findTyrePanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,7 +103,7 @@ public class FindMainPanel extends javax.swing.JPanel
     private planningformen.ui.gui.FindEmployeePanel findEmployeePanel2;
     private planningformen.ui.gui.FindSalePanel findSalePanel1;
     private planningformen.ui.gui.FindServicePanel findServicePanel1;
-    private planningformen.ui.gui.FindTyrePanel findTyrePanel1;
+    private planningformen.ui.gui.FindTyrePanel findTyrePanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

@@ -383,6 +383,8 @@ public class FindEmployeePanel extends javax.swing.JPanel
 
     private void displayEmployee(int index)
     {
+        if(index < 0)
+            return;
         if(_foundEmployees == null)
             return;
         if(_foundEmployees.size() > 0)

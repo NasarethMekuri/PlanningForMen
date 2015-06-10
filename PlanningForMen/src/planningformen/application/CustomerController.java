@@ -83,13 +83,13 @@ public class CustomerController implements ICustomerController
     @Override
     public boolean updateCustomer(Customer customer)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCustomerManager().updateCustomer(customer);
     }
 
     @Override
     public boolean deleteCustomer(Customer customer)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Master.getInstance().getCustomerManager().deleteCustomer(customer);
     }
     
 }

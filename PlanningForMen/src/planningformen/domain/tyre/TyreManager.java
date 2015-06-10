@@ -67,9 +67,11 @@ public class TyreManager
     public List<Tyre> findTyres(String saleID)
     {
         List<Tyre> foundTyres = new ArrayList<Tyre>();
-        
+
         for(Tyre t : _tyres)
         {
+            if(t.getSaleID() == null)
+                continue;
             if(t.getSaleID().equals(saleID))
                 foundTyres.add(t);
         }
