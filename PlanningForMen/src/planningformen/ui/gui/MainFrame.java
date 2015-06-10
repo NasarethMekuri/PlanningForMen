@@ -18,6 +18,7 @@ public class MainFrame extends javax.swing.JFrame
         _currentPanel = pnlLanding;
         setExtendedState(getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
         //Master.getInstance(); //Prepare domain early to avoid load times later.
+        //This comment will save your day!!!
     }
 
     /**
