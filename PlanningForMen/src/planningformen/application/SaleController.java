@@ -30,21 +30,23 @@ public class SaleController implements ISaleController
         sellables.addAll(Master.getInstance().getTyreManager().getTyres());
         sellables.addAll(Master.getInstance().getCarManager().getCars());
         sellables.addAll(Master.getInstance().getServiceManager().getServices());
-        
+        System.out.println("Pre sort Length: " + sellables.size());
         //Remove all Sellables already attached to a sale.
         for(int i = 0; i < sellables.size(); i++)
         {
-            if(sellables.get(i).getSaleID() != null)
+            if(sellables.get(i).getSaleID() == null)
             {
-                if(sellables.get(i).getSaleID().length() == 0)
-                    continue;
+                
             }
             else
             {
+                if(sellables.get(i).getSaleID().length() == 0) //Not null, but still considered unasigned.
+                    continue;
                 sellables.remove(i);
                 i--;
             }
         }
+        System.out.println("Post sort Length: " + sellables.size());
         return sellables;
     }
     

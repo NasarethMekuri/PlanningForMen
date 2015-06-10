@@ -164,6 +164,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove From Sale"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveSaleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="createSale">
           <Properties>
@@ -272,6 +275,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listSaleItemsValueChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

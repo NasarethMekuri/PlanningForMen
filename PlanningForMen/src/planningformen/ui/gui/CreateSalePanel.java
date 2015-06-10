@@ -99,6 +99,13 @@ public class CreateSalePanel extends javax.swing.JPanel
         lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnRemoveSale.setText("Remove From Sale");
+        btnRemoveSale.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveSaleActionPerformed(evt);
+            }
+        });
 
         createSale.setText("Create Sale");
         createSale.addActionListener(new java.awt.event.ActionListener()
@@ -158,6 +165,13 @@ public class CreateSalePanel extends javax.swing.JPanel
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        listSaleItems.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                listSaleItemsValueChanged(evt);
+            }
         });
         jScrollPane3.setViewportView(listSaleItems);
 
@@ -366,6 +380,7 @@ public class CreateSalePanel extends javax.swing.JPanel
     private void btnGetSellablesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnGetSellablesActionPerformed
     {//GEN-HEADEREND:event_btnGetSellablesActionPerformed
         _sellables = _controller.getAvailableSellables();
+        _saleItems.clear();
         updateGUILists();
     }//GEN-LAST:event_btnGetSellablesActionPerformed
 
@@ -381,7 +396,7 @@ public class CreateSalePanel extends javax.swing.JPanel
 
     private void listSellablesValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listSellablesValueChanged
     {//GEN-HEADEREND:event_listSellablesValueChanged
-        displaySellables(_sellables, listSellables.getSelectedIndex());
+        displaySellables(listSellables.getSelectedIndex());
     }//GEN-LAST:event_listSellablesValueChanged
 
     private void createSaleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_createSaleActionPerformed
@@ -395,8 +410,28 @@ public class CreateSalePanel extends javax.swing.JPanel
         {    
             lblMessage.setText("Failed to create sale! - Number format is wrong!");
         }
-        _controller.createSale(tfEmployeeID.getText().trim(), tfCustomerID.getText().trim(), _sellables, amountPaid);
+        if(_controller.createSale(tfEmployeeID.getText().trim(), tfCustomerID.getText().trim(), _saleItems, amountPaid))
+        {
+            _sellables = _controller.getAvailableSellables();
+            _saleItems.clear();
+            updateGUILists();
+        }
     }//GEN-LAST:event_createSaleActionPerformed
+
+    private void listSaleItemsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listSaleItemsValueChanged
+    {//GEN-HEADEREND:event_listSaleItemsValueChanged
+        displaySaleItems(listSaleItems.getSelectedIndex());
+    }//GEN-LAST:event_listSaleItemsValueChanged
+
+    private void btnRemoveSaleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveSaleActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveSaleActionPerformed
+        if(listSaleItems.getSelectedIndex() >= 0)
+        {
+            _sellables.add(_saleItems.get(listSaleItems.getSelectedIndex()));
+            _saleItems.remove(listSaleItems.getSelectedIndex());
+            updateGUILists();
+        }
+    }//GEN-LAST:event_btnRemoveSaleActionPerformed
     
     private void updateGUILists()
     {
@@ -405,21 +440,49 @@ public class CreateSalePanel extends javax.swing.JPanel
             _sellableList.addElement(s);
         
         _saleList.clear();
+        double price = 0;
         for(Sellable s : _saleItems)
+        {
             _saleList.addElement(s);
+            price += s.getSellPrice();
+        }
+        lblTotalPrice.setText("" + price);
     }
     
-    private void displaySellables(List<Sellable> sellables, int index)
+    private void displaySellables(int index)
     {
         if(index < 0)
-            return;
-        if(sellables == null)
-            return;
-        if(sellables.size() > 0)
         {
-            Sellable s = sellables.get(index);
+            lblDescription.setText("");
+            lblPrice.setText("");
+            return;
+        }
+        
+        if(_sellables == null)
+            return;
+        if(_sellables.size() > 0)
+        {
+            Sellable s = _sellables.get(index);
             lblDescription.setText(s.toString());
             lblPrice.setText("" + s.getSellPrice());
+        }
+    }
+    
+    private void displaySaleItems(int index)
+    {
+        if(index < 0)
+        {
+            lblDescriptionSale.setText("");
+            lblPriceSale.setText("");
+            return;
+        }
+        if(_saleItems == null)
+            return;
+        if(_saleItems.size() > 0)
+        {
+            Sellable s = _saleItems.get(index);
+            lblDescriptionSale.setText(s.toString());
+            lblPriceSale.setText("" + s.getSellPrice());
         }
     }
 
