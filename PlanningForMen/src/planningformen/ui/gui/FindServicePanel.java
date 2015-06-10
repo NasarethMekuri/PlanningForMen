@@ -1,9 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.ui.gui;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import planningformen.application.IServiceController;
+import planningformen.application.ServiceController;
+import planningformen.domain.financeandefficiency.Service;
+import planningformen.domain.financeandefficiency.ServiceState;
+import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
@@ -11,15 +21,25 @@ package planningformen.ui.gui;
  */
 public class FindServicePanel extends javax.swing.JPanel
 {
-
+    IServiceController _controller;
+    List<JComponent> _components;
+    private double _priceFrom, _priceTo;
+    private ServiceState _state1, _state2;
+    private ServiceType _type1, _type2;
+    private List<Service> _foundServices;
+    private DefaultListModel _list;
     /**
      * Creates new form FindServicePanel
      */
     public FindServicePanel()
     {
+        _controller = new ServiceController();
         initComponents();
+        listServices.setModel(_list);
+        gatherComponentsIntoList();
+        greyOutComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,30 +50,612 @@ public class FindServicePanel extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listServices = new javax.swing.JList();
+        jPanel1 = new javax.swing.JPanel();
+        criteriaChooser = new javax.swing.JComboBox();
+        lblPriceFrom = new javax.swing.JLabel();
+        cBoxType1 = new javax.swing.JComboBox();
+        btnFind = new javax.swing.JButton();
+        cBoxState1 = new javax.swing.JComboBox();
+        lblState = new javax.swing.JLabel();
+        lblType = new javax.swing.JLabel();
+        lblPriceTo = new javax.swing.JLabel();
+        priceSelectorTo = new javax.swing.JSpinner();
+        lblType1 = new javax.swing.JLabel();
+        lblType2 = new javax.swing.JLabel();
+        cBoxType2 = new javax.swing.JComboBox();
+        lblState2 = new javax.swing.JLabel();
+        cBoxState2 = new javax.swing.JComboBox();
+        priceSelectorFrom = new javax.swing.JSpinner();
+        lblSuccess = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblPriceFrom1 = new javax.swing.JLabel();
+        EDITcBoxType = new javax.swing.JComboBox();
+        btnEdit = new javax.swing.JButton();
+        EDITcBoxState = new javax.swing.JComboBox();
+        lblState1 = new javax.swing.JLabel();
+        lblType3 = new javax.swing.JLabel();
+        lblType5 = new javax.swing.JLabel();
+        EDITcBoxGarage = new javax.swing.JComboBox();
+        EDITpriceSelector = new javax.swing.JSpinner();
+        lblDescription = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        EDITtxtAreaDescr = new javax.swing.JTextArea();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
-        jLabel1.setText("Find Service Goes Here!");
+        listServices.setModel(new javax.swing.AbstractListModel()
+        {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listServices);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        criteriaChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "price", "Type", "Types", "State", "States", "Type and State" }));
+        criteriaChooser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                criteriaChooserActionPerformed(evt);
+            }
+        });
+
+        lblPriceFrom.setText("Price from");
+
+        cBoxType1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Diesel", "Normal", "Tuning" }));
+
+        btnFind.setText("Find Services");
+        btnFind.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnFindActionPerformed(evt);
+            }
+        });
+
+        cBoxState1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Pending", "Reserved", "Started", "Finished" }));
+
+        lblState.setText("State");
+
+        lblType.setText("Type");
+
+        lblPriceTo.setText("Price to");
+
+        priceSelectorTo.setValue(500);
+
+        lblType1.setText("Criteria:");
+
+        lblType2.setText("Type");
+
+        cBoxType2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Diesel", "Normal", "Tuning" }));
+
+        lblState2.setText("State");
+
+        cBoxState2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Pending", "Reserved", "Started", "Finished" }));
+
+        priceSelectorFrom.setValue(500);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(criteriaChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(185, 185, 185))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblType)
+                                .addComponent(cBoxType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblType2)
+                                .addComponent(cBoxType2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(48, 48, 48)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblState)
+                                        .addComponent(cBoxState1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblState2))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblPriceTo)
+                                        .addComponent(lblPriceFrom)
+                                        .addComponent(priceSelectorFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(cBoxState2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(priceSelectorTo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(211, 211, 211)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblType1)
+                            .addComponent(btnFind))
+                        .addGap(250, 250, 250))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblType1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(criteriaChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblType)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cBoxType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblState))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblPriceFrom)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceSelectorFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cBoxState1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblType2)
+                    .addComponent(lblState2)
+                    .addComponent(lblPriceTo))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cBoxState2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceSelectorTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBoxType2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnFind)
+                .addContainerGap())
+        );
+
+        lblSuccess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSuccess.setText("-");
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lblPriceFrom1.setText("Price");
+
+        EDITcBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Diesel", "Normal", "Tuning" }));
+
+        btnEdit.setText("Edit Service");
+        btnEdit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        EDITcBoxState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Pending", "Reserved", "Started", "Finished" }));
+
+        lblState1.setText("State");
+
+        lblType3.setText("Type");
+
+        lblType5.setText("Garage");
+
+        EDITcBoxGarage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Diesel", "Normal", "Tuning" }));
+
+        EDITpriceSelector.setValue(500);
+
+        lblDescription.setText("Description");
+
+        EDITtxtAreaDescr.setColumns(20);
+        EDITtxtAreaDescr.setRows(5);
+        jScrollPane2.setViewportView(EDITtxtAreaDescr);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnEdit)
+                                .addGap(410, 410, 410))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblPriceFrom1)
+                                        .addGap(47, 47, 47))
+                                    .addComponent(EDITpriceSelector, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(EDITcBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblState1))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(EDITcBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(lblType3)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblType5)
+                                    .addComponent(EDITcBoxGarage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(157, 157, 157))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDescription))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblType5)
+                    .addComponent(lblType3)
+                    .addComponent(lblState1)
+                    .addComponent(lblPriceFrom1))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EDITcBoxGarage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EDITcBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EDITcBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EDITpriceSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(lblDescription)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(btnEdit)
+                .addContainerGap())
+        );
+
+        btnDelete.setText("Delete Service");
+        btnDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(402, 402, 402)
-                .addComponent(jLabel1)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addComponent(lblSuccess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(jLabel1)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSuccess)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnClear))
+                .addGap(0, 368, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
+    {//GEN-HEADEREND:event_btnFindActionPerformed
+        
+        if (criteriaChooser.getSelectedItem().equals("Choose"))
+        {
+            lblSuccess.setText("Choose a criteria!");
+        }
+        else if (criteriaChooser.getSelectedItem().equals("price"))
+        {
+            try
+            {
+                _priceFrom = Double.parseDouble(priceSelectorFrom.getValue().toString());
+                _priceTo = Double.parseDouble(priceSelectorTo.getValue().toString());
+            }
+            catch (NumberFormatException numberFormatException)
+            {
+                lblSuccess.setText("Bad price!");
+            }
+            _foundServices = _controller.findServicesByPrice(_priceFrom, _priceTo);
+            applySearchResults();
+        }
+        else if (criteriaChooser.getSelectedItem().equals("Type"))
+        {
+            switch (cBoxType1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose Type");
+                    break;
+                case "Diesel":
+                    _type1 = ServiceType.DIESEL;
+                    break;
+                case "Normal":
+                    _type1 = ServiceType.NORMAL;
+                    break;
+                case "Tuning":
+                    _type1 = ServiceType.TUNING;
+                    break;
+            }
+            
+            _foundServices = _controller.findServicesByType(_type1);
+            applySearchResults();
+        }
+        else if (criteriaChooser.getSelectedItem().equals("Types"))
+        {
+            switch (cBoxType1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose Type");
+                    break;
+                case "Diesel":
+                    _type1 = ServiceType.DIESEL;
+                    break;
+                case "Normal":
+                    _type1 = ServiceType.NORMAL;
+                    break;
+                case "Tuning":
+                    _type1 = ServiceType.TUNING;
+                    break;
+            }
+            
+            switch (cBoxType2.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose Type");
+                    break;
+                case "Diesel":
+                    _type2 = ServiceType.DIESEL;
+                    break;
+                case "Normal":
+                    _type2 = ServiceType.NORMAL;
+                    break;
+                case "Tuning":
+                    _type2 = ServiceType.TUNING;
+                    break;
+            }
+            
+            _foundServices = _controller.findServicesByTypes(_type1, _type2);
+            applySearchResults();
+        }
+        else if (criteriaChooser.getSelectedItem().equals("State"))
+        {
+            switch (cBoxState1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose State");
+                    break;
+                case "Pending":
+                    _state1 = ServiceState.PENDING;
+                    break;
+                case "Reserved":
+                    _state1 = ServiceState.RESERVED;
+                    break;
+                case "Started":
+                    _state1 = ServiceState.STARTED;
+                    break;
+                case "Finished":
+                    _state1 = ServiceState.FINISHED;
+                    break;
+            }
+            
+            _foundServices = _controller.findServicesByState(_state1);
+            applySearchResults();
+        }
+        else if (criteriaChooser.getSelectedItem().equals("States"))
+        {
+            switch (cBoxState1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose State");
+                    break;
+                case "Pending":
+                    _state1 = ServiceState.PENDING;
+                    break;
+                case "Reserved":
+                    _state1 = ServiceState.RESERVED;
+                    break;
+                case "Started":
+                    _state1 = ServiceState.STARTED;
+                    break;
+                case "Finished":
+                    _state1 = ServiceState.FINISHED;
+                    break;
+            }
+            
+            switch (cBoxState2.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose State");
+                    break;
+                case "Pending":
+                    _state2 = ServiceState.PENDING;
+                    break;
+                case "Reserved":
+                    _state2 = ServiceState.RESERVED;
+                    break;
+                case "Started":
+                    _state2 = ServiceState.STARTED;
+                    break;
+                case "Finished":
+                    _state2 = ServiceState.FINISHED;
+                    break;
+            }
+            _foundServices = _controller.findServicesByStates(_state1, _state2);
+            applySearchResults();
+        }
+        else if (criteriaChooser.getSelectedItem().equals("Type and State"))
+        {
+            switch (cBoxType1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose Type");
+                    break;
+                case "Diesel":
+                    _type1 = ServiceType.DIESEL;
+                    break;
+                case "Normal":
+                    _type1 = ServiceType.NORMAL;
+                    break;
+                case "Tuning":
+                    _type1 = ServiceType.TUNING;
+                    break;
+            }
+            
+            switch (cBoxState1.getSelectedItem().toString())
+            {
+                case "Choose":
+                    lblSuccess.setText("choose State");
+                    break;
+                case "Pending":
+                    _state1 = ServiceState.PENDING;
+                    break;
+                case "Reserved":
+                    _state1 = ServiceState.RESERVED;
+                    break;
+                case "Started":
+                    _state1 = ServiceState.STARTED;
+                    break;
+                case "Finished":
+                    _state1 = ServiceState.FINISHED;
+                    break;
+            }
+            
+            _foundServices = _controller.findServicesByTypeAndState(_type1, _state1);
+            applySearchResults();
+            
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
+    {//GEN-HEADEREND:event_btnClearActionPerformed
+        
+        
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void criteriaChooserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_criteriaChooserActionPerformed
+    {//GEN-HEADEREND:event_criteriaChooserActionPerformed
+
+    }//GEN-LAST:event_criteriaChooserActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
+    {//GEN-HEADEREND:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteActionPerformed
+    {//GEN-HEADEREND:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox EDITcBoxGarage;
+    private javax.swing.JComboBox EDITcBoxState;
+    private javax.swing.JComboBox EDITcBoxType;
+    private javax.swing.JSpinner EDITpriceSelector;
+    private javax.swing.JTextArea EDITtxtAreaDescr;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JComboBox cBoxState1;
+    private javax.swing.JComboBox cBoxState2;
+    private javax.swing.JComboBox cBoxType1;
+    private javax.swing.JComboBox cBoxType2;
+    private javax.swing.JComboBox criteriaChooser;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblPriceFrom;
+    private javax.swing.JLabel lblPriceFrom1;
+    private javax.swing.JLabel lblPriceTo;
+    private javax.swing.JLabel lblState;
+    private javax.swing.JLabel lblState1;
+    private javax.swing.JLabel lblState2;
+    private javax.swing.JLabel lblSuccess;
+    private javax.swing.JLabel lblType;
+    private javax.swing.JLabel lblType1;
+    private javax.swing.JLabel lblType2;
+    private javax.swing.JLabel lblType3;
+    private javax.swing.JLabel lblType5;
+    private javax.swing.JList listServices;
+    private javax.swing.JSpinner priceSelectorFrom;
+    private javax.swing.JSpinner priceSelectorTo;
     // End of variables declaration//GEN-END:variables
+    
+    private void greyOutComponents()
+    {
+        for (JComponent c : _components)
+        {
+            c.setEnabled(false);
+        }
+    }
+    
+    private void gatherComponentsIntoList()
+    {
+        _components = new ArrayList();
+        
+        _components.add(cBoxState1);
+        _components.add(cBoxState2);
+        _components.add(cBoxType1);
+        _components.add(cBoxType2);
+        _components.add(lblPriceFrom);
+        _components.add(lblPriceTo);
+        _components.add(lblState);
+        _components.add(lblState2);
+        _components.add(lblType);
+        _components.add(lblType1);
+        _components.add(lblType2);
+        _components.add(priceSelectorFrom);
+        _components.add(priceSelectorTo);
+        _components.add(cBoxState1);
+        _components.add(cBoxState1);
+        _components.add(cBoxState1);
+        
+    }
+    
+    private void applySearchResults()
+    {
+        _list.clear();
+        
+        for (Service s : _foundServices)
+        {
+            _list.addElement(s);
+        }
+    }
 }

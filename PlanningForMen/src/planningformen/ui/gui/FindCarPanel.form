@@ -17,55 +17,60 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="criteria" max="32767" attributes="0"/>
+                          <Component id="jLabel2" pref="294" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="740" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblSucces" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblSucces" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" min="-2" pref="183" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="criteria" max="32767" attributes="0"/>
-                  <Component id="jLabel2" pref="153" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="703" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="criteria" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="412" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="457" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblSucces" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +92,13 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -97,7 +109,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lblPlate" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCarID" min="-2" max="-2" attributes="0"/>
+                              <Component id="fuel" min="-2" max="-2" attributes="0"/>
                               <Component id="lblMake" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblModel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblVersion" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -135,11 +147,8 @@
                                   <Component id="pPriceTo" min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnFind" min="-2" max="-2" attributes="0"/>
-                                      <Component id="carIdTxtField" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="carIdTxtField" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -172,22 +181,27 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnFind" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="pDyearTo" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="pDMonthTo" min="-2" pref="61" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="pDyearTo" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="pDMonthTo" min="-2" pref="61" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="pDyearFrom" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="pDMonthFrom" min="-2" pref="61" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="pDDayFrom" pref="62" max="32767" attributes="0"/>
+                                      <Component id="pDDayTo" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="pDyearFrom" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="pDMonthFrom" min="-2" pref="61" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="pDDayFrom" pref="62" max="32767" attributes="0"/>
-                              <Component id="pDDayTo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -200,7 +214,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCarID" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="fuel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="carIdTxtField" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -272,9 +286,9 @@
                       <Component id="pDDayTo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="pDyearTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   <Component id="btnFind" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -325,7 +339,7 @@
             <Property name="text" type="java.lang.String" value="Model"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblCarID">
+        <Component class="javax.swing.JLabel" name="fuel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Car ID"/>
           </Properties>
@@ -374,6 +388,7 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="volFrom">
           <Properties>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
             <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="1.8" type="code"/>
             </Property>
@@ -514,13 +529,21 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="Description" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPlateEdit" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCarIDEdit" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblMakeEdit" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -532,24 +555,28 @@
                       <Component id="lblKilometersEdit" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblYearEdit" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPurchaseDateEdit" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="fuel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="kilometersTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="purchaseDateTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="purchasePriceTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="sellPriceTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="versionTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="volumeTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="modelTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="makeTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Component id="yearTxtFieldEdit" alignment="1" pref="178" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="fuelSelector" max="32767" attributes="0"/>
+                      <Component id="kilometersTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="purchaseDateTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="purchasePriceTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="sellPriceTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="versionTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="volumeTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="modelTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="makeTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="yearTxtFieldEdit" alignment="1" pref="180" max="32767" attributes="0"/>
                       <Component id="lblcarIDDisplay" max="32767" attributes="0"/>
                       <Component id="plateTxtFieldEdit" alignment="0" max="32767" attributes="0"/>
+                      <Component id="DescriptionTxtField" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="checkSold" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -613,9 +640,27 @@
                       <Component id="lblPurchaseDateEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="purchaseDateTxtFieldEdit" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="fuel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fuelSelector" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="DescriptionTxtField" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="Description" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="checkSold" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -705,6 +750,37 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblcarIDDisplay">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="fuelSelector">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;choose&quot;, &quot;Petrol&quot;, &quot;Diesel&quot; })" type="code"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="fuel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fuel"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Description">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Description"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="DescriptionTxtField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescriptionTxtFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkSold">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sold"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkSoldActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

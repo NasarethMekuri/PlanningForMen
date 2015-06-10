@@ -1,9 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package planningformen.ui.gui;
+
+import planningformen.application.IServiceController;
+import planningformen.application.ServiceController;
+import planningformen.domain.financeandefficiency.ServiceType;
 
 /**
  *
@@ -11,15 +15,17 @@ package planningformen.ui.gui;
  */
 public class CreateServicePanel extends javax.swing.JPanel
 {
-
+    IServiceController _controller;
+    
     /**
      * Creates new form CreateServicePanel
      */
     public CreateServicePanel()
     {
+        _controller = new ServiceController();
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,30 +36,177 @@ public class CreateServicePanel extends javax.swing.JPanel
     private void initComponents()
     {
 
+        lblPrice = new javax.swing.JLabel();
+        lblType = new javax.swing.JLabel();
+        lblDescription = new javax.swing.JLabel();
+        cBoxType = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaDescr = new javax.swing.JTextArea();
+        priceSelector = new javax.swing.JSpinner();
+        lblSuccess = new javax.swing.JLabel();
+        btnCreate = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
-        jLabel1.setText("Create Service ");
+        lblPrice.setText("Price");
+
+        lblType.setText("Type");
+
+        lblDescription.setText("Description");
+
+        cBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose", "Diesel", "Normal", "Tuning" }));
+
+        jLabel1.setText("Create new pending Service");
+
+        txtAreaDescr.setColumns(20);
+        txtAreaDescr.setRows(5);
+        jScrollPane1.setViewportView(txtAreaDescr);
+
+        priceSelector.setValue(500);
+
+        lblSuccess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSuccess.setText("-");
+
+        btnCreate.setText("Create Service");
+        btnCreate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 649, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(421, 421, 421)
-                .addComponent(jLabel1)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(82, 82, 82)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblPrice)
+                                    .addGap(214, 214, 214)
+                                    .addComponent(lblDescription)
+                                    .addGap(165, 165, 165)
+                                    .addComponent(lblType))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(455, 455, 455)
+                                    .addComponent(cBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(priceSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCreate))
+                            .addGap(140, 140, 140)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblSuccess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClear)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(274, 274, 274)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrice)
+                    .addComponent(lblDescription)
+                    .addComponent(lblType))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSuccess)
+                        .addComponent(btnClear))
+                    .addComponent(btnCreate))
+                .addGap(105, 105, 105)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(408, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
+    {//GEN-HEADEREND:event_btnCreateActionPerformed
+        double price = 0;
+        try
+        {
+            price = Double.parseDouble(priceSelector.getValue().toString());
+        }
+        catch (NumberFormatException nfe)
+        {
+            lblSuccess.setText("Creation failed");
+        }
+        ServiceType type = null;
+        if (cBoxType.getSelectedItem().toString().equalsIgnoreCase("Diesel"))
+            type = ServiceType.DIESEL;
+        else if (cBoxType.getSelectedItem().toString().equalsIgnoreCase("Normal"))
+            type = ServiceType.NORMAL;
+        else if (cBoxType.getSelectedItem().toString().equalsIgnoreCase("Tuning"))
+            type = ServiceType.TUNING;
+        
+        
+        if (_controller.createService(price, txtAreaDescr.getText(), type))
+            lblSuccess.setText("Service created");
+        else
+            lblSuccess.setText("Service creation failed");
+
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
+    {//GEN-HEADEREND:event_btnClearActionPerformed
+        txtAreaDescr.setText("");
+        priceSelector.setValue("0");
+        cBoxType.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JComboBox cBoxType;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblSuccess;
+    private javax.swing.JLabel lblType;
+    private javax.swing.JSpinner priceSelector;
+    private javax.swing.JTextArea txtAreaDescr;
     // End of variables declaration//GEN-END:variables
 }
