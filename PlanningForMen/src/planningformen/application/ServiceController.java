@@ -7,6 +7,7 @@ package planningformen.application;
 
 import java.util.List;
 import planningformen.domain.Master;
+import planningformen.domain.financeandefficiency.Garage;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceState;
 import planningformen.domain.financeandefficiency.ServiceType;
@@ -95,5 +96,19 @@ public class ServiceController implements IServiceController
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override //this is wrong, out of time.
+    public Garage[] getGarages()
+    {
+        return Master.getInstance().getServiceManager().getGarages();
+    }
+    
+    @Override //this is wrong, out of time.
+    public List<Service> getFinishedJobs()
+    {
+        return Master.getInstance().getServiceManager().getFinishedServices();
+    }
+    
+    
     
 }

@@ -6,6 +6,7 @@
 package planningformen.application;
 
 import java.util.List;
+import planningformen.domain.financeandefficiency.Garage;
 import planningformen.domain.financeandefficiency.Service;
 import planningformen.domain.financeandefficiency.ServiceState;
 import planningformen.domain.financeandefficiency.ServiceType;
@@ -29,5 +30,6 @@ public interface IServiceController
     public boolean startJob(Service serviceToStart, ServiceType garage);
     public boolean finishJob(Service serviceToFinish, ServiceType garage);
     public void planJobPriorityForMechanics();
-    
+    public Garage[] getGarages(); //this is wrong, out of time.
+    public List<Service> getFinishedJobs(); //this is wrong, out of time.
 }

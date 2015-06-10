@@ -30,29 +30,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="planningformen.ui.gui.Garage1Panel" name="garage1Panel1">
+        <Component class="planningformen.ui.gui.GaragesPanel" name="garage1Panel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Garage 1">
-                <Property name="tabTitle" type="java.lang.String" value="Garage 1"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="planningformen.ui.gui.Garage2Panel" name="garage2Panel1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Garage 2">
-                <Property name="tabTitle" type="java.lang.String" value="Garage 2"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="planningformen.ui.gui.Garage3Panel" name="garage3Panel1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Garage 3">
-                <Property name="tabTitle" type="java.lang.String" value="Garage 3"/>
+              <JTabbedPaneConstraints tabName="Garages">
+                <Property name="tabTitle" type="java.lang.String" value="Garages"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

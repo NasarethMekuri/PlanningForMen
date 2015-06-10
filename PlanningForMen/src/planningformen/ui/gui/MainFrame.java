@@ -39,7 +39,6 @@ public class MainFrame extends javax.swing.JFrame
         Quit = new javax.swing.JButton();
         createMainPanel1 = new planningformen.ui.gui.CreateMainPanel();
         findMainPanel2 = new planningformen.ui.gui.FindMainPanel();
-        tyreHotelPanel1 = new planningformen.ui.gui.TyreHotelPanel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,7 +112,6 @@ public class MainFrame extends javax.swing.JFrame
         MasterPanel.add(pnlLanding, "card2");
         MasterPanel.add(createMainPanel1, "card3");
         MasterPanel.add(findMainPanel2, "card4");
-        MasterPanel.add(tyreHotelPanel1, "card5");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener()
@@ -237,6 +235,5 @@ public class MainFrame extends javax.swing.JFrame
     private planningformen.ui.gui.CreateMainPanel createMainPanel1;
     private planningformen.ui.gui.FindMainPanel findMainPanel2;
     private javax.swing.JPanel pnlLanding;
-    private planningformen.ui.gui.TyreHotelPanel tyreHotelPanel1;
     // End of variables declaration//GEN-END:variables
 }
