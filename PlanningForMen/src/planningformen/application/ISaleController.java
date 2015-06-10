@@ -9,7 +9,6 @@ import java.sql.Date;
 import java.util.List;
 import planningformen.domain.financeandefficiency.Sale;
 import planningformen.domain.financeandefficiency.SalesNumbers;
-import planningformen.domain.planning.Customer;
 import planningformen.domain.planning.Sellable;
 
 /**

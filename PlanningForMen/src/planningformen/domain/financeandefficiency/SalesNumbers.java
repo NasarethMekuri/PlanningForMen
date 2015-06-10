@@ -64,6 +64,20 @@ public class SalesNumbers
         }
         return temp;
     }
+    
+    public String getProfitLoss()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Profit and loss acount for year " + _id + "\n\n\n");
+        sb.append("Turnover \t\t\t" + getTurnover() + "\n");
+        sb.append("Cost of Sales \t" + getCostOfSales() + "\n\n");
+        sb.append("Gross Profit \t\t" + getGrossProfit() + "\n");
+        sb.append("Expenses \t\t\t" + getExpenses() + "\n\n");
+        sb.append("Operating Profit \t" + getOperatingProfit() + "\n\n");
+        sb.append("Corporation Tax \t" + getCorporationTax() + "\n\n");
+        sb.append("Profit after Tax \t" + getProfitAfterTax());
+        return sb.toString();
+    }
 
     public double getTurnover()                 {return _turnover;}
     public double getCostOfSales()              {return _costOfSales;}
