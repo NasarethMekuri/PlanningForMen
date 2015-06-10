@@ -414,6 +414,7 @@ public class CreateSalePanel extends javax.swing.JPanel
         {
             _sellables = _controller.getAvailableSellables();
             _saleItems.clear();
+            lblMessage.setText("Success! Invoice printed!");
             updateGUILists();
         }
     }//GEN-LAST:event_createSaleActionPerformed

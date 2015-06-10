@@ -58,6 +58,7 @@ public class SaleManager implements ISaleCallback
         {
             for(Sellable s : sellables)
                 s.setSaleID(saleID);
+            printInvoice(sale);
             return _sales.add(sale);
         }
         return false;
@@ -135,6 +136,19 @@ public class SaleManager implements ISaleCallback
                 {
                     tmpList.add(s);
                 }
+            }
+        }
+        return tmpList;
+    }
+    
+    public List<Sale> findSales(Date fromDate, Date toDate)
+    {
+        List<Sale> tmpList = new ArrayList<Sale>();
+        for(Sale s : _sales)
+        {
+            if(s.getSaleDate().after(fromDate) && s.getSaleDate().before(toDate))
+            {
+                tmpList.add(s);
             }
         }
         return tmpList;
