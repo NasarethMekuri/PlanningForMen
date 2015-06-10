@@ -140,7 +140,7 @@ public class FindSalePanel extends javax.swing.JPanel
                         .addComponent(btnFindSales, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnReset)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +179,7 @@ public class FindSalePanel extends javax.swing.JPanel
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listFoundSales.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listFoundSales.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -197,6 +198,7 @@ public class FindSalePanel extends javax.swing.JPanel
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listFoundSellables.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listFoundSellables.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -260,42 +262,44 @@ public class FindSalePanel extends javax.swing.JPanel
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblUnpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUnpaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfPay, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnPay))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblTaxSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblTaxAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRemoveSellable, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnUpdateSale)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnDeleteSale))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6)))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTaxSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTaxAll, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnUpdateSale)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDeleteSale))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRemoveSellable, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(144, 144, 144)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,23 +319,24 @@ public class FindSalePanel extends javax.swing.JPanel
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPay)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(lblUnpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(lblTaxSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11))
+                    .addComponent(lblTaxAll, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(lblTaxSelected)
-                    .addComponent(jLabel11)
-                    .addComponent(lblTaxAll))
-                .addGap(13, 13, 13)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemoveSellable)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -361,9 +366,10 @@ public class FindSalePanel extends javax.swing.JPanel
                         .addComponent(btnYearlySales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 185, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -376,7 +382,7 @@ public class FindSalePanel extends javax.swing.JPanel
                     .addComponent(btnYearlySales)
                     .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -386,34 +392,39 @@ public class FindSalePanel extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindSalesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindSalesActionPerformed
     {//GEN-HEADEREND:event_btnFindSalesActionPerformed
-        _foundSales = _controller.findSales(tfCustomerID.getText(), Date.valueOf(tfFromDate.getText()), Date.valueOf(tfToDate.getText()));
+        try
+        {
+            _foundSales = _controller.findSales(tfCustomerID.getText(), Date.valueOf(tfFromDate.getText()), Date.valueOf(tfToDate.getText()));
+        }
+        catch(IllegalArgumentException e)
+        {
+            //Error handling goes here
+        }
         updateSalesList();
-        if(_foundSales.size() > 0)
+        if(_foundSales != null)
             lblTaxAll.setText("" + _controller.calculateTaxes(_foundSales));
     }//GEN-LAST:event_btnFindSalesActionPerformed
 
@@ -468,10 +479,11 @@ public class FindSalePanel extends javax.swing.JPanel
             }
             catch(NumberFormatException e)
             {
-                //Do error stuff here.
+                System.out.println("Wrong number format.");
             }
-            double remaining = _controller.paySale(_foundSales.get(listFoundSales.getSelectedIndex()), amountPaid);
-            lblUnpaid.setText("" + remaining);
+            int index = listFoundSales.getSelectedIndex();
+
+            lblUnpaid.setText("" + _controller.paySale(_foundSales.get(index), amountPaid));
         }
         
     }//GEN-LAST:event_btnPayActionPerformed
@@ -496,7 +508,7 @@ public class FindSalePanel extends javax.swing.JPanel
 
     private void listFoundSellablesValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_listFoundSellablesValueChanged
     {//GEN-HEADEREND:event_listFoundSellablesValueChanged
-        updateSellablesList(listFoundSales.getSelectedIndex());
+        updateSalesInfo();
     }//GEN-LAST:event_listFoundSellablesValueChanged
     
     private void displaySalesNumbers(SalesNumbers sn)
@@ -507,6 +519,8 @@ public class FindSalePanel extends javax.swing.JPanel
     private void updateSalesList()
     {
         _salesModel.clear();
+        if(_foundSales == null)
+            return;
         for(Sale s : _foundSales)
         {
             _salesModel.addElement(s);
@@ -523,6 +537,17 @@ public class FindSalePanel extends javax.swing.JPanel
         {
             _sellablesModel.addElement(s);
         }
+        lblTotalPrice.setText("" + _foundSales.get(index).getTotalPrice());
+        lblUnpaid.setText("" + (_foundSales.get(index).getTotalPrice() - _foundSales.get(index).getAmountPaid()));
+        lblTaxSelected.setText("" + _controller.calculateTaxes(_foundSales.get(index)));
+    }
+    
+    private void updateSalesInfo()
+    {
+        int index = listFoundSales.getSelectedIndex();
+        if(listFoundSellables.getSelectedIndex() < 0)
+            return;
+
         lblTotalPrice.setText("" + _foundSales.get(index).getTotalPrice());
         lblUnpaid.setText("" + (_foundSales.get(index).getTotalPrice() - _foundSales.get(index).getAmountPaid()));
         lblTaxSelected.setText("" + _controller.calculateTaxes(_foundSales.get(index)));

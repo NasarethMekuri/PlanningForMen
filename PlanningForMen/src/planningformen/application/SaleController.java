@@ -82,6 +82,7 @@ public class SaleController implements ISaleController
     @Override
     public double paySale(Sale sale, double amountPaid)
     {
+        System.out.println("Pay sale on Controller");
         return Master.getInstance().getSaleManager().paySale(sale, amountPaid);
     }
 

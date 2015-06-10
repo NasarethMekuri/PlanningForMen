@@ -705,7 +705,6 @@ public class DBHandler
     public boolean updateSale(String id, String empID, String custID, Date saleDate, Date dueDate, String[] carIDs, String[] serviceIDs, String[] tyreIDs, double amountPaid, double tax)
     {
         Connection c = _DBCONNECTOR.getConnection();
-        
         CallableStatement cs = null;
         int rowCount = -1;
         
@@ -720,10 +719,9 @@ public class DBHandler
             cs.setDate(5, dueDate);
             cs.setDouble(6, amountPaid);
             cs.setDouble(7, tax);
-            
+
             rowCount = cs.executeUpdate();
             cs.close();
-            
             if(rowCount >= 0) //Only continue if the initial creation succeeded!
             {
                 //Create / update many-side

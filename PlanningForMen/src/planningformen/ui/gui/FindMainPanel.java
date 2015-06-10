@@ -32,33 +32,22 @@ public class FindMainPanel extends javax.swing.JPanel
 
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        findSalePanel1 = new planningformen.ui.gui.FindSalePanel();
         findCarPanel2 = new planningformen.ui.gui.FindCarPanel();
         findEmployeePanel2 = new planningformen.ui.gui.FindEmployeePanel();
         findCustomerPanel1 = new planningformen.ui.gui.FindCustomerPanel();
         findTyrePanel2 = new planningformen.ui.gui.FindTyrePanel();
         findServicePanel2 = new planningformen.ui.gui.FindServicePanel();
+        findSalePanel1 = new planningformen.ui.gui.FindSalePanel();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("FIND");
 
-        javax.swing.GroupLayout findSalePanel1Layout = new javax.swing.GroupLayout(findSalePanel1);
-        findSalePanel1.setLayout(findSalePanel1Layout);
-        findSalePanel1Layout.setHorizontalGroup(
-            findSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
-        );
-        findSalePanel1Layout.setVerticalGroup(
-            findSalePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Sale", findSalePanel1);
         jTabbedPane1.addTab("Car", findCarPanel2);
         jTabbedPane1.addTab("Employee", findEmployeePanel2);
         jTabbedPane1.addTab("Customer", findCustomerPanel1);
         jTabbedPane1.addTab("Tyre", findTyrePanel2);
         jTabbedPane1.addTab("Service", findServicePanel2);
+        jTabbedPane1.addTab("Sale", findSalePanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -105,11 +105,12 @@ public class SaleManager implements ISaleCallback
     {
         if(!sale.IsPaid())
         {
+            System.out.println("Is not paid.");
             double totalAmountPaid = sale.getAmountPaid() + amountPaid;
+            sale.setAmountPaid(totalAmountPaid);
             
             if(updateSale(sale)) //If db stuff succeeds
             {
-                sale.setAmountPaid(totalAmountPaid);
                 return sale.getTotalPrice() - sale.getAmountPaid();
             }
         }

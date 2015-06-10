@@ -63,6 +63,7 @@ public class Sale implements Transaction
     { 
         if(_items == null)
             _items = new ArrayList<Sellable>();
+        _isPaid = _amountPaid >= getTotalPrice();
         return _items; 
     }
     
