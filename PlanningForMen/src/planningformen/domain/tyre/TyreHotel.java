@@ -53,16 +53,7 @@ public class TyreHotel
         {
             return null;
         }
-        else
-        {
-            for (int i = 0; i < position.length(); i++)
-            {
-                if (position.charAt(i) != '0' || position.charAt(i) != '1')
-                {
-                    return null;
-                }
-            }
-        }
+      
         return findSlot(position.substring(3), position.substring(1, 3), position.substring(0, 1));
     }
     

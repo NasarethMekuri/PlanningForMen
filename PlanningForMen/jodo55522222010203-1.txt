@@ -1,0 +1,18 @@
+MADS' USED CAR SALES
+Ørstedsgade 52, 6400 Sønderborg
+Phone: +45 12345678 
+
+
+SaleID: jodo55522222010203-1
+Sale handled by: Simon Ludvigsen
+
+
+CustomerID: jodo55522222010203
+Customer:
+John Doe
+Cardboard Box 1 6400
+Phone: 55522222
+ Item name goes here 75000.0
+ Item name goes here 70000.0
+ Item name goes here 5000.0
+ Item name goes here 900.0

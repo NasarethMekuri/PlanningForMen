@@ -8,7 +8,6 @@ package planningformen.domain.financeandefficiency;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import planningformen.domain.planning.Customer;
 
 /**
  *
